@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des annonces
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1>Liste des annonces</h1>
+
+		{% for a in annonces %}
+			<h3>{{a.marque}}</h3>
+			<p>Modèle {{a.modele}}</p>
+            <p>Couleur {{a.couleur}}</p>
+            <p>Kilométrage {{a.kilometrage}} km</p>
+			<p>Mise en circulation {{a.datemiseencirculation|date("d-m-Y")}}</p>
+            <p>{{a.prixvente}} €</p>
+            <a href="#">Voir fiche</a>
+
+		{% endfor %}
+	</div>
+{% endblock %}

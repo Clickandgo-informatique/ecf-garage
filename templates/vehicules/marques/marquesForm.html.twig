@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block title %}Créer une marque{% endblock %}
+{% block body %}
+<div class="main">
+<h1>Formulaire création de marque de véhicules</h1>
+{{form_start(marquesForm)}}
+{{form_row(marquesForm.marque)}}
+<button type="submit">Créer</button>
+{{form_end(marquesForm)}}
+</div>
+{% endblock %}

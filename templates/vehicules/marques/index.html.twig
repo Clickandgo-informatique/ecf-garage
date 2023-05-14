@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des marques de véhicules
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1>Liste des marques de véhicules</h1>
+{% if marques %}
+		{% for marque in marques %}
+        {{marque.marque}}
+        {% endfor %}
+	{% else %}
+		<p>Aucune donnée de marque de véhicules à afficher, crééz une nouvelle marque grâce au bouton dédié.</p>
+	{% endif %}
+<a href="{{path('app_marques_creer')}}">Créer une marque</a>
+</div>{% endblock %}

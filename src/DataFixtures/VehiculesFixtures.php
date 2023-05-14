@@ -36,15 +36,20 @@ class VehiculesFixtures extends Fixture
             // $random_Date = new \DateTime("d-m-Y",);
 
             $v = new Vehicules();
-            $v->setMarque($marques[$randomMarques]);
-            $v->setModele("nc");
-            $v->setMotorisation($motorisations[$randomMotorisations]);
-            $v->setTypeVehicule($types[$randomTypes]);
-            $v->setBoite($boites[$randomBoites]);
-            $v->setCylindree(rand(1000, 5600));
-            $v->setNbPlaces(rand(1, 10));
-            $v->setNbPortes(rand(2, 5));
-            $v->setPrixVente(rand(3500, 300000));
+            $v->setMarque($marques[$randomMarques])
+            ->setModele("nc")
+            ->setCouleur('blanche')            
+            ->setMotorisation($motorisations[$randomMotorisations])
+            ->setTypeVehicule($types[$randomTypes])
+            ->setBoite($boites[$randomBoites])
+            ->setCylindree(rand(1000, 5600))
+            ->setNbPlaces(rand(1, 10))
+            ->setNbPortes(rand(2, 5))
+            ->setPrixVente(rand(3500, 300000))
+            ->setKilometrage(rand(1000,200000))
+            ->setChevauxDin(rand(1,1000))
+            ->setChevauxFiscaux(10.00,400.00)
+            ;
             // $v->setDateMiseEnCirculation($random_Date);
             // $v->setDateMiseEnVente($random_Date);
 

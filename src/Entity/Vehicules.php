@@ -55,6 +55,36 @@ class Vehicules
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $boite = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $num_chassis = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $localisation = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_vente = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $critere_pollution = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_controle_technique = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $remarques = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $kilometrage = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nb_proprietaires = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $chevaux_fiscaux = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $chevaux_din = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -235,6 +265,126 @@ class Vehicules
     public function setBoite(?string $boite): self
     {
         $this->boite = $boite;
+
+        return $this;
+    }
+
+    public function getNumChassis(): ?string
+    {
+        return $this->num_chassis;
+    }
+
+    public function setNumChassis(?string $num_chassis): self
+    {
+        $this->num_chassis = $num_chassis;
+
+        return $this;
+    }
+
+    public function getLocalisation(): ?string
+    {
+        return $this->localisation;
+    }
+
+    public function setLocalisation(?string $localisation): self
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    public function getDateVente(): ?\DateTimeInterface
+    {
+        return $this->date_vente;
+    }
+
+    public function setDateVente(?\DateTimeInterface $date_vente): self
+    {
+        $this->date_vente = $date_vente;
+
+        return $this;
+    }
+
+    public function getCriterePollution(): ?string
+    {
+        return $this->critere_pollution;
+    }
+
+    public function setCriterePollution(?string $critere_pollution): self
+    {
+        $this->critere_pollution = $critere_pollution;
+
+        return $this;
+    }
+
+    public function getDateControleTechnique(): ?\DateTimeInterface
+    {
+        return $this->date_controle_technique;
+    }
+
+    public function setDateControleTechnique(?\DateTimeInterface $date_controle_technique): self
+    {
+        $this->date_controle_technique = $date_controle_technique;
+
+        return $this;
+    }
+
+    public function getRemarques(): ?string
+    {
+        return $this->remarques;
+    }
+
+    public function setRemarques(?string $remarques): self
+    {
+        $this->remarques = $remarques;
+
+        return $this;
+    }
+
+    public function getKilometrage(): ?int
+    {
+        return $this->kilometrage;
+    }
+
+    public function setKilometrage(?int $kilometrage): self
+    {
+        $this->kilometrage = $kilometrage;
+
+        return $this;
+    }
+
+    public function getNbProprietaires(): ?int
+    {
+        return $this->nb_proprietaires;
+    }
+
+    public function setNbProprietaires(?int $nb_proprietaires): self
+    {
+        $this->nb_proprietaires = $nb_proprietaires;
+
+        return $this;
+    }
+
+    public function getChevauxFiscaux(): ?float
+    {
+        return $this->chevaux_fiscaux;
+    }
+
+    public function setChevauxFiscaux(?float $chevaux_fiscaux): self
+    {
+        $this->chevaux_fiscaux = $chevaux_fiscaux;
+
+        return $this;
+    }
+
+    public function getChevauxDin(): ?float
+    {
+        return $this->chevaux_din;
+    }
+
+    public function setChevauxDin(?float $chevaux_din): self
+    {
+        $this->chevaux_din = $chevaux_din;
 
         return $this;
     }
