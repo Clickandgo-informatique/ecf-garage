@@ -4,12 +4,34 @@
 {% block body %}
 	<div class="main">
 		<h1>Liste des marques de véhicules</h1>
-{% if marques %}
-		{% for marque in marques %}
-        {{marque.marque}}
-        {% endfor %}
+		<a class="btn btn-primary" href="{{path('app_marques_creer_marque')}}">Ajouter une marque</a>
+
+		{% if marques %}
+			<table id="tblMarques">
+				<tbody>
+					{% set i = 1 %}
+					{% for marque in marques %}
+						<tr>
+							<td>{{i}}.
+							</td>
+							<td><strong>{{marque.marque}}</strong></td>
+							<td>
+								<a href="#" class="btn btn-danger" data-id="{{ marque.id }}" id="btn-supprimer-marque">Supprimer</a>
+							</td>
+							<td>
+								<a class="btn btn-warning" href="#">Modifier</a>
+							</td>
+						</tr>
+						{% set i = i + 1 %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	{% else %}
 		<p>Aucune donnée de marque de véhicules à afficher, crééz une nouvelle marque grâce au bouton dédié.</p>
 	{% endif %}
-<a href="{{path('app_marques_creer')}}">Créer une marque</a>
-</div>{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/assets/js/marques.js"></script>
+{% endblock %}

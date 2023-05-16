@@ -18,4 +18,14 @@ class VehiculesController extends AbstractController
 
         return $this->render('vehicules/index.html.twig', compact('vehicules'));
     }
+
+    #[Route('/details/{id}', name: 'details_vehicule')]
+    public function details(VehiculesRepository $vehiculesRepository, $id): Response
+    {
+        $vehicule = $vehiculesRepository->findOneById($id);
+        
+        return $this->render('./vehicules/details.html.twig', [
+            'vehicule' => $vehicule
+        ]);
+    }
 }

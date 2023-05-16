@@ -23,9 +23,10 @@ class MarquesController extends AbstractController
     }
 
     //Créer une marque de véhicules
-    #[Route('/creer', name: 'creer')]
-    public function creer(EntityManagerInterface $em, Request $request): Response
+    #[Route('/creer', name: 'creer_marque', methods: ['GET', 'POST'])]
+    public function creer(EntityManagerInterface $em, Request $request, MarquesRepository $marquesRepository): Response
     {
+        $marques = $marquesRepository->findBy([], ['marque' => 'ASC']);
         $marque = new Marques();
         $form = $this->createForm(MarquesFormType::class, $marque);
         $form->handleRequest($request);
@@ -35,11 +36,25 @@ class MarquesController extends AbstractController
 
             $em->persist($marque);
             $em->flush();
+            $this->addFlash('success', 'La marque a bien été enregistrée dans la base');
+            return $this->redirectToRoute('app_marques_index');
         }
 
         return $this->render('vehicules/marques/marquesForm.html.twig', [
-            'marquesForm' => $form->createView()
+            'marquesForm' => $form->createView(),
         ]);
-        $this->addFlash('success', 'La marque a bien été enregistrée dans la base');
+    }
+
+    //Supprimer une marque de véhicules
+    #[Route('/supprimer/{id}', methods: ['DELETE'], name: 'supprimer_marque')]
+    public function supprimer(MarquesRepository $marquesRepository, EntityManagerInterface $em, $id)
+    {
+        $marque = $marquesRepository->find($id);
+        $em->remove($marque);
+        $em->flush();
+
+        $this->addFlash('success', 'La marque a été supprimée de la base avec succès.');
+
+        return new Response('Suppression effectuée avec succès.', 200);
     }
 }

@@ -3,6 +3,29 @@
 {% endblock %}
 {% block body %}
 	<div class="main">
-		<h1>Liste des véhicules</h1>
+		<h1 class="titre-principal">Liste des véhicules</h1>
+		<div class="cards-container">
+			{% for v in vehicules %}
+				<div class="card-vehicule">
+					<div class="photo-miniature">
+						{% if v.photos[0] is defined %}
+							{{v.photos[0]}}
+						{% endif %}
+					</div>
+					<div class="card-title">
+						<p>
+							<strong>{{v.marque}}</strong>
+							{{v.modele}}</p>
+					</div>
+					<div class="card-text">
+						<p>{{v.kilometrage}}
+							km.</p>
+						<p>{{v.prixvente}}
+							€</p>
+						<p>{{v.datemiseencirculation|date("d-m-Y")}}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

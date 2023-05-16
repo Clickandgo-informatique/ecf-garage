@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\MarquesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: MarquesRepository::class)]
+#[UniqueEntity('marque','Cette marque existe déjà dans la base.')]
 class Marques
 {
     #[ORM\Id]
@@ -13,8 +17,22 @@ class Marques
     #[ORM\Column]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 100)]
     private ?string $marque = null;
+
+    #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Vehicules::class, orphanRemoval: true)]
+    private Collection $vehicules;
+
+    public function __construct()
+    {
+        $this->vehicules = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->marque;
+    }
 
     public function getId(): ?int
     {
@@ -29,6 +47,36 @@ class Marques
     public function setMarque(string $marque): self
     {
         $this->marque = $marque;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicules>
+     */
+    public function getVehicules(): Collection
+    {
+        return $this->vehicules;
+    }
+
+    public function addVehicule(Vehicules $vehicule): self
+    {
+        if (!$this->vehicules->contains($vehicule)) {
+            $this->vehicules->add($vehicule);
+            $vehicule->setMarque($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicule(Vehicules $vehicule): self
+    {
+        if ($this->vehicules->removeElement($vehicule)) {
+            // set the owning side to null (unless already changed)
+            if ($vehicule->getMarque() === $this) {
+                $vehicule->setMarque(null);
+            }
+        }
 
         return $this;
     }

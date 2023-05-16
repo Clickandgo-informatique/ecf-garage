@@ -17,9 +17,6 @@ class Vehicules
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $marque = null;
-
-    #[ORM\Column(length: 100)]
     private ?string $modele = null;
 
     #[ORM\Column(length: 100)]
@@ -85,6 +82,19 @@ class Vehicules
     #[ORM\Column(nullable: true)]
     private ?float $chevaux_din = null;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Marques $marque = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $reference_interne = null;
+
+    #[ORM\Column(length: 15, nullable: true)]
+    private ?string $plaque_immatriculation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'vehicules')]
+    private ?Clients $proprietaire = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -93,18 +103,6 @@ class Vehicules
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMarque(): ?string
-    {
-        return $this->marque;
-    }
-
-    public function setMarque(string $marque): self
-    {
-        $this->marque = $marque;
-
-        return $this;
     }
 
     public function getModele(): ?string
@@ -385,6 +383,54 @@ class Vehicules
     public function setChevauxDin(?float $chevaux_din): self
     {
         $this->chevaux_din = $chevaux_din;
+
+        return $this;
+    }
+
+    public function getMarque(): ?Marques
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marques $marque): self
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getReferenceInterne(): ?string
+    {
+        return $this->reference_interne;
+    }
+
+    public function setReferenceInterne(?string $reference_interne): self
+    {
+        $this->reference_interne = $reference_interne;
+
+        return $this;
+    }
+
+    public function getPlaqueImmatriculation(): ?string
+    {
+        return $this->plaque_immatriculation;
+    }
+
+    public function setPlaqueImmatriculation(?string $plaque_immatriculation): self
+    {
+        $this->plaque_immatriculation = $plaque_immatriculation;
+
+        return $this;
+    }
+
+    public function getProprietaire(): ?Clients
+    {
+        return $this->proprietaire;
+    }
+
+    public function setProprietaire(?Clients $proprietaire): self
+    {
+        $this->proprietaire = $proprietaire;
 
         return $this;
     }
