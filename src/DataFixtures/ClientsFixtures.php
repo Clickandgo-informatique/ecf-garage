@@ -36,8 +36,8 @@ class ClientsFixtures extends Fixture
             $manager->persist($client);
             $this->addReference('Client_' . '2', $client);
             $client = new Clients(); 
-            $client->setNom('Dupont')
-            ->setPrenom('Etienne')
+            $client->setNom('De La Marche')
+            ->setPrenom('Emilie')
             ->setTelephoneFixe('01.02.03.04.05')
             ->setTelephoneMobile('01.02.03.04.05')
             ->setAdresse('Rue Emile Zola')

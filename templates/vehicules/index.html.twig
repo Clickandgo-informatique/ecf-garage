@@ -23,6 +23,7 @@
 						<p>{{v.prixvente}}
 							€</p>
 						<p>{{v.datemiseencirculation|date("d-m-Y")}}</p>
+						<a class="btn btn-primary btn-voir-details" href="{{path('app_vehicules_details_vehicule',{id:v.id})}}">Voir détails</a>
 					</div>
 				</div>
 			{% endfor %}

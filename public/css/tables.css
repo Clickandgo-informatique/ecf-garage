@@ -12,10 +12,15 @@ tr {
 
 }
 
-td {
+td,
+th {
     padding: 10px;
 }
 
 .table-label {
     background-color: rgb(241, 241, 241);
+}
+
+.fiche-vehicule {
+    font-size: 0.8rem;
 }

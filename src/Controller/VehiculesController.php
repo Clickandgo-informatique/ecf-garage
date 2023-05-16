@@ -23,9 +23,10 @@ class VehiculesController extends AbstractController
     public function details(VehiculesRepository $vehiculesRepository, $id): Response
     {
         $vehicule = $vehiculesRepository->findOneById($id);
-        
+       
         return $this->render('./vehicules/details.html.twig', [
             'vehicule' => $vehicule
         ]);
     }
+
 }

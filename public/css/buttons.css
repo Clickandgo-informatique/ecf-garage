@@ -1,21 +1,35 @@
-.btn{
-    display:block;
-    padding:7px 10px;
-    color:white;
-    width:fit-content;
+.btn {
+    display: block;
+    padding: 7px 10px;
+    color: white;
+    width: fit-content;
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.8rem;
 
 }
-.btn-primary{
+
+.btn-primary {
     background-color: blue;
 }
 
-.btn-danger{
+.btn-danger {
     background-color: red;
 }
 
-.btn-warning{
+.btn-warning {
     background-color: orange;
+}
+
+.btn-go-back {
+    background-color: lightgray;
+    color: blue;
+    margin: 10px;
+}
+
+.btn-voir-details {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }

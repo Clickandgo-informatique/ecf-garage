@@ -3,13 +3,22 @@
 {% endblock %}
 {% block body %}
 	<div class="main">
-		<a href="#" class"btn btn-primary">Editer la fiche</a>
-		<a href="#" class"btn btn-danger">Supprimer ce véhicule</a>
+		<h1 class="titre-principal">Fiche véhicule</h1>
+
+		<a class="btn btn-go-back" href="{{path('app_vehicules_liste_vehicules')}}">Revenir à la liste</a>
+
 		<table class="table fiche-vehicule">
+			<thead>
+				<th>
+					<a class="btn btn-primary">Editer la fiche</a>
+				</th>
+				<th>
+					<a href="#" class="btn btn-danger">Supprimer ce véhicule</a>
+				</th>
+			</thead>
+
 			<tbody>
-				<tr>
-					<td>Fiche garage</td>
-				</tr>
+
 				<tr>
 					<td class="table-label">Reference interne</td>
 					<td>
@@ -43,7 +52,11 @@
 				<tr>
 					<td class="table-label">Propietaire</td>
 
-					<td>{{vehicule.proprietaire}}</td>
+					<td>
+						<a href="#">{{vehicule.proprietaire.nom}}
+							{{vehicule.proprietaire.prenom}}</a>
+					</td>
+
 				</tr>
 
 				<tr>
@@ -64,7 +77,8 @@
 				<tr>
 					<td class="table-label">Prix vente</td>
 
-					<td>{{vehicule.prixvente}}</td>
+					<td>{{vehicule.prixvente}}
+						€</td>
 				</tr>
 				<tr>
 					<td class="table-label">Couleur</td>
@@ -136,7 +150,5 @@
 
 			</tbody>
 		</table>
-
 	</div>
-
 {% endblock %}
