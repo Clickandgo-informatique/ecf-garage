@@ -1,0 +1,21 @@
+.btn{
+    display:block;
+    padding:7px 10px;
+    color:white;
+    width:fit-content;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+
+}
+.btn-primary{
+    background-color: blue;
+}
+
+.btn-danger{
+    background-color: red;
+}
+
+.btn-warning{
+    background-color: orange;
+}

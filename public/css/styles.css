@@ -1,0 +1,19 @@
+@import './buttons.css';
+@import './tables.css';
+@import './cards.css';
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;    
+}
+.titre-principal{
+    text-align: center;
+}
