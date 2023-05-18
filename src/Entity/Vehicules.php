@@ -95,9 +95,16 @@ class Vehicules
     #[ORM\ManyToOne(inversedBy: 'vehicules')]
     private ?Clients $proprietaire = null;
 
+    #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: ListeOptionsVehicule::class, orphanRemoval: true)]
+    private Collection $listeOptionsVehicules;
+
+    #[ORM\OneToOne(inversedBy: 'vehicules', cascade: ['persist', 'remove'])]
+    private ?ListeOptionsVehicule $liste_options = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
+        $this->listeOptionsVehicules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -431,6 +438,48 @@ class Vehicules
     public function setProprietaire(?Clients $proprietaire): self
     {
         $this->proprietaire = $proprietaire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ListeOptionsVehicule>
+     */
+    public function getListeOptionsVehicules(): Collection
+    {
+        return $this->listeOptionsVehicules;
+    }
+
+    public function addListeOptionsVehicule(ListeOptionsVehicule $listeOptionsVehicule): self
+    {
+        if (!$this->listeOptionsVehicules->contains($listeOptionsVehicule)) {
+            $this->listeOptionsVehicules->add($listeOptionsVehicule);
+            $listeOptionsVehicule->setVehicule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListeOptionsVehicule(ListeOptionsVehicule $listeOptionsVehicule): self
+    {
+        if ($this->listeOptionsVehicules->removeElement($listeOptionsVehicule)) {
+            // set the owning side to null (unless already changed)
+            if ($listeOptionsVehicule->getVehicule() === $this) {
+                $listeOptionsVehicule->setVehicule(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getListeOptions(): ?ListeOptionsVehicule
+    {
+        return $this->liste_options;
+    }
+
+    public function setListeOptions(?ListeOptionsVehicule $liste_options): self
+    {
+        $this->liste_options = $liste_options;
 
         return $this;
     }

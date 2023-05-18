@@ -12,7 +12,7 @@ class MarquesFixtures extends Fixture
     {
         $tblMarques = ['Alfa-Romeo', 'Aston-Martin', 'Bentley', 'BMW', 'Citroen', 'DS automobiles', 'Jaguar', 'Mercedes', 'Peugeot', 'Renault', 'Rolls-Royce', 'Toyota', 'Volkswagen'];
 
-        for ($i = 0; $i < count($tblMarques) - 1; $i++) {
+        for ($i = 0; $i < count($tblMarques); $i++) {
 
             $marque = new Marques();
             $marque->setMarque($tblMarques[$i]);

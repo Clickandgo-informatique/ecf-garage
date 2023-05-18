@@ -6,7 +6,13 @@
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.8rem;
+    transition: all 0.2s ease-in-out;
 
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
 .btn-primary {
