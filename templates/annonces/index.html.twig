@@ -4,16 +4,30 @@
 {% block body %}
 	<div class="main">
 		<h1>Liste des annonces</h1>
-
-		{% for a in annonces %}
-			<h3>{{a.marque}}</h3>
-			<p>Modèle {{a.modele}}</p>
-            <p>Couleur {{a.couleur}}</p>
-            <p>Kilométrage {{a.kilometrage}} km</p>
-			<p>Mise en circulation {{a.datemiseencirculation|date("d-m-Y")}}</p>
-            <p>{{a.prixvente}} €</p>
-            <a href="#">Voir fiche</a>
-
-		{% endfor %}
+		<div class="cards-container">
+			{% for v in annonces %}
+				<div class="card-vehicule">
+					<div class="photo-miniature">
+						{% if v.photos[0] is defined %}
+							{{v.photos[0]}}
+						{% endif %}
+					</div>
+					<div class="card-title">
+						<p>
+							<strong>{{v.marque}}</strong>
+							{{v.modele}}</p>
+					</div>
+					<div class="card-text">
+						<p>{{v.kilometrage}}
+							km.</p>
+						<p>{{v.prixvente}}
+							€</p>
+						<p>{{v.datemiseencirculation|date("d-m-Y")}}</p>
+						<a class="btn btn-primary btn-voir-details" href="{{path('app_vehicules_details_vehicule',{id:v.id})}}">Voir détails</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
+
 {% endblock %}

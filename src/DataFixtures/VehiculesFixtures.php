@@ -71,9 +71,10 @@ class VehiculesFixtures extends Fixture
 
             //Création de la liste d'options du véhicule actuel
             $max = count($tblOptions) - 2;
+           
             for ($j = 0; $j < rand(1,$max); $j++) {
-
                 $listeOptions = new ListeOptionsVehicule();
+
                 $listeOptions->setVehicule($v);
                 $listeOptions->setOptionVehicule($this->getReference('OptionVehicule_' . rand(1, $max)));
                 $manager->persist($listeOptions);
@@ -86,4 +87,4 @@ class VehiculesFixtures extends Fixture
     {
         return [MarquesFixtures::class, ClientsFixtures::class, OptionsVehiculesFixtures::class];
     }
-}
+} #} #}

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: OptionsVehiculesRepository::class)]
-#[UniqueEntity('nom_option','Cette option de véhicule existe déjà dans la base.')]
+#[UniqueEntity('nom_option', 'Cette option de véhicule existe déjà dans la base.')]
 class OptionsVehicules
 {
     #[ORM\Id]
@@ -27,10 +27,14 @@ class OptionsVehicules
     #[ORM\OneToMany(mappedBy: 'option_vehicule', targetEntity: ListeOptionsVehicule::class, orphanRemoval: true)]
     private Collection $listeOptionsVehicules;
 
+    #[ORM\OneToOne(mappedBy: 'options_vehicule', cascade: ['persist', 'remove'])]
+    private ?ListeOptionsVehicule $listeOptionsVehicule = null;
+
     public function __construct()
     {
         $this->listeOptionsVehicules = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -45,8 +49,12 @@ class OptionsVehicules
     public function setNomOption(string $nom_option): self
     {
         $this->nom_option = $nom_option;
-
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom_option;
     }
 
     public function getDescriptionOption(): ?string
@@ -87,6 +95,23 @@ class OptionsVehicules
                 $listeOptionsVehicule->setOptionVehicule(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getListeOptionsVehicule(): ?ListeOptionsVehicule
+    {
+        return $this->listeOptionsVehicule;
+    }
+
+    public function setListeOptionsVehicule(ListeOptionsVehicule $listeOptionsVehicule): self
+    {
+        // set the owning side of the relation if necessary
+        if ($listeOptionsVehicule->getOptionVehicule() !== $this) {
+            $listeOptionsVehicule->setOptionVehicule($this);
+        }
+
+        $this->listeOptionsVehicule = $listeOptionsVehicule;
 
         return $this;
     }

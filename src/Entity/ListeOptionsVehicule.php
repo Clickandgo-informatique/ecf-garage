@@ -17,13 +17,12 @@ class ListeOptionsVehicule
     #[ORM\JoinColumn(nullable: false)]
     private ?Vehicules $vehicule = null;
 
-    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicules')]
+    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicules', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?OptionsVehicules $option_vehicule = null;
 
-    #[ORM\OneToOne(mappedBy: 'liste_options', cascade: ['persist', 'remove'])]
-    private ?Vehicules $vehicules = null;
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -49,28 +48,6 @@ class ListeOptionsVehicule
     public function setOptionVehicule(?OptionsVehicules $option_vehicule): self
     {
         $this->option_vehicule = $option_vehicule;
-
-        return $this;
-    }
-
-    public function getVehicules(): ?Vehicules
-    {
-        return $this->vehicules;
-    }
-
-    public function setVehicules(?Vehicules $vehicules): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($vehicules === null && $this->vehicules !== null) {
-            $this->vehicules->setListeOptions(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($vehicules !== null && $vehicules->getListeOptions() !== $this) {
-            $vehicules->setListeOptions($this);
-        }
-
-        $this->vehicules = $vehicules;
 
         return $this;
     }

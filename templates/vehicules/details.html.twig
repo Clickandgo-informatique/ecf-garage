@@ -150,5 +150,19 @@
 
 			</tbody>
 		</table>
+
+		{# <table class="table liste-options-vehicules">
+			<tbody>
+				{% for option in vehicule.listeOptionsVehicule %}
+					{% if option %}
+						<tr>
+							<td>Option :
+								{{option.optionVehicule}}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+
+		</table> #}
 	</div>
 {% endblock %}

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\ListeOptionsVehiculeRepository;
 use App\Repository\VehiculesRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,13 +22,42 @@ class VehiculesController extends AbstractController
     }
 
     #[Route('/details/{id}', name: 'details_vehicule')]
-    public function details(VehiculesRepository $vehiculesRepository, $id): Response
+    public function details(VehiculesRepository $vehiculesRepository, ListeOptionsVehiculeRepository $listeOptionsVehiculeRepository, $id): Response
     {
         $vehicule = $vehiculesRepository->findOneById($id);
-       
+        //$listeOptions = $listeOptionsVehiculeRepository->findBy(['vehicule' => $vehicule]);
+
         return $this->render('./vehicules/details.html.twig', [
             'vehicule' => $vehicule
         ]);
     }
 
+    #[Route('/publier_annonce/{id}',name:'publier_annonce')]
+    public function publierAnnonceVehicule(VehiculesRepository $vehiculesRepository,EntityManagerInterface $em, $id): Response
+    {
+
+        $vehicule = $vehiculesRepository->findOneById($id);
+        $vehicule->setPublicationAnnonce(true);
+
+        $em->persist($vehicule);
+        $em->flush();
+
+        $this->addFlash('success','Une annonce concernant ce véhicule a été publiée.');
+
+        return new Response('Annonce publiée avec succès');
+    }
+    #[Route('/retirer_annonce/{id}',name:'retirer_annonce')]
+    public function retirerAnnonceVehicule(VehiculesRepository $vehiculesRepository,EntityManagerInterface $em, $id): Response
+    {
+
+        $vehicule = $vehiculesRepository->findOneById($id);
+        $vehicule->setPublicationAnnonce(false);
+
+        $em->persist($vehicule);
+        $em->flush();
+
+        $this->addFlash('success','L\'annonce concernant ce véhicule a été retirée avec succès.');
+
+        return new Response('Annonce véhicule retirée avec succès');
+    }
 }

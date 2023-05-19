@@ -96,15 +96,19 @@ class Vehicules
     private ?Clients $proprietaire = null;
 
     #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: ListeOptionsVehicule::class, orphanRemoval: true)]
-    private Collection $listeOptionsVehicules;
+    private Collection $listeOptionsVehicule;
 
-    #[ORM\OneToOne(inversedBy: 'vehicules', cascade: ['persist', 'remove'])]
-    private ?ListeOptionsVehicule $liste_options = null;
+    #[ORM\Column(nullable: true)]
+    private ?bool $publication_annonce = null;
+
+    #[ORM\ManyToMany(targetEntity: VehiculesFavoris::class, mappedBy: 'vehicule')]
+    private Collection $favoris;
 
     public function __construct()
     {
         $this->photos = new ArrayCollection();
-        $this->listeOptionsVehicules = new ArrayCollection();
+        $this->listeOptionsVehicule = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -445,15 +449,15 @@ class Vehicules
     /**
      * @return Collection<int, ListeOptionsVehicule>
      */
-    public function getListeOptionsVehicules(): Collection
+    public function getListeOptionsVehicule(): Collection
     {
-        return $this->listeOptionsVehicules;
+        return $this->listeOptionsVehicule;
     }
 
     public function addListeOptionsVehicule(ListeOptionsVehicule $listeOptionsVehicule): self
     {
-        if (!$this->listeOptionsVehicules->contains($listeOptionsVehicule)) {
-            $this->listeOptionsVehicules->add($listeOptionsVehicule);
+        if (!$this->listeOptionsVehicule->contains($listeOptionsVehicule)) {
+            $this->listeOptionsVehicule->add($listeOptionsVehicule);
             $listeOptionsVehicule->setVehicule($this);
         }
 
@@ -462,7 +466,7 @@ class Vehicules
 
     public function removeListeOptionsVehicule(ListeOptionsVehicule $listeOptionsVehicule): self
     {
-        if ($this->listeOptionsVehicules->removeElement($listeOptionsVehicule)) {
+        if ($this->listeOptionsVehicule->removeElement($listeOptionsVehicule)) {
             // set the owning side to null (unless already changed)
             if ($listeOptionsVehicule->getVehicule() === $this) {
                 $listeOptionsVehicule->setVehicule(null);
@@ -472,14 +476,41 @@ class Vehicules
         return $this;
     }
 
-    public function getListeOptions(): ?ListeOptionsVehicule
+    public function isPublicationAnnonce(): ?bool
     {
-        return $this->liste_options;
+        return $this->publication_annonce;
     }
 
-    public function setListeOptions(?ListeOptionsVehicule $liste_options): self
+    public function setPublicationAnnonce(?bool $publication_annonce): self
     {
-        $this->liste_options = $liste_options;
+        $this->publication_annonce = $publication_annonce;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VehiculesFavoris>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(VehiculesFavoris $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->addVehicule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(VehiculesFavoris $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeVehicule($this);
+        }
 
         return $this;
     }

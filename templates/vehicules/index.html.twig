@@ -24,6 +24,13 @@
 							€</p>
 						<p>{{v.datemiseencirculation|date("d-m-Y")}}</p>
 						<a class="btn btn-primary btn-voir-details" href="{{path('app_vehicules_details_vehicule',{id:v.id})}}">Voir détails</a>
+						
+						{# Affiche un bouton différent suivant si l'annonce a été publiée ou pas. #}
+						{% if v.publicationannonce %}
+						<a class="btn btn-danger btn-supprimer-annonce" href="{{path('app_vehicules_retirer_annonce',{id:v.id})}}">Retirer annonce</a>
+						{% else %}
+						<a class="btn btn-primary btn-publier-annonce" href="{{path('app_vehicules_publier_annonce',{id:v.id})}}">Publier annonce</a>							
+						{% endif %}
 					</div>
 				</div>
 			{% endfor %}
