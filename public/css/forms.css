@@ -1,0 +1,45 @@
+form {
+    /* display: block; */
+    width: auto;
+    margin: 10px auto;
+}
+
+.btn-login {
+    margin: 10px auto;
+}
+
+input {
+    display: block;
+    margin: 10px;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid darkgray;
+    width: 80%;
+}
+
+label {
+    display: block;
+    margin-left: 10px;
+    font-size: 0.8rem;
+}
+
+fieldset {
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+legend {
+    font-size: 0.8rem;
+    color: darkgray;
+    padding: 5px;
+}
+
+.utilisateur {
+    color: darkblue;
+}
+.login-alert-success {
+    margin: 10px auto;
+    text-align: center;
+}

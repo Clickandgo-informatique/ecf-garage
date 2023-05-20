@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    height: 50px;
+    background-color: beige;
+}
+
+.div-connexion {
+    display: flex;
+    margin-right: 10px;
+}
+
+.div-connexion ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.div-connexion .nav-item {
+    margin: 10px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.navbar-brand {
+    display: flex;
+    margin-left: 10px;
+}
