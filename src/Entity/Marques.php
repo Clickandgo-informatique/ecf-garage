@@ -24,6 +24,9 @@ class Marques
     #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Vehicules::class, orphanRemoval: true)]
     private Collection $vehicules;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pathIcon = null;
+
     public function __construct()
     {
         $this->vehicules = new ArrayCollection();
@@ -77,6 +80,18 @@ class Marques
                 $vehicule->setMarque(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPathIcon(): ?string
+    {
+        return $this->pathIcon;
+    }
+
+    public function setPathIcon(?string $pathIcon): self
+    {
+        $this->pathIcon = $pathIcon;
 
         return $this;
     }

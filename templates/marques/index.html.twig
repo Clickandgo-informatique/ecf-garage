@@ -3,8 +3,9 @@
 {% endblock %}
 {% block body %}
 	<div class="main">
-		<h1>Liste des marques de véhicules</h1>
-		<a class="btn btn-primary" href="{{path('app_marques_creer_marque')}}">Ajouter une marque</a>
+<h1 class="titre-principal">Liste des marques de véhicules</h1>
+
+		<a class="btn btn-primary btn-centered" href="{{path('app_marques_creer_marque')}}">Ajouter une marque</a>
 
 		{% if marques %}
 			<table id="tblMarques">

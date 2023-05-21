@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+{% block title %}Fiche utilisateur
+{% endblock %}
+{% block body %}
+	<main>
+		<h1 class="titre-principal">Fiche Utilisateur</h1>
+		<div class="card-container">
+			<div class="card-title">
+				<p>
+					<strong>{{user.nom}}
+						{{user.prenom}}</strong>
+				</p>
+				{% if user.roles %}
+					<td>
+						<p>Type / rôles :</p>
+					</td>
+					{% for role in user.roles %}
+						<td>
+							<p>{{role}}</p>
+						</td>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="card-body">
+				<div class="card-text">
+					<table>
+						<tr>
+							<td>
+								<p>E-mail :
+								</p>
+							</td>
+							<td>
+								<p><a href="#">{{user.email}}</a></p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Adresse :
+								</p>
+							</td>
+							<td>
+								<p>{{user.adresse}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>Code postal :
+							</td>
+							<td>
+								<p>{{user.codepostal}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>Ville :
+							</td>
+							<td>
+								<p>{{user.ville}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>Fixe :
+							</td>
+							<td>
+								<p>{{user.telfixe}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>Mobile :
+							</td>
+							<td>
+								<p>{{user.telmobile}}</p>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+        <a href="{{path('app_users_liste_utilisateurs')}}" class="go-back-link">Revenir à la liste</a>
+	</main>
+{% endblock %}

@@ -15,18 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class MarquesController extends AbstractController
 {
     //Liste des marques de véhicules
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'liste_marques')]
     public function index(MarquesRepository $marquesRepository): Response
     {
         $marques = $marquesRepository->findBy([], ['marque' => 'ASC']);
-        return $this->render('vehicules/marques/index.html.twig', compact('marques'));
+        return $this->render('/marques/index.html.twig', compact('marques'));
     }
 
     //Créer une marque de véhicules
     #[Route('/creer', name: 'creer_marque', methods: ['GET', 'POST'])]
     public function creer(EntityManagerInterface $em, Request $request, MarquesRepository $marquesRepository): Response
     {
-        $marques = $marquesRepository->findBy([], ['marque' => 'ASC']);
+        // $marques = $marquesRepository->findBy([], ['marque' => 'ASC']);
         $marque = new Marques();
         $form = $this->createForm(MarquesFormType::class, $marque);
         $form->handleRequest($request);
@@ -37,11 +37,11 @@ class MarquesController extends AbstractController
             $em->persist($marque);
             $em->flush();
             $this->addFlash('success', 'La marque a bien été enregistrée dans la base');
-            return $this->redirectToRoute('app_marques_index');
+            return $this->redirectToRoute('app_marques_liste_marques');
         }
 
-        return $this->render('vehicules/marques/marquesForm.html.twig', [
-            'marquesForm' => $form->createView(),
+        return $this->render('marques/marques-form.html.twig', [
+            'marque' => $form->createView(),
         ]);
     }
 

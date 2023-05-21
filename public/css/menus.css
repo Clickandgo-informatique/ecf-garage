@@ -1,0 +1,31 @@
+.menu-lateral-gauche {
+    max-width: 250px;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-content: flex-start;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.menu-title {
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 10px auto;
+    background-color: darkgray;
+    color: white;
+}
+
+.menu-link {
+    list-style: none;
+    margin-left: 25px;
+    width: 80%;
+}
+.menu-item{
+    margin: 5px;
+}

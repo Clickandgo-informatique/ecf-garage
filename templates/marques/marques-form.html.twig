@@ -3,9 +3,10 @@
 {% endblock %}
 {% block body %}
 	<div class="main">
-		<h1>Ajouter des marques de véhicules</h1>
-		{{form_start(marquesForm)}}
-		{{form_row(marquesForm.marque)}}
+<h1 class="titre-principal">Ajouter des marques de véhicules</h1>
+
+		{{form_start(marque)}}
+		{{form_row(marque.marque)}}
 		<button class="btn btn-primary" type="submit">Enregistrer</button>
-		{{form_end(marquesForm)}}
+		{{form_end(marque)}}
 	{% endblock %}

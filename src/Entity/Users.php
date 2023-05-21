@@ -47,6 +47,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(options:['default'=>'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\Column(length: 15, nullable: true)]
+    private ?string $Tel_fixe = null;
+
+    #[ORM\Column(length: 15, nullable: true)]
+    private ?string $tel_mobile = null;
+
     public function __construct(){
         return $this->created_at=new \DateTimeImmutable();
     }
@@ -189,6 +195,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getTelFixe(): ?string
+    {
+        return $this->Tel_fixe;
+    }
+
+    public function setTelFixe(?string $Tel_fixe): self
+    {
+        $this->Tel_fixe = $Tel_fixe;
+
+        return $this;
+    }
+
+    public function getTelMobile(): ?string
+    {
+        return $this->tel_mobile;
+    }
+
+    public function setTelMobile(?string $tel_mobile): self
+    {
+        $this->tel_mobile = $tel_mobile;
 
         return $this;
     }

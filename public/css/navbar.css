@@ -15,6 +15,7 @@
 .div-connexion ul {
     display: flex;
     flex-direction: row;
+    align-content: center;
     margin: 0;
 }
 
@@ -24,7 +25,10 @@
     list-style: none;
 }
 
-.navbar-brand {
+.brand {
     display: flex;
+    justify-content: center;
+    align-self: center;
     margin-left: 10px;
 }
+

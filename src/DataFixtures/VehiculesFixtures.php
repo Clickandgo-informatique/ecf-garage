@@ -3,9 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\ListeOptionsVehicule;
-use App\Entity\OptionsVehicules;
 use App\Entity\Vehicules;
-use App\Repository\OptionsVehiculesRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -45,7 +43,7 @@ class VehiculesFixtures extends Fixture
             //Création des données du véhicule
             $v = new Vehicules();
             $v->setReferenceInterne(rand(00001, 99999))
-                ->setProprietaire($this->getReference('Client_' . rand(1, 3)))
+                ->setProprietaire($this->getReference('Client_' .rand(1,9)))
                 ->setMarque($this->getReference('Marque_' . rand(1, $randomMarques)))
                 ->setModele("nc")
                 ->setCouleur($couleurs[$randomCouleurs])
@@ -87,4 +85,4 @@ class VehiculesFixtures extends Fixture
     {
         return [MarquesFixtures::class, ClientsFixtures::class, OptionsVehiculesFixtures::class];
     }
-} #} #}
+} 
