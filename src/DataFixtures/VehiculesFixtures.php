@@ -83,6 +83,9 @@ class VehiculesFixtures extends Fixture
 
     public function getDependencies()
     {
-        return [MarquesFixtures::class, ClientsFixtures::class, OptionsVehiculesFixtures::class];
+        return [MarquesFixtures::class,
+        ClientsFixtures::class,
+        OptionsVehiculesFixtures::class,
+        TypesVehicules::class];
     }
 } 

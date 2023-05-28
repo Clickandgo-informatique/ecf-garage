@@ -24,9 +24,8 @@ class MarquesController extends AbstractController
 
     //Créer une marque de véhicules
     #[Route('/creer', name: 'creer_marque', methods: ['GET', 'POST'])]
-    public function creer(EntityManagerInterface $em, Request $request, MarquesRepository $marquesRepository): Response
+    public function creer(EntityManagerInterface $em, Request $request): Response
     {
-        // $marques = $marquesRepository->findBy([], ['marque' => 'ASC']);
         $marque = new Marques();
         $form = $this->createForm(MarquesFormType::class, $marque);
         $form->handleRequest($request);
@@ -36,6 +35,7 @@ class MarquesController extends AbstractController
 
             $em->persist($marque);
             $em->flush();
+            
             $this->addFlash('success', 'La marque a bien été enregistrée dans la base');
             return $this->redirectToRoute('app_marques_liste_marques');
         }

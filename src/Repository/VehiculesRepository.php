@@ -39,6 +39,20 @@ class VehiculesRepository extends ServiceEntityRepository
         }
     }
 
+    public function findVehiculesPaginated(int $page,string $slug,int $limit=6):array
+    {
+$limit=abs($limit);
+$result=[];
+
+$query=$this->getEntityManager()->createQueryBuilder()
+->select('c','v')
+->from('App\Entity\Vehicules','v')
+->join('v.categorie','c')
+->where("c.slug='$slug'");
+
+return $result;
+    }
+
 //    /**
 //     * @return Vehicules[] Returns an array of Vehicules objects
 //     */
