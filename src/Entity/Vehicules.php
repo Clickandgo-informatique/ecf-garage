@@ -111,6 +111,7 @@ class Vehicules
         $this->favoris = new ArrayCollection();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -408,6 +409,12 @@ class Vehicules
         $this->marque = $marque;
 
         return $this;
+    }
+
+    
+    public function __toString()
+    {
+        return $this->marque;
     }
 
     public function getReferenceInterne(): ?string

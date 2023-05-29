@@ -4,6 +4,7 @@
 {% block body %}
 	<div class="main">
 		<h1 class="titre-principal">Liste des véhicules</h1>
+		<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
 		<div class="cards-container">
 			{% for v in vehicules %}
 				<div class="card-vehicule">
