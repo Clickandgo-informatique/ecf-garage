@@ -31,9 +31,6 @@ class Vehicules
     #[ORM\Column]
     private ?int $prix_vente = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $couleur = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_mise_en_circulation = null;
 
@@ -104,6 +101,10 @@ class Vehicules
     #[ORM\ManyToMany(targetEntity: VehiculesFavoris::class, mappedBy: 'vehicule')]
     private Collection $favoris;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Couleurs $couleur = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -173,18 +174,6 @@ class Vehicules
     public function setPrixVente(int $prix_vente): self
     {
         $this->prix_vente = $prix_vente;
-
-        return $this;
-    }
-
-    public function getCouleur(): ?string
-    {
-        return $this->couleur;
-    }
-
-    public function setCouleur(?string $couleur): self
-    {
-        $this->couleur = $couleur;
 
         return $this;
     }
@@ -411,11 +400,12 @@ class Vehicules
         return $this;
     }
 
-    
-    public function __toString()
+
+    public function __toString(): string
     {
-        return $this->marque;
+        return $this->marque;        
     }
+
 
     public function getReferenceInterne(): ?string
     {
@@ -518,6 +508,18 @@ class Vehicules
         if ($this->favoris->removeElement($favori)) {
             $favori->removeVehicule($this);
         }
+
+        return $this;
+    }
+
+    public function getCouleur(): ?Couleurs
+    {
+        return $this->couleur;
+    }
+
+    public function setCouleur(?Couleurs $couleur): self
+    {
+        $this->couleur = $couleur;
 
         return $this;
     }

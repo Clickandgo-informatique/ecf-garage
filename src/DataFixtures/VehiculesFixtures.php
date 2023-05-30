@@ -33,8 +33,7 @@ class VehiculesFixtures extends Fixture
             $randomMarques = rand(0, $lengthMarques - 1);
             $randomMotorisations = rand(0, $lengthMotorisations - 1);
             $randomTypes = rand(0, $lengthTypes - 1);
-            $randomBoites = rand(0, $lengthBoites - 1);
-            $randomCouleurs = rand(0, $lengthCouleurs - 1);
+            $randomBoites = rand(0, $lengthBoites - 1);          
 
             //Random sur les dates
             // $timestamp = rand(strtotime("Jan 01 2015"), strtotime("Nov 01 2023"));
@@ -43,10 +42,10 @@ class VehiculesFixtures extends Fixture
             //Création des données du véhicule
             $v = new Vehicules();
             $v->setReferenceInterne(rand(00001, 99999))
-                ->setProprietaire($this->getReference('Client_' .rand(1,9)))
+                ->setProprietaire($this->getReference('Client_' . rand(1, 9)))
                 ->setMarque($this->getReference('Marque_' . rand(1, $randomMarques)))
                 ->setModele("nc")
-                ->setCouleur($couleurs[$randomCouleurs])
+                ->setCouleur($this->getReference('couleur_'.rand(1,11)))
                 ->setMotorisation($motorisations[$randomMotorisations])
                 ->setTypeVehicule($types[$randomTypes])
                 ->setBoite($boites[$randomBoites])
@@ -69,8 +68,8 @@ class VehiculesFixtures extends Fixture
 
             //Création de la liste d'options du véhicule actuel
             $max = count($tblOptions) - 2;
-           
-            for ($j = 0; $j < rand(1,$max); $j++) {
+
+            for ($j = 0; $j < rand(1, $max); $j++) {
                 $listeOptions = new ListeOptionsVehicule();
 
                 $listeOptions->setVehicule($v);
@@ -83,9 +82,12 @@ class VehiculesFixtures extends Fixture
 
     public function getDependencies()
     {
-        return [MarquesFixtures::class,
-        ClientsFixtures::class,
-        OptionsVehiculesFixtures::class,
-        TypesVehicules::class];
+        return [
+            MarquesFixtures::class,
+            ClientsFixtures::class,
+            OptionsVehiculesFixtures::class,
+            TypesVehicules::class,
+            Couleurs::class
+        ];
     }
-} 
+}
