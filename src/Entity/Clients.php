@@ -49,6 +49,7 @@ class Clients
     #[ORM\OneToMany(mappedBy: 'proprietaire', targetEntity: Vehicules::class)]
     private Collection $vehicules;
 
+
     public function __construct()
     {
         $this->vehicules = new ArrayCollection();
@@ -207,5 +208,10 @@ class Clients
         }
 
         return $this;
+    }
+
+    public function __toString():string
+    {
+       return $this->nom.' '.$this->prenom; 
     }
 }
