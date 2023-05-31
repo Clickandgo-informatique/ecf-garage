@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/vehicules/annonces',name:'app_vehicules_annonces_')]
 class AnnoncesController extends AbstractController{
+  
     #[Route('/',name:'liste_annonces')]
     public function index(VehiculesRepository $vehiculesRepository):Response{
 

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
+use App\Entity\Trait\SlugTrait;
 use App\Repository\VehiculesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: VehiculesRepository::class)]
 class Vehicules
 {
+    use CreatedAtTrait;
+    use SlugTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -42,9 +47,6 @@ class Vehicules
 
     #[ORM\OneToMany(mappedBy: 'id_vehicule', targetEntity: Photos::class, orphanRemoval: true)]
     private Collection $photos;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $type_vehicule = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $boite = null;
@@ -105,13 +107,17 @@ class Vehicules
     #[ORM\JoinColumn(nullable: false)]
     private ?Couleurs $couleur = null;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TypesVehicules $type_vehicule = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
         $this->listeOptionsVehicule = new ArrayCollection();
         $this->favoris = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
     }
-
 
     public function getId(): ?int
     {
@@ -243,19 +249,6 @@ class Vehicules
 
         return $this;
     }
-
-    public function getTypeVehicule(): ?string
-    {
-        return $this->type_vehicule;
-    }
-
-    public function setTypeVehicule(?string $type_vehicule): self
-    {
-        $this->type_vehicule = $type_vehicule;
-
-        return $this;
-    }
-
     public function getBoite(): ?string
     {
         return $this->boite;
@@ -403,7 +396,7 @@ class Vehicules
 
     public function __toString(): string
     {
-        return $this->marque;        
+        return $this->marque;
     }
 
 
@@ -520,6 +513,18 @@ class Vehicules
     public function setCouleur(?Couleurs $couleur): self
     {
         $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    public function getTypeVehicule(): ?TypesVehicules
+    {
+        return $this->type_vehicule;
+    }
+
+    public function setTypeVehicule(?TypesVehicules $type_vehicule): self
+    {
+        $this->type_vehicule = $type_vehicule;
 
         return $this;
     }

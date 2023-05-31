@@ -6,9 +6,13 @@ use App\Entity\ListeOptionsVehicule;
 use App\Entity\Vehicules;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class VehiculesFixtures extends Fixture
 {
+    public function __construct(private SluggerInterface $slugger){      
+
+    }      
 
     public function load(ObjectManager $manager)
     {
@@ -47,7 +51,7 @@ class VehiculesFixtures extends Fixture
                 ->setModele("nc")
                 ->setCouleur($this->getReference('couleur_'.rand(1,11)))
                 ->setMotorisation($motorisations[$randomMotorisations])
-                ->setTypeVehicule($types[$randomTypes])
+                ->setTypeVehicule($this->getReference('type_vehicule_'.rand(1,7)))
                 ->setBoite($boites[$randomBoites])
                 ->setCylindree(rand(1000, 5600))
                 ->setNbPlaces(rand(1, 10))
@@ -57,7 +61,9 @@ class VehiculesFixtures extends Fixture
                 ->setChevauxDin(rand(1, 1000))
                 ->setChevauxFiscaux(10.00, 400.00)
                 ->setRemarques('Aucune remarque')
-                ->setPlaqueImmatriculation('AA-' . rand(0001, 9999) . '-ZZ');
+                ->setPlaqueImmatriculation('AA-' . rand(0001, 9999) . '-ZZ')
+                ->setSlug($this->slugger->slug($v->getMarque().' '.$v->getModele())->lower());
+
 
             // $v->setDateMiseEnCirculation($random_Date);
             // $v->setDateMiseEnVente($random_Date);
