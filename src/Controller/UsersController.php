@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/utilisateurs', name: 'app_users_')]
@@ -30,7 +32,7 @@ class UsersController extends AbstractController
         return $this->render('utilisateurs/fiche.html.twig', compact('user'));
     }
     //Suppression d'un utilisateur
-    #[Route('/supprimer/{id}', methods: ['DELETE'], name: 'supprimer_utilisateur')]
+    #[Route('/supprimer/{id}', methods: ['GET', 'DELETE'], name: 'supprimer_utilisateur')]
     public function supprimer(EntityManagerInterface $em, UsersRepository $usersRepository, $id): Response
     {
         $user = $usersRepository->find($id);
@@ -43,14 +45,18 @@ class UsersController extends AbstractController
 
     //Créer un utilisateur
     #[Route('/creer', name: 'creer_utilisateur')]
-    public function creer(EntityManagerInterface $em, Request $request): Response
+    public function creer(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = new Users();
         $form = $this->createForm(UsersFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isvalid()) {
-            $user->setNom($form->get('nom')->getData());
+
+            $user->setPassword($userPasswordHasher->hashPassword(
+                $user,
+                $form->get('password')->getData()
+            ));
 
             $em->persist($user);
             $em->flush();
@@ -59,7 +65,33 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('app_users_liste_utilisateurs');
         }
         return $this->render('utilisateurs/user-form.html.twig', [
-            'user' => $form->createView()
+            'form' => $form->createView()
+        ]);
+    }
+
+    //Modifier un utilisateur
+    #[Route('/modifier/{id}', name: 'modifier_utilisateur')]
+    public function modifier(EntityManagerInterface $em, $id, UsersRepository $usersRepository, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
+    {
+        $user = $usersRepository->find($id);
+        $form = $this->createForm(UsersFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isvalid()) {
+
+            $user->setPassword($userPasswordHasher->hashPassword(
+                $user,
+                $form->get('password')->getData()
+            ));
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'Les modifications ont bien été enregistrées dans la base.');
+            return $this->redirectToRoute('app_users_liste_utilisateurs');
+        }
+        return $this->render('utilisateurs/user-form.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

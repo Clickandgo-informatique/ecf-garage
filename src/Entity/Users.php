@@ -48,7 +48,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(length: 15, nullable: true)]
-    private ?string $Tel_fixe = null;
+    private ?string $tel_fixe = null;
 
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $tel_mobile = null;
@@ -201,12 +201,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getTelFixe(): ?string
     {
-        return $this->Tel_fixe;
+        return $this->tel_fixe;
     }
 
-    public function setTelFixe(?string $Tel_fixe): self
+    public function setTelFixe(?string $tel_fixe): self
     {
-        $this->Tel_fixe = $Tel_fixe;
+        $this->tel_fixe = $tel_fixe;
 
         return $this;
     }

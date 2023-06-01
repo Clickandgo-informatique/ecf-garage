@@ -2,8 +2,10 @@
 {% block title %}Fiche utilisateur
 {% endblock %}
 {% block body %}
-	<main>
+	<div class="main">
 		<h1 class="titre-principal">Fiche Utilisateur</h1>
+		<a href="{{path('app_users_liste_utilisateurs')}}" class="go-back-link">Revenir à la liste</a>
+
 		<div class="card-container">
 			<div class="card-title">
 				<p>
@@ -14,9 +16,9 @@
 					<td>
 						<p>Type / rôles :</p>
 					</td>
-					{% for role in user.roles %}
-						<td>
-							<p>{{role}}</p>
+					{% for role in user.roles %}					
+						<td>							
+								{{role}}							
 						</td>
 					{% endfor %}
 				{% endif %}
@@ -26,11 +28,12 @@
 					<table>
 						<tr>
 							<td>
-								<p>E-mail :
-								</p>
+								<p>E-mail :</p>
 							</td>
 							<td>
-								<p><a href="#">{{user.email}}</a></p>
+								<p>
+									<a href="#">{{user.email}}</a>
+								</p>
 							</td>
 						</tr>
 						<tr>
@@ -75,6 +78,5 @@
 				</div>
 			</div>
 		</div>
-        <a href="{{path('app_users_liste_utilisateurs')}}" class="go-back-link">Revenir à la liste</a>
-	</main>
+	</div>
 {% endblock %}

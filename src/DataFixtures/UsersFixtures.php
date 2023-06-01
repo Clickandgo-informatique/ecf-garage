@@ -40,7 +40,7 @@ class UsersFixtures extends Fixture
                 ->setTelFixe($faker->phoneNumber)
                 ->setTelMobile($faker->phoneNumber)
                 ->setAdresse($faker->address)
-                ->setCodePostal($faker->postcode)
+                ->setCodePostal(str_replace(' ','',$faker->postcode))
                 ->setVille($faker->city)
                 ->setEmail($faker->email)
                 ->setPassword($this->passwordEncoder->hashPassword($user,'azerty'));

@@ -2,42 +2,51 @@
 {% block title %}Liste des utilisateurs
 {% endblock %}
 {% block body %}
-	<main>
+	<div class="main">
 		<h1 class="titre-principal">Liste des utilisateurs</h1>
-        <a class="btn btn-primary"href="{{path('app_users_creer_utilisateur')}}">Créer un utilisateur</a>
+		<a class="btn btn-primary" href="{{path('app_users_creer_utilisateur')}}">Créer un utilisateur</a>
 		<table>
-			<tbody></tbody>
 			<thead>
-				<th colspan="2">Nom</th>
+				<th>Nom</th>
 				<th>E-mail</th>
 				<th>Tél fixe</th>
 				<th>Tél mobile</th>
-
 			</thead>
 			{% if users %}
-				{% for user in users %}
-					<tr>
-						<td>
-							<strong>{{user.nom}}</strong>
-							{{user.prenom}}</td>
-						<td></td>
-						<td>{{user.email}}</td>
-						<td>{{user.telfixe}}</td>
-						<td>{{user.telmobile}}</td>
-						<td>
-							<a href="{{path('app_users_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
-						</td>
-						<td>
-							<a href="{{path('app_users_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
-						</td>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>
+								<strong>{{user.nom}}</strong>
+								{{user.prenom}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.telfixe}}</td>
+							<td>{{user.telmobile}}</td>
 
-					</tr>
+							{% if user.roles %}
+								<td>									
+										{% for role in user.roles %}
+											{{role}}
+										{% endfor %}									
+								</td>
 
-				{% endfor %}
-			{% else %}
-				<p>Aucun utilisateurs n'est encore enregistré dans la base</p>
-			{% endif %}
+							{% endif %}
+							<td>
+								<a href="{{path('app_users_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
+							</td>
+							<td>
+								<a href="{{path('app_users_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
+							</td>
+							<td>
+								<a href="{{path('app_users_modifier_utilisateur',{id:user.id})}}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<p>Aucun utilisateurs n'est encore enregistré dans la base</p>
+				{% endif %}
 
-		</tbody>
-	</table>
-</main>{% endblock %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
