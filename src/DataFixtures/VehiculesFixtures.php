@@ -46,12 +46,12 @@ class VehiculesFixtures extends Fixture
             //Création des données du véhicule
             $v = new Vehicules();
             $v->setReferenceInterne(rand(00001, 99999))
-                ->setProprietaire($this->getReference('Client_' . rand(1, 9)))
+                ->setProprietaire($this->getReference('Client_' . rand(0, 9)))
                 ->setMarque($this->getReference('Marque_' . rand(1, $randomMarques)))
                 ->setModele("nc")
-                ->setCouleur($this->getReference('couleur_'.rand(1,11)))
+                ->setCouleur($this->getReference('couleur_'.rand(0,11)))
                 ->setMotorisation($motorisations[$randomMotorisations])
-                ->setTypeVehicule($this->getReference('type_vehicule_'.rand(1,7)))
+                ->setTypeVehicule($this->getReference('type_vehicule_'.rand(0,7)))
                 ->setBoite($boites[$randomBoites])
                 ->setCylindree(rand(1000, 5600))
                 ->setNbPlaces(rand(1, 10))

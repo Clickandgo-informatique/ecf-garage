@@ -1,38 +1,40 @@
-@import './buttons.css';
-@import './tables.css';
-@import './cards.css';
-@import './forms.css';
-@import './navbar.css';
-@import './menus.css';
+@import "./buttons.css";
+@import "./tables.css";
+@import "./cards.css";
+@import "./forms.css";
+@import "./navbar.css";
+@import "./menus.css";
+@import "./photos-gallery.css";
 
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(245, 245, 245);
 }
 
 main {
-    display: flex;
-    width:100%;
-    min-height:100vh;
-    overflow:hidden;    
-    padding:2rem;
-    justify-content: center;
-    align-items: center;
-    background-color: #757474;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #757474;
 }
 
 .titre-principal {
-    text-align: center;
+  text-align: center;
 }
 
 .go-back-link {
-    padding: 7px 10px;
-    border: 1px solid black;
-    width: fit-content;
-    background-color: beige;
-    margin: 10px;
-    border-radius: 10px;
+  padding: 7px 10px;
+  border: 1px solid black;
+  width: fit-content;
+  background-color: beige;
+  margin: 10px;
+  border-radius: 10px;
 }

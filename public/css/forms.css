@@ -22,7 +22,6 @@ select {
   display: flex;
   margin: 5px auto;
   padding: 5px;
-  border: none;
   background: none;
   border: 1px solid #bbb;
   width: 80%;
@@ -36,7 +35,7 @@ textarea {
   width: 90%;
   min-height: 200px;
   border-radius: 1rem;
-  border:1px solid darkgray;
+  border: 1px solid darkgray;
 }
 
 label {

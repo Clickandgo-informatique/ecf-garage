@@ -45,7 +45,7 @@ class Vehicules
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_mise_en_vente = null;
 
-    #[ORM\OneToMany(mappedBy: 'id_vehicule', targetEntity: Photos::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'id_vehicule', targetEntity: Photos::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $photos;
 
     #[ORM\Column(length: 100, nullable: true)]

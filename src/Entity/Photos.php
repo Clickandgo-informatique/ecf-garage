@@ -18,7 +18,7 @@ class Photos
     private ?Vehicules $id_vehicule = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $chemin = null;
+    private ?string $nom = null;
 
     public function getId(): ?int
     {
@@ -37,15 +37,19 @@ class Photos
         return $this;
     }
 
-    public function getChemin(): ?string
+    public function getNom(): ?string
     {
-        return $this->chemin;
+        return $this->nom;
     }
 
-    public function setChemin(string $chemin): self
+    public function setNom(string $nom): self
     {
-        $this->chemin = $chemin;
+        $this->nom = $nom;
 
         return $this;
+    }
+
+    public function __tostring():string{
+        return $this->nom;
     }
 }

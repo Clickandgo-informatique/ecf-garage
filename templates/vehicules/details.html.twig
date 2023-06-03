@@ -7,10 +7,13 @@
 
 		<a class="btn btn-go-back" href="{{path('app_vehicules_liste_vehicules')}}">Revenir à la liste</a>
 
+		{{ include('_partials/_galerie-photos.html.twig') }}
+
+		{# Fiche de détails véhicule #}
 		<table class="table fiche-vehicule">
 			<thead>
 				<th>
-					<a class="btn btn-primary">Editer la fiche</a>
+					<a class="btn btn-primary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Editer la fiche</a>
 				</th>
 				<th>
 					<a href="#" class="btn btn-danger">Supprimer ce véhicule</a>
@@ -152,17 +155,20 @@
 		</table>
 
 		{# <table class="table liste-options-vehicules">
-			<tbody>
-				{% for option in vehicule.listeOptionsVehicule %}
-					{% if option %}
-						<tr>
-							<td>Option :
-								{{option.optionVehicule}}</td>
-						</tr>
-					{% endif %}
-				{% endfor %}
-			</tbody>
-
-		</table> #}
+																									<tbody>
+																										{% for option in vehicule.listeOptionsVehicule %}
+																											{% if option %}
+																												<tr>
+																													<td>Option :
+																														{{option.optionVehicule}}</td>
+																												</tr>
+																											{% endif %}
+																										{% endfor %}
+																									</tbody>
+																						
+																								</table> #}
 	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('assets/js/photos.js')}}" defer></script>
 {% endblock %}

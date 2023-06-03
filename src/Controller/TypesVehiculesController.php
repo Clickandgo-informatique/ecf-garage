@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TypesVehicules;
 use App\Form\TypesVehiculesFormType;
 use App\Repository\TypesVehiculesRepository;
+use App\Repository\VehiculesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,18 @@ class TypesVehiculesController extends AbstractController
         $typesvehicules = $typesVehiculesRepo->findBy([], ['nom_type' => 'ASC']);
 
         return $this->render('vehicules\typesvehicules.html.twig', ['typesvehicules' => $typesvehicules]);
+    }
+
+    //Filtre les véhicules par type de véhicule
+    #[Route('/{slug}', name: 'list')]
+    public function list(TypesVehicules $type, VehiculesRepository $vehiculesRepository, Request $request): Response
+    {
+        //Recherche du numéro de page dans l'URL
+        $page = $request->query->getInt('page', 1);
+
+        $vehicules = $vehiculesRepository->findVehiculesPaginated($page, $type->getSlug(), 3);
+        
+        return $this->render('vehicules/index.html.twig', compact('type', 'vehicules'));
     }
 
     #[Route('/supprimer/{id}', name: 'supprimer')]

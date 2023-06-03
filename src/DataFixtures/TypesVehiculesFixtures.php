@@ -8,8 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class TypesVehiculesFixtures extends Fixture
-{
-    
+{    
     public function __construct(private SluggerInterface $slugger){      
         
     }        
@@ -18,7 +17,6 @@ class TypesVehiculesFixtures extends Fixture
     {
         
         $types = ['citadine', 'véhicule industriel', 'familial', 'berline', 'limousine', 'motocyclette', '3 roues', 'quad'];
-    //   public const MAX_TYPES = count($types);
         
         for ($i = 0; $i < count($types); $i++) {
             
