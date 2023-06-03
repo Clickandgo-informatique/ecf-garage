@@ -28,7 +28,7 @@ class VehiculesController extends AbstractController
         return $this->render('vehicules/index.html.twig', compact('vehicules'));
     }
 
-    #[Route('/details/{id}', name: 'details_vehicule')]
+    #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
     public function details(VehiculesRepository $vehiculesRepository, ListeOptionsVehiculeRepository $listeOptionsVehiculeRepository, $id): Response
     {
         $vehicule = $vehiculesRepository->findOneById($id);
@@ -110,7 +110,8 @@ class VehiculesController extends AbstractController
         }
 
         return $this->render('vehicules/formVehicule.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'titre'=>'Créer nouvelle fiche véhicule'
         ]);
     }
 
@@ -148,12 +149,14 @@ class VehiculesController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Les modification ont été enregistrées dans la base avec succès.');
-            return $this->redirectToRoute('app_vehicules_liste_vehicules');
+            return $this->redirectToRoute('app_vehicules_details_vehicule',['id'=>$vehicule->getId()]);
         }
 
 
         return $this->render('vehicules/formVehicule.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'vehicule'=>$vehicule,
+            'titre'=>'Modifier la fiche véhicule'
         ]);
     }
 
