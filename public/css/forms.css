@@ -71,3 +71,12 @@ legend {
   margin: 10px auto;
   text-align: center;
 }
+.filtersForm{
+width:200px;
+margin-left:20px;
+}
+.filtersForm p{
+  font-size: 0.5rem;
+  padding:2px;
+  line-height: 15px;
+}

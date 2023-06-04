@@ -40,42 +40,52 @@ class VehiculesRepository extends ServiceEntityRepository
         }
     }
 
+    //Total de véhicules
+
+
     //Pagination liste véhicules
-    public function findVehiculesPaginated(int $page, string $slug, int $limit = 6): array
+    public function getVehiculesPaginated(int $page, int $limit = 6, $filters = null): array
     {
         $limit = abs($limit);
         $result = [];
 
-        $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('tv', 'v')
-            ->from('App\Entity\Vehicules', 'v')
-            ->join('v.type_vehicule', 'tv')
-            ->where("tv.slug='$slug'")
-            ->setMaxResults($limit)
-            ->setFirstResult(($page*$limit)-$limit);
+        $query = $this->createQueryBuilder('v');
 
-            $paginator=new Paginator($query);
-            $data=$paginator->getQuery()->getResult();
+        //On filtre si filtre multicritères actif
+        if ($filters != null) {
+            $query->where('v.types_vehicules')
+                ->setParameter(':types', array_values($filters));
+        }
+        $query->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
 
-            //Contrôle l'existence de données
-            if(empty($data)){
-                return $result;                
-            }
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
 
-     
-            //Calcul du nombre de pages
-            $pages=ceil($paginator->count()/$limit);
+        //Contrôle l'existence de données
+        if (empty($data)) {
+            return $result;
+        }
 
-            //Remplissage du tableau
-            $result['data']=$data;
-            $result['pages']=$pages;
-            $result['page']=$page;
-            $result['limit']=$limit;
+        //Calcul du nombre de pages
+        $pages = ceil($paginator->count() / $limit);
+
+        //Remplissage du tableau
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
 
 
         return $result;
     }
-
+    //Total de véhicules dans la base
+    public function getTotalVehicules()
+    {
+        $query = $this->createQueryBuilder('v')
+            ->select('COUNT(v)');
+        return $query->getQuery()->getSingleScalarResult();
+    }
     //    /**
     //     * @return Vehicules[] Returns an array of Vehicules objects
     //     */

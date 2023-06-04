@@ -6,6 +6,7 @@ use App\Entity\Photos;
 use App\Entity\Vehicules;
 use App\Form\VehiculesFormType;
 use App\Repository\ListeOptionsVehiculeRepository;
+use App\Repository\TypesVehiculesRepository;
 use App\Repository\VehiculesRepository;
 use App\Service\PicturesService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,12 +21,32 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class VehiculesController extends AbstractController
 {
     #[Route('/', name: 'liste_vehicules')]
-    public function index(VehiculesRepository $vehiculesRepository): Response
+    public function index(Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository): Response
     {
+        //Récupération du total de véhicules dans la base avant filtres
+        $totalVehicules = $vehiculesRepository->getTotalVehicules();
 
-        $vehicules = $vehiculesRepository->findBy([], ['marque' => 'ASC']);
+        //Définition du nombre d'éléments par page
+        $limit = 10;
 
-        return $this->render('vehicules/index.html.twig', compact('vehicules'));
+        //Récupération du numéro de page active
+        $page = (int)$request->query->get('page', 1);
+
+        //Récupération des filtres
+        $filters = $request->get('typesVehicules');        
+
+        //Récupération de tous les véhicules pour pagination et filtres
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filters);
+
+        //Recherche de tous les types de véhicules
+        $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
+
+        //Vérification de si il s'agît d'une requête Ajax
+        if ($request->get('ajax')) {
+            return "ok";
+        }
+
+        return $this->render('vehicules/index.html.twig', compact('vehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
@@ -111,7 +132,7 @@ class VehiculesController extends AbstractController
 
         return $this->render('vehicules/formVehicule.html.twig', [
             'form' => $form->createView(),
-            'titre'=>'Créer nouvelle fiche véhicule'
+            'titre' => 'Créer nouvelle fiche véhicule'
         ]);
     }
 
@@ -149,14 +170,14 @@ class VehiculesController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Les modification ont été enregistrées dans la base avec succès.');
-            return $this->redirectToRoute('app_vehicules_details_vehicule',['id'=>$vehicule->getId()]);
+            return $this->redirectToRoute('app_vehicules_details_vehicule', ['id' => $vehicule->getId()]);
         }
 
 
         return $this->render('vehicules/formVehicule.html.twig', [
             'form' => $form->createView(),
-            'vehicule'=>$vehicule,
-            'titre'=>'Modifier la fiche véhicule'
+            'vehicule' => $vehicule,
+            'titre' => 'Modifier la fiche véhicule'
         ]);
     }
 

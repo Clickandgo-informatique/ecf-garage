@@ -2,6 +2,23 @@
 {% block title %}Liste des véhicules
 {% endblock %}
 {% block body %}
+
+	<p>Total véhicules dans la base =
+		{{totalVehicules}}</p>
+	
+	{# Filtre multicritère : #}
+	<div class="filtres">
+		<p>Filtrer</p>
+		<form id="filters" class="filtersForm">
+			{% for  type in typesVehicules %}
+				<p>
+					<input type="checkbox" name="type[]" id="type{{type.id}}" value="{{type.id}}">
+					<label for="type{{type.id}}">{{type.nomtype}}</label>
+				</p>
+			{% endfor %}
+			<input type="hidden" name="page" value {{page}}>
+		</form>
+	</div>
 	<div class="main">
 		<h1 class="titre-principal">Liste des véhicules</h1>
 		<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
@@ -37,4 +54,7 @@
 			{% endfor %}
 		</div>
 	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('assets/js/filters.js')}}" defer></script>
 {% endblock %}
