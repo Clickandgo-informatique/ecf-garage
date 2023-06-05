@@ -40,74 +40,58 @@ class VehiculesRepository extends ServiceEntityRepository
         }
     }
 
-    //Total de véhicules
-
 
     //Pagination liste véhicules
-    public function getVehiculesPaginated(int $page, int $limit = 6, $filters = null): array
+    public function getVehiculesPaginated(int $page, int $limit = 6, $filters = null)
     {
         $limit = abs($limit);
-        $result = [];
+        // $result = [];
 
         $query = $this->createQueryBuilder('v');
 
         //On filtre si filtre multicritères actif
         if ($filters != null) {
-            $query->where('v.types_vehicules')
+            $query->where('v.type_vehicule IN (:types)')
                 ->setParameter(':types', array_values($filters));
         }
-        $query->setMaxResults($limit)
-            ->setFirstResult(($page * $limit) - $limit);
+        $query->orderBy('v.marque')
+            ->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);
+
+        return $query->getQuery()->getResult();
 
         $paginator = new Paginator($query);
-        $data = $paginator->getQuery()->getResult();
+
+        // $data = $paginator->getQuery()->getResult();
 
         //Contrôle l'existence de données
-        if (empty($data)) {
-            return $result;
-        }
+        // if (empty($data)) {
+        //     return $query->getQuery()->getResult();
+        // }
 
         //Calcul du nombre de pages
         $pages = ceil($paginator->count() / $limit);
 
-        //Remplissage du tableau
-        $result['data'] = $data;
-        $result['pages'] = $pages;
-        $result['page'] = $page;
-        $result['limit'] = $limit;
+        // //Remplissage du tableau
+        // $result['data'] = $data;
+        // $result['pages'] = $pages;
+        // $result['page'] = $page;
+        // $result['limit'] = $limit;
 
 
-        return $result;
+        // return $result;
     }
     //Total de véhicules dans la base
-    public function getTotalVehicules()
+    public function getTotalVehicules($filters = null)
     {
         $query = $this->createQueryBuilder('v')
             ->select('COUNT(v)');
+
+        //On filtre si filtre multicritères actif
+        if ($filters != null) {
+            $query->where('v.type_vehicule IN (:types)')
+                ->setParameter(':types', array_values($filters));
+        }
         return $query->getQuery()->getSingleScalarResult();
     }
-    //    /**
-    //     * @return Vehicules[] Returns an array of Vehicules objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('v.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Vehicules
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

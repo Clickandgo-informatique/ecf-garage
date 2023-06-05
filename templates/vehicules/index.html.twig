@@ -3,58 +3,39 @@
 {% endblock %}
 {% block body %}
 
-	<p>Total véhicules dans la base =
-		{{totalVehicules}}</p>
-	
-	{# Filtre multicritère : #}
-	<div class="filtres">
-		<p>Filtrer</p>
-		<form id="filters" class="filtersForm">
-			{% for  type in typesVehicules %}
-				<p>
-					<input type="checkbox" name="type[]" id="type{{type.id}}" value="{{type.id}}">
-					<label for="type{{type.id}}">{{type.nomtype}}</label>
-				</p>
-			{% endfor %}
-			<input type="hidden" name="page" value {{page}}>
-		</form>
-	</div>
+
 	<div class="main">
+
 		<h1 class="titre-principal">Liste des véhicules</h1>
 		<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
-		<div class="cards-container">
-			{% for v in vehicules %}
-				<div class="card-vehicule">
-					<div class="photo-miniature">
-						{% if v.photos[0] is defined %}
-							<img src="{{asset('assets/uploads/vehicules/mini/300x300-'~ v.photos[0].nom)}}" alt="">
-						{% endif %}
-					</div>
-					<div class="card-title">
-						<p>
-							<strong>{{v.marque}}</strong>
-							{{v.modele}}</p>
-					</div>
-					<div class="card-text">
-						<p>{{v.kilometrage}}
-							km.</p>
-						<p>{{v.prixvente}}
-							€</p>
-						<p>{{v.datemiseencirculation|date("d-m-Y")}}</p>
-						<a class="btn btn-primary btn-voir-details" href="{{path('app_vehicules_details_vehicule',{id:v.id})}}">Voir détails</a>
 
-						{# Affiche un bouton différent suivant si l'annonce a été publiée ou pas. #}
-						{% if v.publicationannonce %}
-							<a class="btn btn-danger btn-supprimer-annonce" href="{{path('app_vehicules_retirer_annonce',{id:v.id})}}">Retirer annonce</a>
-						{% else %}
-							<a class="btn btn-primary btn-publier-annonce" href="{{path('app_vehicules_publier_annonce',{id:v.id})}}">Publier annonce</a>
-						{% endif %}
-					</div>
-				</div>
-			{% endfor %}
+		<p>Total véhicules dans la base =
+			{{totalVehicules}}</p>
+		<p>Résultats filtre actif =
+			{{totalVehiculesFiltered}}</p>
+
+		{# Filtre multicritère : #}
+		<div class="filtres">
+			<p>Filtrer</p>
+			<form id="filters" class="filtersForm">
+				{% for  type in typesVehicules %}
+
+					<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}">
+					<label for="types{{type.id}}">{{type.nomtype}}</label>
+
+				{% endfor %}
+				<input type="hidden" name="page" value="{{page}}">
+			</form>
 		</div>
-	</div>
-{% endblock %}
-{% block javascripts %}
-	<script src="{{asset('assets/js/filters.js')}}" defer></script>
-{% endblock %}
+
+		<div
+			class="cards-container" id="content">
+
+			{# Contenu généré en Ajax #}
+			{{ include('vehicules/_content.html.twig') }}
+		</div>
+	{% endblock %}
+
+	{% block javascripts %}
+		<script src="{{asset('assets/js/filters.js')}}" defer></script>
+	{% endblock %}
