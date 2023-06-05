@@ -42,55 +42,44 @@ class VehiculesRepository extends ServiceEntityRepository
 
 
     //Pagination liste véhicules
-    public function getVehiculesPaginated(int $page, int $limit = 6, $filters = null)
+    public function getVehiculesPaginated(int $page, int $limit = 6, $filtreTypes = null, $filtreMarques = null)
     {
         $limit = abs($limit);
-        // $result = [];
 
         $query = $this->createQueryBuilder('v');
 
         //On filtre si filtre multicritères actif
-        if ($filters != null) {
+        if ($filtreTypes != null) {
             $query->where('v.type_vehicule IN (:types)')
-                ->setParameter(':types', array_values($filters));
+                ->setParameter(':types', array_values($filtreTypes));
         }
+        if ($filtreMarques != null) {
+            $query->andWhere('v.marque IN(:marques)')
+                ->setParameter(':marques', array_values($filtreMarques));
+        }
+
         $query->orderBy('v.marque')
             ->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
 
         return $query->getQuery()->getResult();
-
-        $paginator = new Paginator($query);
-
-        // $data = $paginator->getQuery()->getResult();
-
-        //Contrôle l'existence de données
-        // if (empty($data)) {
-        //     return $query->getQuery()->getResult();
-        // }
-
-        //Calcul du nombre de pages
-        $pages = ceil($paginator->count() / $limit);
-
-        // //Remplissage du tableau
-        // $result['data'] = $data;
-        // $result['pages'] = $pages;
-        // $result['page'] = $page;
-        // $result['limit'] = $limit;
-
-
-        // return $result;
     }
+
     //Total de véhicules dans la base
-    public function getTotalVehicules($filters = null)
+    public function getTotalVehicules($filtreTypes = null, $filtreMarques = null)
     {
         $query = $this->createQueryBuilder('v')
             ->select('COUNT(v)');
 
         //On filtre si filtre multicritères actif
-        if ($filters != null) {
+        if ($filtreTypes != null) {
             $query->where('v.type_vehicule IN (:types)')
-                ->setParameter(':types', array_values($filters));
+                ->setParameter(':types', array_values($filtreTypes));
+        }
+
+        if ($filtreMarques != null) {
+            $query->andWhere('v.marque IN(:marques)')
+                ->setParameter(':marques', array_values($filtreMarques));
         }
         return $query->getQuery()->getSingleScalarResult();
     }

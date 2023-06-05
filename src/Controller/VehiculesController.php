@@ -6,6 +6,7 @@ use App\Entity\Photos;
 use App\Entity\Vehicules;
 use App\Form\VehiculesFormType;
 use App\Repository\ListeOptionsVehiculeRepository;
+use App\Repository\MarquesRepository;
 use App\Repository\TypesVehiculesRepository;
 use App\Repository\VehiculesRepository;
 use App\Service\PicturesService;
@@ -23,11 +24,10 @@ use Symfony\Contracts\Cache\ItemInterface;
 class VehiculesController extends AbstractController
 {
     #[Route('/', name: 'liste_vehicules')]
-    public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository): Response
+    public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository): Response
     {
         //Récupération du total de véhicules dans la base avant filtres
         $totalVehicules = $vehiculesRepository->getTotalVehicules();
-
 
         //Définition du nombre d'éléments par page
         $limit = 10;
@@ -35,18 +35,22 @@ class VehiculesController extends AbstractController
         //Récupération du numéro de page active
         $page = (int)$request->query->get("page", 1);
 
-        //Récupération du filtre des types de véhicules
-        $filters = $request->get('types');
-       
+        //Récupération des filtres de types de véhicules
+        $filtreTypes = $request->get('types');
+        //Récupération des filtres de marques de véhicules
+        $filtreMarques = $request->get('marques');
 
         //Récupération du total de véhicules dans la base avec filtres
-        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filters);
+        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
 
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filters);     
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques);
 
         //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
+
+        //Recherche de toutes les marques de véhicules
+        $marquesVehicules = $marquesRepository->findBy([], ['marque' => 'ASC']);
 
         //Vérification de si il s'agît d'une requête Ajax
         if ($request->get('ajax')) {
@@ -55,7 +59,7 @@ class VehiculesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'vehicules/_content.html.twig',
-                    compact('vehicules', 'typesVehicules', 'limit', 'page','totalVehiculesFiltered')
+                    compact('vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
                 )
             ]);
         }
@@ -66,7 +70,7 @@ class VehiculesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('vehicules/index.html.twig', compact('vehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit','totalVehiculesFiltered'));
+        return $this->render('vehicules/index.html.twig', compact('vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
