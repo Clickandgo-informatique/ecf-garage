@@ -1,7 +1,5 @@
 form {
   position: relative;
-  width: 65%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   max-width: 1024px;
@@ -11,6 +9,7 @@ form {
   border: 1px solid darkgray;
   margin: 10px auto;
   justify-content: center;
+  background-color: #fff;
 }
 
 .btn-login {
@@ -72,23 +71,30 @@ legend {
   text-align: center;
 }
 .filtersForm {
-  width: fit-content;
+  width: 200px;
   margin-left: 10px;
-  padding:5px;
+  padding: 5px;
 }
 .filtersForm p {
   font-size: 0.5rem;
   padding: 2px;
   line-height: 15px;
-} 
+}
+.filters {
+  grid-area: "filters";
+}
+.filtersForm label {
+  font-size: 0.8rem;
+  color:blue;
+}
 
-/* input[type="checkbox"] + label {
+input[type="checkbox"] + label {
   display: block;
   margin: 0.2em;
   cursor: pointer;
   padding: 0.2em;
 }
-
+/*
 input[type="checkbox"] {
   display: none;
 }

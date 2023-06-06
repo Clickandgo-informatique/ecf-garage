@@ -5,6 +5,7 @@
 @import "./navbar.css";
 @import "./menus.css";
 @import "./photos-gallery.css";
+@import "./sliders.css";
 
 body {
   margin: 0;
@@ -15,17 +16,18 @@ body {
   background-color: rgb(245, 245, 245);
 }
 
-main {
+.main {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
+  flex-direction: column; 
   padding: 2rem;
+  background-color: #efefef;
+  align-items: flex-start;
+}
+.wrapper{
+  display:grid;
+  grid-template-columns: 1fr 11fr;
+  grid-template-areas: "filters" "cards"; 
   justify-content: center;
-  align-items: center;
-  background-color: #757474;
 }
 
 .titre-principal {
@@ -39,4 +41,7 @@ main {
   background-color: beige;
   margin: 10px;
   border-radius: 10px;
+}
+.filtres {
+  width: fit-content;
 }

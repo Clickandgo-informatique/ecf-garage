@@ -52,6 +52,12 @@ class VehiculesController extends AbstractController
         //Recherche de toutes les marques de véhicules
         $marquesVehicules = $marquesRepository->findBy([], ['marque' => 'ASC']);
 
+        //Infos minimum et maximum pour les sliders de filtre dans la base
+        $prixMax = $vehiculesRepository->getPrixMax();    
+        $prixMin = $vehiculesRepository->getPrixMin();    
+        $kmMin = $vehiculesRepository->getKmMin();    
+        $kmMax = $vehiculesRepository->getKmMax();    
+
         //Vérification de si il s'agît d'une requête Ajax
         if ($request->get('ajax')) {
 
@@ -59,7 +65,7 @@ class VehiculesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'vehicules/_content.html.twig',
-                    compact('vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
+                    compact('prixMax','prixMin','kmMin','kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
                 )
             ]);
         }
@@ -70,7 +76,7 @@ class VehiculesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('vehicules/index.html.twig', compact('vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
+        return $this->render('vehicules/index.html.twig', compact('prixMax','prixMin','kmMin','kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]

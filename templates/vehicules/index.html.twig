@@ -12,24 +12,26 @@
 			{{totalVehicules}}</p>
 		<p>Résultats filtre actif =
 			{{totalVehiculesFiltered}}</p>
+		<div
+			class="wrapper">
+			{# Filtre multicritère : #}
+			<div class="filtres">
 
-		{# Filtre multicritère : #}
-		<div class="filtres">
-			
-			<form id="filters" class="filtersForm">
+				<form
+					id="filters" class="filtersForm">
 
-				{# Filtre sur type de véhicule #}
-				<fieldset>
-					<legend>Type :</legend>
-					{% for  type in typesVehicules %}
+					{# Filtre sur type de véhicule #}
+					<fieldset>
+						<legend>Type :</legend>
+						{% for  type in typesVehicules %}
 
-						<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
-						<label for="types{{type.id}}">{{type.nomtype}}</label>
+							<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
+							<label for="types{{type.id}}">{{type.nomtype}}</label>
 
-					{% endfor %}
-				</fieldset>
+						{% endfor %}
+					</fieldset>
 
-				{# Filtre sur marques de véhicules #}				
+					{# Filtre sur marques de véhicules #}
 					<fieldset>
 						<legend>Marque :</legend>
 						{% for  marque in marquesVehicules %}
@@ -39,19 +41,34 @@
 
 						{% endfor %}
 					</fieldset>
-				
-				<input type="hidden" name="page" value="{{page}}">
-			</form>
+
+					<input type="hidden" name="page" value="{{page}}">
+					<div class="slidecontainer">
+						<p>Prix Max. :
+							<span id="prixMax"></span>
+							€</p>
+						<input type="range" min="{{prixMin}}" max="{{prixMax}}" value="50" class="slider" id="sliderPrix">
+					</div>
+					<div class="slidecontainer">
+						<p>Kilométrage Max. :
+							<span id="kmMax"></span>
+							km.</p>
+						<input type="range" min="{{kmMin}}" max="{{kmMax}}" value="50" class="slider" id="sliderKM">
+					</div>
+				</form>
+			</div>
+
+			<div
+				class="cards-container" id="content">
+
+				{# Contenu généré en Ajax #}
+				{{ include('vehicules/_content.html.twig') }}
+			</div>
 		</div>
+	</div>
+{% endblock %}
 
-		<div
-			class="cards-container" id="content">
-
-			{# Contenu généré en Ajax #}
-			{{ include('vehicules/_content.html.twig') }}
-		</div>
-	{% endblock %}
-
-	{% block javascripts %}
-		<script src="{{asset('assets/js/filters.js')}}" defer></script>
-	{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('assets/js/filters.js')}}" defer></script>
+	<script src="{{asset('assets/js/sliders.js')}}" defer></script>
+{% endblock %}

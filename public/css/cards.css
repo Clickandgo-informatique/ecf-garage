@@ -1,9 +1,12 @@
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: center;
+  /* grid-area: "cards"; */
+  display: grid;
+  row-gap: 0.15rem;
+  column-gap: 0.15rem;
+  place-items: center center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  /* display:flex; */
 }
 
 .card-vehicule {
@@ -13,6 +16,7 @@
   border: 1px solid lightgray;
   border-radius: 10px;
   box-shadow: 2px 2px 4px darkgray;
+  background-color: #fff;
 }
 
 .card-vehicule:hover {
