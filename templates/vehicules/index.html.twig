@@ -41,20 +41,22 @@
 
 						{% endfor %}
 					</fieldset>
-
+					<fieldset>
+						<legend>Choix</legend>
+						<div class="slidecontainer">
+							<p>Prix Max. :
+								<span id="prixMax"></span>
+								€</p>
+							<input type="range" name="prixMax" min="{{prixMin}}" max="{{prixMax}}" value="50" class="slider" id="sliderPrix">
+						</div>
+						<div class="slidecontainer">
+							<p>Kilométrage Max. :
+								<span id="kmMax"></span>
+								km.</p>
+							<input type="range" name="kmMax" min="{{kmMin}}" max="{{kmMax}}" value="50" class="slider" id="sliderKM">
+						</div>
+					</fieldset>
 					<input type="hidden" name="page" value="{{page}}">
-					<div class="slidecontainer">
-						<p>Prix Max. :
-							<span id="prixMax"></span>
-							€</p>
-						<input type="range" min="{{prixMin}}" max="{{prixMax}}" value="50" class="slider" id="sliderPrix">
-					</div>
-					<div class="slidecontainer">
-						<p>Kilométrage Max. :
-							<span id="kmMax"></span>
-							km.</p>
-						<input type="range" min="{{kmMin}}" max="{{kmMax}}" value="50" class="slider" id="sliderKM">
-					</div>
 				</form>
 			</div>
 
@@ -70,5 +72,4 @@
 
 {% block javascripts %}
 	<script src="{{asset('assets/js/filters.js')}}" defer></script>
-	<script src="{{asset('assets/js/sliders.js')}}" defer></script>
 {% endblock %}

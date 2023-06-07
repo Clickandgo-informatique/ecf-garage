@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -53,8 +55,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $tel_mobile = null;
 
+    #[ORM\ManyToMany(targetEntity: Vehicules::class, mappedBy: 'favoris')]
+    private Collection $favoris;
+
     public function __construct(){
         return $this->created_at=new \DateTimeImmutable();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -219,6 +225,33 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelMobile(?string $tel_mobile): self
     {
         $this->tel_mobile = $tel_mobile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicules>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Vehicules $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Vehicules $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeFavori($this);
+        }
 
         return $this;
     }

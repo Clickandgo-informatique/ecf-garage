@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Vehicules;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -40,8 +39,7 @@ class VehiculesRepository extends ServiceEntityRepository
         }
     }
 
-
-    //Pagination liste véhicules
+    //Pagination liste véhicules après filtre
     public function getVehiculesPaginated(int $page, int $limit = 6, $filtreTypes = null, $filtreMarques = null, $filtreKM = null, $filtrePrix = null)
     {
         $limit = abs($limit);

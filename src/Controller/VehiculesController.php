@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaires;
 use App\Entity\Photos;
 use App\Entity\Vehicules;
+use App\Form\CommentairesType;
 use App\Form\VehiculesFormType;
 use App\Repository\ListeOptionsVehiculeRepository;
 use App\Repository\MarquesRepository;
@@ -53,10 +55,10 @@ class VehiculesController extends AbstractController
         $marquesVehicules = $marquesRepository->findBy([], ['marque' => 'ASC']);
 
         //Infos minimum et maximum pour les sliders de filtre dans la base
-        $prixMax = $vehiculesRepository->getPrixMax();    
-        $prixMin = $vehiculesRepository->getPrixMin();    
-        $kmMin = $vehiculesRepository->getKmMin();    
-        $kmMax = $vehiculesRepository->getKmMax();    
+        $prixMax = $vehiculesRepository->getPrixMax();
+        $prixMin = $vehiculesRepository->getPrixMin();
+        $kmMin = $vehiculesRepository->getKmMin();
+        $kmMax = $vehiculesRepository->getKmMax();
 
         //Vérification de si il s'agît d'une requête Ajax
         if ($request->get('ajax')) {
@@ -65,7 +67,7 @@ class VehiculesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'vehicules/_content.html.twig',
-                    compact('prixMax','prixMin','kmMin','kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
+                    compact('prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
                 )
             ]);
         }
@@ -76,17 +78,17 @@ class VehiculesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('vehicules/index.html.twig', compact('prixMax','prixMin','kmMin','kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
+        return $this->render('vehicules/index.html.twig', compact('prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
-    public function details(VehiculesRepository $vehiculesRepository, ListeOptionsVehiculeRepository $listeOptionsVehiculeRepository, $id): Response
+    public function details(VehiculesRepository $vehiculesRepository, ListeOptionsVehiculeRepository $listeOptionsVehiculeRepository, $id, ): Response
     {
         $vehicule = $vehiculesRepository->findOneById($id);
         //$listeOptions = $listeOptionsVehiculeRepository->findBy(['vehicule' => $vehicule]);
 
         return $this->render('./vehicules/details.html.twig', [
-            'vehicule' => $vehicule
+            'vehicule' => $vehicule,            
         ]);
     }
 
@@ -236,5 +238,22 @@ class VehiculesController extends AbstractController
             return new JsonResponse(['error' => 'Erreur, la suppression a échoué !'], 400);
         }
         return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
+
+    #[Route('/favoris/ajout/{id}', name: 'ajout_favori')]
+    public function ajoutFavori(Vehicules $vehicule, EntityManagerInterface $em): Response
+    {
+        $vehicule->addFavori($this->getUser());
+        $em->persist($vehicule);
+        $em->flush();
+        return $this->redirectToRoute('app_vehicules_liste_vehicules');
+    }
+    #[Route('/favoris/suppression/{id}', name: 'suppression_favori')]
+    public function suppressionFavori(Vehicules $vehicule, EntityManagerInterface $em): Response
+    {
+        $vehicule->removeFavori($this->getUser());
+        $em->persist($vehicule);
+        $em->flush();
+        return $this->redirectToRoute('app_vehicules_liste_vehicules');
     }
 }

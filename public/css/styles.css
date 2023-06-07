@@ -27,7 +27,8 @@ body {
   display:grid;
   grid-template-columns: 1fr 11fr;
   grid-template-areas: "filters" "cards"; 
-  justify-content: center;
+ flex-wrap: wrap;
+ align-content: start;
 }
 
 .titre-principal {
