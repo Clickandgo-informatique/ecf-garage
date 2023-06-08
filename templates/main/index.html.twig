@@ -7,46 +7,46 @@
 		{# Formulaire des commentaires #}
 		<div class="container-commentaires">
 			<h2>Liste des commentaires</h2>
-			
-            {% for c in commentaires %}
+			<div class="liste-commentaires">
+				{% for c in commentaires %}
+					{% if c.parent == null %}
+						<p>Publié par
+							{{c.pseudo}}
+							le
+							{{c.createdAt|date("d-m-Y à H:i:s")}}</p>
+						<div class="contenu-commentaire">
+							{{c.contenu|raw}}
+							<p>
+								<a class="btn btn-primary btn-repondre" href="#ajout-commentaire" data-reply data-id="{{c.id}}">Répondre</a>
+							</p>
 
-				{% if c.parent == null %}
-					<p>Publié par
-						{{c.pseudo}}
-						le
-						{{c.createdAt|date("d-m-Y à H:i:s")}}</p>
-					<div class="contenu-commentaire">
-						{{c.contenu|raw}}
-						<p>
-							<a class="btn btn-primary" href="#ajout-commentaire" data-reply data-id="{{c.id}}">Répondre</a>
-						</p>
-
-						{# Affichage des réponses #}
-						{% for reponse in c.reponses %}
-
-							<p>Réponse publiée par
-								{{reponse.pseudo}}
-								le
-								{{reponse.createdAt|date("d-m-Y à H:i:s")}}</p>
-							<div class="contenu-commentaire">
-								{{reponse.contenu|raw}}
-								<p>
+							{# Affichage des réponses #}
+							{% for reponse in c.reponses %}
+								<div class="reponse">
+									<p>Réponse publiée par
+										{{reponse.pseudo}}
+										le
+										{{reponse.createdAt|date("d-m-Y à H:i:s")}}</p>
+									<div class="contenu-reponse">
+										{{reponse.contenu|raw}}
+										<p>
+										{% endfor %}
+									{% endif %}
 								{% endfor %}
-							{% endif %}
-
-						{% endfor %}
-					</div>
-					<div class="ajout-commentaire" id="ajout-commentaire">
-						<h2>Ajouter un commentaire</h2>
-						{{ form(commentForm)}}
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		{% endblock %}
+			<div class="ajout-commentaire" id="ajout-commentaire">
+				<h2>Ajouter un commentaire</h2>
+				{{ form(commentForm)}}
+				</div>
 
-		{% block javascripts %}
-			<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
-			<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>
+			{% endblock %}
 
-		{% endblock %}
+			{% block javascripts %}
+				<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
+				<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>
+
+			{% endblock %}

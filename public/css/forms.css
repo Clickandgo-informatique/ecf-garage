@@ -85,7 +85,7 @@ legend {
 }
 .filtersForm label {
   font-size: 0.8rem;
-  color:blue;
+  color: blue;
 }
 
 input[type="checkbox"] + label {
@@ -93,6 +93,26 @@ input[type="checkbox"] + label {
   margin: 0.2em;
   cursor: pointer;
   padding: 0.2em;
+}
+
+.liste-commentaires {
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+.container-commentaires {
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 10px;
+}
+.reponse {
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: lightgray;
+  color: blue;
+  margin-left: 10px;
 }
 /*
 input[type="checkbox"] {

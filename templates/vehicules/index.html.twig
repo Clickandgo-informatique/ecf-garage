@@ -12,6 +12,10 @@
 			{{totalVehicules}}</p>
 		<p>Résultats filtre actif =
 			{{totalVehiculesFiltered}}</p>
+
+		{# Sliders double range #}
+		{{ include('_partials/_sliders.html.twig') }}
+
 		<div
 			class="wrapper">
 			{# Filtre multicritère : #}
@@ -41,21 +45,7 @@
 
 						{% endfor %}
 					</fieldset>
-					<fieldset>
-						<legend>Choix</legend>
-						<div class="slidecontainer">
-							<p>Prix Max. :
-								<span id="prixMax"></span>
-								€</p>
-							<input type="range" name="prixMax" min="{{prixMin}}" max="{{prixMax}}" value="50" class="slider" id="sliderPrix">
-						</div>
-						<div class="slidecontainer">
-							<p>Kilométrage Max. :
-								<span id="kmMax"></span>
-								km.</p>
-							<input type="range" name="kmMax" min="{{kmMin}}" max="{{kmMax}}" value="50" class="slider" id="sliderKM">
-						</div>
-					</fieldset>
+
 					<input type="hidden" name="page" value="{{page}}">
 				</form>
 			</div>
@@ -71,5 +61,5 @@
 {% endblock %}
 
 {% block javascripts %}
-	<script src="{{asset('assets/js/filters.js')}}" defer></script>
+	<script src="{{asset('assets/js/filters.js')}}" type="text/javascript" defer></script>
 {% endblock %}

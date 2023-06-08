@@ -34,9 +34,11 @@ class MainController extends AbstractController
             $parentid = $commentForm->get('parentid')->getData();
 
             //Recherche du commentaire parent
-            $parent = $commentairesRepository->find($parentid);
+            if ($parentid != null) {
+                $parent = $commentairesRepository->find($parentid);
+            }
 
-            $commentaire->setParent($parent);
+            $commentaire->setParent($parent ?? null);
 
             $em->persist($commentaire);
             $em->flush();

@@ -1,45 +1,49 @@
 .btn {
-    display: block;
-    padding: 7px 10px;
-    color: white;
-    width: fit-content;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    transition: all 0.2s ease-in-out;
-
+  display: block;
+  padding: 7px 10px;
+  color: white;
+  width: fit-content;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
+  transform: scale(1.1);
+  opacity: 0.8;
 }
 
 .btn-primary {
-    background-color: blue;
+  background-color: blue;
 }
 
 .btn-danger {
-    background-color: red;
+  background-color: red;
 }
 
 .btn-warning {
-    background-color: orange;
+  background-color: orange;
 }
 
 .btn-go-back {
-    background-color: lightgray;
-    color: blue;
-    margin: 10px;
+  background-color: lightgray;
+  color: blue;
+  margin: 10px;
 }
 
 .btn-voir-details {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .btn-centered {
-    margin: 10px auto;
+  margin: 10px auto;
+}
+.btn-repondre {
+  position: relative;
+  left: 10px;
+  font-size: 0.6rem;
 }
