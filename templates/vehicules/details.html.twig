@@ -19,7 +19,7 @@
 					<a href="#" class="btn btn-danger">Supprimer ce véhicule</a>
 				</th>
 			</thead>
-
+		
 			<tbody>
 
 				<tr>
@@ -154,17 +154,19 @@
 			</tbody>
 		</table>
 
+		{# Liste d'options du véhicule #}
 		{# <table class="table liste-options-vehicules">
-								<tbody>
-								{% for option in vehicule.listeOptionsVehicule %}
-								{% if option %}
-								<tr>
-								<td>Option :
-								{{option.optionVehicule}}</td>
-								</tr>
-								{% endif %}
-								{% endfor %}
-								</tbody>
-								</table> #}
+			<tbody>
+				{% for option in vehicule.listeOptionsVehicule %}
+							{{dump(option.optionvehicule)}}	
+					{% if option %}
+						<tr>
+							<td>Option :
+								{{option.optionvehicule}}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table> #}
 
 	{% endblock %}

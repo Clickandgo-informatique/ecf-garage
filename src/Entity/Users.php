@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse email')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use CreatedAtTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -46,9 +48,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 150)]
     private ?string $ville = null;
 
-    #[ORM\Column(options:['default'=>'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeImmutable $created_at = null;
-
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $tel_fixe = null;
 
@@ -58,8 +57,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Vehicules::class, mappedBy: 'favoris')]
     private Collection $favoris;
 
-    public function __construct(){
-        return $this->created_at=new \DateTimeImmutable();
+    public function __construct()
+    {
+        return $this->created_at = new \DateTimeImmutable();
         $this->favoris = new ArrayCollection();
     }
 
@@ -192,19 +192,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
     public function getTelFixe(): ?string
     {
         return $this->tel_fixe;
@@ -254,5 +241,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+    public function __toString():string
+    {
+       return $this->nom.' '.$this->prenom; 
     }
 }

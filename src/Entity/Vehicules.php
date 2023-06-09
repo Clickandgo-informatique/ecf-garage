@@ -111,16 +111,12 @@ class Vehicules
     #[ORM\ManyToMany(targetEntity: Users::class, inversedBy: 'favoris')]
     private Collection $favoris;
 
-    #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: Commentaires::class, orphanRemoval: true)]
-    private Collection $commentaires;
-
     public function __construct()
     {
         $this->photos = new ArrayCollection();
         $this->listeOptionsVehicule = new ArrayCollection();     
         $this->created_at = new \DateTimeImmutable();
-        $this->favoris = new ArrayCollection();
-        $this->commentaires = new ArrayCollection();
+        $this->favoris = new ArrayCollection();                    
     }
 
     public function getId(): ?int
@@ -526,36 +522,6 @@ class Vehicules
     public function removeFavori(Users $favori): self
     {
         $this->favoris->removeElement($favori);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Commentaires>
-     */
-    public function getCommentaires(): Collection
-    {
-        return $this->commentaires;
-    }
-
-    public function addCommentaire(Commentaires $commentaire): self
-    {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires->add($commentaire);
-            $commentaire->setVehicule($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommentaire(Commentaires $commentaire): self
-    {
-        if ($this->commentaires->removeElement($commentaire)) {
-            // set the owning side to null (unless already changed)
-            if ($commentaire->getVehicule() === $this) {
-                $commentaire->setVehicule(null);
-            }
-        }
 
         return $this;
     }

@@ -13,15 +13,13 @@ class ListeOptionsVehicule
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicules')]
+    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicule')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Vehicules $vehicule = null;
 
-    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicules', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicule', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?OptionsVehicules $option_vehicule = null;
-
-
     
     public function getId(): ?int
     {

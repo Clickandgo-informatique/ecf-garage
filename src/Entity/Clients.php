@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\ClientsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ClientsRepository::class)]
 class Clients
 {
+    use CreatedAtTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -53,6 +55,7 @@ class Clients
     public function __construct()
     {
         $this->vehicules = new ArrayCollection();
+        $this->created_at=new \DateTimeImmutable();
     }
 
     public function getId(): ?int

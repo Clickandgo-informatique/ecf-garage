@@ -16,8 +16,8 @@ class UsersFormType extends AbstractType
         $builder
             ->add('email')
             // ->add('roles')
-            ->add('password',PasswordType::class,[
-                'label'=>'mot de passe'
+            ->add('password', PasswordType::class, [
+                'label' => 'mot de passe'
             ])
             ->add('nom')
             ->add('prenom')
@@ -28,8 +28,8 @@ class UsersFormType extends AbstractType
             ->add('tel_mobile')
             ->add('created_at', DateTimeType::class, [
                 'label' => 'Créée le : ',
-                'widget'=>'single_text',
-                'disabled'=>true
+                'widget' => 'single_text',
+                'disabled' => true
             ]);
     }
 
