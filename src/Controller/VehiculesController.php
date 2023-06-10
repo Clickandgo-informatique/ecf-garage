@@ -152,7 +152,7 @@ class VehiculesController extends AbstractController
             }
 
             //Création du slug
-            $slug = $slugger->slug($vehicule->getMarque() . ' ' . $vehicule->getModele());
+            $slug = $slugger->slug($vehicule->getMarque() . ' ' . $vehicule->getModele())->lower();
             $vehicule->setSlug($slug);
 
             $em->persist($vehicule);

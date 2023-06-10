@@ -16,11 +16,20 @@ td,
 th {
     padding: 10px;
 }
-
+thead{
+    background-color: cornflowerblue;
+}
+th{
+    text-align: left;
+    color:white;
+}
 .table-label {
     background-color: rgb(241, 241, 241);
 }
 
 .fiche-vehicule {
     font-size: 0.8rem;
+}
+.price{
+    text-align: right;
 }

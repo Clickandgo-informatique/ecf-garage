@@ -18,9 +18,9 @@ form {
 }
 
 input,
-select {
+select,textarea {
   display: flex;
-  margin: 5px auto;
+  margin: 10px auto;
   padding: 5px;
   background: none;
   border: 1px solid #bbb;
@@ -32,7 +32,7 @@ select {
 }
 
 textarea {
-  width: 90%;
+  width: 100%;
   min-height: 200px;
   border-radius: 1rem;
   border: 1px solid darkgray;
@@ -41,7 +41,7 @@ textarea {
 label {
   display: flex;
   font-size: 0.95rem;
-  color: #bbb;
+  color: #2e2e2e;
   pointer-events: none;
 }
 
