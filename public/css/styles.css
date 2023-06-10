@@ -18,21 +18,22 @@ body {
 
 .main {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   padding: 2rem;
   background-color: #efefef;
   align-items: flex-start;
 }
-.wrapper{
-  display:grid;
+.wrapper {
+  display: grid;
   grid-template-columns: 1fr 11fr;
-  grid-template-areas: "filters" "cards"; 
- flex-wrap: wrap;
- align-content: start;
+  grid-template-areas: "filters" "cards";
+  flex-wrap: wrap;
+  align-content: start;
 }
 
 .titre-principal {
-  text-align: center;
+  margin: 10px auto;
+  font-size: 1.5rem;
 }
 
 .go-back-link {

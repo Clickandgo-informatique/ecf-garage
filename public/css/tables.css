@@ -4,20 +4,24 @@ table {
     padding: 10px;
     width: fit-content;
     border-collapse: collapse;
-    border-radius: 20px;
 }
 
 tr {
     border-bottom: 1px solid lightgray;
-
+    
+    
 }
-
+td{
+    background-color: #fff;
+}
 td,
 th {
     padding: 10px;
+    
 }
 thead{
     background-color: cornflowerblue;
+    border-radius: 20px;
 }
 th{
     text-align: left;
