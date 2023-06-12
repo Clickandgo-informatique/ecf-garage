@@ -158,11 +158,11 @@
 		<table class="table liste-options-vehicules">
 			<tbody>
 				{% for option in vehicule.listeOptionsVehicule %}
-							{{dump(option.optionvehicule)}}	
 					{% if option %}
+							{{dump(option)}}	
 						<tr>
 							<td>Option :
-								{{option.optionvehicule}}</td>
+								{{option}}</td>
 						</tr>
 					{% endif %}
 				{% endfor %}

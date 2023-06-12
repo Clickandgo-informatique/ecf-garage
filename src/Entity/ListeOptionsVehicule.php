@@ -49,4 +49,7 @@ class ListeOptionsVehicule
 
         return $this;
     }
+    public function __tostring():string{
+        return $this->option_vehicule;
+    }
 }

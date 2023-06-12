@@ -10,8 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/marques', name: 'app_marques_')]
+#[Route('/vehicules/marques', name: 'app_marques_')]
 class MarquesController extends AbstractController
 {
     //Liste des marques de véhicules
@@ -24,9 +25,34 @@ class MarquesController extends AbstractController
 
     //Créer une marque de véhicules
     #[Route('/creer', name: 'creer_marque', methods: ['GET', 'POST'])]
-    public function creer(EntityManagerInterface $em, Request $request): Response
+    public function creer(EntityManagerInterface $em, Request $request,SluggerInterface $slugger): Response
     {
         $marque = new Marques();
+        $form = $this->createForm(MarquesFormType::class, $marque);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $marque->setMarque($form->get('marque')->getData());
+            $marque->setSlug($slugger->slug($marque->getMarque()));
+
+            $em->persist($marque);
+            $em->flush();
+            
+            $this->addFlash('success', 'La marque a bien été enregistrée dans la base');
+            return $this->redirectToRoute('app_marques_liste_marques');
+        }
+
+        return $this->render('marques/marques-form.html.twig', [
+            'marque' => $form->createView(),
+        ]);
+    }
+    #[Route('/modifier/{slug}/{id}', name: 'modifier_marque', methods: ['GET', 'POST'])]
+    public function modifier(EntityManagerInterface $em, Request $request,$id,$slug,MarquesRepository $marquesRepository,SluggerInterface $slugger): Response
+    {
+        $marque = $marquesRepository->find($id);
+        $slug=$marque->getSlug();
+        $marque->setSlug($slugger->slug($marque->getMarque()));
+
         $form = $this->createForm(MarquesFormType::class, $marque);
         $form->handleRequest($request);
 
@@ -36,7 +62,7 @@ class MarquesController extends AbstractController
             $em->persist($marque);
             $em->flush();
             
-            $this->addFlash('success', 'La marque a bien été enregistrée dans la base');
+            $this->addFlash('success', 'La marque a bien été modifiée dans la base');
             return $this->redirectToRoute('app_marques_liste_marques');
         }
 

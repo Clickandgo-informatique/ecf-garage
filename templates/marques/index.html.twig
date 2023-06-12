@@ -20,7 +20,7 @@
 								<a href="#" class="btn btn-danger" data-id="{{ marque.id }}" id="btn-supprimer-marque">Supprimer</a>
 							</td>
 							<td>
-								<a class="btn btn-warning" href="#">Modifier</a>
+								<a class="btn btn-warning" href="{{path('app_marques_modifier_marque',{id:marque.id,slug:marque.slug})}}">Modifier</a>
 							</td>
 						</tr>
 						{% set i = i + 1 %}

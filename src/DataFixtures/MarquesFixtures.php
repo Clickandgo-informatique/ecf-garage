@@ -16,6 +16,8 @@ class MarquesFixtures extends Fixture
 
             $marque = new Marques();
             $marque->setMarque($tblMarques[$i]);
+            $marque->setSlug($marque->getMarque());
+
             $manager->persist($marque);
             $this->addReference('Marque_' . $i, $marque);
         }

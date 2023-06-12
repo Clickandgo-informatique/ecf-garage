@@ -27,6 +27,9 @@ class Marques
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $pathIcon = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->vehicules = new ArrayCollection();
@@ -92,6 +95,18 @@ class Marques
     public function setPathIcon(?string $pathIcon): self
     {
         $this->pathIcon = $pathIcon;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
