@@ -28,8 +28,8 @@ th {
   background-color: rgb(49, 35, 251);
   width: auto;
   color: white;
-  white-space:nowrap;
-  padding:10px;
+  white-space: nowrap;
+  padding: 10px;
 }
 
 .fiche-vehicule {
@@ -38,6 +38,18 @@ th {
 .price {
   text-align: right;
 }
-.jour{
+.jour {
   background-color: blue;
+}
+.wrapper-jours {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px auto;  
+}
+.alerte-jour{
+  color:red;
+  font-size: 0.7rem;
+  padding:5px;
+  margin:5px;  
 }
