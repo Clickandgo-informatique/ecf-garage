@@ -11,9 +11,9 @@
 		<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>			
 		{% endif %}
 
-		<p>Total véhicules dans la base =
+		<p class="resultat-filtre">Total véhicules dans la base =
 			{{totalVehicules}}</p>
-		<p>Résultats filtre actif =
+		<p class="resultat-filtre">Résultats filtre actif =
 			{{totalVehiculesFiltered}}</p>
 
 		{# Sliders double range #}
@@ -61,7 +61,7 @@
 		</div>
 	</div>
 {% block javascripts %}
-	<script src="{{asset('assets/js/filters.js')}}" type="text/javascript"></script>
+	<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>
 {% endblock %}
 {% endblock %}
 

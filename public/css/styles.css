@@ -22,6 +22,7 @@ body {
   padding: 2rem;
   background-color: #efefef;
   align-items: flex-start;
+  height:100vh;
 }
 .wrapper {
   display: grid;
@@ -34,16 +35,21 @@ body {
 .titre-principal {
   margin: 10px auto;
   font-size: 1.5rem;
+  color:blue;
+  text-align: center;
 }
 
 .go-back-link {
   padding: 7px 10px;
   border: 1px solid black;
   width: fit-content;
-  background-color: beige;
+  background-color: rgb(223, 220, 245);
   margin: 10px;
   border-radius: 10px;
 }
 .filtres {
   width: fit-content;
+}
+.resultat-filtre{
+  font-size: 0.6rem;
 }

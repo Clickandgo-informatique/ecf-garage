@@ -43,13 +43,15 @@ th {
 }
 .wrapper-jours {
   display: flex;
-  flex-direction: column;
+  row-gap: 7px;
+  column-gap: 7px;
+  flex-wrap: wrap;
   justify-content: center;
-  margin: 10px auto;  
+  margin: 10px auto;
 }
-.alerte-jour{
-  color:red;
+.alerte-jour {
+  color: red;
   font-size: 0.7rem;
-  padding:5px;
-  margin:5px;  
+  padding: 5px;
+  margin: 5px;
 }
