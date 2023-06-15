@@ -97,8 +97,8 @@ class Vehicules
     #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: ListeOptionsVehicule::class, orphanRemoval: true)]
     private Collection $listeOptionsVehicule;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $publication_annonce = null;
+    #[ORM\Column(nullable: false)]
+    private ?bool $publication_annonce = false;
 
     #[ORM\ManyToOne(inversedBy: 'vehicules')]
     #[ORM\JoinColumn(nullable: false)]

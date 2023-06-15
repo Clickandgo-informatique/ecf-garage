@@ -36,7 +36,7 @@ class AnnoncesController extends AbstractController
 
             return new Response('true');
         } else {
-            $this->addFlash('success', "L'annonce concernant ce véhicule a été retirée de la base.");
+            $this->addFlash('success', "L'annonce concernant ce véhicule a été retirée de la base avec succès.");
             return new Response("false");
         }
     }

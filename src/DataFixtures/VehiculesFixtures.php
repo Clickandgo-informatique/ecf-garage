@@ -10,9 +10,9 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class VehiculesFixtures extends Fixture
 {
-    public function __construct(private SluggerInterface $slugger){      
-
-    }      
+    public function __construct(private SluggerInterface $slugger)
+    {
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -37,7 +37,7 @@ class VehiculesFixtures extends Fixture
             $randomMarques = rand(0, $lengthMarques - 1);
             $randomMotorisations = rand(0, $lengthMotorisations - 1);
             $randomTypes = rand(0, $lengthTypes - 1);
-            $randomBoites = rand(0, $lengthBoites - 1);          
+            $randomBoites = rand(0, $lengthBoites - 1);
 
             //Random sur les dates
             // $timestamp = rand(strtotime("Jan 01 2015"), strtotime("Nov 01 2023"));
@@ -49,9 +49,9 @@ class VehiculesFixtures extends Fixture
                 ->setProprietaire($this->getReference('Client_' . rand(0, 9)))
                 ->setMarque($this->getReference('Marque_' . rand(1, $randomMarques)))
                 ->setModele("nc")
-                ->setCouleur($this->getReference('couleur_'.rand(0,11)))
+                ->setCouleur($this->getReference('couleur_' . rand(0, 11)))
                 ->setMotorisation($motorisations[$randomMotorisations])
-                ->setTypeVehicule($this->getReference('type_vehicule_'.rand(0,7)))
+                ->setTypeVehicule($this->getReference('type_vehicule_' . rand(0, 7)))
                 ->setBoite($boites[$randomBoites])
                 ->setCylindree(rand(1000, 5600))
                 ->setNbPlaces(rand(1, 10))
@@ -62,7 +62,8 @@ class VehiculesFixtures extends Fixture
                 ->setChevauxFiscaux(10.00, 400.00)
                 ->setRemarques('Aucune remarque')
                 ->setPlaqueImmatriculation('AA-' . rand(0001, 9999) . '-ZZ')
-                ->setSlug($this->slugger->slug($v->getMarque().' '.$v->getModele())->lower());
+                ->setSlug($this->slugger->slug($v->getMarque() . ' ' . $v->getModele())->lower())
+                ->isPublicationAnnonce(false);
 
 
             // $v->setDateMiseEnCirculation($random_Date);

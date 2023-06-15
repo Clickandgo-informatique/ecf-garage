@@ -59,6 +59,7 @@ fieldset {
   border-radius: 10px;
   margin: 10px;
   box-shadow: 2px 2px 4px darkgray;
+  background-color: #fff;
 }
 
 legend {
@@ -79,6 +80,7 @@ legend {
   width: 200px;
   margin-left: 10px;
   padding: 5px;
+  background-color: inherit;
 }
 .filtersForm p {
   font-size: 0.5rem;
