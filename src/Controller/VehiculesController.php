@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Commentaires;
 use App\Entity\Photos;
 use App\Entity\Vehicules;
-use App\Form\CommentairesType;
 use App\Form\VehiculesFormType;
 use App\Repository\ListeOptionsVehiculeRepository;
 use App\Repository\MarquesRepository;
@@ -90,36 +88,7 @@ class VehiculesController extends AbstractController
         return $this->render('./vehicules/details.html.twig', [
             'vehicule' => $vehicule,            
         ]);
-    }
-
-    #[Route('/publier_annonce/{id}', name: 'publier_annonce')]
-    public function publierAnnonceVehicule(VehiculesRepository $vehiculesRepository, EntityManagerInterface $em, $id): Response
-    {
-
-        $vehicule = $vehiculesRepository->findOneById($id);
-        $vehicule->setPublicationAnnonce(true);
-
-        $em->persist($vehicule);
-        $em->flush();
-
-        $this->addFlash('success', 'Une annonce concernant ce véhicule a été publiée.');
-
-        return new Response('Annonce publiée avec succès');
-    }
-    #[Route('/retirer_annonce/{id}', name: 'retirer_annonce')]
-    public function retirerAnnonceVehicule(VehiculesRepository $vehiculesRepository, EntityManagerInterface $em, $id): Response
-    {
-
-        $vehicule = $vehiculesRepository->findOneById($id);
-        $vehicule->setPublicationAnnonce(false);
-
-        $em->persist($vehicule);
-        $em->flush();
-
-        $this->addFlash('success', 'L\'annonce concernant ce véhicule a été retirée avec succès.');
-
-        return new Response('Annonce véhicule retirée avec succès');
-    }
+    }   
 
     //Creer un véhicule
     #[Route('/creer-vehicule', name: 'creer_vehicule')]
@@ -238,22 +207,5 @@ class VehiculesController extends AbstractController
             return new JsonResponse(['error' => 'Erreur, la suppression a échoué !'], 400);
         }
         return new JsonResponse(['error' => 'Token invalide'], 400);
-    }
-
-    #[Route('/favoris/ajout/{id}', name: 'ajout_favori')]
-    public function ajoutFavori(Vehicules $vehicule, EntityManagerInterface $em): Response
-    {
-        $vehicule->addFavori($this->getUser());
-        $em->persist($vehicule);
-        $em->flush();
-        return $this->redirectToRoute('app_vehicules_liste_vehicules');
-    }
-    #[Route('/favoris/suppression/{id}', name: 'suppression_favori')]
-    public function suppressionFavori(Vehicules $vehicule, EntityManagerInterface $em): Response
-    {
-        $vehicule->removeFavori($this->getUser());
-        $em->persist($vehicule);
-        $em->flush();
-        return $this->redirectToRoute('app_vehicules_liste_vehicules');
-    }
+    }    
 }

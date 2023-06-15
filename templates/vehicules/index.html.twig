@@ -8,7 +8,7 @@
 		<h1 class="titre-principal">Liste des véhicules</h1>
 
 		{% if is_granted(['ROLE_ADMIN']) %}
-		<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>			
+			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
 		{% endif %}
 
 		<p class="resultat-filtre">Total véhicules dans la base =
@@ -24,16 +24,17 @@
 			{# Filtre multicritère : #}
 			<div class="filtres">
 
-				<form id="filters" class="filtersForm">
+				<form
+					id="filters" class="filtersForm">
 
 					{# Filtre sur type de véhicule #}
 					<fieldset>
 						<legend>Type :</legend>
 						{% for  type in typesVehicules %}
-
-							<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
-							<label for="types{{type.id}}">{{type.nomtype}}</label>
-
+							<div class="wrapper-input">
+								<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
+								<label for="types{{type.id}}">{{type.nomtype}}</label>
+							</div>
 						{% endfor %}
 					</fieldset>
 
@@ -60,8 +61,7 @@
 			</div>
 		</div>
 	</div>
-{% block javascripts %}
-	<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>
+	{% block javascripts %}
+		<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>		
+	{% endblock %}
 {% endblock %}
-{% endblock %}
-

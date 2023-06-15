@@ -13,16 +13,16 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: rgb(245, 245, 245);
 }
 
 .main {
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  background-color: #efefef;
+  /* background-color: #efefef; */
   align-items: flex-start;
-  height:100vh;
+  background-color: rgb(243, 243, 233);
+
 }
 .wrapper {
   display: grid;

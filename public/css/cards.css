@@ -27,11 +27,11 @@
   box-shadow: 2px 2px 15px darkgray;
 }
 
-.card-title { 
+.card-title {
   font-size: 1rem;
   font-weight: 900;
-  margin:13px;
-  padding:0;
+  margin: 13px;
+  padding: 0;
   height: fit-content;
 }
 .card-text {
@@ -55,14 +55,16 @@
 
 .photo-miniature {
   background-color: rgb(244, 244, 244);
-  width:284px;
-  height:213px;
+  width: 284px;
+  height: 213px;
   border-radius: 10px 10px 0 0;
+  position: relative;
 }
 .photo-miniature img {
   border-radius: 10px 10px 0 0;
-  width:284px;
-  height:213px;
+  width: 284px;
+  height: 213px;
+  z-index: index 4;
 }
 
 .card-services {
@@ -90,21 +92,34 @@
   display: block;
   text-align: right;
 }
-.resume{
+.resume {
   font-size: 0.7rem;
   text-align: center;
-  margin:5px;
+  margin: 5px;
 }
-.marque-vehicule{
-  text-align:left;
-}
-.modele-vehicule{
+.marque-vehicule {
   text-align: left;
- font-size: 0.8rem;
- color:darkgray;
- padding:0;
- margin:0;
 }
-.prix-vehicule{
+.modele-vehicule {
+  text-align: left;
+  font-size: 0.8rem;
+  color: darkgray;
+  padding: 0;
+  margin: 0;
+}
+.prix-vehicule {
   font-size: 1.1rem;
+}
+.favoris {
+  right: 20px;
+  top: 20px;
+  position: absolute;
+  background-color: #fff;
+  padding:8px;
+  border-radius: 50%;
+ display:flex;
+ align-items: center;
+ opacity:0.3;
+ cursor: pointer;
+ text-align: center;
 }

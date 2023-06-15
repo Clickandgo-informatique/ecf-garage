@@ -40,12 +40,15 @@ textarea {
 }
 
 label {
-  display: flex;
   font-size: 0.95rem;
-  color: #2e2e2e;
-  pointer-events: none;
+  color: #000000;
+  text-align: left;
 }
-
+/* .wrapper-input{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+} */
 fieldset {
   display: flex;
   flex-direction: column;
@@ -88,10 +91,10 @@ legend {
 .filtersForm label {
   font-size: 0.8rem;
   color: blue;
+  text-align: left;
 }
 
-input[type="checkbox"] + label {
-  display: block;
+input[type="checkbox"]{ 
   margin: 0.2em;
   cursor: pointer;
   padding: 0.2em;
