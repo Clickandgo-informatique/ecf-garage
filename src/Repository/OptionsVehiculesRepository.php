@@ -18,7 +18,7 @@ class OptionsVehiculesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OptionsVehicule::class);
+        parent::__construct($registry, OptionsVehicules::class);
     }
 
     public function save(OptionsVehicules $entity, bool $flush = false): void

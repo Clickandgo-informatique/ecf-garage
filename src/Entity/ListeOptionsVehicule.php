@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ListeOptionsVehiculeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity(fields: ['option_vehicule','vehicule'], message: "Cette option existe déjà dans la liste d'options de ce véhicule, veuillez en choisir une autre.")]
 #[ORM\Entity(repositoryClass: ListeOptionsVehiculeRepository::class)]
 class ListeOptionsVehicule
 {
@@ -17,10 +19,10 @@ class ListeOptionsVehicule
     #[ORM\JoinColumn(nullable: false)]
     private ?Vehicules $vehicule = null;
 
-    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicule', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'listeOptionsVehicule')]
     #[ORM\JoinColumn(nullable: false)]
     private ?OptionsVehicules $option_vehicule = null;
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,7 +51,8 @@ class ListeOptionsVehicule
 
         return $this;
     }
-    public function __tostring():string{
+    public function __tostring(): string
+    {
         return $this->option_vehicule;
     }
 }

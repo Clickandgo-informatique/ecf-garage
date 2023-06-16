@@ -32,7 +32,8 @@ th {
   padding: 10px;
 }
 
-.fiche-vehicule {
+.fiche-vehicule,
+.liste-options-vehicule{
   font-size: 0.8rem;
 }
 .price {
@@ -54,4 +55,14 @@ th {
   font-size: 0.7rem;
   padding: 5px;
   margin: 5px;
+}
+.wrapper-tables{
+  display:flex;
+  flex-direction: row;  
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  width:100%;
+  justify-items: start;
+ 
 }

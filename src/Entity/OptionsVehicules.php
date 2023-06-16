@@ -27,7 +27,7 @@ class OptionsVehicules
     #[ORM\OneToMany(mappedBy: 'option_vehicule', targetEntity: ListeOptionsVehicule::class, orphanRemoval: true)]
     private Collection $listeOptionsVehicules;
 
-    #[ORM\OneToOne(mappedBy: 'options_vehicule', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'option_vehicule', cascade: ['persist', 'remove'])]
     private ?ListeOptionsVehicule $listeOptionsVehicule = null;
 
     public function __construct()

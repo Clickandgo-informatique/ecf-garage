@@ -5,8 +5,11 @@
   width: fit-content;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   transition: all 0.2s ease-in-out;
+  text-align: center;
+  box-shadow: 2px 2px 4px black;
+  border:1px solid lightgray;
 }
 
 .btn:hover {
@@ -27,8 +30,7 @@
 }
 
 .btn-go-back {
-  background-color: lightgray;
-  color: blue;
+  background-color: green;  
   margin: 10px;
 }
 
@@ -46,4 +48,7 @@
   position: relative;
   left: 10px;
   font-size: 0.6rem;
+}
+.btn-effacer{
+  padding:3px 5px; 
 }

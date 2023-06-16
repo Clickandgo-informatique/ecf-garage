@@ -3,7 +3,7 @@
   display: grid;
   place-items: start;
   row-gap: 10px;
-  column-gap: 9px;
+  column-gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
   margin-left: 10px;
 }
@@ -23,8 +23,8 @@
 
 .card-vehicule:hover {
   transform: scale(105%);
-  border: 2px solid black;
-  box-shadow: 2px 2px 15px darkgray;
+  border: 2px solid blue;
+  box-shadow: 1px 4px 20px blue;
 }
 
 .card-title {
@@ -43,7 +43,7 @@
 .card-price {
   position: relative;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding: 5px 10px;
   background-color: rgb(54, 54, 255);
   border-radius: 5px;
@@ -54,7 +54,7 @@
 }
 
 .photo-miniature {
-  background-color: rgb(244, 244, 244);
+  background-color: darkgray;
   width: 284px;
   height: 213px;
   border-radius: 10px 10px 0 0;
@@ -115,11 +115,11 @@
   top: 20px;
   position: absolute;
   background-color: #fff;
-  padding:8px;
+  padding: 6px 8px;
   border-radius: 50%;
  display:flex;
  align-items: center;
- opacity:0.3;
+ opacity:0.8;
  cursor: pointer;
  text-align: center;
 }
