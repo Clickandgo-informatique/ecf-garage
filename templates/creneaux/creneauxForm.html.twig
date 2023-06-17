@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{titre}}
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1 class="titre-principal">{{titre}}</h1>
+		<a class="btn btn-primary" href="{{path('app_horaires_semaine_index')}}">Revenir à la liste</a>
+		{{form_start(creneauxForm)}}
+		{{form_row(creneauxForm.jour)}}
+		<div class="wrapper-creneau">
+			{{form_row(creneauxForm.debut)}}
+			{{form_row(creneauxForm.fin)}}
+		</div>		
+		{{form_end(creneauxForm)}}
+
+	</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des utilisateurs
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1 class="titre-principal">Liste des utilisateurs</h1>
+		<a class="btn btn-primary" href="{{path('app_users_creer_utilisateur')}}">Créer un utilisateur</a>
+		<table>
+			<thead>
+				<th>Nom</th>
+				<th>E-mail</th>
+				<th>Tél fixe</th>
+				<th>Tél mobile</th>
+			</thead>
+			{% if users %}
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>
+								<strong>{{user.nom}}</strong>
+								{{user.prenom}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.telfixe}}</td>
+							<td>{{user.telmobile}}</td>
+
+							{% if user.roles %}
+								<td>									
+										{% for role in user.roles %}
+											{{role}}
+										{% endfor %}									
+								</td>
+
+							{% endif %}
+							<td>
+								<a href="{{path('app_users_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
+							</td>
+							<td>
+								<a href="{{path('app_users_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
+							</td>
+							<td>
+								<a href="{{path('app_users_modifier_utilisateur',{id:user.id})}}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<p>Aucun utilisateurs n'est encore enregistré dans la base</p>
+				{% endif %}
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

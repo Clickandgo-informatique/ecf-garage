@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des types de véhicules
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1 class="titre-principal">Liste des types de véhicules</h1>
+
+		{% if typesvehicules %}
+			<table>
+				<thead>
+                <th>
+					<a class="btn btn-primary" href="{{path('app_vehicules_types_vehicules_creer')}}">Créer nouveau type</a></th>
+				</thead>
+				<tbody>
+					{% for tv in typesvehicules %}
+						<tr>
+							<td>{{tv.nomtype}}</td>
+							<td>
+								<a href={{path('app_vehicules_types_vehicules_supprimer',{id:tv.id} )}} class="btn btn-danger">Supprimer</a>
+							</td>
+							<td>
+								<a href={{path('app_vehicules_types_vehicules_modifier',{id:tv.id} )}} class="btn btn-warning">Modifier</a>
+							</td>
+						</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p>Aucun type de véhicule n'est encore présent dans la base.</p>
+			
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des véhicules
+{% endblock %}
+{% block body %}
+
+	<div class="main">
+
+		<h1 class="titre-principal">Liste des véhicules</h1>
+
+		{% if is_granted(['ROLE_ADMIN']) %}
+			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
+		{% endif %}
+
+		<p class="resultat-filtre">Total véhicules dans la base =
+			{{totalVehicules}}</p>
+		<p class="resultat-filtre">Résultats filtre actif =
+			{{totalVehiculesFiltered}}</p>
+
+		{# Sliders double range #}
+		{{ include('_partials/_sliders.html.twig') }}
+
+		<div
+			class="wrapper">
+			{# Filtre multicritère : #}
+			<div class="filtres">
+
+				<form
+					id="filters" class="filtersForm">
+
+					{# Filtre sur type de véhicule #}
+					<fieldset>
+						<legend>Type :</legend>
+						{% for  type in typesVehicules %}
+							<div class="wrapper-input">
+								<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
+								<label for="types{{type.id}}">{{type.nomtype}}</label>
+							</div>
+						{% endfor %}
+					</fieldset>
+
+					{# Filtre sur marques de véhicules #}
+					<fieldset>
+						<legend>Marque :</legend>
+						{% for  marque in marquesVehicules %}
+
+							<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
+							<label for="marques{{marque.id}}">{{marque.marque}}</label>
+
+						{% endfor %}
+					</fieldset>
+
+					<input type="hidden" name="page" value="{{page}}">
+				</form>
+			</div>
+
+			<div
+				class="cards-container" id="content">
+
+				{# Contenu généré en Ajax #}
+				{{ include('admin/vehicules/_content.html.twig') }}
+			</div>
+		</div>
+	</div>
+		{% block javascripts %}
+			<script src="{{asset('assets/js/annonces.js')}}" type="module" defer></script>
+			<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>
+		{% endblock %}
+{% endblock %}

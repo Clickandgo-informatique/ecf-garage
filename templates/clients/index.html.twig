@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des clients
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1 class="titre-principal">Liste des clients</h1>
+		<a class="btn btn-primary" href="{{path('app_clients_creer_client')}}">Créer un client</a>
+		<table>
+			<thead>
+				<th>Nom</th>
+				<th>E-mail</th>
+				<th>Tél fixe</th>
+				<th>Tél mobile</th>
+			</thead>
+			{% if clients %}
+				<tbody>
+					{% for client in clients %}
+						<tr>
+							<td>
+								<strong>{{client.nom}}</strong>
+								{{client.prenom}}</td>
+							<td>{{client.email}}</td>
+							<td>{{client.telephonefixe}}</td>
+							<td>{{client.telephonemobile}}</td>
+
+
+							<td>
+								<a href="{{path('app_clients_fiche_client',{id:client.id})}}">Voir fiche</a>
+							</td>
+							<td>
+								<a href="{{path('app_clients_supprimer_client',{id:client.id})}}">Supprimer</a>
+							</td>
+							<td>
+								<a href="{{path('app_clients_modifier_client',{id:client.id})}}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<p>Aucun client n'est encore enregistré dans la base</p>
+				{% endif %}
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

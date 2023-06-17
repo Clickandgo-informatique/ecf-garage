@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{titre}}
+{% endblock %}
+{% block body %}
+	<div class="main">
+		<h1 class="titre-principal">{{titre}}</h1>
+	</div>
+	{{ form(servicesForm) }}{% endblock %}

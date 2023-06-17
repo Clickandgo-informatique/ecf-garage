@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block title %}Fiche service
+{% endblock %}
+{% block body %}
+	<div class="main">
+	<a class="btn-go-back-link">Retour à la page d'accueil</a>
+		<h1 class="titre-principal">Fiche service</h1>
+	</div>
+	<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id})}}" class="btn btn-primary btn-centered">Contacter ce service par mail</a>
+	{% if service %}
+		<table class="fiche-service">
+			{# {% if service.icone %}
+															<p>{{service.icone}}</p>
+														{% endif %} #}
+			<tr>
+				<td class="table-label">Service :</td>
+				<td>
+					<p>
+						{{service.nom}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Résumé :</td>
+				<td>
+					<p>
+						{{service.resume}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Description :</td>
+				<td>
+					<p>
+						{{service.description}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Prix (à partir de : )</td>
+				<td>
+					<p>{{service.prixapartirde}} €.</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Responsable</td>
+				<td>
+					<p>{{service.civiliteresponsable}} {{service.responsable}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Mail service 1</td>
+				<td>
+					<p>{{service.mailservice1}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Mail service 2</td>
+				<td>
+					<p>{{service.mailservice2}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Télephone service 1</td>
+				<td>
+					<p>{{service.telephone1}}</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-label">Télephone service 2</td>
+				<td>
+					<p>{{service.telephone2}}</p>
+				</td>
+			</tr>
+		</table>
+	{% else %}
+		<p>Aucun service n'est encore enregistré dans la base</p>
+	{% endif %}
+{% endblock %}

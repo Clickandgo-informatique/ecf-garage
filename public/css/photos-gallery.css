@@ -1,0 +1,47 @@
+.wrapper-galerie-photos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  margin: 10px auto;
+}
+.wrapper-galerie-photos h6 {
+  display: flex;
+  font-size: 0.8rem;
+  margin: 5px;
+  width: fit-content;
+}
+
+.galerie-photos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 10px;
+  min-width: 300px;
+  min-height: 120px;
+  /* overflow-x: scroll; */
+  background-color: rgb(240, 240, 240);
+  align-items: center;
+  justify-content: center;
+}
+.container-thumbnail { 
+  margin: 0;
+  padding: 0;
+}
+.thumbnail-vehicule {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px darkgray;
+  margin: 8px;
+}
+.btn-suppression-photo {
+  position: relative;
+  top: -15px;
+  left: -45px;
+  text-decoration: none;
+  font-size: 2rem;
+}

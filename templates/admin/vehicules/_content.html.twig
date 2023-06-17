@@ -1,0 +1,62 @@
+{% for v in vehicules %}
+	<div
+		class="card card-vehicule">
+		{# Gestion des favoris #}
+		<div class="photo-miniature">
+			<div class="favoris">
+				{% if is_granted("ROLE_USER") %}
+					{% for favoris in v.favoris %}
+						{% if favoris.id == app.user.id %}
+							<a href="{{path('app_vehicules_annonces_suppression_favori',{id:v.id})}}">
+								<i class="fas fa-heart"></i>
+							</a>
+						{% else %}
+							<a href="{{path('app_vehicules_annonces_ajout_favori',{id:v.id})}}">
+								<i class="far fa-heart"></i>
+							</a>
+						{% endif %}
+					{% else %}
+						<a href="{{path('app_vehicules_annonces_ajout_favori',{id:v.id})}}">
+							<i class="far fa-heart"></i>
+						</a>
+					{% endfor %}
+				{% else %}
+					<i class="far fa-heart"></i>
+				{% endif %}
+			</div>
+
+			{# Gestion des photos #}
+			{% if v.photos[0] is defined %}
+				<img src="{{asset('assets/uploads/vehicules/mini/300x300-'~ v.photos[0].nom)}}" alt="">
+			{% endif %}
+		</div>
+		<div class="card-title">
+			<p class="marque-vehicule">
+				<strong>{{v.marque}}</strong>
+			</p>
+			<p class="modele-vehicule">{{v.modele}}</p>
+		</div>
+		<div class="card-text">
+
+			<div class="resume">{{v.datemiseencirculation|date("m-y")}}
+				|
+				{{v.kilometrage}}
+				km |
+				{{v.boite}}
+				|
+				{{v.motorisation}}</div>
+
+			<p class="prix-vehicule">{{v.prixvente}}
+				€</p>
+
+			<a class="btn btn-primary btn-voir-details" href="{{path('app_vehicules_details_vehicule',{id:v.id})}}">Voir détails</a>
+
+			{# Affiche un switch permettant la publication de la fiche véhicule en tant qu'annonce #}
+			<label for="publication-annonce">Publier annonce</label>
+			<input class="publication-annonce" type="checkbox" name="publication-annonce" id="" {{(v.publicationannonce)==1 ? 'checked' :'' }} data-id="{{v.id}}"/>
+
+
+		</div>
+	</div>
+{% endfor %}
+

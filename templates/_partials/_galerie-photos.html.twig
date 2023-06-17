@@ -1,0 +1,16 @@
+{# Galerie photos #}
+<div class="wrapper-galerie-photos">
+	<div class="galerie-photos">
+		{% if vehicule.photos is defined %}
+			{% for photo in vehicule.photos %}
+				<div class="container-thumbnail">
+					<img class="thumbnail-vehicule" src="{{asset('assets/uploads/vehicules/mini/300x300-'~ photo.nom)}}" alt="">
+					<a class="btn-suppression-photo" href="{{path('app_vehicules_supprimer_photo',{id:photo.id})}}" data-delete data-token="{{csrf_token('delete' ~ photo.id)}}">&times;</a>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% block javascripts %}
+	<script src="{{asset('assets/js/photos.js')}}" defer></script>
+{% endblock %}

@@ -1,0 +1,21 @@
+<div class="modal" id="modale-contact">
+	<div class="modal-header">Contacter</div>
+	<div class="divider"></div>
+	{{form_start(form)}}
+</div>
+<div class="modal-content"></div>
+{{form_row(form.title)}}
+{{form_row(form.email)}}
+{{form_row(form.message)}}
+<div class="divider"></div>
+<div class="modal-footer"></div>
+<button class="btn btn-primary">Envoyer</button>
+<button class="btn btn-secondary modal-trigger" data-target="modale-contact">Fermer</button>
+{{form_end(form)}}
+
+{% block javascripts %}{# Préremplit le champ des adresses mails #}
+	{# window.onload=(){
+	    document.querySelector("#service).value="{{service.slug}}"
+	} #}
+
+{% endblock %}

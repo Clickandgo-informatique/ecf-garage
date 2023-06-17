@@ -1,0 +1,22 @@
+<a href="{{path('app_services_creer_service')}}" class="btn btn-primary">Créer un service</a>
+{% if services %}
+	<div class="cards-container">
+		{% for service in services %}
+			<div class="card card-services">
+				<div class="icone-service">
+					<i></i>
+				</div>
+				<p class="card-title">{{service.nom}}</p>
+				<p class="card-text">{{service.resume|u.truncate(60)}}
+					<a class="card-view-link" href="{{path('app_services_fiche_service',{id:service.id,slug:service.slug})}}">Voir détails...</a>
+				</p>
+				<p class="card-price">A partir de
+					{{service.prixapartirde}}
+					€</p>
+			</div>
+		{% endfor %}
+	</div>
+{% else %}
+	<p>Aucun service n'est encore enregistré dans la base.</p>
+
+{% endif %}

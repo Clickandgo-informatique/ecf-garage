@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Horaires d'ouverture semaine
+{% endblock %}
+
+{% block body %}
+	<div class="main">
+		<h1 class="titre-principal">Horaires d'ouverture semaine</h1>
+
+		<a href="{{path('app_horaires_semaine_creer_creneau')}}" class="btn btn-primary btn-centered">+ Ajouter créneau</a>
+
+		<div class="wrapper-jours">
+			<div>
+				<table>
+					<th colspan="3" class="jour">Lundi</th>
+					<tbody>
+						{% if creneauxLundi %}
+							{% for creneau in creneauxLundi %}
+								<tr>
+									<td>{{creneau.debut|date("H:i")}}
+										à
+										{{creneau.fin|date("H:i")}}</td>
+									<td>
+										<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+									</td>
+									<td>
+										<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</tbody>
+				</table>
+			{% else %}
+				<p class="alerte-jour">Aucun créneau pour le Lundi n'a encore été enregistré dans la base.</p>
+			{% endif %}
+		</div>
+		<div>
+			<table>
+				<th colspan="3" class="jour">Mardi</th>
+				<tbody>
+					{% if creneauxMardi %}
+						{% for creneau in creneauxMardi %}
+							<tr>
+								<td>{{creneau.debut|date("H:i")}}
+									à
+									{{creneau.fin|date("H:i")}}</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</tbody>
+			</table>
+		{% else %}
+			<p class="alerte-jour">Aucun créneau pour le Mardi n'a encore été enregistré dans la base.</p>
+		{% endif %}
+	</div>
+	<div>
+		{% if creneauxMercredi %}
+			<table>
+				<th colspan="3" class="jour">Mercredi</th>
+				<tbody>
+					{% for creneau in creneauxMercredi %}
+						<tr>
+							<td>{{creneau.debut|date("H:i")}}
+								à
+								{{creneau.fin|date("H:i")}}</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+							</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p class="alerte-jour">Aucun créneau pour le Mercredi n'a encore été enregistré dans la base.</p>
+		{% endif %}
+	</div>
+	<div>
+		{% if creneauxJeudi %}
+			<table>
+				<th colspan="3" class="jour">Jeudi</th>
+				<tbody>
+					{% for creneau in creneauxJeudi %}
+						<tr>
+							<td>{{creneau.debut|date("H:i")}}
+								à
+								{{creneau.fin|date("H:i")}}</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+							</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p class="alerte-jour">Aucun créneau pour le Jeudi n'a encore été enregistré dans la base.</p>
+		{% endif %}
+	</div>
+	<div>
+		{% if creneauxVendredi %}
+			<table>
+				<th colspan="3" class="jour">Vendredi</th>
+				<tbody>
+					{% for creneau in creneauxVendredi %}
+						<tr>
+							<td>{{creneau.debut|date("H:i")}}
+								à
+								{{creneau.fin|date("H:i")}}</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+							</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p class="alerte-jour">Aucun créneau pour le Vendredi n'a encore été enregistré dans la base.</p>
+		{% endif %}
+	</div>
+	<div>
+		{% if creneauxSamedi %}
+			<table>
+				<th colspan="3" class="jour">Samedi</th>
+				<tbody>
+					{% for creneau in creneauxSamedi %}
+						<tr>
+							<td>{{creneau.debut|date("H:i")}}
+								à
+								{{creneau.fin|date("H:i")}}</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+							</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p class="alerte-jour">Aucun créneau pour le Samedi n'a encore été enregistré dans la base.</p>
+		{% endif %}
+	</div>
+	<div>
+		{% if creneauxDimanche %}
+			<table>
+				<th colspan="3" class="jour">Dimanche</th>
+				<tbody>
+					{% for creneau in creneauxDimanche %}
+						<tr>
+							<td>{{creneau.debut|date("H:i")}}
+								à
+								{{creneau.fin|date("H:i")}}</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+							</td>
+							<td>
+								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<p class="alerte-jour">Aucun créneau pour le Dimanche n'a encore été enregistré dans la base.</p>
+		{% endif %}
+
+	</div>
+</div></div>{% endblock %}

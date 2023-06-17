@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %}Créer un utilisateur{% endblock %}
+
+{% block body %}
+
+	<div class="main">
+
+		<h1 class="titre-principal">Créer un utilisateur</h1>
+
+		{{form_start(form)}}
+		{{form_row(form.nom)}}
+		{{form_row(form.prenom)}}
+		{{form_row(form.email)}}
+		{{form_row(form.adresse)}}
+		{{form_row(form.code_postal)}}
+		{{form_row(form.ville)}}
+		{{form_row(form.tel_fixe)}}
+		{{form_row(form.tel_mobile)}}
+		{{form_row(form.password)}}
+		{{form_row(form.created_at)}}
+
+		<button class="btn btn-primary" type="submit">Enregistrer</button>
+
+		{{form_end(form)}}
+	</div>
+{% endblock %}
