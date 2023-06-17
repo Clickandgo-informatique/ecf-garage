@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use App\Repository\CommentairesRepository;
+use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,8 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(Request $request, EntityManagerInterface $em, CommentairesRepository $commentairesRepository): Response
+    public function index(Request $request, EntityManagerInterface $em, CommentairesRepository $commentairesRepository,ServicesRepository $servicesRepository): Response
     {
+        //Liste de tous les services
+        $services=$servicesRepository->findBy([],['nom'=>'ASC']);
         //Liste de tous les commentaires
         $commentaires = $commentairesRepository->findBy([], ['created_at' => 'DESC']);
         //Gestion des Commentaires
@@ -48,6 +51,7 @@ class MainController extends AbstractController
         }
         return $this->render('main/index.html.twig', [
             'commentaires' => $commentaires,
+            'services'=>$services,
             'commentForm' => $commentForm->createView()
         ]);
     }

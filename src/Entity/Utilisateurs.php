@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -34,6 +36,14 @@ class Utilisateurs
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Mails::class)]
+    private Collection $mails;
+
+    public function __construct()
+    {
+        $this->mails = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,36 @@ class Utilisateurs
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mails>
+     */
+    public function getMails(): Collection
+    {
+        return $this->mails;
+    }
+
+    public function addMail(Mails $mail): self
+    {
+        if (!$this->mails->contains($mail)) {
+            $this->mails->add($mail);
+            $mail->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMail(Mails $mail): self
+    {
+        if ($this->mails->removeElement($mail)) {
+            // set the owning side to null (unless already changed)
+            if ($mail->getUtilisateur() === $this) {
+                $mail->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

@@ -33,7 +33,7 @@ th {
 }
 
 .fiche-vehicule,
-.liste-options-vehicule{
+.liste-options-vehicule {
   font-size: 0.8rem;
 }
 .price {
@@ -56,13 +56,17 @@ th {
   padding: 5px;
   margin: 5px;
 }
-.wrapper-tables{
-  display:flex;
-  flex-direction: row;  
+.wrapper-tables {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: start;
-  width:100%;
+  width: 100%;
   justify-items: start;
- 
+}
+.fiche-service {
+  width: 90%;
+  max-width: 1024px;
+  margin: 10px auto;
 }

@@ -45,9 +45,11 @@
   margin: 10px auto;
 }
 .btn-repondre {
-  position: relative;
-  left: 10px;
+  display:block;
+  margin-right: 10px; 
   font-size: 0.6rem;
+  text-align: right;
+
 }
 .btn-effacer{
   padding:3px 5px; 

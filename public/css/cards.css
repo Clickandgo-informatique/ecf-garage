@@ -1,11 +1,11 @@
 .cards-container {
   /* grid-area: "cards"; */
   display: grid;
-  place-items: start;
+  place-items: start center;
   row-gap: 10px;
   column-gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
-  margin-left: 10px;
+  margin:10px auto;
 }
 
 .card {
@@ -24,7 +24,7 @@
 .card-vehicule:hover {
   transform: scale(105%);
   border: 2px solid blue;
-  box-shadow: 1px 4px 20px blue;
+  box-shadow: 1px 4px 20px black;
 }
 
 .card-title {
@@ -47,18 +47,20 @@
   padding: 5px 10px;
   background-color: rgb(54, 54, 255);
   border-radius: 5px;
-  /* width: fit-content; */
   text-align: center;
   display: block;
-  margin: 10px;
+  margin: 15px auto;
+
+  width:fit-content;
 }
 
 .photo-miniature {
-  background-color: darkgray;
+  background-color: lightgray;
   width: 284px;
   height: 213px;
   border-radius: 10px 10px 0 0;
   position: relative;
+  opacity:0.5;
 }
 .photo-miniature img {
   border-radius: 10px 10px 0 0;
@@ -95,6 +97,7 @@
 .resume {
   font-size: 0.7rem;
   text-align: center;
+  color:darkgray;
   margin: 5px;
 }
 .marque-vehicule {

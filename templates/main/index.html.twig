@@ -4,49 +4,13 @@
 {% block body %}
 	<div class="main">
 		<h1 class="titre-principal">Bienvenue sur la page d'accueil de la concession</h1>
-		{# Formulaire des commentaires #}
-		<div class="container-commentaires">
-			<h2>Liste des commentaires</h2>
-			<div class="liste-commentaires">
-				{% for c in commentaires %}
-					{% if c.parent == null %}
-						<p>Publié par
-							{{c.pseudo}}
-							le
-							{{c.createdAt|date("d-m-Y à H:i:s")}}</p>
-						<div class="contenu-commentaire">
-							{{c.contenu|raw}}
-							<p>
-								<a class="btn btn-primary btn-repondre" href="#ajout-commentaire" data-reply data-id="{{c.id}}">Répondre</a>
-							</p>
+		<section class="commentaires">
+			{{include('_partials/_comments.html.twig')}};
+		</section>
 
-							{# Affichage des réponses #}
-							{% for reponse in c.reponses %}
-								<div class="reponse">
-									<p>Réponse publiée par
-										{{reponse.pseudo}}
-										le
-										{{reponse.createdAt|date("d-m-Y à H:i:s")}}</p>
-									<div class="contenu-reponse">
-										{{reponse.contenu|raw}}
-										<p>
-										{% endfor %}
-									{% endif %}
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ajout-commentaire" id="ajout-commentaire">
-				<h2>Ajouter un commentaire</h2>
-				{{ form(commentForm)}}
-				</div>
-
-			{% endblock %}
-
-			{% block javascripts %}
-				<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
-				<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>
-
-			{% endblock %}
+		<h1 class="titre-principal">Nous vous proposons les services suivants :</h1>
+		<section class="services">
+		{{include('_partials/_services.html.twig')}};
+		</section>
+	</div>
+{% endblock %}
