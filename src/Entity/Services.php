@@ -64,6 +64,11 @@ class Services
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $civilite_responsable = null;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function __construct()
     {
         $this->telephones = new ArrayCollection();

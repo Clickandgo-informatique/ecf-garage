@@ -3,22 +3,17 @@
 {% endblock %}
 {% block body %}
 	<div class="main">
-	<a class="btn-go-back-link">Retour à la page d'accueil</a>
-		<h1 class="titre-principal">Fiche service</h1>
+		<a href="{{path('app_index')}}" class="btn btn-go-back">Retour à la page d'accueil</a>
+		<h1 class="titre-principal">Fiche service {{service.nom}}</h1>
 	</div>
-	<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id})}}" class="btn btn-primary btn-centered">Contacter ce service par mail</a>
+	<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id,slug:service.slug})}}" class="btn btn-primary btn-centered">Contacter ce service par mail</a>
 	{% if service %}
-		<table class="fiche-service">
+		<table
+			class="fiche-service">
 			{# {% if service.icone %}
-															<p>{{service.icone}}</p>
-														{% endif %} #}
-			<tr>
-				<td class="table-label">Service :</td>
-				<td>
-					<p>
-						{{service.nom}}</p>
-				</td>
-			</tr>
+																		<p>{{service.icone}}</p>
+																	{% endif %} #}
+
 			<tr>
 				<td class="table-label">Résumé :</td>
 				<td>
@@ -36,13 +31,15 @@
 			<tr>
 				<td class="table-label">Prix (à partir de : )</td>
 				<td>
-					<p>{{service.prixapartirde}} €.</p>
+					<p>{{service.prixapartirde}}
+						€.</p>
 				</td>
 			</tr>
 			<tr>
 				<td class="table-label">Responsable</td>
 				<td>
-					<p>{{service.civiliteresponsable}} {{service.responsable}}</p>
+					<p>{{service.civiliteresponsable}}
+						{{service.responsable}}</p>
 				</td>
 			</tr>
 			<tr>

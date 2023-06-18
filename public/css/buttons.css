@@ -1,5 +1,5 @@
 .btn {
-  display: block;
+  display: inline-block;
   padding: 7px 10px;
   color: white;
   width: fit-content;
@@ -10,6 +10,7 @@
   text-align: center;
   box-shadow: 2px 2px 4px black;
   border:1px solid lightgray;
+  /* margin:10px; */
 }
 
 .btn:hover {
@@ -19,6 +20,10 @@
 
 .btn-primary {
   background-color: rgb(22, 22, 224);
+}
+
+.btn-secondary{
+  background-color: chocolate;
 }
 
 .btn-danger {
@@ -43,6 +48,10 @@
 
 .btn-centered {
   margin: 10px auto;
+}
+
+.btn-right{
+  margin-left:auto;
 }
 .btn-repondre {
   display:block;

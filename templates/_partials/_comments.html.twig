@@ -36,14 +36,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="ajout-commentaire" id="ajout-commentaire">
+			<div class="ajout-commentaire" id="ajout-commentaire">
 		<h2 class="titre-principal">Ajouter un commentaire</h2>
 
-		{{ form(commentForm)}}
-		</div>
+		{{ form_start(commentForm)}}
+		{{form_widget(commentForm)}}
+		{{ form_end(commentForm)}}
 	</div>
-</div>
-{% block javascripts %}parent(<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
-	<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>)
-{% endblock %}
+	</div>
+
+</div></div>{% block javascripts %}<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
+<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>{% endblock %}
