@@ -23,7 +23,7 @@ use Symfony\Contracts\Cache\ItemInterface;
 #[Route('/admin/vehicules', name: 'app_vehicules_')]
 class VehiculesController extends AbstractController
 {
-    #[Route('/', name: 'liste_vehicules')]
+    #[Route('/', name: 'index')]
     public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository): Response
     {
         //Récupération du total de véhicules dans la base avant filtres
@@ -217,5 +217,14 @@ class VehiculesController extends AbstractController
 
         $this->addFlash('message', 'Le véhicule et toutes ses annexes ont été retirés de la base.');
         return $this->redirectToRoute('app_vehicules_liste_vehicules');
+    }
+
+    #[Route('/liste-vehicules', name: 'liste_vehicules')]
+    public function liste(VehiculesRepository $vehiculesRepository): Response
+    {
+
+        $vehicules = $vehiculesRepository->findBy([], ['slug' => 'asc']);
+
+        return $this->render('admin/vehicules/liste-vehicules.html.twig', compact('vehicules'));
     }
 }

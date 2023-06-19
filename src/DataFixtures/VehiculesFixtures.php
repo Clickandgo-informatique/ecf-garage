@@ -48,7 +48,7 @@ class VehiculesFixtures extends Fixture
             $v->setReferenceInterne(rand(00001, 99999))
                 ->setProprietaire($this->getReference('Client_' . rand(0, 9)))
                 ->setMarque($this->getReference('Marque_' . rand(1, $randomMarques)))
-                ->setModele("nc")
+                ->setModele("modele_".rand(0001,1000))
                 ->setCouleur($this->getReference('couleur_' . rand(0, 11)))
                 ->setMotorisation($motorisations[$randomMotorisations])
                 ->setTypeVehicule($this->getReference('type_vehicule_' . rand(0, 7)))
@@ -63,7 +63,7 @@ class VehiculesFixtures extends Fixture
                 ->setRemarques('Aucune remarque')
                 ->setPlaqueImmatriculation('AA-' . rand(0001, 9999) . '-ZZ')
                 ->setSlug($this->slugger->slug($v->getMarque() . ' ' . $v->getModele())->lower())
-                ->isPublicationAnnonce(false);
+                ->setPublicationAnnonce(true);
 
 
             // $v->setDateMiseEnCirculation($random_Date);

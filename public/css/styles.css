@@ -17,12 +17,9 @@ body {
 
 .main {
   display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  /* background-color: #efefef; */
+  flex-direction: row;
   align-items: flex-start;
   background-color: rgb(252, 254, 255);
-
 }
 .wrapper {
   display: grid;
@@ -31,11 +28,16 @@ body {
   flex-wrap: wrap;
   align-content: start;
 }
-
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
 .titre-principal {
   margin: 10px auto;
   font-size: 1.5rem;
-  color:blue;
+  color: blue;
   text-align: center;
 }
 
@@ -50,6 +52,6 @@ body {
 .filtres {
   width: fit-content;
 }
-.resultat-filtre{
+.resultat-filtre {
   font-size: 0.6rem;
 }
