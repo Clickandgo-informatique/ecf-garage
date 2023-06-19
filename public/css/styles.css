@@ -6,6 +6,7 @@
 @import "./menus.css";
 @import "./photos-gallery.css";
 @import "./sliders.css";
+@import "./switches.css";
 
 body {
   margin: 0;
