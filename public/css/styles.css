@@ -38,8 +38,13 @@ body {
 .titre-principal {
   margin: 10px auto;
   font-size: 1.5rem;
-  color: blue;
+  color: #fff;
   text-align: center;
+  padding:5px 10px;
+  background-color: blue;
+  border-radius: 5px;
+  width:fit-content;
+  box-shadow: 1px 1px 4px #000;
 }
 
 .go-back-link {

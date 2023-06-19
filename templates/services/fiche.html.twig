@@ -3,73 +3,83 @@
 {% endblock %}
 {% block body %}
 	<main class="main">
-		<a href="{{path('app_index')}}" class="btn btn-go-back">Retour à la page d'accueil</a>
-		<h1 class="titre-principal">Fiche service
-			{{service.nom}}</h1>
+		<div class="content">
+			<a href="{{path('app_index')}}" class="btn btn-go-back">Retour à la page d'accueil</a>
 
-		<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id,slug:service.slug})}}" class="btn btn-primary btn-centered">Contacter ce service par mail</a>
-		{% if service %}
-			<table
-				class="fiche-service">
-				{# {% if service.icone %}
-																						<p>{{service.icone}}</p>
-																					{% endif %} #}
+			<h1 class="titre-principal">Fiche service
+				{{service.nom}}</h1>
 
-				<tr>
-					<td class="table-label">Résumé :</td>
-					<td>
-						<p>
-							{{service.resume}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Description :</td>
-					<td>
-						<p>
-							{{service.description}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Prix (à partir de : )</td>
-					<td>
-						<p>{{service.prixapartirde}}
-							€.</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Responsable</td>
-					<td>
-						<p>{{service.civiliteresponsable}}
-							{{service.responsable}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Mail service 1</td>
-					<td>
-						<p>{{service.mailservice1}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Mail service 2</td>
-					<td>
-						<p>{{service.mailservice2}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Télephone service 1</td>
-					<td>
-						<p>{{service.telephone1}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="table-label">Télephone service 2</td>
-					<td>
-						<p>{{service.telephone2}}</p>
-					</td>
-				</tr>
-			</table>
-		{% else %}
-			<p>Aucun service n'est encore enregistré dans la base</p>
-		{% endif %}
+			<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id,slug:service.slug})}}" class="btn btn-primary btn-centered">Contacter ce service par mail</a>
+			{% if service %}
+				<table
+					class="fiche-service">
+					{# {% if service.icone %}
+																																								<p>{{service.icone}}</p>
+																																							{% endif %} #}
+					<thead>
+						<tr>
+							{% if is_granted("ROLE_ADMIN") %}
+							<th colspan="2"><a href="{{path('app_services_creer_service')}}" class="btn btn-primary">Créer un service</a></th>	
+
+							{% endif %}
+						</tr>
+					</thead>
+					<tr>
+						<td class="table-label">Résumé :</td>
+						<td>
+							<p>
+								{{service.resume}}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Description :</td>
+						<td>
+							<p>
+								{{service.description}}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Prix (à partir de : )</td>
+						<td>
+							<p>{{service.prixapartirde}}
+								€.</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Responsable</td>
+						<td>
+							<p>{{service.civiliteresponsable}}
+								{{service.responsable}}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Mail service 1</td>
+						<td>
+							<p>{{service.mailservice1}}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Mail service 2</td>
+						<td>
+							<p>{{service.mailservice2}}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Télephone service 1</td>
+						<td>
+							<p>{{service.telephone1}}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Télephone service 2</td>
+						<td>
+							<p>{{service.telephone2}}</p>
+						</td>
+					</tr>
+				</table>
+			{% else %}
+				<p>Aucun service n'est encore enregistré dans la base</p>
+			{% endif %}
+		</div>
 	</main>
 {% endblock %}
