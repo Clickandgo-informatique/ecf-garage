@@ -16,12 +16,12 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.main {
+/* .main {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   background-color: rgb(252, 254, 255);
-}
+} */
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 11fr;
@@ -60,4 +60,9 @@ body {
 }
 .resultat-filtre {
   font-size: 0.6rem;
+}
+section{
+  background-color: rgb(250, 250, 250);
+  border-radius: 20px;
+  margin:10px;
 }

@@ -49,14 +49,8 @@
 			<p class="prix-vehicule">{{v.prixvente}}
 				€</p>
 
-			<a class="btn btn-primary btn-voir-details" href="{{path('app_vehicules_details_vehicule',{id:v.id})}}">Voir détails</a>
-
-			{# Affiche un switch permettant la publication de la fiche véhicule en tant qu'annonce #}
-			<label for="publication-annonce">Publier annonce</label>
-			<input class="publication-annonce" type="checkbox" name="publication-annonce" id="" {{(v.publicationannonce)==1 ? 'checked' :'' }} data-id="{{v.id}}"/>
-
+			<a class="btn btn-primary btn-voir-details btn-centered" href="{{path('app_vehicules_annonces_details_vehicule',{id:v.id})}}">Voir détails</a>
 
 		</div>
 	</div>
 {% endfor %}
-

@@ -3,7 +3,7 @@
 	Créer un nouveau véhicule
 {% endblock %}
 {% block body %}
-	<div class="main">
+	<main>
 		<a class="btn btn-primary" href="{{path('app_vehicules_liste_vehicules')}}" class="go-back-link">Revenir à la liste</a>
 		<h1 class="titre-principal">{{titre}}</h1>
 		{{form_start(form)}}
@@ -63,6 +63,6 @@
 		</fieldset>
 		<button class="btn btn-primary" type="submit">{{button_label|default ('Enregistrer')}}</button>
 		{{ form_end(form) }}
-	</div>
+	</main>
 
 {% endblock %}

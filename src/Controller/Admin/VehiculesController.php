@@ -5,9 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Photos;
 use App\Entity\Vehicules;
 use App\Form\VehiculesFormType;
-use App\Repository\ListeOptionsVehiculeRepository;
-use App\Repository\MarquesRepository;
-use App\Repository\TypesVehiculesRepository;
 use App\Repository\VehiculesRepository;
 use App\Service\PicturesService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,78 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 
-#[Route('/admin/vehicules', name: 'app_vehicules_')]
-class VehiculesController extends AbstractController
-{
-    #[Route('/', name: 'index')]
-    public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository): Response
-    {
-        //Récupération du total de véhicules dans la base avant filtres
-        $totalVehicules = $vehiculesRepository->getTotalVehicules();
-
-        //Définition du nombre d'éléments par page
-        $limit = 10;
-
-        //Récupération du numéro de page active
-        $page = (int)$request->query->get("page", 1);
-
-        //Récupération des filtres de types de véhicules
-        $filtreTypes = $request->get('types');
-        //Récupération des filtres de marques de véhicules
-        $filtreMarques = $request->get('marques');
-
-        //Récupération du total de véhicules dans la base avec filtres
-        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
-
-        //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques);
-
-        //Recherche de tous les types de véhicules
-        $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
-
-        //Recherche de toutes les marques de véhicules
-        $marquesVehicules = $marquesRepository->findBy([], ['marque' => 'ASC']);
-
-        //Infos minimum et maximum pour les sliders de filtre dans la base
-        $prixMax = $vehiculesRepository->getPrixMax();
-        $prixMin = $vehiculesRepository->getPrixMin();
-        $kmMin = $vehiculesRepository->getKmMin();
-        $kmMax = $vehiculesRepository->getKmMax();
-
-        //Vérification de si il s'agît d'une requête Ajax
-        if ($request->get('ajax')) {
-
-            //Renvoi d'une réponse en JSON
-            return new JsonResponse([
-                'content' => $this->renderView(
-                    'admin/vehicules/_content.html.twig',
-                    compact('prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
-                )
-            ]);
-        }
-
-        $types = $cache->get('types_list', function (ItemInterface $item) use ($typesVehiculesRepository) {
-            $item->expiresAfter(3600);
-
-            return $typesVehiculesRepository->findAll();
-        });
-
-        return $this->render('admin/vehicules/index.html.twig', compact('prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
-    }
-
-    #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
-    public function details(VehiculesRepository $vehiculesRepository, ListeOptionsVehiculeRepository $listeOptionsVehiculeRepository, $id,): Response
-    {
-        $vehicule = $vehiculesRepository->findOneById($id);
-        //$listeOptions = $listeOptionsVehiculeRepository->findBy(['vehicule' => $vehicule]);
-
-        return $this->render('admin/vehicules/details.html.twig', [
-            'vehicule' => $vehicule,
-        ]);
-    }
+#[Route('/admin/vehicules',name:'app_vehicules_')]
+class VehiculesController extends AbstractController{
 
     //Creer un véhicule
     #[Route('/creer-vehicule', name: 'creer_vehicule')]
@@ -171,7 +99,7 @@ class VehiculesController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Les modification ont été enregistrées dans la base avec succès.');
-            return $this->redirectToRoute('app_vehicules_details_vehicule', ['id' => $vehicule->getId()]);
+            return $this->redirectToRoute('app_vehicules_fiche_vehicule', ['id' => $vehicule->getId()]);
         }
 
 

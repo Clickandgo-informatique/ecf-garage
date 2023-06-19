@@ -2,34 +2,47 @@
 {% block title %}Détails véhicule
 {% endblock %}
 {% block body %}
-	<main class="main">
-		<h1 class="titre-principal">Fiche véhicule : {{vehicule.marque}} {{vehicule.modele}}</h1>
-		
+	<main>
 
-		<a class="btn btn-go-back" href="{{path('app_vehicules_liste_vehicules')}}">Revenir à la liste</a>
+		<h1 class="titre-principal">Fiche du véhicule :
+			{{vehicule.marque}}
+			{{vehicule.modele}}</h1>
+
+		<a class="btn btn-go-back" href="{{path('app_vehicules_annonces_index')}}">Revenir à la liste</a>
 
 		{{ include('_partials/_galerie-photos.html.twig') }}
-		<div
-			class="wrapper-tables">
+		
+		<div class="wrapper-tables">
 			{# Fiche de détails véhicule #}
 			<table class="table fiche-vehicule">
-				<thead>
-					<th>
-						<a class="btn btn-primary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Editer la fiche</a>
-					</th>
-					<th>
-						<a href="{{path('app_vehicules_supprimer_vehicule',{id:vehicule.id})}}" class="btn btn-danger">Supprimer ce véhicule</a>
-					</th>
-				</thead>
+				{% if is_granted("ROLE_ADMIN") %}
+					<thead>
+
+						<th>
+							<a class="btn btn-primary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Editer la fiche</a>
+						</th>
+						<th>
+							<a href="{{path('app_vehicules_supprimer_vehicule',{id:vehicule.id})}}" class="btn btn-danger">Supprimer ce véhicule</a>
+						</th>
+						<tr>
+							<td class="table-label">Reference interne</td>
+							<td>
+								<strong>{{vehicule.referenceinterne}}</strong>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-label">Propietaire</td>
+
+							<td>
+								<a href="#">{{vehicule.proprietaire.nom}}
+									{{vehicule.proprietaire.prenom}}</a>
+							</td>
+						</tr>
+					</thead>
+				{% endif %}
 
 				<tbody>
 
-					<tr>
-						<td class="table-label">Reference interne</td>
-						<td>
-							<strong>{{vehicule.referenceinterne}}</strong>
-						</td>
-					</tr>
 
 					<tr>
 						<td class="table-label">Marque</td>
@@ -52,16 +65,6 @@
 						<td class="table-label">Plaque immatriculation</td>
 
 						<td>{{vehicule.plaqueimmatriculation}}</td>
-					</tr>
-
-					<tr>
-						<td class="table-label">Propietaire</td>
-
-						<td>
-							<a href="#">{{vehicule.proprietaire.nom}}
-								{{vehicule.proprietaire.prenom}}</a>
-						</td>
-
 					</tr>
 
 					<tr>
@@ -161,19 +164,27 @@
 			<table class="table liste-options-vehicule">
 				<thead>
 					<th>Liste d'options</th>
-					<th>
-						<a href="{{path('app_vehicules_liste_options_vehicule_ajouter_option',{id:vehicule.id})}}" class="btn btn-primary">
-							+ Ajouter option</a>
-					</th>
+					{% if is_granted("ROLE_ADMIN") %}
+						<th>
+							<a href="{{path('app_vehicules_liste_options_vehicule_ajouter_option',{id:vehicule.id})}}" class="btn btn-primary">
+								+ Ajouter option</a>
+						</th>
+
+					{% endif %}
 				</thead>
 				<tbody>
 					{% if vehicule.listeOptionsVehicule %}
 						{% for option in vehicule.listeOptionsVehicule|sort((a,b)=>a.optionvehicule <=> b.optionvehicule) %}
 							<tr>
-								<td> - {{option.optionvehicule}}</td>
 								<td>
-									<a class="btn btn-danger btn-effacer" href="{{path('app_vehicules_liste_options_vehicule_supprimer_option',{id:option.id})}}">&times;</a>
-								</td>
+									-
+									{{option.optionvehicule}}</td>
+
+								{% if is_granted("ROLE_ADMIN") %}
+									<td>
+										<a class="btn btn-danger btn-effacer" href="{{path('app_vehicules_liste_options_vehicule_supprimer_option',{id:option.id})}}">&times;</a>
+									</td>
+								{% endif %}
 							</tr>
 						{% endfor %}
 					{% else %}

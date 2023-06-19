@@ -1,10 +1,11 @@
 {% extends "base.html.twig" %}
-{% block title %}Modifier un type de véhicule{% endblock %}
+{% block title %}Modifier un type de véhicule
+{% endblock %}
 {% block body %}
-<h1 class="titre-principal">Modifier un type de véhicule</h1>
-{{form_start(form)}}
-{{form_row(form.nom_type)}}
-<button class="btn btn-primary" type="submit">Modifier</button>
-{{form_end(form)}}
+	<h1 class="titre-principal">Modifier un type de véhicule</h1>
+	{{form_start(form)}}
+	{{form_row(form.nom_type)}}
+	<button class="btn btn-primary" type="submit">Modifier</button>
+	{{form_end(form)}}
 
 {% endblock %}

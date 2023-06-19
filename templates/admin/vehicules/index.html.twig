@@ -3,7 +3,7 @@
 {% endblock %}
 {% block body %}
 
-	<div class="main">
+	<main>
 
 		<h1 class="titre-principal">Liste des véhicules</h1>
 
@@ -19,8 +19,7 @@
 		{# Sliders double range #}
 		{{ include('_partials/_sliders.html.twig') }}
 
-		<div
-			class="wrapper">
+		<div class="wrapper">
 			{# Filtre multicritère : #}
 			<div class="filtres">
 
@@ -60,9 +59,10 @@
 				{{ include('admin/vehicules/_content.html.twig') }}
 			</div>
 		</div>
-	</div>
-		{% block javascripts %}
-			<script src="{{asset('assets/js/annonces.js')}}" type="module" defer></script>
-			<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>
-		{% endblock %}
+
+	</main>
+	{% block javascripts %}
+		<script src="{{asset('assets/js/annonces.js')}}" type="module" defer></script>
+		<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>
+	{% endblock %}
 {% endblock %}
