@@ -2,37 +2,44 @@
 {% block title %}Liste des marques de véhicules
 {% endblock %}
 {% block body %}
-	<div class="main">
-		<h1 class="titre-principal">Liste des marques de véhicules</h1>
+	<main>
+		{{ include('_partials/_admin-nav.html.twig') }}
 
-		<a class="btn btn-primary btn-centered" href="{{path('app_marques_creer_marque')}}">Ajouter une marque</a>
+		<div class="content">
+			<h1 class="titre-principal">Liste des marques de véhicules</h1>
 
-		{% if marques %}
-			<table id="tblMarques">
-				<tbody>
-					{% set i = 1 %}
-					{% for marque in marques %}
-						<tr>
-							<td>{{i}}.
-							</td>
-							<td>
-								<strong>{{marque.marque}}</strong>
-							</td>
-							<td>
-								<a href="{{path('app_marques_supprimer_marque',{id:marque.id})}}" class="btn btn-danger" data-id="{{ marque.id }}" id="btn-supprimer-marque">Supprimer</a>
-							</td>
-							<td>
-								<a class="btn btn-warning" href="{{path('app_marques_modifier_marque',{id:marque.id,slug:marque.slug})}}">Modifier</a>
-							</td>
-						</tr>
-						{% set i = i + 1 %}
-					{% endfor %}
-				</tbody>
-			</table>
+			{% if marques %}
+				<table id="tblMarques">
+					<thead>
+						<th colspan="4">
+							<a class="btn btn-primary btn-centered" href="{{path('app_marques_creer_marque')}}">+ Ajouter une marque</a>
+						</th>
+					</thead>
+					<tbody>
+						{% set i = 1 %}
+						{% for marque in marques %}
+							<tr>
+								<td>{{i}}.
+								</td>
+								<td>
+									<strong>{{marque.marque}}</strong>
+								</td>
+								<td>
+									<a href="{{path('app_marques_supprimer_marque',{id:marque.id})}}" class="btn btn-danger" data-id="{{ marque.id }}" id="btn-supprimer-marque">Supprimer</a>
+								</td>
+								<td>
+									<a class="btn btn-warning" href="{{path('app_marques_modifier_marque',{id:marque.id,slug:marque.slug})}}">Modifier</a>
+								</td>
+							</tr>
+							{% set i = i + 1 %}
+						{% endfor %}
+					</tbody>
+				</table>
+			{% else %}
+				<p>Aucune donnée de marque de véhicules à afficher, crééz une nouvelle marque grâce au bouton dédié.</p>
+			{% endif %}
 		</div>
-	{% else %}
-		<p>Aucune donnée de marque de véhicules à afficher, crééz une nouvelle marque grâce au bouton dédié.</p>
-	{% endif %}
+	</main>
 {% endblock %}
 
 {% block javascripts %}

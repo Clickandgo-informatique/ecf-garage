@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: MarquesRepository::class)]
-#[UniqueEntity('marque','Cette marque existe déjà dans la base.')]
+#[UniqueEntity(fields:'marque',message:'Cette marque existe déjà dans la base.')]
 class Marques
 {
     #[ORM\Id]

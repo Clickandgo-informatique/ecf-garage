@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des motorisations de véhicules
+{% endblock %}
+{% block body %}
+	<main>
+	{{ include('_partials/_admin-nav.html.twig') }}
+		<h1 class="titre-principal">Liste des motorisations de véhicules</h1>
+
+
+		{% if motorisations %}
+			<table id="tblmotorisations">
+				<thead>
+					<th colspan="4">
+						<a class="btn btn-primary btn-centered" href="{{path('app_motorisations_creer_motorisation')}}">+ Ajouter une motorisation</a>
+					</th>
+				</thead>
+				<tbody>
+					{% set i = 1 %}
+					{% for motorisation in motorisations %}
+						<tr>
+							<td></td>
+							<td>
+								<strong>{{motorisation.nommotorisation}}</strong>
+							</td>
+							<td>
+								<a href="{{path('app_motorisations_supprimer_motorisation',{id:motorisation.id})}}" class="btn btn-danger" data-id="{{ motorisation.id }}" id="btn-supprimer-motorisation">Supprimer</a>
+							</td>
+							<td>
+								<a class="btn btn-warning" href="{{path('app_motorisations_modifier_motorisation',{id:motorisation.id,slug:motorisation.slug})}}">Modifier</a>
+							</td>
+						</tr>
+						{% set i = i + 1 %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</main>
+	{% else %}
+		<p>Aucune donnée de motorisation de véhicules à afficher, crééz une nouvelle motorisation grâce au bouton dédié.</p>
+	{% endif %}
+{% endblock %}
+
+{# {% block javascripts %}
+	<script src="/assets/js/motorisations.js"></script>
+{% endblock %} #}

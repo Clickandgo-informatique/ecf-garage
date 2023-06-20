@@ -1,7 +1,5 @@
-import { sliders } from "./sliders.js";
+
 window.onload = () => {
-  //Initialise les sliders double range
-  sliders();
 
   //Filtres de type input
   const filtersForm = document.querySelector("#filters");

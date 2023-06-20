@@ -1,31 +1,32 @@
 .menu-lateral-gauche {
-    max-width: 250px;
-    background-color: rgb(247, 247, 247);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    align-content: flex-start;
+    display:flex; 
+    background-color:rgb(44, 44, 44);
+    flex-direction: row;    
 }
 
 .menu-options {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 0.8rem;
+    border:1px solid blue;
+    padding:0;
 }
 
 .menu-title {
+    position:relative;
     border: 1px solid gray;
-    padding: 5px;
-    margin: 10px auto;
-    background-color: darkgray;
-    color: white;
+    padding: 5px; 
+    background-color: blue;
+    color: white;   
 }
 
 .menu-link {
     list-style: none;
-    margin-left: 25px;
-    width: 80%;
+    margin: 10px;
+    width: fit-content;
+    color:#fff;
 }
 .menu-item{
-    margin: 5px;
+border:1px solid darkgray;
 }

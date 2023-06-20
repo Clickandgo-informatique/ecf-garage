@@ -6,62 +6,64 @@
 	<main>
 		<a class="btn btn-primary" href="{{path('app_vehicules_liste_vehicules')}}" class="go-back-link">Revenir à la liste</a>
 		<h1 class="titre-principal">{{titre}}</h1>
-		{{form_start(form)}}
-		<button class="btn btn-primary" type="submit">{{button_label|default ('Enregistrer')}}</button>
-		<fieldset>
-			{{ include('_partials/_galerie-photos.html.twig') }}
-			<legend>Galerie de photos</legend>
-			{{form_row(form.photos)}}
+		<form class="vehicule-form">
+			{{form_start(form)}}
+			<button class="btn btn-primary" type="submit">{{button_label|default ('Enregistrer')}}</button>
+			<fieldset>
+				{{ include('_partials/_galerie-photos.html.twig') }}
+				<legend>Galerie de photos</legend>
+				{{form_row(form.photos)}}
 
-		</fieldset>
-		<fieldset>
-			<legend>Infos principales</legend>
-			{{ form_row(form.reference_interne) }}
-			{{ form_row(form.marque) }}
-			{{ form_row(form.modele) }}
-			{{ form_row(form.motorisation) }}
-			{{ form_row(form.couleur) }}
-			{{ form_row(form.plaque_immatriculation) }}
-			{{ form_row(form.kilometrage) }}
-		</fieldset>
+			</fieldset>
+			<fieldset>
+				<legend>Infos principales</legend>
+				{{ form_row(form.reference_interne) }}
+				{{ form_row(form.marque) }}
+				{{ form_row(form.modele) }}
+				{{ form_row(form.motorisation) }}
+				{{ form_row(form.couleur) }}
+				{{ form_row(form.plaque_immatriculation) }}
+				{{ form_row(form.kilometrage) }}
+			</fieldset>
 
-		<fieldset>
-			<legend>Données propriétaire</legend>
-			{{form_row(form.proprietaire)}}
-		</fieldset>
-		<fieldset>
-			<legend>Données techniques</legend>
+			<fieldset>
+				<legend>Données propriétaire</legend>
+				{{form_row(form.proprietaire)}}
+			</fieldset>
+			<fieldset>
+				<legend>Données techniques</legend>
 
-			{{form_row(form.type_vehicule)}}
-			{{form_row(form.cylindree)}}
-			{{form_row(form.boite)}}
-			{{form_row(form.nb_portes)}}
-			{{form_row(form.nb_places)}}
-			{{form_row(form.date_mise_en_circulation)}}
-			{{form_row(form.date_controle_technique)}}
-			{{form_row(form.chevaux_fiscaux)}}
-			{{form_row(form.chevaux_din)}}
-			{{form_row(form.num_chassis)}}
-			{{form_row(form.critere_pollution)}}
+				{{form_row(form.type_vehicule)}}
+				{{form_row(form.cylindree)}}
+				{{form_row(form.boite)}}
+				{{form_row(form.nb_portes)}}
+				{{form_row(form.nb_places)}}
+				{{form_row(form.date_mise_en_circulation)}}
+				{{form_row(form.date_controle_technique)}}
+				{{form_row(form.chevaux_fiscaux)}}
+				{{form_row(form.chevaux_din)}}
+				{{form_row(form.num_chassis)}}
+				{{form_row(form.critere_pollution)}}
 
-		</fieldset>
-		<fieldset>
-			<legend>Données vente</legend>
+			</fieldset>
+			<fieldset>
+				<legend>Données vente</legend>
 
-			{{form_row(form.publication_annonce)}}
-			{{form_row(form.nb_proprietaires)}}
-			{{form_row(form.localisation)}}
-			{{form_row(form.prix_vente)}}
-			{{form_row(form.date_vente)}}
-			{{form_row(form.date_mise_en_vente)}}
+				{{form_row(form.publication_annonce)}}
+				{{form_row(form.nb_proprietaires)}}
+				{{form_row(form.localisation)}}
+				{{form_row(form.prix_vente)}}
+				{{form_row(form.date_vente)}}
+				{{form_row(form.date_mise_en_vente)}}
 
-		</fieldset>
+			</fieldset>
 
-		<fieldset>
-			<legend>Remarques</legend>
-			{{form_row(form.remarques)}}
-		</fieldset>
-		<button class="btn btn-primary" type="submit">{{button_label|default ('Enregistrer')}}</button>
+			<fieldset>
+				<legend>Remarques</legend>
+				{{form_row(form.remarques)}}
+			</fieldset>
+			<button class="btn btn-primary btn-centered" type="submit">{{button_label|default ('Enregistrer')}}</button>
+		</form>
 		{{ form_end(form) }}
 	</main>
 

@@ -16,16 +16,50 @@
 		<p class="resultat-filtre">Résultats filtre actif =
 			{{totalVehiculesFiltered}}</p>
 
-		{# Sliders double range #}
-		{{ include('_partials/_sliders.html.twig') }}
-
-		<div class="wrapper">
+		<div
+			class="wrapper">
 			{# Filtre multicritère : #}
 			<div class="filtres">
 
-				<form
-					id="filters" class="filtersForm">
+				<form id="filters" class="filtersForm">
+					<fieldset>
+					<legend>Intervalles</legend>
+						{# Filtre intervalle kilomètrage #}
+						<div class="wrapper-filtres-intervalle">
+							<div class="input-intervalle">
+								<label for="kmMin">Km min.</label>
+								<input type="number" name="kmMin" id="kmMin" min="0">
+							</div>
+							<div class="input-intervalle">
+								<label for="kmMax">Km max.</label>
+								<input type="number" name="kmMax" id="kmMax">
+							</div>
+						</div>
 
+						{# Filtre intervalle prix #}
+						<div class="wrapper-filtres-intervalle">
+							<div class="input-intervalle">
+								<label for="prixMin">Prix min.</label>
+								<input type="number" name="prixMin" id="prixMin">
+							</div>
+							<div class="input-intervalle">
+								<label for="prixMax">Prix max.</label>
+								<input type="number" name="prixMax" id="prixMax">
+							</div>
+						</div>
+
+						{# Filtre intervalle ancienneté #}
+						<div class="wrapper-filtres-intervalle">
+							<div class="input-intervalle">
+								<label for="yearMin">Année min.</label>
+								<input type="number" name="yearMin" id="yearMin">
+							</div>
+							<div class="input-intervalle">
+								<label for="yearMax">Année max.</label>
+								<input type="number" name="yearMax" id="yearMax">
+							</div>
+						</div>
+					</fieldset>
 					{# Filtre sur type de véhicule #}
 					<fieldset>
 						<legend>Type :</legend>
@@ -41,10 +75,10 @@
 					<fieldset>
 						<legend>Marque :</legend>
 						{% for  marque in marquesVehicules %}
-
-							<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
-							<label for="marques{{marque.id}}">{{marque.marque}}</label>
-
+							<div class="wrapper-input">
+								<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
+								<label for="marques{{marque.id}}">{{marque.marque}}</label>
+							</div>
 						{% endfor %}
 					</fieldset>
 

@@ -24,9 +24,6 @@ class Vehicules
     #[ORM\Column(length: 100)]
     private ?string $modele = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $motorisation = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $cylindree = null;
 
@@ -111,6 +108,10 @@ class Vehicules
     #[ORM\ManyToMany(targetEntity: Users::class, inversedBy: 'favoris')]
     private Collection $favoris;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Motorisations $motorisation = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -134,19 +135,8 @@ class Vehicules
         $this->modele = $modele;
 
         return $this;
-    }
+        }
 
-    public function getMotorisation(): ?string
-    {
-        return $this->motorisation;
-    }
-
-    public function setMotorisation(string $motorisation): self
-    {
-        $this->motorisation = $motorisation;
-
-        return $this;
-    }
 
     public function getCylindree(): ?int
     {
@@ -522,6 +512,18 @@ class Vehicules
     public function removeFavori(Users $favori): self
     {
         $this->favoris->removeElement($favori);
+
+        return $this;
+    }
+
+    public function getMotorisation(): ?Motorisations
+    {
+        return $this->motorisation;
+    }
+
+    public function setMotorisation(?Motorisations $motorisation): self
+    {
+        $this->motorisation = $motorisation;
 
         return $this;
     }

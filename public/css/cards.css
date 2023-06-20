@@ -1,10 +1,10 @@
 .cards-container {
-  /* grid-area: "cards"; */
+  grid-area: "cards";
   display: grid;
-  place-items: start center;
+  place-items: start;
   row-gap: 10px;
   column-gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(284px, 11fr));
   margin:10px auto;
 }
 

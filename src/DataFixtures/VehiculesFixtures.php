@@ -18,7 +18,6 @@ class VehiculesFixtures extends Fixture
     {
         $tblMarques = ['Alfa-Romeo', 'Aston-Martin', 'Bentley', 'BMW', 'Citroen', 'DS automobiles', 'Jaguar', 'Mercedes', 'Peugeot', 'Renault', 'Rolls-Royce', 'Toyota', 'Volkswagen'];
 
-        $motorisations = ["Diesel", "Essence", "GPL", "Hybride", "Electrique"];
         $types = ["Fourgonnette", "Familiale", "Citadine", "Véhicule entreprise", "Véhicule industriel", "Camionnette"];
         $boites = ["Manuelle", "Auto", "Séquentielle"];
         $couleurs = ["Rouge", "Gris-métallisé", "Gris-Perle métallisé", "Blanc", "Bleu-clair", "Noir", "Anthracite"];
@@ -26,7 +25,6 @@ class VehiculesFixtures extends Fixture
 
 
         $lengthMarques = count($tblMarques);
-        $lengthMotorisations = count($motorisations);
         $lengthTypes = count($types);
         $lengthBoites = count($boites);
         $lengthCouleurs = count($couleurs);
@@ -35,7 +33,6 @@ class VehiculesFixtures extends Fixture
 
             //Random sur les valeurs des tableaux fictifs
             $randomMarques = rand(0, $lengthMarques - 1);
-            $randomMotorisations = rand(0, $lengthMotorisations - 1);
             $randomTypes = rand(0, $lengthTypes - 1);
             $randomBoites = rand(0, $lengthBoites - 1);
 
@@ -48,9 +45,9 @@ class VehiculesFixtures extends Fixture
             $v->setReferenceInterne(rand(00001, 99999))
                 ->setProprietaire($this->getReference('Client_' . rand(0, 9)))
                 ->setMarque($this->getReference('Marque_' . rand(1, $randomMarques)))
-                ->setModele("modele_".rand(0001,1000))
+                ->setModele("modele_" . rand(0001, 1000))
                 ->setCouleur($this->getReference('couleur_' . rand(0, 11)))
-                ->setMotorisation($motorisations[$randomMotorisations])
+                ->setMotorisation($this->getReference('motorisation_' . rand(0, 6)))
                 ->setTypeVehicule($this->getReference('type_vehicule_' . rand(0, 7)))
                 ->setBoite($boites[$randomBoites])
                 ->setCylindree(rand(1000, 5600))
@@ -90,11 +87,12 @@ class VehiculesFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            MarquesFixtures::class,
             ClientsFixtures::class,
+            Couleurs::class,
+            MarquesFixtures::class,
+            Motorisations::class,
             OptionsVehiculesFixtures::class,
             TypesVehicules::class,
-            Couleurs::class
         ];
     }
 }
