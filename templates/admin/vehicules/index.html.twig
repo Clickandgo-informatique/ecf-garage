@@ -28,11 +28,11 @@
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="kmMin">Km min.</label>
-								<input type="number" name="kmMin" id="kmMin" min="0">
+								<input type="number" name="kmMin" id="kmMin" min="0" max="99999999"value="0">
 							</div>
 							<div class="input-intervalle">
 								<label for="kmMax">Km max.</label>
-								<input type="number" name="kmMax" id="kmMax">
+								<input type="number" name="kmMax" id="kmMax" min="1" max="10000000" value="10000000">
 							</div>
 						</div>
 
@@ -40,16 +40,16 @@
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="prixMin">Prix min.</label>
-								<input type="number" name="prixMin" id="prixMin">
+								<input type="number" name="prixMin" id="prixMin" min="0"max="499000" value="0">
 							</div>
 							<div class="input-intervalle">
 								<label for="prixMax">Prix max.</label>
-								<input type="number" name="prixMax" id="prixMax">
+								<input type="number" name="prixMax" id="prixMax"min="1"max="500000" value="500000">
 							</div>
 						</div>
 
 						{# Filtre intervalle ancienneté #}
-						<div class="wrapper-filtres-intervalle">
+						{# <div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="yearMin">Année min.</label>
 								<input type="number" name="yearMin" id="yearMin">
@@ -58,7 +58,7 @@
 								<label for="yearMax">Année max.</label>
 								<input type="number" name="yearMax" id="yearMax">
 							</div>
-						</div>
+						</div> #}
 					</fieldset>
 					{# Filtre sur type de véhicule #}
 					<fieldset>

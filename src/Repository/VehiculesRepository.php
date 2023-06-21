@@ -6,6 +6,7 @@ use App\Entity\Vehicules;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @extends ServiceEntityRepository<Vehicules>
  *
@@ -40,7 +41,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, $filtreKM = null, $filtrePrix = null)
+    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null)
     {
         $limit = abs($limit);
 
@@ -55,42 +56,46 @@ class VehiculesRepository extends ServiceEntityRepository
             $query->andWhere('v.marque IN(:marques)')
                 ->setParameter(':marques', array_values($filtreMarques));
         }
-        if ($filtrePrix != null) {
-            $query->andWhere('v.prix_vente <= $filtrePrix');
-        }
-        if ($filtreKM != null) {
-            $query->andWhere('v.kilometrage <= $filtreKM');
+
+        //Filtre sur intervalle de prix
+        if ($prixMin != null && $prixMax != null) {
+            $query->andWhere('v.prix_vente >= :prixMin and v.prix_vente <= :prixMax')
+                ->setParameter(':prixMin', $prixMin)
+                ->setParameter(':prixMax', $prixMax);
         }
 
+        dd($prixMax);
+
         $query->orderBy('v.marque')
+            ->orderBy('v.prix_vente')
             ->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
 
         return $query->getQuery()->getResult();
     }
 
-    //Max prix de vente pour slider
+    //Max prix de vente pour filtre d'intervalle
     public function getPrixMax()
     {
         $query = $this->createQueryBuilder('pm')
             ->select('MAX(pm.prix_vente)');
         return $query->getQuery()->getSingleScalarResult();
     }
-    //Min prix de vente pour slider
+    //Min prix de vente pour filtre d'intervalle
     public function getPrixMin()
     {
         $query = $this->createQueryBuilder('pm')
             ->select('MIN(pm.prix_vente)');
         return $query->getQuery()->getSingleScalarResult();
     }
-    //Min kilométrage pour slider
+    //Min kilométrage pour filtre d'intervalle
     public function getKmMin()
     {
         $query = $this->createQueryBuilder('kmm')
             ->select('MIN(kmm.kilometrage)');
         return $query->getQuery()->getSingleScalarResult();
     }
-    //Max kilométrage pour slider
+    //Max kilométrage pour filtre d'intervalle
     public function getKmMax()
     {
         $query = $this->createQueryBuilder('kmm')
@@ -99,7 +104,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Total de véhicules dans la base
-    public function getTotalVehicules($filtreTypes = null, $filtreMarques = null, $filtreKM = null, $filtrePrix = null)
+    public function getTotalVehicules($filtreTypes = null, $filtreMarques = null, $prixMin = 0, $prixMax = 500000)
     {
         $query = $this->createQueryBuilder('v')
             ->select('COUNT(v)');
@@ -113,13 +118,6 @@ class VehiculesRepository extends ServiceEntityRepository
         if ($filtreMarques != null) {
             $query->andWhere('v.marque IN(:marques)')
                 ->setParameter(':marques', array_values($filtreMarques));
-        }
-
-        if ($filtrePrix != null) {
-            $query->andWhere('v.prix_vente <= $filtrePrix');
-        }
-        if ($filtreKM != null) {
-            $query->andWhere('v.kilometrage <= $filtreKM');
         }
 
         return $query->getQuery()->getSingleScalarResult();

@@ -1,10 +1,9 @@
-
 window.onload = () => {
-
   //Filtres de type input
   const filtersForm = document.querySelector("#filters");
 
   document.querySelectorAll("#filters input").forEach((input) => {
+    
     input.addEventListener("input", () => {
       //Récupération des données du formulaire
       const Form = new FormData(filtersForm);
