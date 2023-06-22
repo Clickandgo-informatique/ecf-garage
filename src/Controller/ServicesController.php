@@ -24,7 +24,7 @@ class ServicesController extends AbstractController
     {
         $services = $servicesRepository->findBy([], ['nom' => 'ASC']);
 
-        return $this->render('services/index.html.twig', [
+        return $this->render('_partials/_services.html.twig', [
             'services' => $services
         ]);
     }

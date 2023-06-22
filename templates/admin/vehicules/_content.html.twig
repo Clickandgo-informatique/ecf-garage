@@ -30,7 +30,10 @@
 				<img src="{{asset('assets/uploads/vehicules/mini/300x300-'~ v.photos[0].nom)}}" alt="">
 			{% endif %}
 		</div>
+		<div class="type-vehicule">{{v.typevehicule}}</div>
+
 		<div class="card-title">
+
 			<p class="marque-vehicule">
 				<strong>{{v.marque}}</strong>
 			</p>
@@ -46,10 +49,10 @@
 				|
 				{{v.motorisation}}</div>
 
-			<p class="prix-vehicule">{{v.prixvente}}
-				€</p>
+			<p class="prix-vehicule">{{v.prixvente|number_format(0, '.', '.') }}
+								€</p>
 
-			<a class="btn btn-primary btn-voir-details btn-centered" href="{{path('app_vehicules_annonces_details_vehicule',{id:v.id})}}">Voir détails</a>
+			<a class="btn btn-primary btn-centered" href="{{path('app_vehicules_annonces_details_vehicule',{id:v.id})}}">Voir détails</a>
 
 		</div>
 	</div>

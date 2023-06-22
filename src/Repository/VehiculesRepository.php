@@ -58,13 +58,11 @@ class VehiculesRepository extends ServiceEntityRepository
         }
 
         //Filtre sur intervalle de prix
-        if ($prixMin != null && $prixMax != null) {
+        if (!empty($prixMin) && $prixMin != null && !empty($prixMax) && $prixMax != null) {
             $query->andWhere('v.prix_vente >= :prixMin and v.prix_vente <= :prixMax')
                 ->setParameter(':prixMin', $prixMin)
                 ->setParameter(':prixMax', $prixMax);
         }
-
-        dd($prixMax);
 
         $query->orderBy('v.marque')
             ->orderBy('v.prix_vente')

@@ -1,11 +1,10 @@
 .cards-container {
-  grid-area: "cards";
   display: grid;
-  place-items: start;
+  place-items: start center;
   row-gap: 10px;
   column-gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(284px, 11fr));
-  margin:10px auto;
+  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+
 }
 
 .card {
@@ -24,7 +23,7 @@
 .card-vehicule:hover {
   transform: scale(105%);
   border: 2px solid blue;
-  box-shadow: 1px 4px 20px black;
+  box-shadow: 1px 4px 10px blue;
 }
 
 .card-title {
@@ -50,8 +49,7 @@
   text-align: center;
   display: block;
   margin: 15px auto;
-
-  width:fit-content;
+  width: fit-content;
 }
 
 .photo-miniature {
@@ -60,7 +58,7 @@
   height: 213px;
   border-radius: 10px 10px 0 0;
   position: relative;
-  opacity:0.5;
+  opacity: 0.5;
 }
 .photo-miniature img {
   border-radius: 10px 10px 0 0;
@@ -97,7 +95,7 @@
 .resume {
   font-size: 0.7rem;
   text-align: center;
-  color:darkgray;
+  color: darkgray;
   margin: 5px;
 }
 .marque-vehicule {
@@ -110,8 +108,27 @@
   padding: 0;
   margin: 0;
 }
+.type-vehicule {
+  font-size: 0.6rem;
+  padding: 6px;
+  background-color: blue;
+  margin: 0;
+  position: relative;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
 .prix-vehicule {
   font-size: 1.1rem;
+  background-color: royalblue;
+  width: fit-content;
+  padding: 5px 8px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 10px auto;
+  box-shadow: 1px 1px 2px black;
+  letter-spacing: 1.1px;
 }
 .favoris {
   right: 20px;
@@ -120,9 +137,9 @@
   background-color: #fff;
   padding: 6px 8px;
   border-radius: 50%;
- display:flex;
- align-items: center;
- opacity:0.8;
- cursor: pointer;
- text-align: center;
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+  cursor: pointer;
+  text-align: center;
 }

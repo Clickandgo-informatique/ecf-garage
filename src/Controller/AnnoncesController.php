@@ -65,11 +65,15 @@ class AnnoncesController extends AbstractController
         //Récupération des filtres de marques de véhicules
         $filtreMarques = $request->get('marques');
 
+        //Récupération des valeurs d'input pour filtres d'intervalle
+        $prixMin=$request->get('prixMin');
+        $prixMax=$request->get('prixMax');
+
         //Récupération du total de véhicules dans la base avec filtres
         $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
 
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques);
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques,$prixMin,$prixMax);
 
         //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);

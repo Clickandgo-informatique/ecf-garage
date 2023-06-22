@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Creneaux;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<Creneaux>
@@ -41,7 +42,6 @@ class CreneauxRepository extends ServiceEntityRepository
 
     public function verifierCreneau(string $jour, $debut, $fin)
     {
-
         //Recherche du jour actif dans le formulaire
 
         return $this->createQueryBuilder('c')
@@ -52,28 +52,57 @@ class CreneauxRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //    /**
-    //     * @return Creneaux[] Returns an array of Creneaux objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getCreneauxDuJour()
+    {
+        //Recherche du numéro de jour actuel
+        $jourActuel = date("w");
 
-    //    public function findOneBySomeField($value): ?Creneaux
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        switch ($jourActuel) {
+            case 01:
+                $jour = "Lundi";
+                break;
+            case 02:
+                $jour = "Mardi";
+                break;
+            case 03:
+                $jour = "Mercredi";
+                break;
+            case 04:
+                $jour = "Jeudi";
+                break;
+            case 05:
+                $jour = "Vendredi";
+                break;
+            case 01:
+                $jour = "Samedi";
+                break;
+            case 06:
+                $jour = "Dimanche";
+                break;
+            default:
+                return false;
+        }
+
+        //Recherche des créneaux enregistrés pour le jour et heure actuels
+        $heuredebut = new \DateTime();
+
+        $creneaux = $this->createQueryBuilder('c')
+            ->where('c.jour= :jour')
+            ->andWhere(':heuredebut between c.debut and c.fin')
+            ->setparameters(['jour' => $jour, 'heuredebut' => $heuredebut->format("H:i")])
+            ->getQuery()->getResult();
+        // return $creneaux;
+
+        $prochainsCreneaux = $this->createQueryBuilder('c')
+            ->where('c.jour= :jour')
+            ->andWhere('c.debut >= :heuredebut')
+            ->setparameters(['jour' => $jour, 'heuredebut' => $heuredebut->format("H:i")])
+            ->getQuery()->getResult();
+        // return $prochainsCreneaux;
+    }
+
+    //Logique d'affichage selon l'instant actuel
+    //Si il existe un créneau ouvert le signaler + signaler les créneaux du jour restants les plus proches
+
+
 }

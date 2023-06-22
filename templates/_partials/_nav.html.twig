@@ -3,21 +3,33 @@
 		<a href="" class="navbar-brand">Logo</a>
 	</div>
 
+	<div class="menu-navbar">
+		<ul>
+			<li><a href="{{path('app_index')}}">Accueil</a></li>		
+			<li><a href="#">Nos horaires</a></li>		
+			<li><a href="{{path('app_vehicules_annonces_index')}}">Annonces véhicules d'occasion</a></li>		
+			<li><a href="{{path('app_services_index')}}">Nos services</a></li>
+			<li><a href="">Nous contacter</a></li>
+
+		</ul>
+
+	</div>
+
 	<div class="div-connexion">
-			<ul class="navbar-nav">
-		{% if app.user %}
-		{% if is_granted("ROLE_ADMIN") %}
-			<li class="nav-item">
-				<a href="{{path('app_admin_index')}}">Administration</a>
-			</li>	
-		{% endif %}
-			<li class="nav-item">
-				<a href="{{path('app_logout')}}">Se déconnecter</a>
-			</li>
-			<li class="nav-item">
-				<a href="#">Mon Compte</a>
-			</li>
-		{% else %}
+		<ul class="navbar-nav">
+			{% if app.user %}
+				{% if is_granted("ROLE_ADMIN") %}
+					<li class="nav-item">
+						<a href="{{path('app_admin_index')}}">Administration</a>
+					</li>
+				{% endif %}
+				<li class="nav-item">
+					<a href="{{path('app_logout')}}">Se déconnecter</a>
+				</li>
+				<li class="nav-item">
+					<a href="#">Mon Compte</a>
+				</li>
+			{% else %}
 
 				<li class="nav-item">
 					<a href="{{path('app_login')}}">Se connecter</a>

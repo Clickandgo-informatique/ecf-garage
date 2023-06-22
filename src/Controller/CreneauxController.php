@@ -94,12 +94,22 @@ class CreneauxController extends AbstractController
     #[Route('/supprimer-creneau/{id}', name: 'supprimer_creneau')]
     public function supprimer(CreneauxRepository $creneauxRepository, $id, EntityManagerInterface $em): Response
     {
-        $creneau = $creneauxRepository->find($id);     
+        $creneau = $creneauxRepository->find($id);
 
-            $em->remove($creneau);
-            $em->flush();
+        $em->remove($creneau);
+        $em->flush();
 
-            $this->addFlash('success', 'Le créneau a été supprimé avec succès dans la base.');
-            return $this->redirectToRoute('app_horaires_semaine_index');
-        }
+        $this->addFlash('success', 'Le créneau a été supprimé avec succès dans la base.');
+        return $this->redirectToRoute('app_horaires_semaine_index');
+    }
+
+    //Afficher le créneau du jour actif dans le bas de page
+    #[Route('/afficher-creneau-du-jour/', name: 'afficher_creneau_du_jour')]
+    public function afficherCreneauJourActif(CreneauxRepository $creneauxRepository): Response
+    {
+
+        $creneauxJour = $creneauxRepository->getCreneauxDuJour();     
+
+        return $this->render('_partials/_creneauxJour.html.twig', compact('creneauxJour'));
+    }
 }
