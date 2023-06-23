@@ -56,6 +56,7 @@ fieldset label {
 }
 
 legend {
+  box-shadow: 2px 2px 4px darkgray;
   background-color: blue;
   font-size: 0.8rem;
   color: #fff;
@@ -78,7 +79,7 @@ legend {
   background-color: transparent;
   padding: 10px;
   min-width: 200px;
-  border:none;
+  border: none;
   box-shadow: none;
 }
 .filtersForm fieldset {
@@ -102,15 +103,26 @@ input[type="checkbox"] {
   padding: 0.2em;
 }
 
+.commentsForm {
+  max-width: 800px;
+  border:none;
+}
+
 .liste-commentaires {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  overflow-y: scroll;
   border: 1px solid lightgray;
   border-radius: 10px;
   padding: 10px;
-  background-color: #fff;
-  min-height: 100px;
+  background-color: transparent;
+  min-height: 200px;
+  max-height: 200px;
+  max-width: 800px;
+  width: 100%;
   font-size: 0.6rem;
   color: blue;
-  min-width: 400px;
 }
 .texte-commentaire {
   color: blue;
@@ -130,6 +142,8 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   padding: 10px;
+  width: 800px;
+  margin: 10px auto;
 }
 .contenu-commentaire {
   background-color: rgb(250, 250, 250);
@@ -138,6 +152,7 @@ input[type="checkbox"] {
   border-radius: 5px;
   border: 1px solid darkgray;
   box-shadow: 2px 2px 4px darkgray;
+  width: 100%;
 }
 .reponse {
   border: 1px solid blue;
@@ -146,6 +161,9 @@ input[type="checkbox"] {
   background-color: lightgray;
   color: blue;
   margin-left: 10px;
+}
+.wrapper-commentaire {
+  width: 90%;
 }
 #creneauxForm label {
   color: blue;
@@ -188,7 +206,7 @@ input[type="checkbox"] {
   width: 65px;
   padding: 5px;
   margin: 5px;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 .input-intervalle input:focus {
   transform: scale(1.3);
@@ -200,7 +218,7 @@ input[type="checkbox"] {
   top: -25px;
   pointer-events: none;
   transition: ease-in-out 0.6s;
-  color:red;
+  color: red;
 }
 .input-intervalle label {
   font-size: 0.5rem;

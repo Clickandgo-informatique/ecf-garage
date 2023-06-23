@@ -52,7 +52,7 @@ class CreneauxRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getCreneauxDuJour()
+    public function getJourCreneaux()
     {
         //Recherche du numéro de jour actuel
         $jourActuel = date("w");
@@ -82,23 +82,37 @@ class CreneauxRepository extends ServiceEntityRepository
             default:
                 return false;
         }
+        return $jour;
+    }
 
+    public function getCreneauxActifsJour()
+    {
         //Recherche des créneaux enregistrés pour le jour et heure actuels
         $heuredebut = new \DateTime();
+        $jour = $this->getJourCreneaux();
 
-        $creneaux = $this->createQueryBuilder('c')
+        $creneauxActifsJour = $this->createQueryBuilder('c')
             ->where('c.jour= :jour')
             ->andWhere(':heuredebut between c.debut and c.fin')
             ->setparameters(['jour' => $jour, 'heuredebut' => $heuredebut->format("H:i")])
             ->getQuery()->getResult();
-        // return $creneaux;
+
+        return $creneauxActifsJour;
+     
+    }
+
+    public function getProchainsCreneaux()
+    {
+        $heuredebut = new \DateTime();
+        $jour = $this->getJourCreneaux();
 
         $prochainsCreneaux = $this->createQueryBuilder('c')
             ->where('c.jour= :jour')
             ->andWhere('c.debut >= :heuredebut')
             ->setparameters(['jour' => $jour, 'heuredebut' => $heuredebut->format("H:i")])
             ->getQuery()->getResult();
-        // return $prochainsCreneaux;
+            
+        return $prochainsCreneaux;
     }
 
     //Logique d'affichage selon l'instant actuel

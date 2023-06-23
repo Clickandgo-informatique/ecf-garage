@@ -10,27 +10,40 @@
 		{% if is_granted(['ROLE_ADMIN']) %}
 			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
 		{% endif %}
-{# 
-		<p class="resultat-filtre">Total véhicules dans la base =
-			{{totalVehicules}}</p>
-		<p class="resultat-filtre">Résultats filtre actif =
-			{{totalVehiculesFiltered}}</p> #}
+		{# 
+														<p class="resultat-filtre">Total véhicules dans la base =
+															{{totalVehicules}}</p>
+														<p class="resultat-filtre">Résultats filtre actif =
+															{{totalVehiculesFiltered}}</p> #}
 
-			<input type="checkbox" name="show-filters" id="show-filters">
 		<div
 			class="wrapper">
-			<label for="show-filters">Filtres</label>
 			{# Filtre multicritère : #}
 			<div class="filtres">
+				<input type="checkbox" name="show-filters" id="show-filters">
+				<label for="show-filters">Filtres</label>
 
 				<form id="filters" class="filtersForm">
 					<fieldset>
-					<legend>Intervalles</legend>
+						<legend>Filtre :</legend>
+						<select type="select" class="selectFiltreSimple" name="selectFiltreSimple">
+							<option value="" disabled selected>Sélectionner un filtre</option>
+							<option value="Prix descendant">Prix descendant</option>
+							<option value="Prix ascendant">Prix ascendant</option>
+							<option value="Kilométrage descendant">Kilométrage descendant</option>
+							<option value="Kilométrage ascendant">Kilométrage ascendant</option>
+							<option value="Ancienneté descendant">Kilométrage ascendant</option>
+							<option value="Ancienneté ascendant">Kilométrage ascendant</option>
+						</select>
+					</fieldset>
+
 						{# Filtre intervalle kilomètrage #}
+					<fieldset>
+						<legend>Par intervalles</legend>
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="kmMin">Km min.</label>
-								<input type="number" name="kmMin" id="kmMin" min="0" max="99999999"value="0">
+								<input type="number" name="kmMin" id="kmMin" min="0" max="99999999" value="0">
 							</div>
 							<div class="input-intervalle">
 								<label for="kmMax">Km max.</label>
@@ -38,15 +51,15 @@
 							</div>
 						</div>
 
-						{# Filtre intervalle prix #}
+						{#Filtre intervalle prix #}
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="prixMin">Prix min.</label>
-								<input type="number" name="prixMin" id="prixMin" min="0"max="499000" value="0">
+								<input type="number" name="prixMin" id="prixMin" min="0" max="499000" value="0">
 							</div>
 							<div class="input-intervalle">
 								<label for="prixMax">Prix max.</label>
-								<input type="number" name="prixMax" id="prixMax"min="1"max="500000" value="500000">
+								<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000">
 							</div>
 						</div>
 
@@ -64,7 +77,7 @@
 					</fieldset>
 					{# Filtre sur type de véhicule #}
 					<fieldset>
-						<legend>Type :</legend>
+						<legend>Par type :</legend>
 						{% for  type in typesVehicules %}
 							<div class="wrapper-input">
 								<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
@@ -75,7 +88,7 @@
 
 					{# Filtre sur marques de véhicules #}
 					<fieldset>
-						<legend>Marque :</legend>
+						<legend>Par marque :</legend>
 						{% for  marque in marquesVehicules %}
 							<div class="wrapper-input">
 								<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">

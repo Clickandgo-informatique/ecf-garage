@@ -66,14 +66,19 @@ class AnnoncesController extends AbstractController
         $filtreMarques = $request->get('marques');
 
         //Récupération des valeurs d'input pour filtres d'intervalle
-        $prixMin=$request->get('prixMin');
-        $prixMax=$request->get('prixMax');
+        $prixMin = $request->get('prixMin');
+        $prixMax = $request->get('prixMax');
+        $kmMax = $request->get('kmMax');
+        $kmMin = $request->get('kmMin');
+   
+        // $yearMax = $request->get('yearMax');
+        // $yearMin = $request->get('yearMin');
 
         //Récupération du total de véhicules dans la base avec filtres
         $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
 
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques,$prixMin,$prixMax);
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax,$kmMin,$kmMax);
 
         //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
@@ -82,10 +87,10 @@ class AnnoncesController extends AbstractController
         $marquesVehicules = $marquesRepository->findBy([], ['marque' => 'ASC']);
 
         //Infos minimum et maximum pour les sliders de filtre dans la base
-        $prixMax = $vehiculesRepository->getPrixMax();
-        $prixMin = $vehiculesRepository->getPrixMin();
-        $kmMin = $vehiculesRepository->getKmMin();
-        $kmMax = $vehiculesRepository->getKmMax();
+        // $prixMax = $vehiculesRepository->getPrixMax();
+        // $prixMin = $vehiculesRepository->getPrixMin();
+        // $kmMin = $vehiculesRepository->getKmMin();
+        // $kmMax = $vehiculesRepository->getKmMax();
 
         //Vérification de si il s'agît d'une requête Ajax
         if ($request->get('ajax')) {

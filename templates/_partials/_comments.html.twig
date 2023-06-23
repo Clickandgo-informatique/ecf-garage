@@ -1,7 +1,7 @@
 {# Formulaire des commentaires #}
 <div class="container-commentaires">
+	<h2>Liste des commentaires</h2>
 	<div class="liste-commentaires">
-		<h2>Liste des commentaires</h2>
 		<div class="wrapper-commentaire">
 			{% for c in commentaires %}
 				{% if c.parent == null %}
@@ -11,12 +11,10 @@
 							<span>le
 								{{c.createdAt|date("d-m-Y à H:i:s")}}</span>
 						</p>
-
 						<div class="texte-commentaire">{{c.contenu|raw}}</div>
 						<p>
 							<a class="btn-repondre" href="#ajout-commentaire" data-reply data-id="{{c.id}}">Répondre</a>
 						</p>
-
 					</div>
 					{# Affichage des réponses #}
 					{% for reponse in c.reponses %}
@@ -36,14 +34,15 @@
 				</div>
 			</div>
 		</div>
-			<div class="ajout-commentaire" id="ajout-commentaire">
-		<h2 class="titre-principal">Ajouter un commentaire</h2>
-
+	</div>
+	<form class="commentsForm" id="commentsForm">
+		<h2>Ajouter un commentaire</h2>
 		{{ form_start(commentForm)}}
 		{{form_widget(commentForm)}}
 		{{ form_end(commentForm)}}
-	</div>
-	</div>
-
-</div></div>{% block javascripts %}<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
-<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>{% endblock %}
+	</form>
+</div>
+{% block javascripts %}
+	<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
+	<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>
+{% endblock %}

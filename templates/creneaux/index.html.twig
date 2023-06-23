@@ -6,8 +6,9 @@
 {% block body %}
 	<div class="main">
 		<h1 class="titre-principal">Horaires d'ouverture semaine</h1>
-
-		<a href="{{path('app_horaires_semaine_creer_creneau')}}" class="btn btn-primary btn-centered">+ Ajouter créneau</a>
+		{% if is_granted("ROLE_ADMIN") %}
+			<a href="{{path('app_horaires_semaine_creer_creneau')}}" class="btn btn-primary btn-centered">+ Ajouter créneau</a>
+		{% endif %}
 
 		<div class="wrapper-jours">
 			<div>
@@ -20,12 +21,14 @@
 									<td>{{creneau.debut|date("H:i")}}
 										à
 										{{creneau.fin|date("H:i")}}</td>
-									<td>
-										<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-									</td>
-									<td>
-										<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-									</td>
+									{% if is_granted("ROLE_ADMIN") %}
+										<td>
+											<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+										</td>
+										<td>
+											<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+										</td>
+									{% endif %}
 								</tr>
 							{% endfor %}
 						</tbody>
@@ -45,12 +48,14 @@
 								<td>{{creneau.debut|date("H:i")}}
 									à
 									{{creneau.fin|date("H:i")}}</td>
-								<td>
-									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-								</td>
-								<td>
-									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-								</td>
+								{% if is_granted("ROLE_ADMIN") %}
+									<td>
+										<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+									</td>
+									<td>
+										<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+									</td>
+								{% endif %}
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -70,12 +75,14 @@
 							<td>{{creneau.debut|date("H:i")}}
 								à
 								{{creneau.fin|date("H:i")}}</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-							</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-							</td>
+							{% if is_granted("ROLE_ADMIN") %}
+								<td>
+									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -94,12 +101,14 @@
 							<td>{{creneau.debut|date("H:i")}}
 								à
 								{{creneau.fin|date("H:i")}}</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-							</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-							</td>
+							{% if is_granted("ROLE_ADMIN") %}
+								<td>
+									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -118,12 +127,14 @@
 							<td>{{creneau.debut|date("H:i")}}
 								à
 								{{creneau.fin|date("H:i")}}</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-							</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-							</td>
+							{% if is_granted("ROLE_ADMIN") %}
+								<td>
+									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -142,12 +153,14 @@
 							<td>{{creneau.debut|date("H:i")}}
 								à
 								{{creneau.fin|date("H:i")}}</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-							</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-							</td>
+							{% if is_granted("ROLE_ADMIN") %}
+								<td>
+									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -166,12 +179,14 @@
 							<td>{{creneau.debut|date("H:i")}}
 								à
 								{{creneau.fin|date("H:i")}}</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
-							</td>
-							<td>
-								<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
-							</td>
+							{% if is_granted("ROLE_ADMIN") %}
+								<td>
+									<a href="{{path('app_horaires_semaine_modifier_creneau',{id:creneau.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('app_horaires_semaine_supprimer_creneau',{id:creneau.id})}}">Supprimer</a>
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>

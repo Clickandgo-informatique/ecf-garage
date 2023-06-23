@@ -41,17 +41,19 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null)
+    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null)
     {
         $limit = abs($limit);
 
         $query = $this->createQueryBuilder('v');
 
-        //On filtre si filtre multicritères actif
+        //Filtre sur types de véhicules
         if ($filtreTypes != null) {
             $query->where('v.type_vehicule IN (:types)')
                 ->setParameter(':types', array_values($filtreTypes));
         }
+
+        //Filtre sur marques de véhicules
         if ($filtreMarques != null) {
             $query->andWhere('v.marque IN(:marques)')
                 ->setParameter(':marques', array_values($filtreMarques));
@@ -64,11 +66,19 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':prixMax', $prixMax);
         }
 
+        //Filtre sur intervalle de kilométrage
+        if (!empty($kmMin) && $kmMin != null && !empty($kmMax) && $kmMax != null) {
+            $query->andWhere('v.kilometrage >= :kmMin and v.kilometrage <= :kmMax')
+                ->setParameter(':kmMin', $kmMin)
+                ->setParameter(':kmMax', $kmMax);
+        }
+
         $query->orderBy('v.marque')
             ->orderBy('v.prix_vente')
+            // ->orderBy('v.kilometrage')
             ->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
-
+           
         return $query->getQuery()->getResult();
     }
 

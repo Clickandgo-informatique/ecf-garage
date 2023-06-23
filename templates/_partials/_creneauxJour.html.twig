@@ -1,0 +1,38 @@
+<p>Horaires du jour :</p>
+
+{# Si aucun créneau disponible pour le jour actuel alors message d'alerte de fermeture #}
+{% if(creneauxActifsJour is empty and prochainsCreneaux is empty)%}
+	<p class="alert-danger">Fermé aujourd'hui</p>
+
+{% else %}
+
+	{# Affiche le créneau par rapport à l'heure actuelle #}
+
+	{% if(creneauxActifsJour is not empty)%}
+		{% for creneau in creneauxActifsJour %}
+
+			<p>Ferme à
+				{{creneau.fin|date("H:i")}}</p>
+
+		{% endfor %}
+	{% else %}
+		<p class="alert-danger">Fermé en ce moment</p>
+	{% endif %}
+
+	{# Affiche les prochains créneaux pour le jour actuel #}
+	{% if (prochainsCreneaux is not empty) %}
+		<p>Ouvrira
+		</p>
+		{% for creneau in prochainsCreneaux %}
+			<p>de
+				{{creneau.debut|date("H:i")}}
+				à
+				{{creneau.fin|date("H:i")}}</p>
+		{% endfor %}
+	{% endif %}
+
+
+{% endif %}
+
+
+<a class="link" href="{{path('app_horaires_semaine_index')}}">Voir horaires semaine</a>

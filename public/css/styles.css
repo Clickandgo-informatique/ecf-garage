@@ -22,7 +22,7 @@ main {
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .content {
@@ -34,13 +34,11 @@ main {
 .titre-principal {
   margin: 10px auto;
   font-size: 1.5rem;
-  color: #fff;
+  color:blue;
   text-align: center;
-  padding: 5px 10px;
-  background-color: blue;
-  border-radius: 5px;
-  width: fit-content;
-  box-shadow: 1px 1px 4px #000;
+  padding: 5px 10px; 
+ 
+  
 }
 
 .go-back-link {
@@ -64,6 +62,20 @@ section {
 }
 .wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
+}
+.link {
+  color: #fff;
+}
+.link:visited {
+  color: #fff;
+}
+
+.alert-danger {
+  color: red;
+  background-color: #fff;
+  padding: 6px 5px;
+  border-radius: 5px;
+  width:fit-content;
 }

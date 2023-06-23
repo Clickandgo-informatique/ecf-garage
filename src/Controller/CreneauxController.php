@@ -103,13 +103,16 @@ class CreneauxController extends AbstractController
         return $this->redirectToRoute('app_horaires_semaine_index');
     }
 
-    //Afficher le créneau du jour actif dans le bas de page
-    #[Route('/afficher-creneau-du-jour/', name: 'afficher_creneau_du_jour')]
+    //Afficher le créneau du jour actif sur sections de page d'accueil
     public function afficherCreneauJourActif(CreneauxRepository $creneauxRepository): Response
     {
+        $essai = "Coucou";
+        $creneauxActifsJour = $creneauxRepository->getCreneauxActifsJour();
+        $prochainsCreneaux = $creneauxRepository->getProchainsCreneaux();
 
-        $creneauxJour = $creneauxRepository->getCreneauxDuJour();     
-
-        return $this->render('_partials/_creneauxJour.html.twig', compact('creneauxJour'));
+        return $this->render(
+            '_partials/_creneauxJour.html.twig',
+            compact('creneauxActifsJour', 'prochainsCreneaux', 'essai')
+        );
     }
 }

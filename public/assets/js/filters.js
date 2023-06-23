@@ -4,7 +4,7 @@ window.onload = () => {
 
   document.querySelectorAll("#filters input").forEach((input) => {
     input.addEventListener("input", () => {
-      if (input.value != "") {
+      if (input.value !== "" && input.value !== null) {
         //Récupération des données du formulaire
         const Form = new FormData(filtersForm);
 
@@ -49,11 +49,19 @@ window.onload = () => {
 
   showfilters.addEventListener("change", () => {
     if (showfilters.checked) {
+     
       filtersForm.style.transform = "translateX(0px)";
       filtersForm.style.transition = "transform ease-in-out 2s";
+      setTimeout(function collapse(){
+        filtersForm.style.display="block"
+      },2100)      
+
     } else {
       filtersForm.style.transform = "translateX(-100%)";
-      filtersForm.style.transition = "transform ease-in-out 1s";
+      filtersForm.style.transition = "transform ease-in-out 2s";
+      setTimeout(function collapse(){
+        filtersForm.style.display="none"
+      },3100)
     }
   });
 };
