@@ -4,13 +4,17 @@
 {% block body %}
 	<div class="main">
 		<h1 class="titre-principal">Liste des utilisateurs</h1>
-		<a class="btn btn-primary" href="{{path('app_users_creer_utilisateur')}}">Créer un utilisateur</a>
 		<table>
-			<thead>
+			<thead colspan="8">
 				<th>Nom</th>
 				<th>E-mail</th>
 				<th>Tél fixe</th>
 				<th>Tél mobile</th>
+				<th>Rôles</th>
+				<th colspan="3">
+					<a class="btn btn-primary" href="{{path('app_users_creer_utilisateur')}}">Créer un utilisateur</a>
+				</th>
+
 			</thead>
 			{% if users %}
 				<tbody>
@@ -24,21 +28,28 @@
 							<td>{{user.telmobile}}</td>
 
 							{% if user.roles %}
-								<td>									
-										{% for role in user.roles %}
-											{{role}}
-										{% endfor %}									
+								<td>
+									{% for role in user.roles %}
+										{% if role =="ROLE_ADMIN" %}
+											<span class="badge-danger">{{role}}</span>
+										{% endif %}
+										{% if role =="ROLE_EMPLOYEE" %}
+											<span class="badge-warning">{{role}}</span>
+										{% else %}
+											<span class="badge-success">{{role}}</span>
+										{% endif %}
+									{% endfor %}
 								</td>
 
 							{% endif %}
 							<td>
-								<a href="{{path('app_users_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
+								<a class="btn btn-primary"href="{{path('app_users_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
 							</td>
 							<td>
-								<a href="{{path('app_users_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
+								<a class="btn btn-warning"href="{{path('app_users_modifier_utilisateur',{id:user.id})}}">Modifier</a>
 							</td>
 							<td>
-								<a href="{{path('app_users_modifier_utilisateur',{id:user.id})}}">Modifier</a>
+								<a class="btn btn-danger"href="{{path('app_users_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
 							</td>
 						</tr>
 					{% endfor %}

@@ -20,7 +20,7 @@ class UsersFixtures extends Fixture
         //Création fixture administrateur
         $admin = new Users();
         $admin->setEmail('admin@demo.fr');
-        $admin->setNom('Gambier');
+        $admin->setNom('Dupont');
         $admin->setPrenom('Benoit');
         $admin->setAdresse('12 rue du port');
         $admin->setCodePostal('75001');
@@ -31,6 +31,36 @@ class UsersFixtures extends Fixture
         $admin->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($admin);
+        
+        //Création fixture employé 1
+        $employee = new Users();
+        $employee->setEmail('employe1@demo.fr');
+        $employee->setNom('De La Fontaine');
+        $employee->setPrenom('Jean-Marie');
+        $employee->setAdresse('152 rue du Chêne-doré');
+        $employee->setCodePostal('01500');
+        $employee->setVille('Ambérieu-en-Bugey');
+        $employee->setPassword(
+            $this->passwordEncoder->hashPassword($employee, 'employee')
+        );
+        $employee->setRoles(['ROLE_EMPLOYEE']);
+
+        $manager->persist($employee);
+
+        //Création fixture employé 2
+        $employee = new Users();
+        $employee->setEmail('employe2@demo.fr');
+        $employee->setNom('Weil-Sinclair');
+        $employee->setPrenom('Simone');
+        $employee->setAdresse('15 av Gambetta');
+        $employee->setCodePostal('32420');
+        $employee->setVille('Simorre');
+        $employee->setPassword(
+            $this->passwordEncoder->hashPassword($employee, 'employee')
+        );
+        $employee->setRoles(['ROLE_EMPLOYEE']);
+
+        $manager->persist($employee);
 
         for ($i = 0; $i < 10; $i++) {
 

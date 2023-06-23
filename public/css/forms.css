@@ -10,7 +10,7 @@ form {
   align-items: center;
   background-color: whitesmoke;
 }
-
+input{width: 200px;}
 .btn-login {
   margin: 10px auto;
 }
@@ -105,7 +105,7 @@ input[type="checkbox"] {
 
 .commentsForm {
   max-width: 800px;
-  border:none;
+  border: none;
 }
 
 .liste-commentaires {
@@ -229,6 +229,20 @@ input[type="checkbox"] {
   align-items: center;
   cursor: text;
   transition: ease-in-out 0.6s;
+}
+.liste-roles {
+  margin: 10px;
+}
+#users_form_created_at {
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.7rem;
+}
+
+.form-control {
+  display: inline-block;
+  width: 100%;
+  justify-content: space-between;
 }
 /*
 input[type="checkbox"] {
