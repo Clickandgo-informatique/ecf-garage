@@ -42,6 +42,9 @@ class Commentaires
     #[ORM\Column(nullable: true)]
     private ?int $note = null;
 
+    #[ORM\Column]
+    private ?bool $publication = null;
+
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
@@ -163,6 +166,18 @@ class Commentaires
     public function setNote(?int $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function isPublication(): ?bool
+    {
+        return $this->publication;
+    }
+
+    public function setPublication(bool $publication): self
+    {
+        $this->publication = $publication;
 
         return $this;
     }

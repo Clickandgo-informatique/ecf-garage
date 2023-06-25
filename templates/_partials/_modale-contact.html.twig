@@ -6,29 +6,23 @@
 			<h1 class="titre-principal">Contacter un service</h1>
 		</div>
 		<div class="divider"></div>
-
 	</div>
-	{{form_start(form)}}
+
 	<div class="modal-content">
+		{{form_start(form)}}
 		<form class="form contact-services">
 			{{ form_row(form.service) }}
 			{{form_row(form.subject)}}
 			{{form_row(form.email)}}
+			{{form_row(form.mail)}}
 			{{form_row(form.message)}}
 
 		</div>
 		<div class="divider"></div>
 		<div class="modal-footer">
-			<button class="btn btn-primary btn-centered">Envoyer</button>
+			<button type="submit" class="btn btn-primary btn-centered">Envoyer</button>
 			<button class="btn btn-secondary btn-right modal-trigger" data-target="modale-contact">Fermer</button>
 		</div>
 	</form>
-		{{form_end(form)}}
-{% endblock %}
-
-{% block javascripts %}{# Préremplit le champ des adresses mails #}
-	{# window.onload=(){
-					    document.querySelector("#service).value="{{service.slug}}"
-					} #}
-
+	{{form_end(form)}}
 {% endblock %}

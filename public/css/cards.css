@@ -34,7 +34,7 @@
   height: fit-content;
 }
 .card-text {
-  margin: 20px;
+  margin: 8px;
   padding: 10px;
   font-size: 1rem;
   text-align: justify;
@@ -68,8 +68,11 @@
 }
 
 .card-services {
-  width: 250px;
-  height: 300px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px; 
 }
 
 .card-services .card-text {
@@ -91,6 +94,12 @@
   font-size: 0.8rem;
   display: block;
   text-align: right;
+  margin:8px;
+  text-decoration: underline;
+}
+
+.card-services i{
+  margin-right: 10px;
 }
 .resume {
   font-size: 0.7rem;
@@ -143,4 +152,12 @@
   opacity: 0.8;
   cursor: pointer;
   text-align: center;
+}
+.contact-service-par-mail a{
+  margin: 10px auto;
+  text-decoration: underline;
+}
+.contact-service-par-telephone{
+  margin:10px auto;
+  color:blue;
 }

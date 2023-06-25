@@ -2,62 +2,64 @@
 {% block title %}Liste des utilisateurs
 {% endblock %}
 {% block body %}
-	<div class="main">
-		<h1 class="titre-principal">Liste des utilisateurs</h1>
-		<table>
-			<thead colspan="8">
-				<th>Nom</th>
-				<th>E-mail</th>
-				<th>Tél fixe</th>
-				<th>Tél mobile</th>
-				<th>Rôles</th>
-				<th colspan="3">
-					<a class="btn btn-primary" href="{{path('app_users_creer_utilisateur')}}">Créer un utilisateur</a>
-				</th>
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+			<h1 class="titre-principal">Liste des utilisateurs</h1>
+			<table>
+				<thead colspan="8">
+					<th>Nom</th>
+					<th>E-mail</th>
+					<th>Tél fixe</th>
+					<th>Tél mobile</th>
+					<th>Rôles</th>
+					<th colspan="3">
+						<a class="btn btn-primary" href="{{path('app_utilisateurs_creer_utilisateur')}}">Créer un utilisateur</a>
+					</th>
 
-			</thead>
-			{% if users %}
-				<tbody>
-					{% for user in users %}
-						<tr>
-							<td>
-								<strong>{{user.nom}}</strong>
-								{{user.prenom}}</td>
-							<td>{{user.email}}</td>
-							<td>{{user.telfixe}}</td>
-							<td>{{user.telmobile}}</td>
-
-							{% if user.roles %}
+				</thead>
+				{% if users %}
+					<tbody>
+						{% for user in users %}
+							<tr>
 								<td>
-									{% for role in user.roles %}
-										{% if role =="ROLE_ADMIN" %}
-											<span class="badge-danger">{{role}}</span>
-										{% endif %}
-										{% if role =="ROLE_EMPLOYEE" %}
-											<span class="badge-warning">{{role}}</span>
-										{% else %}
-											<span class="badge-success">{{role}}</span>
-										{% endif %}
-									{% endfor %}
+									<strong>{{user.nom}}</strong>
+									{{user.prenom}}</td>
+								<td>{{user.email}}</td>
+								<td>{{user.telfixe}}</td>
+								<td>{{user.telmobile}}</td>
+
+								{% if user.roles %}
+									<td>
+										{% for role in user.roles %}
+											{% if role =="ROLE_ADMIN" %}
+												<span class="badge-danger">{{role}}</span>
+											{% endif %}
+											{% if role =="ROLE_EMPLOYEE" %}
+												<span class="badge-warning">{{role}}</span>
+											{% else %}
+												<span class="badge-success">{{role}}</span>
+											{% endif %}
+										{% endfor %}
+									</td>
+
+								{% endif %}
+								<td>
+									<a class="btn btn-primary" href="{{path('app_utilisateurs_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
 								</td>
-
-							{% endif %}
-							<td>
-								<a class="btn btn-primary"href="{{path('app_users_fiche_utilisateur',{id:user.id})}}">Voir fiche</a>
-							</td>
-							<td>
-								<a class="btn btn-warning"href="{{path('app_users_modifier_utilisateur',{id:user.id})}}">Modifier</a>
-							</td>
-							<td>
-								<a class="btn btn-danger"href="{{path('app_users_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
-							</td>
-						</tr>
-					{% endfor %}
-				{% else %}
-					<p>Aucun utilisateurs n'est encore enregistré dans la base</p>
-				{% endif %}
-
-			</tbody>
-		</table>
+								<td>
+									<a class="btn btn-warning" href="{{path('app_utilisateurs_modifier_utilisateur',{id:user.id})}}">Modifier</a>
+								</td>
+								<td>
+									<a class="btn btn-danger" href="{{path('app_utilisateurs_supprimer_utilisateur',{id:user.id})}}">Supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					{% else %}
+						<p>Aucun utilisateurs n'est encore enregistré dans la base</p>
+					{% endif %}
+				</tbody>
+			</table>
+		</main>
 	</div>
 {% endblock %}

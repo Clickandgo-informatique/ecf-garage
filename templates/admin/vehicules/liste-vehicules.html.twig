@@ -2,9 +2,9 @@
 {% block title %}Liste des véhicules
 {% endblock %}
 {% block body %}
-	<main class="main">
+	<div class="wrapper">
 		{% include('_partials/_admin-nav.html.twig')%}
-		<div class="content">
+		<main>
 			<h1 class="titre-principal">Liste des véhicules</h1>
 			{% if vehicules %}
 				<table class="table listing">
@@ -43,7 +43,7 @@
 									</label>
 								</td>
 								<td>
-									<a class="btn btn-primary" href="{{path('app_vehicules_details_vehicule',{id:vehicule.id})}}">Fiche</a>
+									{# <a class="btn btn-primary" href="{{path('app_vehicules_details_vehicule',{id:vehicule.id})}}">Fiche</a> #}
 								</td>
 								<td>
 									<a class="btn btn-secondary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Modifier</a>
@@ -56,8 +56,9 @@
 					</tbody>
 				</table>
 			{% endif %}
-		</div>
-	</main>
+
+		</main>
+	</div>
 	{% block javascripts %}
 		<script src="{{asset('assets/js/annonces.js')}}" type="text/javascript" defer></script>
 	{% endblock %}

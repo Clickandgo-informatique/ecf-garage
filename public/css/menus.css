@@ -1,7 +1,7 @@
 .menu-lateral-gauche {
-    display:flex; 
-    background-color:rgb(44, 44, 44);
-    flex-direction: row;    
+    display:block; 
+    background-color:royalblue;
+    min-width:200px;
 }
 
 .menu-options {
@@ -24,9 +24,10 @@
 .menu-link {
     list-style: none;
     margin: 10px;
-    width: fit-content;
+    width: 100%;
     color:#fff;
 }
 .menu-item{
 border:1px solid darkgray;
+
 }

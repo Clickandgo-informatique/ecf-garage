@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 class ContactFormType extends AbstractType
 {
@@ -22,31 +21,33 @@ class ContactFormType extends AbstractType
                 'class' => Services::class,
                 'label' => 'Service contacté : ',
             ])
+            ->add('mail',EmailType::class)
             ->add('subject', TextType::class, [
                 'label' => "Objet : ",
-                
-                'attr' => ['class' => 'form-control',
-                'placeholder'=>'Décrivez-ici votre demande'],
-                //     'constraints' => new NotBlank(), new NotNull()
+                'constraints' => new NotBlank(),
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Décrivez-ici votre demande'
+                ],
 
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Votre e-mail :',
-                'attr' => ['class' => 'form-control','placeholder'=>'Votre email est obligatoire !'],
-                //     'constraints' => new NotBlank(), new NotNull()
+                'constraints' => new NotBlank(),
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Votre email est obligatoire !'],
+
             ])
             ->add('message', CKEditorType::class, [
                 'label' => 'Votre message + coordonnées de contact + données du véhicule concerné : ',
-                'attr' => ['class' => 'form-control']
-            
-                //     'constraints' => new NotBlank(), new NotNull()
+                'constraints' => new NotBlank(),
+                'attr' => ['class' => 'form-control'],
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            
         ]);
     }
 }

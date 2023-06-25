@@ -15,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(Request $request, EntityManagerInterface $em, CommentairesRepository $commentairesRepository,ServicesRepository $servicesRepository): Response
+    public function index(Request $request, EntityManagerInterface $em, CommentairesRepository $commentairesRepository, ServicesRepository $servicesRepository): Response
     {
         //Liste de tous les services
-        $services=$servicesRepository->findBy([],['nom'=>'ASC']);
+        $services = $servicesRepository->findBy([], ['nom' => 'ASC']);
         //Liste de tous les commentaires
-        $commentaires = $commentairesRepository->findBy([], ['created_at' => 'DESC']);
+        $commentaires = $commentairesRepository->findBy(['publication' => true], ['created_at' => 'DESC']);
         //Gestion des Commentaires
         $commentaire = new Commentaires();
 
@@ -51,7 +51,7 @@ class MainController extends AbstractController
         }
         return $this->render('main/index.html.twig', [
             'commentaires' => $commentaires,
-            'services'=>$services,
+            'services' => $services,
             'commentForm' => $commentForm->createView()
         ]);
     }

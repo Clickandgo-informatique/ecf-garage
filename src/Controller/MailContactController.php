@@ -19,6 +19,7 @@ class MailContactController extends AbstractController
     {
         //Si l'on se trouve sur la page ou fiche d'un service
         $service_a_contacter = $servicesRepository->find($id);
+        $idService = $service_a_contacter->getId();
         $nomService = $service_a_contacter->getNom();
 
         //Recherche des adresses mails du service
@@ -37,10 +38,11 @@ class MailContactController extends AbstractController
                 ->subject($contact->get('subject')->getData())
                 ->htmlTemplate('emails/contact_service.html.twig')
                 ->context([
-                    'service' => $nomService,
+                    'service' => $idService,
                     'mail' => $mail1,
-                    'message' => $contact->get('message')->getData()                    
+                    'message' => $contact->get('message')->getData()
                 ]);
+
             $mailer->send($email);
 
             $this->addFlash('success', 'Le mail a bien été envoyé au service demandé, nous vous répondrons dans les meilleurs délais.');
@@ -51,7 +53,9 @@ class MailContactController extends AbstractController
 
         return $this->render('_partials/_modale-contact.html.twig', [
             'mail1' => $mail1,
-            'service' => $service_a_contacter,           
+            'service' => $service_a_contacter,
+            'nomService' => $nomService,
+            'idService' => $idService,
             'form' => $form->createView()
         ]);
     }

@@ -1,62 +1,76 @@
 <aside class="menu-lateral-gauche">
 	<div class="menu-options">
-		<div class="menu-item">
-			<div class="menu-title">Clients</div>
-			<p>
-				<a class="menu-link" href="">Liste clients</a>
-			</p>
-			<p>
-				<a class="menu-link" href="">Ajouter client</a>
-			</p>
-		</div>
-		<div class="menu-item">
-			<div class="menu-title">Utilisateurs</div>
-			<p>
-				<a class="menu-link" href="{{path('app_users_liste_utilisateurs')}}">Liste utilisateurs</a>
-			</p>
-			<p>
-				<a class="menu-link" href="">Ajouter utilisateur</a>
-			</p>
-		</div>
-		<div class="menu-item">
-			<div class="menu-title">Véhicules</div>
-			<p>
-				<a class="menu-link" href="{{path('app_vehicules_liste_vehicules')}}">Liste véhicules</a>
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_vehicules_creer_vehicule')}}">Ajouter véhicule</a>
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_marques_liste_marques')}}">Liste marques</a>
+		{% if is_granted("ROLE_ADMIN") %}
+			<div class="menu-item">
+				<div class="menu-title">Clients</div>
+				<p>
+					<a class="menu-link" href="">Liste clients</a>
+				</p>
+				<p>
+					<a class="menu-link" href="">Ajouter client</a>
+				</p>
+			</div>
+			<div class="menu-item">
+				<div class="menu-title">Utilisateurs</div>
+				<p>
+					<a class="menu-link" href="{{path('app_utilisateurs_liste_utilisateurs')}}">Liste utilisateurs</a>
+				</p>
+				<p>
+					<a class="menu-link" href="#">Ajouter utilisateur</a>
+				</p>
+			</div>
+			<div class="menu-item">
+				<div class="menu-title">Véhicules</div>
+				<p>
+					<a class="menu-link" href="{{path('app_vehicules_liste_vehicules')}}">Liste véhicules</a>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_vehicules_creer_vehicule')}}">Ajouter véhicule</a>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_marques_liste_marques')}}">Liste marques</a>
 
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_marques_creer_marque')}}">Ajouter marque</a>
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_motorisations_liste_motorisations')}}">Liste motorisations</a>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_marques_creer_marque')}}">Ajouter marque</a>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_motorisations_liste_motorisations')}}">Liste motorisations</a>
 
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_motorisations_creer_motorisation')}}">Ajouter motorisation</a>
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_vehicules_types_vehicules_index')}}">Liste types véhicules</a>
-			</p>
-			<p>
-				<a class="menu-link" href="{{path('app_vehicules_types_vehicules_creer')}}">Ajouter type véhicule</a>
-			</p>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_motorisations_creer_motorisation')}}">Ajouter motorisation</a>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_vehicules_types_vehicules_index')}}">Liste types véhicules</a>
+				</p>
+				<p>
+					<a class="menu-link" href="{{path('app_vehicules_types_vehicules_creer')}}">Ajouter type véhicule</a>
+				</p>
 
-		</div>
+			</div>
 
-		<div class="menu-item">
-			<div class="menu-title">Employés</div>
-			<p>
-				<a class="menu-link" href="">Liste employés</a>
-			</p>
-			<p>
-				<a class="menu-link" href="">Ajouter employé</a>
-			</p>
-		</div>
+			<div class="menu-item">
+				<div class="menu-title">Employés</div>
+				<p>
+					<a class="menu-link" href="">Liste employés</a>
+				</p>
+				<p>
+					<a class="menu-link" href="">Ajouter employé</a>
+				</p>
+			</div>
+		{% endif %}
+		{% if is_granted("ROLE_EMPLOYEE") %}
+
+			<div class="menu-item">
+				<div class="menu-title">Commentaires</div>
+				<p>
+					<a href="{{path('app_commentaires_liste_commentaires')}}" class="menu-link">Liste commentaires</a>
+				</p>
+				<p>
+					<a href="#" class="menu-link">Ajouter commentaire</a>
+				</p>
+			</div>
+		{% endif %}
 	</div>
 </aside>

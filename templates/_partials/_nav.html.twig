@@ -4,42 +4,54 @@
 	</div>
 
 	<div class="menu-navbar">
-		<ul>
-			<li><a href="{{path('app_index')}}">Accueil</a></li>		
-			<li><a href="{{path('app_horaires_semaine_index')}}">Nos horaires</a></li>		
-			<li><a href="{{path('app_vehicules_annonces_index')}}">Annonces véhicules d'occasion</a></li>		
-			<li><a href="{{path('app_services_index')}}">Nos services</a></li>
-			<li><a href="">Nous contacter</a></li>
-
-		</ul>
-
-	</div>
-
-	<div class="div-connexion">
-		<ul class="navbar-nav">
-			{% if app.user %}
-				{% if is_granted("ROLE_ADMIN") %}
-					<li class="nav-item">
-						<a href="{{path('app_admin_index')}}">Administration</a>
-					</li>
-				{% endif %}
-				<li class="nav-item">
-					<a href="{{path('app_logout')}}">Se déconnecter</a>
+		<div class="div-links">
+			<ul class="navbar-nav">
+				<li class="active nav-item">
+					<a href="{{path('app_index')}}">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a href="#">Mon Compte</a>
-				</li>
-			{% else %}
-
-				<li class="nav-item">
-					<a href="{{path('app_login')}}">Se connecter</a>
+					<a href="{{path('app_horaires_semaine_index')}}">Nos horaires</a>
 				</li>
 				<li class="nav-item">
-					<a href="{{path('app_register')}}">S'inscrire</a>
+					<a href="{{path('app_vehicules_annonces_index')}}">Annonces véhicules d'occasion</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{path('app_services_index')}}">Nos services</a>
+				</li>
+				<li class="nav-item">
+					<a href="">Nous contacter</a>
 				</li>
 			</ul>
-
-		{% endif %}
-
+		</div>
+		<div class="div-connexion">
+			<ul class="navbar-nav">
+				{% if app.user %}
+					{% if is_granted("ROLE_ADMIN") or is_granted("ROLE_EMPLOYEE") %}
+						<li class="nav-item">
+							<a href="{{path('app_admin_index')}}">Administration</a>
+						</li>
+					{% endif %}
+					<li class="nav-item">
+						<a href="{{path('app_logout')}}">Se déconnecter</a>
+					</li>
+					{% if is_granted("ROLE_USER") %}
+						<li class="nav-item">
+							<a href="{{path('app_utilisateurs_profil')}}">Mon profil</a>
+						</li>
+					{% endif %}
+				{% else %}
+					<li class="nav-item">
+						<a href="{{path('app_login')}}">Se connecter</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{path('app_register')}}">S'inscrire</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
 	</div>
+	<input type="checkbox" id="hamburger-menu" aria-label="hamburger-menu"/>
+	<label for="hamburger-menu">
+		<i class="fa-solid fa-bars"></i>
+	</label>
 </nav>

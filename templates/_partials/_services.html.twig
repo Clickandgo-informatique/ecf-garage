@@ -1,4 +1,3 @@
-
 {% if services %}
 	<div class="cards-container">
 		{% for service in services %}
@@ -13,10 +12,13 @@
 				<p class="card-price">A partir de
 					{{service.prixapartirde}}
 					€</p>
-			</div>
-		{% endfor %}
-	</div>
-{% else %}
-	<p>Aucun service n'est encore enregistré dans la base.</p>
 
-{% endif %}
+				<p class="contact-service-par-mail">
+					<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id,slug:service.slug})}}">Contacter par mail</a>
+				</p>
+				<p class="contact-service-par-telephone">
+					Tel : {{service.telephone1}}</p>
+		</div>
+	{% endfor %}
+</div>{% else %}
+<p>Aucun service n'est encore enregistré dans la base.</p>{% endif %}

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/utilisateurs', name: 'app_users_')]
+#[Route('/admin/utilisateurs', name: 'app_utilisateurs_')]
 class UsersController extends AbstractController
 {
     #[Route('/', name: 'liste_utilisateurs')]
@@ -39,7 +39,7 @@ class UsersController extends AbstractController
         $em->flush();
 
         $this->addFlash('alert', 'L\'utilisateur a été supprimé de la base avec succès.');
-        return $this->redirectToRoute('app_users_liste_utilisateurs');
+        return $this->redirectToRoute('app_utilisateurs_liste_utilisateurs');
     }
 
     //Créer un utilisateur
@@ -61,7 +61,7 @@ class UsersController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'L\utilisateur a bien été enregistré dans la base.');
-            return $this->redirectToRoute('app_users_liste_utilisateurs');
+            return $this->redirectToRoute('app_utilisateurs_liste_utilisateurs');
         }
         return $this->render('admin/utilisateurs/user-form.html.twig', [
             'form' => $form->createView()
@@ -87,7 +87,7 @@ class UsersController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Les modifications ont bien été enregistrées dans la base.');
-            return $this->redirectToRoute('app_users_liste_utilisateurs');
+            return $this->redirectToRoute('app_utilisateurs_liste_utilisateurs');
         }
         return $this->render('admin/utilisateurs/user-form.html.twig', [
             'form' => $form->createView()

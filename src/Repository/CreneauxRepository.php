@@ -73,10 +73,10 @@ class CreneauxRepository extends ServiceEntityRepository
             case 05:
                 $jour = "Vendredi";
                 break;
-            case 01:
+            case 06:
                 $jour = "Samedi";
                 break;
-            case 06:
+            case 00:
                 $jour = "Dimanche";
                 break;
             default:

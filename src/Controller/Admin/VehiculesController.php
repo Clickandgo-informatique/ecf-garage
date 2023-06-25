@@ -136,6 +136,7 @@ class VehiculesController extends AbstractController{
         }
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }
+    
     #[Route('/supprimer-vehicule/{id}', name: 'supprimer_vehicule')]
     public function supprimer($id, vehiculesRepository $vehiculesRepository, EntityManagerInterface $em): Response
     {

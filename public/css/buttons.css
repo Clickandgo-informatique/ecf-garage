@@ -8,9 +8,6 @@
   font-size: 0.7rem;
   transition: all 0.2s ease-in-out;
   text-align: center;
-  box-shadow: 1px 1px 4px black;
-  /* border:1px solid lightgray; */
-  /* margin:10px; */
 }
 
 .btn:hover {
@@ -31,7 +28,7 @@
 }
 
 .btn-warning {
-  background-color: orange;
+  background-color: lightsalmon;
 }
 
 .btn-go-back {

@@ -3,9 +3,10 @@ table {
   margin: 10px auto;
   padding: 10px;
   width: fit-content;
+  max-width: 95%;
   border-collapse: collapse;
   box-shadow: 2px 2px 4px black;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 tr {

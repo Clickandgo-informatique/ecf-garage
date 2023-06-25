@@ -2,14 +2,15 @@
 {% block title %}Accueil Administration Garage
 {% endblock %}
 {% block body %}
-	<main class="main">
+
 	{# Menu lateral d'administration #}
-	{% include "_partials/_admin-nav.html.twig" %}
-		<div
-			class="content">
-			{# Contenu de la page #}
+	<div class="wrapper">
+		{% include "_partials/_admin-nav.html.twig" %}
+		{# Contenu de la page #}
+		<main>
 			<h1 class="titre-principal">Bienvenue sur la page d'administration du garage</h1>
-			<p>Cliquez sur une option dans la colonne de gauche pour commencer</p>
-		</div>
-	</main>
+			<p class="centered">Cliquez sur une option dans la colonne de gauche pour commencer</p>
+		</main>
+	</div>
+
 {% endblock %}
