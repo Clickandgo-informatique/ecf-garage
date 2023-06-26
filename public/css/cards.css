@@ -3,8 +3,9 @@
   place-items: start center;
   row-gap: 10px;
   column-gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
-
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  width: 100%;
+  margin:20px;
 }
 
 .card {
@@ -13,11 +14,12 @@
   border-radius: 10px;
   box-shadow: 2px 2px 4px darkgray;
   background-color: #fff;
+
 }
 
 .card-vehicule {
   width: 284px;
-  min-height: 500px;
+ 
 }
 
 .card-vehicule:hover {
@@ -68,11 +70,11 @@
 }
 
 .card-services {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px; 
+  width: 250px;
 }
 
 .card-services .card-text {
@@ -94,21 +96,21 @@
   font-size: 0.8rem;
   display: block;
   text-align: right;
-  margin:8px;
+  margin: 8px;
   text-decoration: underline;
 }
 
-.card-services i{
+.card-services i {
   margin-right: 10px;
 }
 .resume {
   font-size: 0.7rem;
   text-align: center;
-  color: darkgray;
+  color: royalblue;
   margin: 5px;
 }
 .marque-vehicule {
-  color:darkblue;
+  color: darkblue;
   text-align: left;
   text-shadow: 1px 1px 2px royalblue;
 }
@@ -116,8 +118,9 @@
   text-align: left;
   font-size: 0.8rem;
   color: darkgray;
-  padding: 0;
-  margin: 0;
+  padding: 5px;
+  margin:5px;
+ 
 }
 .type-vehicule {
   font-size: 0.6rem;
@@ -130,7 +133,7 @@
   text-align: center;
 }
 .prix-vehicule {
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   width: fit-content;
   padding: 5px 8px;
   color: royalblue;
@@ -153,11 +156,11 @@
   cursor: pointer;
   text-align: center;
 }
-.contact-service-par-mail a{
+.contact-service-par-mail a {
   margin: 10px auto;
   text-decoration: underline;
 }
-.contact-service-par-telephone{
-  margin:10px auto;
-  color:blue;
+.contact-service-par-telephone {
+  margin: 10px auto;
+  color: blue;
 }

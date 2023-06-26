@@ -8,6 +8,7 @@
 @import "./sliders.css";
 @import "./switches.css";
 @import "./footer.css";
+@import "./modals.css";
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 *{
@@ -30,6 +31,7 @@ body {
 main {
   display: flex;
   flex-direction:column;
+  justify-content: center;
   background-color: whitesmoke;
   width:100%;
   
@@ -72,8 +74,6 @@ section {
 }
 .wrapper {
   display: flex;
-  flex-direction: row;
-  /* flex-wrap: wrap; */
 }
 .link {
   color: #fff;
@@ -120,4 +120,21 @@ section {
   font-size: 0.5rem;
   border-radius: 2px;
   width: fit-content;
+}
+.link-horaires-semaine{
+  text-decoration: underline;
+  color:yellow;
+
+  margin:5px;
+}
+.link-horaires-semaine:visited{
+  text-decoration: underline;
+}
+.titre{
+  font-weight: 900;
+  margin:5px;
+}
+
+.prochain-creneau-jour{ 
+  margin:5px;
 }

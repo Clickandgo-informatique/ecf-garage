@@ -43,7 +43,7 @@
 
 			<div class="resume">{{v.datemiseencirculation|date("m-y")}}
 				|
-				{{v.kilometrage}}
+				{{v.kilometrage|number_format(0, '.', '.')}}
 				km |
 				{{v.boite}}
 				|

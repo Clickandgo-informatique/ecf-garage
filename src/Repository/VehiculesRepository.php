@@ -41,7 +41,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null)
+    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null,$classerPar = null,$filtreMotorisations=null)
     {
         $limit = abs($limit);
 
@@ -59,8 +59,14 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':marques', array_values($filtreMarques));
         }
 
+        //Fitre sur motorisations
+        if($filtreMotorisations != null){
+            $query->andWhere('v.motorisation IN(:motorisations)')
+            ->setParameter(':motorisations',array_values($filtreMotorisations));
+        }
+
         //Filtre sur intervalle de prix
-        if (!empty($prixMin) && $prixMin != null && !empty($prixMax) && $prixMax != null) {
+        if (!empty($prixMin) && !empty($prixMax)) {
             $query->andWhere('v.prix_vente >= :prixMin and v.prix_vente <= :prixMax')
                 ->setParameter(':prixMin', $prixMin)
                 ->setParameter(':prixMax', $prixMax);
@@ -73,12 +79,35 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':kmMax', $kmMax);
         }
 
-        $query->orderBy('v.marque')
-            ->orderBy('v.prix_vente')
-            // ->orderBy('v.kilometrage')
-            ->setFirstResult(($page * $limit) - $limit)
+        //Logique classement OrderBy sur formulaire
+        if (!empty($classerPar)) {
+            switch ($classerPar) {
+                case "Prix descendant":
+                    $query->orderBy('v.prix_vente','desc');
+                    break;
+                case "Prix ascendant":
+                    $query->orderBy('v.prix_vente','asc');
+                    break;
+                case "Kilométrage descendant":
+                    $query->orderBy('v.kilometrage','desc');
+                    break;
+                case "Kilométrage ascendant":
+                    $query->orderBy('v.kilometrage','asc');
+                    break;
+                case "Ancienneté descendant":
+                    $query->orderBy('v.datemiseencirculation','desc');
+                    break;
+                case "Ancienneté ascendant":
+                    $query->orderBy('v.datemiseencirculation','asc');
+                    break;
+                default:
+                    return false;
+            }
+        }
+
+        $query->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
-           
+
         return $query->getQuery()->getResult();
     }
 

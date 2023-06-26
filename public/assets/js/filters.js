@@ -4,6 +4,9 @@ window.onload = () => {
 
   document.querySelectorAll("#filters input").forEach((input) => {
     input.addEventListener("input", () => {
+      // if(input.type =="number"){
+
+      // }
       if (input.value !== "" && input.value !== null) {
         //Récupération des données du formulaire
         const Form = new FormData(filtersForm);
@@ -39,7 +42,7 @@ window.onload = () => {
           .catch((e) => alert(e));
       } else {
         alert("Le champ de filtre ne peut pas être laissé vide !");
-        input.value = 0;
+        // input.value = 0;
       }
     });
   });
@@ -49,19 +52,28 @@ window.onload = () => {
 
   showfilters.addEventListener("change", () => {
     if (showfilters.checked) {
-     
       filtersForm.style.transform = "translateX(0px)";
       filtersForm.style.transition = "transform ease-in-out 2s";
-      setTimeout(function collapse(){
-        filtersForm.style.display="block"
-      },2100)      
-
+      setTimeout(function collapse() {
+        filtersForm.style.display = "block";
+      }, 2100);
     } else {
       filtersForm.style.transform = "translateX(-100%)";
       filtersForm.style.transition = "transform ease-in-out 2s";
-      setTimeout(function collapse(){
-        filtersForm.style.display="none"
-      },3100)
+      setTimeout(function collapse() {
+        filtersForm.style.display = "none";
+      }, 3100);
     }
   });
+
+  function debounce(cb, delay = 1000) {
+    let timeout;
+
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        cb(...args);
+      }, delay);
+    };
+  }
 };

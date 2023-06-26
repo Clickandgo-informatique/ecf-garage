@@ -6,7 +6,7 @@ form {
   border-radius: 10px;
   padding: 10px;
   justify-content: center;
-  margin:10px;
+  margin: 10px;
   box-shadow: 1px 1px 2px black;
 }
 .form-header {
@@ -58,6 +58,16 @@ select {
   border-radius: 5px;
   margin: 10px;
 }
+.radio-grp{
+  display:flex;
+  align-items: center;
+  margin:5px;
+}
+.radio-button + label{
+  display:flex;
+  margin-left: 5px;
+ white-space: nowrap;
+}
 input[type="checkbox"] {
   margin: 5px;
   accent-color: royalblue;
@@ -66,7 +76,7 @@ input[type="checkbox"] {
 textarea {
   margin: 5px;
   width: 100%;
-  min-height:60px;
+  min-height: 60px;
 }
 
 fieldset {

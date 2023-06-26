@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Vehicules;
 use App\Repository\ListeOptionsVehiculeRepository;
 use App\Repository\MarquesRepository;
+use App\Repository\MotorisationsRepository;
 use App\Repository\TypesVehiculesRepository;
 use App\Repository\VehiculesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,13 +50,13 @@ class AnnoncesController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository): Response
+    public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository,MotorisationsRepository $motorisationsRepository): Response
     {
         //Récupération du total de véhicules dans la base avant filtres
         $totalVehicules = $vehiculesRepository->getTotalVehicules();
 
         //Définition du nombre d'éléments par page
-        $limit = 10;
+        $limit = 100;
 
         //Récupération du numéro de page active
         $page = (int)$request->query->get("page", 1);
@@ -64,13 +65,17 @@ class AnnoncesController extends AbstractController
         $filtreTypes = $request->get('types');
         //Récupération des filtres de marques de véhicules
         $filtreMarques = $request->get('marques');
+        //Récupération valeur classerPar
+        $classerPar = $request->get('classerPar');
+        //Récupération valeurs motorisations
+        $filtreMotorisations=$request->get('typesMotorisations');
 
         //Récupération des valeurs d'input pour filtres d'intervalle
         $prixMin = $request->get('prixMin');
         $prixMax = $request->get('prixMax');
         $kmMax = $request->get('kmMax');
         $kmMin = $request->get('kmMin');
-   
+
         // $yearMax = $request->get('yearMax');
         // $yearMin = $request->get('yearMin');
 
@@ -78,10 +83,13 @@ class AnnoncesController extends AbstractController
         $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
 
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax,$kmMin,$kmMax);
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar,$filtreMotorisations);
 
         //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
+
+        //Recherche de tous les types de motorisations
+        $typesMotorisations = $motorisationsRepository->findBy([], ['nom_motorisation' => 'ASC']);
 
         //Recherche de toutes les marques de véhicules
         $marquesVehicules = $marquesRepository->findBy([], ['marque' => 'ASC']);
@@ -99,7 +107,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered')
+                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered','typesMotorisations')
                 )
             ]);
         }
@@ -110,7 +118,7 @@ class AnnoncesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered'));
+        return $this->render('admin/vehicules/index.html.twig', compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered','typesMotorisations'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]

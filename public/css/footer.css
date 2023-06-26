@@ -2,5 +2,8 @@ footer{
     min-height: 200px;
     background-color: blue;
     color:#fff;
-    padding:10px;
+    padding:20px;
+    margin:5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px black;
 }
