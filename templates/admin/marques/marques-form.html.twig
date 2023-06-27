@@ -2,13 +2,15 @@
 {% block title %}Gestion des marques
 {% endblock %}
 {% block body %}
-{{ include('_partials/_admin-nav.html.twig') }}
-	<main class="main">
-<h1 class="titre-principal">Ajouter des marques de véhicules</h1>
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main class="main">
 
-		{{form_start(marque)}}
-		{{form_row(marque.marque)}}
-		<button class="btn btn-primary" type="submit">Enregistrer</button>
-		{{form_end(marque)}}
+			{{form_start(marque)}}
+			<div class="form-header">Ajouter des marques</div>
+			{{form_row(marque.marque)}}
+			<button class="btn btn-primary btn-centered" type="submit">Enregistrer</button>
+			{{form_end(marque)}}
 		</main>
-	{% endblock %}
+	</div>
+{% endblock %}

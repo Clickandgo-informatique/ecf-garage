@@ -1,9 +1,10 @@
 .menu-lateral-gauche {
+    position:relative;
     display:block; 
     background-color:royalblue;
-    min-width:200px;
+    justify-content: start;  
+  
 }
-
 .menu-options {
     display: flex;
     flex-direction: column;

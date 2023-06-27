@@ -30,7 +30,7 @@
 										<a href="{{path('app_vehicules_details_vehicule',{id:vehicule.id})}}"><img class="mini-thumbnail" src="{{asset('assets/uploads/vehicules/mini/300x300-'~ vehicule.photos[0].nom)}}" alt="{{vehicule.photos[0].nom}}"></a>
 									{% endif %}
 								</td>
-								<td>{{vehicule.marque}}</td>
+								<td><strong>{{vehicule.marque}}</strong></td>
 								<td>{{vehicule.modele}}</td>
 								<td>{{vehicule.plaqueimmatriculation}}</td>
 								<td>{{vehicule.prixvente}}

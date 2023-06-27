@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/vehicules/types-vehicules', name: 'app_vehicules_types_vehicules_')]
 class TypesVehiculesController extends AbstractController
@@ -27,16 +27,16 @@ class TypesVehiculesController extends AbstractController
     }
 
     //Filtre les véhicules par type de véhicule
-    #[Route('/{slug}', name: 'list')]
-    public function list(TypesVehicules $type, VehiculesRepository $vehiculesRepository, Request $request): Response
-    {
-        //Recherche du numéro de page dans l'URL
-        $page = $request->query->getInt('page', 1);
+    // #[Route('/{slug}', name: 'list')]
+    // public function list(TypesVehicules $type, VehiculesRepository $vehiculesRepository, Request $request): Response
+    // {
+    //     //Recherche du numéro de page dans l'URL
+    //     $page = $request->query->getInt('page', 1);
 
-        $vehicules = $vehiculesRepository->findVehiculesPaginated($page, $type->getSlug(), 3);
-        
-        return $this->render('admin/vehicules/index.html.twig', compact('type', 'vehicules'));
-    }
+    //     $vehicules = $vehiculesRepository->findVehiculesPaginated($page, $type->getSlug(), 3);
+
+    //     return $this->render('admin/vehicules/index.html.twig', compact('type', 'vehicules'));
+    // }
 
     #[Route('/supprimer/{id}', name: 'supprimer')]
     public function supprimer(EntityManagerInterface $em, TypesVehiculesRepository $typesVehiculesRepo, $id): Response
@@ -53,7 +53,7 @@ class TypesVehiculesController extends AbstractController
 
     //Créer un type de véhicule
     #[Route('/creer', name: 'creer', methods: ['GET', 'POST'])]
-    public function creer(Request $request, EntityManagerInterface $em): Response
+    public function creer(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
 
         $tv = new TypesVehicules();
@@ -62,7 +62,9 @@ class TypesVehiculesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $tv->setNomType($form->get('nom_type')->getdata());
+            $slug = $slugger->slug($form->get('nom_type')->getData());
+        
+            $tv->setSlug($slug);
 
             $em->persist($tv);
             $em->flush();

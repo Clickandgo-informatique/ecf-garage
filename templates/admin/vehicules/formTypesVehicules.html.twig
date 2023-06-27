@@ -1,12 +1,16 @@
 {% extends "base.html.twig" %}
-{% block title %}Créer un nouveau type de véhicule{% endblock %}
+{% block title %}Créer un nouveau type de véhicule
+{% endblock %}
 {% block body %}
 
-<h1 class="titre-principal">Créer un nouveau type de véhicule</h1>
-
-{{form_start(tv)}}
-{{form_row(tv.nom_type)}}
-<button class="btn btn-primary" type="submit">Enregistrer</button>
-{{form_end(tv)}}
-
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+			{{form_start(tv)}}
+			<div class="form-header">Créer un nouveau type de véhicule</div>
+			{{form_row(tv.nom_type)}}
+			<button class="btn btn-primary" type="submit">Enregistrer</button>
+			{{form_end(tv)}}
+		</main>
+	</div>
 {% endblock %}

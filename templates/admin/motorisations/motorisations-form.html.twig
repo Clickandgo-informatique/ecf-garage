@@ -2,16 +2,18 @@
 {% block title %}Gestion des motorisations
 {% endblock %}
 {% block body %}
+	<div class="wrapper">
 		{{ include('_partials/_admin-nav.html.twig') }}
-	<main class="main">
-
-			<a class="btn btn-secondary" href="{{path('app_motorisations_liste_motorisations')}}">Revenir à la liste</a>
-			<h1 class="titre-principal">Ajouter des motorisations de véhicules</h1>
+		<main class="main">
+			<a class="btn btn-primary btn-centered" href="{{path('app_motorisations_liste_motorisations')}}">Revenir à la liste</a>
+			<h1 class="titre-principal"></h1>
 
 			{{form_start(motorisation)}}
+			<div class="form-header">Ajouter des motorisations</div>
 			{{form_row(motorisation.nommotorisation)}}
-			<button class="btn btn-primary" type="submit">Enregistrer</button>
+			<button class="btn btn-primary btn-centered" type="submit">Enregistrer</button>
 			{{form_end(motorisation)}}
-	
-	</main>
+
+		</main>
+	</div>
 {% endblock %}

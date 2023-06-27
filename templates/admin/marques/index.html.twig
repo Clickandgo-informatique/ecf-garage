@@ -3,8 +3,8 @@
 {% endblock %}
 {% block body %}
 	<div class="wrapper">
-		<main>
 			{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
 
 			{# <div class="content"> #}
 				<h1 class="titre-principal">Liste des marques de véhicules</h1>
@@ -26,10 +26,10 @@
 										<strong>{{marque.marque}}</strong>
 									</td>
 									<td>
-										<a href="{{path('app_marques_supprimer_marque',{id:marque.id})}}" class="btn btn-danger" data-id="{{ marque.id }}" id="btn-supprimer-marque">Supprimer</a>
+										<a class="btn btn-warning" href="{{path('app_marques_modifier_marque',{id:marque.id,slug:marque.slug})}}">Modifier</a>
 									</td>
 									<td>
-										<a class="btn btn-warning" href="{{path('app_marques_modifier_marque',{id:marque.id,slug:marque.slug})}}">Modifier</a>
+										<a href="{{path('app_marques_supprimer_marque',{id:marque.id})}}" class="btn btn-danger" data-id="{{ marque.id }}" id="btn-supprimer-marque">Supprimer</a>
 									</td>
 								</tr>
 								{% set i = i + 1 %}

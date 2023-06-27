@@ -3,14 +3,16 @@
 	Créer un nouveau véhicule
 {% endblock %}
 {% block body %}
+<div class="wrapper">
+{{ include('_partials/_admin-nav.html.twig') }}
 	<main>
-		<a class="btn btn-primary" href="{{path('app_vehicules_liste_vehicules')}}" class="go-back-link">Revenir à la liste</a>
+		<a class="btn btn-primary btn-centered" href="{{path('app_vehicules_liste_vehicules')}}" class="go-back-link">Revenir à la liste</a>
 		
-		<form class="vehicule-form">
-		<div class="form-header"><h1>{{titre}}</h1></div>
+		
 			{{form_start(form)}}
+		<div class="form-header">{{titre}}</div>
 			<fieldset>
-			<button class="btn btn-primary" type="submit">{{button_label|default ('Enregistrer')}}</button>
+			<button class="btn btn-primary btn-centered" type="submit">{{button_label|default ('Enregistrer')}}</button>
 				{{ include('_partials/_galerie-photos.html.twig') }}
 				<legend>Galerie de photos</legend>
 				{{form_row(form.photos)}}
@@ -64,8 +66,8 @@
 				{{form_row(form.remarques)}}
 			</fieldset>
 			<button class="btn btn-primary btn-centered" type="submit">{{button_label|default ('Enregistrer')}}</button>
-		</form>
+	
 		{{ form_end(form) }}
 	</main>
-
+</div>
 {% endblock %}
