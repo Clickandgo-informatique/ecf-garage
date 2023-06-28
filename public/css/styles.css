@@ -138,3 +138,42 @@ section {
 .prochain-creneau-jour {
   margin: 5px;
 }
+.alert {  
+position:relative;
+  border: 1px solid lightgray;
+  margin:1px 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px black;
+}
+.alert-message {
+  padding:10px;
+}
+.alert-success {
+  background-color: green;
+  color: #fff;
+}
+.alert-danger{
+  color:#fff;
+  background-color: red;
+
+}
+.alert-warning{
+  color:red;
+  background-color: lightsalmon;
+
+}
+.btn-close{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  color:blue;
+  font-size: 35px;
+  padding:5px;
+  display:inline-flex;
+  align-items: center;
+  cursor:pointer;
+  outline: none;
+  border:none;
+  background-color: transparent;
+}
