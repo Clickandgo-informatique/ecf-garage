@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Boites;
 use App\Entity\Clients;
 use App\Entity\Couleurs;
 use App\Entity\Marques;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +22,7 @@ class VehiculesFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('modele')
+            ->add('modele',TextType::class)
             ->add('motorisation', EntityType::class, ['class' => Motorisations::class])
             ->add('cylindree', NumberType::class)
             ->add('nb_portes', NumberType::class)
@@ -29,7 +31,7 @@ class VehiculesFormType extends AbstractType
             ->add('nb_places', NumberType::class)
             ->add('date_mise_en_vente', DateType::class, ['widget' => 'single_text'])
             ->add('type_vehicule')
-            ->add('boite', NumberType::class)
+            ->add('boite', EntityType::class,['class'=>Boites::class])
             ->add('num_chassis')
             ->add('localisation')
             ->add('date_vente', DateType::class, ['widget' => 'single_text'])

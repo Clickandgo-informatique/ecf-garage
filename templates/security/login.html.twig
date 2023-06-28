@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	<main class="main">
-		<h1 class="titre-principal">Veuillez vous identifier svp</h1>
+	<main>	
 
 		<form method="post" class="form login-form">
+		<div class="form-header">Veuillez vous identifier svp</div>
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 			{% endif %}
@@ -32,6 +32,8 @@
 						            </label>
 						        </div>
 						    #}
+							<p><a href="{{path('app_register')}}">Pas encore inscrit ?. Incrivez-vous ici.</a></p>
+							<p><a href="{{path('forgotten_password')}}">Mot de passe oublié ?. Récupérez-le ici.</a></p>
 
 		<button class="btn btn-login btn-primary btn-centered" type="submit">
 			Se connecter

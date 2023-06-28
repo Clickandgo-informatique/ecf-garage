@@ -7,6 +7,7 @@ use App\Entity\Vehicules;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Faker\Factory;
 
 class VehiculesFixtures extends Fixture
 {
@@ -16,25 +17,24 @@ class VehiculesFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
+
+        $tblBadges=['','Peu de km !','Occasion récente !','Occasion rare','Etat exceptionnel'];
         $tblMarques = ['Alfa-Romeo', 'Aston-Martin', 'Bentley', 'BMW', 'Citroen', 'DS automobiles', 'Jaguar', 'Mercedes', 'Peugeot', 'Renault', 'Rolls-Royce', 'Toyota', 'Volkswagen'];
 
-        $types = ["Fourgonnette", "Familiale", "Citadine", "Véhicule entreprise", "Véhicule industriel", "Camionnette"];
-        $boites = ["Manuelle", "Auto", "Séquentielle"];
+
         $couleurs = ["Rouge", "Gris-métallisé", "Gris-Perle métallisé", "Blanc", "Bleu-clair", "Noir", "Anthracite"];
         $tblOptions = ['Lève-glaces électrique AV', 'Lève-glaces électrique AR', 'Direction assistée', 'GPS', 'Caméra de recul', 'Aide au parking', 'Sièges cuir', 'Régulateur de vitesse', 'Boîte automatique', 'Attache remorque', 'Stop & Go', 'Park assist', 'Toit ouvrant électrique'];
 
 
         $lengthMarques = count($tblMarques);
-        $lengthTypes = count($types);
-        $lengthBoites = count($boites);
         $lengthCouleurs = count($couleurs);
 
         for ($i = 0; $i <= 20; $i++) {
 
             //Random sur les valeurs des tableaux fictifs
             $randomMarques = rand(0, $lengthMarques - 1);
-            $randomTypes = rand(0, $lengthTypes - 1);
-            $randomBoites = rand(0, $lengthBoites - 1);
+
 
             //Random sur les dates
             // $timestamp = rand(strtotime("Jan 01 2015"), strtotime("Nov 01 2023"));
@@ -49,7 +49,7 @@ class VehiculesFixtures extends Fixture
                 ->setCouleur($this->getReference('couleur_' . rand(0, 11)))
                 ->setMotorisation($this->getReference('motorisation_' . rand(0, 6)))
                 ->setTypeVehicule($this->getReference('type_vehicule_' . rand(0, 7)))
-                ->setBoite($boites[$randomBoites])
+                ->setBoite($this->getReference('Boite_' . rand(0, 4)))
                 ->setCylindree(rand(1000, 5600))
                 ->setNbPlaces(rand(1, 10))
                 ->setNbPortes(rand(2, 5))
@@ -57,14 +57,16 @@ class VehiculesFixtures extends Fixture
                 ->setKilometrage(rand(1000, 200000))
                 ->setChevauxDin(rand(1, 1000))
                 ->setChevauxFiscaux(10.00, 400.00)
-                ->setRemarques('Aucune remarque')
+                ->setRemarques("Pas de remarque particulière.")
                 ->setPlaqueImmatriculation('AA-' . rand(0001, 9999) . '-ZZ')
                 ->setSlug($this->slugger->slug($v->getMarque() . ' ' . $v->getModele())->lower())
-                ->setPublicationAnnonce(true);
+                ->setPublicationAnnonce(true)
+                ->setdatemiseencirculation($faker->dateTimeThisDecade())
+                ->setbadgeannonce($faker->randomElement($tblBadges));
 
 
-            // $v->setDateMiseEnCirculation($random_Date);
-            // $v->setDateMiseEnVente($random_Date);
+          
+         
 
             $manager->persist($v);
             $this->addReference('vehicule_' . $i, $v);
@@ -87,6 +89,7 @@ class VehiculesFixtures extends Fixture
     public function getDependencies()
     {
         return [
+            BoitesFixtures::class,
             ClientsFixtures::class,
             Couleurs::class,
             MarquesFixtures::class,

@@ -45,9 +45,6 @@ class Vehicules
     #[ORM\OneToMany(mappedBy: 'id_vehicule', targetEntity: Photos::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $photos;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $boite = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $num_chassis = null;
 
@@ -112,12 +109,19 @@ class Vehicules
     #[ORM\JoinColumn(nullable: false)]
     private ?Motorisations $motorisation = null;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Boites $boite = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $badge_annonce = null;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
-        $this->listeOptionsVehicule = new ArrayCollection();     
+        $this->listeOptionsVehicule = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
-        $this->favoris = new ArrayCollection();                    
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,7 +139,7 @@ class Vehicules
         $this->modele = $modele;
 
         return $this;
-        }
+    }
 
 
     public function getCylindree(): ?int
@@ -236,17 +240,6 @@ class Vehicules
                 $photo->setIdVehicule(null);
             }
         }
-
-        return $this;
-    }
-    public function getBoite(): ?string
-    {
-        return $this->boite;
-    }
-
-    public function setBoite(?string $boite): self
-    {
-        $this->boite = $boite;
 
         return $this;
     }
@@ -524,6 +517,30 @@ class Vehicules
     public function setMotorisation(?Motorisations $motorisation): self
     {
         $this->motorisation = $motorisation;
+
+        return $this;
+    }
+
+    public function getBoite(): ?Boites
+    {
+        return $this->boite;
+    }
+
+    public function setBoite(?Boites $boite): self
+    {
+        $this->boite = $boite;
+
+        return $this;
+    }
+
+    public function getBadgeAnnonce(): ?string
+    {
+        return $this->badge_annonce;
+    }
+
+    public function setBadgeAnnonce(?string $badge_annonce): self
+    {
+        $this->badge_annonce = $badge_annonce;
 
         return $this;
     }

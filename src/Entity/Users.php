@@ -57,6 +57,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Vehicules::class, mappedBy: 'favoris')]
     private Collection $favoris;
 
+    #[ORM\Column]
+    private ?bool $is_verified = false;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $resetToken = null;
+
     public function __construct()
     {
         return $this->created_at = new \DateTimeImmutable();
@@ -242,8 +248,32 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function __toString():string
+    public function __toString(): string
     {
-       return $this->nom.' '.$this->prenom; 
+        return $this->nom . ' ' . $this->prenom;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
     }
 }

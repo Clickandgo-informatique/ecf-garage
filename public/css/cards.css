@@ -1,11 +1,12 @@
 .cards-container {
   display: grid;
   place-items: start center;
+  align-content: start;
   row-gap: 10px;
   column-gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   width: 100%;
-  margin:20px;
+  margin: 20px;
 }
 
 .card {
@@ -14,12 +15,10 @@
   border-radius: 10px;
   box-shadow: 2px 2px 4px darkgray;
   background-color: #fff;
-
 }
 
 .card-vehicule {
   width: 284px;
- 
 }
 
 .card-vehicule:hover {
@@ -104,7 +103,8 @@
   margin-right: 10px;
 }
 .resume {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   text-align: center;
   color: royalblue;
   margin: 5px;
@@ -119,10 +119,10 @@
   font-size: 0.8rem;
   color: darkgray;
   padding: 5px;
-  margin:5px;
- 
+  margin: 5px;
 }
-.type-vehicule {
+.type-vehicule,
+.type-motorisation {
   font-size: 0.6rem;
   padding: 6px;
   background-color: blue;
@@ -131,6 +131,9 @@
   color: #fff;
   text-transform: uppercase;
   text-align: center;
+}
+.type-motorisation {
+  background-color: royalblue;
 }
 .prix-vehicule {
   font-size: 1.1rem;

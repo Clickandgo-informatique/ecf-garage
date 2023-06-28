@@ -31,6 +31,7 @@
 			{% endif %}
 		</div>
 		<div class="type-vehicule">{{v.typevehicule}}</div>
+		<div class="type-motorisation">{{v.motorisation}}</div>
 
 		<div class="card-title">
 
@@ -41,16 +42,14 @@
 		</div>
 		<div class="card-text">
 
-			<div class="resume">{{v.datemiseencirculation|date("m-y")}}
+			<div class="resume">{{v.datemiseencirculation|date("m-Y")}}
 				|
 				{{v.kilometrage|number_format(0, '.', '.')}}
 				km |
 				{{v.boite}}
-				|
-				{{v.motorisation}}</div>
-
+			</div>
 			<p class="prix-vehicule">{{v.prixvente|number_format(0, '.', '.') }}
-								€</p>
+				€</p>
 
 			<a class="btn btn-primary btn-centered" href="{{path('app_vehicules_annonces_details_vehicule',{id:v.id})}}">Voir détails</a>
 

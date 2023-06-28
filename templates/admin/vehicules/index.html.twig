@@ -43,12 +43,12 @@
 							<label for="Kilométrage descendant">Kilométrage descendant</label>
 						</div>
 						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Ancienneté ascendant" name="classerPar" value="Ancienneté ascendant">
-							<label for="Ancienneté ascendant">Ancienneté ascendant</label>
+							<input class="radio-button" type="radio" id="Ancienneté ascendante" name="classerPar" value="Ancienneté ascendante">
+							<label for="Ancienneté ascendante">Ancienneté ascendante</label>
 						</div>
 						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Ancienneté descendant" name="classerPar" value="Ancienneté descendant">
-							<label for="Ancienneté descendant">Ancienneté descendant</label>
+							<input class="radio-button" type="radio" id="Ancienneté descendante" name="classerPar" value="Ancienneté descendante">
+							<label for="Ancienneté descendante">Ancienneté descendante</label>
 						</div>
 					</fieldset>
 
@@ -58,11 +58,11 @@
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="kmMin">Km min.</label>
-								<input type="number" name="kmMin" id="kmMin" min="0" max="999999" value="0" step="100">
+								<input type="number" name="kmMin" id="kmMin" min="1" max="999999" value="1" step="100">
 							</div>
 							<div class="input-intervalle">
 								<label for="kmMax">Km max.</label>
-								<input type="number" name="kmMax" id="kmMax" min="0" max="10000000" value="10000000" step="100">
+								<input type="number" name="kmMax" id="kmMax" min="1" max="10000000" value="10000000" step="100">
 							</div>
 						</div>
 
@@ -70,17 +70,16 @@
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle">
 								<label for="prixMin">Prix min.</label>
-								<input type="number" name="prixMin" id="prixMin" min="0" max="499000" value="0" step="100">
+								<input type="number" name="prixMin" id="prixMin" min="1" max="499000" value="1" step="100">
 							</div>
 							<div class="input-intervalle">
 								<label for="prixMax">Prix max.</label>
-								<input type="number" name="prixMax" id="prixMax" min="0" max="500000" value="500000" step="100">
+								<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000" step="100">
 							</div>
 						</div>
 
 						{# Filtre intervalle ancienneté #}
-						{# <div class="wrapper-filtres-intervalle">
-																																																	<div class="input-intervalle">
+						{# <div class="wrapper-filtres-intervalle">																																											<div class="input-intervalle">
 																																																		<label for="yearMin">Année min.</label>
 																																																		<input type="number" name="yearMin" id="yearMin">
 																																																	</div>
