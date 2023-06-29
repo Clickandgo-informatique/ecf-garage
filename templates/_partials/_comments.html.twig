@@ -35,12 +35,16 @@
 			</div>
 		</div>
 	</div>
-	<form class="commentsForm" id="commentsForm">
-		<h2>Ajouter un commentaire</h2>
-		{{ form_start(commentForm)}}
-		{{form_widget(commentForm)}}
-		{{ form_end(commentForm)}}
-	</form>
+
+	{{ form_start(commentForm)}}
+		<div class="form-header">Ajouter un commentaire</div>
+		{{ form_row(commentForm.note)}}
+		{{ form_row(commentForm.email)}}
+		{{ form_row(commentForm.pseudo)}}
+		{{ form_row(commentForm.contenu)}}
+		{{ form_row(commentForm.rgpd)}}
+	{{ form_end(commentForm)}}
+
 </div>
 {% block javascripts %}
 	<script src="{{asset('assets/js/commentaires.js')}}" defer></script>

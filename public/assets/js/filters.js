@@ -52,17 +52,17 @@ window.onload = () => {
 
   showfilters.addEventListener("change", () => {
     if (showfilters.checked) {
-      filtersForm.style.transform = "translateX(0px)";
-      filtersForm.style.transition = "transform ease-in-out 2s";
-      setTimeout(function collapse() {
+      filtersForm.style.transform = "translateX(0%)";
+      filtersForm.style.transition = "transform ease-in 2s";
+      setTimeout(() => {
         filtersForm.style.display = "block";
-      }, 2100);
+      }, 2000);
     } else {
       filtersForm.style.transform = "translateX(-100%)";
-      filtersForm.style.transition = "transform ease-in-out 2s";
-      setTimeout(function collapse() {
+      filtersForm.style.transition = "transform ease-out 2s";
+      setTimeout(() => {
         filtersForm.style.display = "none";
-      }, 3100);
+      }, 2000);
     }
   });
 

@@ -17,15 +17,14 @@ class MailContactController extends AbstractController
     #[Route('/envoyer-mail/{id}/{slug}', name: 'envoyer_mail')]
     public function envoyerMail($slug, MailerInterface $mailer, Request $request, ServicesRepository $servicesRepository, $id): Response
     {
-        //Si l'on se trouve sur la page ou fiche d'un service
-        $service_a_contacter = $servicesRepository->find($id);
-        $idService = $service_a_contacter->getId();
-        $nomService = $service_a_contacter->getNom();
+        //Si l'on se trouve sur la page ou fiche d'un service       
+        $service = $servicesRepository->find($id);      
+        $nomService = $service->getNom();
 
         //Recherche des adresses mails du service
-        $mail1 = $service_a_contacter->getMailService1();
+        $mail1 = $service->getMailService1();
         $placeholder = "Indiquez ici ce qui vous amène à nous contacter sans oublier vos coordonnées complète et les données du véhicule concerné.";
-        $slug = $service_a_contacter->getSlug();
+        $slug = $service->getSlug();
 
         $form = $this->createForm(ContactFormType::class);
         $contact = $form->handleRequest($request);
@@ -38,8 +37,9 @@ class MailContactController extends AbstractController
                 ->subject($contact->get('subject')->getData())
                 ->htmlTemplate('emails/contact_service.html.twig')
                 ->context([
-                    'service' => $idService,
-                    'mail' => $mail1,
+                    'service' => $service,
+                    'nomService' => $nomService,
+                    'mailService' => $mail1,
                     'message' => $contact->get('message')->getData()
                 ]);
 
@@ -52,10 +52,9 @@ class MailContactController extends AbstractController
         }
 
         return $this->render('_partials/_modale-contact.html.twig', [
-            'mail1' => $mail1,
-            'service' => $service_a_contacter,
+            'mailService' => $mail1,
+            'service' => $service,
             'nomService' => $nomService,
-            'idService' => $idService,
             'form' => $form->createView()
         ]);
     }

@@ -9,11 +9,13 @@
 @import "./switches.css";
 @import "./footer.css";
 @import "./modals.css";
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+:root {
+  --background-color: rgb(65, 105, 225);
+}
 
 * {
   margin: 0;
-  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
 
@@ -31,9 +33,12 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: whitesmoke;
   width: 100%;
+  /* footer+navbar=250px */
+  height: calc(100vh-250px);
+  min-height: 600px;
 }
 
 .content {
@@ -138,42 +143,40 @@ section {
 .prochain-creneau-jour {
   margin: 5px;
 }
-.alert {  
-position:relative;
+.alert {
+  position: relative;
   border: 1px solid lightgray;
-  margin:1px 5px;
+  margin: 1px 5px;
   border-radius: 5px;
   box-shadow: 1px 1px 4px black;
 }
 .alert-message {
-  padding:10px;
+  padding: 10px;
 }
 .alert-success {
   background-color: green;
   color: #fff;
 }
-.alert-danger{
-  color:#fff;
+.alert-danger {
+  color: #fff;
   background-color: red;
-
 }
-.alert-warning{
-  color:red;
+.alert-warning {
+  color: red;
   background-color: lightsalmon;
-
 }
-.btn-close{
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  color:blue;
+.btn-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  color: blue;
   font-size: 35px;
-  padding:5px;
-  display:inline-flex;
+  padding: 5px;
+  display: inline-flex;
   align-items: center;
-  cursor:pointer;
+  cursor: pointer;
   outline: none;
-  border:none;
+  border: none;
   background-color: transparent;
 }

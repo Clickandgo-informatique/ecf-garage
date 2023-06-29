@@ -43,7 +43,7 @@ class Commentaires
     private ?int $note = null;
 
     #[ORM\Column]
-    private ?bool $publication = null;
+    private ?bool $publication = false;
 
     public function __construct()
     {

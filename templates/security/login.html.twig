@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	<main>	
+	<main>
 
 		<form method="post" class="form login-form">
-		<div class="form-header">Veuillez vous identifier svp</div>
+			<div class="form-header">Veuillez vous identifier svp</div>
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 			{% endif %}
@@ -23,18 +23,23 @@
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 		</div>
 		{#
-						        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-						        See https://symfony.com/doc/current/security/remember_me.html
-						
-						        <div class="checkbox mb-3">
-						            <label>
-						                <input type="checkbox" name="_remember_me"> Remember me
-						            </label>
-						        </div>
-						    #}
-							<p><a href="{{path('app_register')}}">Pas encore inscrit ?. Incrivez-vous ici.</a></p>
-							<p><a href="{{path('forgotten_password')}}">Mot de passe oublié ?. Récupérez-le ici.</a></p>
-
+								        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+								        See https://symfony.com/doc/current/security/remember_me.html
+								
+								        <div class="checkbox mb-3">
+								            <label>
+								                <input type="checkbox" name="_remember_me"> Remember me
+								            </label>
+								        </div>
+								    #}
+		<div class="login-and-register">
+			<p>Pas encore inscrit ?. Incrivez-vous
+				<a href="{{path('app_register')}}">ici.</a>
+			</p>
+			<p>Mot de passe oublié ?. Récupérez-le
+				<a href="{{path('forgotten_password')}}">ici.</a>
+			</p>
+		</div>
 		<button class="btn btn-login btn-primary btn-centered" type="submit">
 			Se connecter
 		</button>

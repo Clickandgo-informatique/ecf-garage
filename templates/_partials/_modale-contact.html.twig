@@ -2,28 +2,26 @@
 {% block body %}
 	<main>
 		<div class="modal" id="modale-contact">
-			<div class="modal-header">
-				<h1 class="titre-principal">Contacter un service</h1>
-			</div>
+			<div class="modal-header"></div>
 			<div class="divider"></div>
 
 			<div class="modal-content">
 				{{form_start(form)}}
-				<form class="form contact-services">
-					{{ form_row(form.service) }}
-					{{form_row(form.subject)}}
-					{{form_row(form.email)}}
-					{{form_row(form.mail)}}
-					{{form_row(form.message)}}
+				<div class="form-header">Contacter le service
+					{{nomService}}
+				</div>			
+				{{form_row(form.subject)}}
+				{{form_row(form.email)}}			
+				{{form_row(form.message)}}
 
-				</div>
-				<div class="divider"></div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary btn-centered">Envoyer</button>
-					<button class="btn btn-secondary btn-right modal-trigger" data-target="modale-contact">Fermer</button>
-				</div>
-			</form>
+				<button type="submit" class="btn btn-primary btn-centered">Envoyer</button>
+			</div>
 			{{form_end(form)}}
+			<div class="divider"></div>
+			<div
+				class="modal-footer">{# <button class="btn btn-secondary btn-right modal-trigger" data-target="modale-contact">Fermer</button> #}
+			</div>
+
 		</div>
 	</main>
 {% endblock %}

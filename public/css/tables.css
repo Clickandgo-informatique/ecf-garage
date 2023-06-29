@@ -5,8 +5,7 @@ table {
   width: fit-content;
   max-width: 95%;
   border-collapse: collapse;
-  box-shadow: 2px 2px 4px black;
-  border-radius: 10px;
+  box-shadow: 1px 1px 4px black;
 }
 
 tr {
@@ -14,21 +13,23 @@ tr {
 }
 td {
   background-color: #fff;
+  word-break: normal;
 }
 td,
 th {
   padding: 10px;
 }
 thead {
-  background-color: cornflowerblue;
+  background: var(--background-color);
   border-radius: 20px;
+  width: 100%;
 }
 th {
   text-align: left;
   color: white;
 }
 .table-label {
-  background-color: rgb(49, 35, 251);
+  background: var(--background-color);
   width: auto;
   color: white;
   white-space: nowrap;
@@ -43,7 +44,7 @@ th {
   text-align: right;
 }
 .jour {
-  background-color: blue;
+  background: var(--background-color);
 }
 .wrapper-jours {
   display: flex;

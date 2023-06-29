@@ -1,46 +1,44 @@
 .menu-lateral-gauche {
-    position:relative;
-    display:block; 
-    background-color:blue;
-    justify-content: start; 
-    margin:5px;  
-    border-radius: 5px;
-    box-shadow: 1px 1px 4px black;
+  position: relative;
+  display: block;
+  background: var(--background-color);
+  justify-content: start;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px black;
 }
+
 .menu-options {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 0.8rem;   
-    padding:5px;
-    margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.8rem;
+  padding: 5px;
+  margin: 5px;
 }
 
 .menu-title {
-    position:relative;
-    border: 1px solid gray;
-    padding: 5px; 
-    background-color: royalblue;
-    color: white;  
-  
+  position: relative;
+  border: 1px solid gray;
+  padding: 5px;
+  background-color: royalblue;
+  color: white;
 }
 
 .menu-link {
-    list-style: none;
-    margin: 20px;
-    width: 100%;
-    color:#fff;    
-   
+  list-style: none;
+  margin: 20px;
+  width: 100%;
+  color: #fff;
 }
-.menu-item{
-border:1px solid darkgray;
-margin: 5px;
-
+.menu-item {
+  border: 1px solid darkgray;
+  margin: 5px;
 }
-.menu-item p{
-    padding:10px 5px;
-    white-space: nowrap;
+.menu-item p {
+  padding: 10px 5px;
+  white-space: nowrap;
 }
-.menu-item p:hover{
-    background-color:deepskyblue;
+.menu-item p:hover {
+  background-color: deepskyblue;
 }

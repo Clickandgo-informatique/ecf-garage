@@ -4,21 +4,29 @@ form {
   border: 1px solid lightgray;
   max-width: 600px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   justify-content: center;
-  margin: 10px auto;
+  margin: 20px auto;
   background-color: #fff;
+  align-content: center;
+}
+
+form p {
+  margin: 8px;
 }
 .form-header {
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #cccccc;
-  padding: 15px 0;
-  background-color: blue;
+  padding: 15px;
+  background: var(--background-color);
   color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 35px;
+  margin: 10px auto;
+  width: 100%;
+  box-shadow: 1px 1px 4px darkgray;
 }
 .form-header h1 {
   text-align: center;
@@ -38,9 +46,10 @@ form {
   flex-direction: column;
   margin: 10px 5px;
 }
-label {
+form div label {
   color: blue;
   font-size: 12px;
+  margin-left: 5px;
 }
 input[type="text"],
 input[type="email"],
@@ -56,7 +65,10 @@ select {
   height: 30px;
   border: 1px solid lightgray;
   border-radius: 5px;
-  margin: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .radio-grp {
   display: flex;
@@ -81,11 +93,15 @@ textarea {
 }
 
 fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 10px;
   background: #fff;
   margin: 10px;
+
 }
 legend {
   color: blue;
@@ -96,4 +112,57 @@ legend {
 }
 .radio-group div {
   flex: 1;
+}
+.login-and-register {
+  margin: 20px 0;
+}
+.liste-commentaires {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 800px;
+}
+.texte-commentaire {
+  color: black;
+  margin: 10px;
+  padding: 0;
+  font-size: 0.7rem;
+}
+.publication-par {
+  color: darkgray;
+  padding: 2px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  margin-right: 5px;
+  text-align: right;
+}
+.container-commentaires {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 800px;
+  max-height: 350px;
+  margin: 10px auto;
+  overflow-y: scroll;
+}
+.contenu-commentaire {
+  background-color: rgb(250, 250, 250);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid darkgray;
+  box-shadow: 2px 2px 4px darkgray;
+  width: 100%;
+}
+.reponse {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: lightgray;
+  color: blackck;
+  margin-left: 10px;
+}
+.filtersForm{
+  border:none;
+  background: transparent;
 }

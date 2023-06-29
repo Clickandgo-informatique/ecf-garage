@@ -17,11 +17,12 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('service', EntityType::class, [
-                'class' => Services::class,
-                'label' => 'Service contacté : ',
-            ])
-            ->add('mail',EmailType::class)
+            // ->add('service', EntityType::class, [
+            //     'class' => Services::class,
+            //     'label' => 'Service contacté : ',
+                
+            // ])
+        
             ->add('subject', TextType::class, [
                 'label' => "Objet : ",
                 'constraints' => new NotBlank(),
@@ -47,7 +48,7 @@ class ContactFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            
+           
         ]);
     }
 }

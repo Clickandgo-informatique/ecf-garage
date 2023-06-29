@@ -21,18 +21,18 @@ class MainController extends AbstractController
         $services = $servicesRepository->findBy([], ['nom' => 'ASC']);
         //Liste de tous les commentaires
         $commentaires = $commentairesRepository->findBy(['publication' => true], ['created_at' => 'DESC']);
-        //Gestion des Commentaires
-        $commentaire = new Commentaires();
 
 
         //Génération du formulaire de commentaires
-        $commentForm = $this->createForm(CommentairesType::class, $commentaire);
 
+        $commentaire = new Commentaires;
+        $commentForm = $this->createForm(CommentairesType::class, $commentaire);
         $commentForm->handleRequest(($request));
 
         //Traitement du formulaire
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
-
+      
+            $commentaire->setCreatedAt(new \DateTimeImmutable());
             //Récupération du contenu du champ parentid
             $parentid = $commentForm->get('parentid')->getData();
 
@@ -42,11 +42,10 @@ class MainController extends AbstractController
             }
 
             $commentaire->setParent($parent ?? null);
-
             $em->persist($commentaire);
             $em->flush();
 
-            $this->addFlash('message', 'Votre commentaire a bien été envoyé, il sera publié suite à modération dans les plus brefs délais !');
+            $this->addFlash('success', 'Votre commentaire a bien été envoyé, il sera publié suite à modération dans les plus brefs délais !');
             return $this->redirectToRoute('app_index');
         }
         return $this->render('main/index.html.twig', [

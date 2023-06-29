@@ -5,125 +5,134 @@
 
 	<main>
 
+		{#Affiche/occulte le panneau de filtres #}
+		<div class="filtres">
+			<input type="checkbox" name="show-filters" id="show-filters">
+			<span class="bi bi-funnel"></span>
+			<label for="show-filters">Filtres</label>
+		</div>
 		<h1 class="titre-principal">Liste des véhicules d'occasion</h1>
 
 		{% if is_granted(['ROLE_ADMIN']) %}
 			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
 		{% endif %}
-		{# 
-																												<p class="resultat-filtre">Total véhicules dans la base =
-																													{{totalVehicules}}</p>
-																												<p class="resultat-filtre">Résultats filtre actif =
-																													{{totalVehiculesFiltered}}</p> #}
+
 		<div
 			class="wrapper">
-			{#Affiche/occulte le panneau de filtres #}
-			<div class="filtres">
-				<input type="checkbox" name="show-filters" id="show-filters">
-				<label for="show-filters">Filtres</label>
-				{# Filtre multicritère : #}
 
-				<form id="filters" class="filtersForm">
+			{# Filtre multicritère : #}
+			<form id="filters" class="filtersForm">
+				<fieldset>
+					<legend>Classer par :</legend>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Prix ascendant" name="classerPar" value="Prix ascendant">
+						<label for="Prix ascendant">Prix ascendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Prix descendant" name="classerPar" value="Prix descendant">
+						<label for="Prix descendant">Prix descendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Kilométrage ascendant" name="classerPar" value="Kilométrage ascendant">
+						<label for="Kilométrage ascendant">Kilométrage ascendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Kilométrage descendant" name="classerPar" value="Kilométrage descendant">
+						<label for="Kilométrage descendant">Kilométrage descendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Ancienneté ascendante" name="classerPar" value="Ancienneté ascendante">
+						<label for="Ancienneté ascendante">Ancienneté ascendante</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Ancienneté descendante" name="classerPar" value="Ancienneté descendante">
+						<label for="Ancienneté descendante">Ancienneté descendante</label>
+					</div>
+				</fieldset>
+
+				{# Filtre intervalle kilomètrage #}
+				<fieldset>
+					<legend>Par intervalles</legend>
+					<div class="wrapper-filtres-intervalle">
+						<div class="input-intervalle">
+							<label for="kmMin">Km min.</label>
+							<input type="number" name="kmMin" id="kmMin" min="1" max="999999" value="1" step="100">
+						</div>
+						<div class="input-intervalle">
+							<label for="kmMax">Km max.</label>
+							<input type="number" name="kmMax" id="kmMax" min="1" max="10000000" value="10000000" step="100">
+						</div>
+					</div>
+
+					{#Filtre intervalle prix #}
+					<div class="wrapper-filtres-intervalle">
+						<div class="input-intervalle">
+							<label for="prixMin">Prix min.</label>
+							<input type="number" name="prixMin" id="prixMin" min="1" max="499000" value="1" step="100">
+						</div>
+						<div class="input-intervalle">
+							<label for="prixMax">Prix max.</label>
+							<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000" step="100">
+						</div>
+					</div>
+				</fieldset>
+				{# Filtre intervalle ancienneté #}
+				{# <div class="wrapper-filtres-intervalle"><div class="input-intervalle">
+												<label for="yearMin">Année min.</label>
+												<input type="number" name="yearMin" id="yearMin">
+												</div>
+												<div class="input-intervalle">
+												<label for="yearMax">Année max.</label>
+												<input type="number" name="yearMax" id="yearMax">
+												</div>
+												</div> #}
+				{# Filtre sur type de véhicule #}
 					<fieldset>
-						<legend>Classer par :</legend>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Prix ascendant" name="classerPar" value="Prix ascendant">
-							<label for="Prix ascendant">Prix ascendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Prix descendant" name="classerPar" value="Prix descendant">
-							<label for="Prix descendant">Prix descendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Kilométrage ascendant" name="classerPar" value="Kilométrage ascendant">
-							<label for="Kilométrage ascendant">Kilométrage ascendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Kilométrage descendant" name="classerPar" value="Kilométrage descendant">
-							<label for="Kilométrage descendant">Kilométrage descendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Ancienneté ascendante" name="classerPar" value="Ancienneté ascendante">
-							<label for="Ancienneté ascendante">Ancienneté ascendante</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Ancienneté descendante" name="classerPar" value="Ancienneté descendante">
-							<label for="Ancienneté descendante">Ancienneté descendante</label>
-						</div>
-					</fieldset>
-
-					{# Filtre intervalle kilomètrage #}
-					<fieldset>
-						<legend>Par intervalles</legend>
-						<div class="wrapper-filtres-intervalle">
-							<div class="input-intervalle">
-								<label for="kmMin">Km min.</label>
-								<input type="number" name="kmMin" id="kmMin" min="1" max="999999" value="1" step="100">
-							</div>
-							<div class="input-intervalle">
-								<label for="kmMax">Km max.</label>
-								<input type="number" name="kmMax" id="kmMax" min="1" max="10000000" value="10000000" step="100">
-							</div>
-						</div>
-
-						{#Filtre intervalle prix #}
-						<div class="wrapper-filtres-intervalle">
-							<div class="input-intervalle">
-								<label for="prixMin">Prix min.</label>
-								<input type="number" name="prixMin" id="prixMin" min="1" max="499000" value="1" step="100">
-							</div>
-							<div class="input-intervalle">
-								<label for="prixMax">Prix max.</label>
-								<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000" step="100">
-							</div>
-						</div>
-
-						{# Filtre intervalle ancienneté #}
-						{# <div class="wrapper-filtres-intervalle">																																											<div class="input-intervalle">
-																																																		<label for="yearMin">Année min.</label>
-																																																		<input type="number" name="yearMin" id="yearMin">
-																																																	</div>
-																																																	<div class="input-intervalle">
-																																																		<label for="yearMax">Année max.</label>
-																																																		<input type="number" name="yearMax" id="yearMax">
-																																																	</div>
-																																																</div> #}
-					</fieldset>
-					{# Filtre sur type de véhicule #}
-					<fieldset>
-						<legend>Par type :</legend>
+						<legend>
+					Par type :
+					</legend>
 						{% for  type in typesVehicules %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
-								<label for="types{{type.id}}">{{type.nomtype}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
-					{# Filtre sur type motorisation #}
-					<fieldset>
-						<legend>Par motorisation :</legend>
-						{% for  type in typesMotorisations %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="typesMotorisations[]" id="typesMotorisation{{type.id}}" value="{{type.id}}" class="filtreTypesMotorisations">
-								<label for="typesMotorisations{{type.id}}">{{type.nommotorisation}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
+							<div class="wrapper-input"> <input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
+							<label for="types{{type.id}}">{{type.nomtype}}</label>
+						</div>
+					{% endfor %}
+				</fieldset>
 
-					{# Filtre sur marques de véhicules #}
-					<fieldset>
-						<legend>Par marque :</legend>
-						{% for  marque in marquesVehicules %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
-								<label for="marques{{marque.id}}">{{marque.marque}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
+				{# Filtre sur type motorisation #}
+				<fieldset>
+					<legend>Par motorisation :</legend>
+					{% for  type in typesMotorisations %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="typesMotorisations[]" id="typesMotorisation{{type.id}}" value="{{type.id}}" class="filtreTypesMotorisations">
+							<label for="typesMotorisations{{type.id}}">{{type.nommotorisation}}</label>
+						</div>
+					{% endfor %}
+				</fieldset>
 
-					<input type="hidden" name="page" value="{{page}}">
-				</form>
-			</div>
+				{# Filtre sur boîtes de vitesse #}
+				<fieldset>
+					<legend>Par type de boîte :</legend>
+					{% for  boite in typesBoites %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="boites[]" id="boites{{boite.id}}" value="{{boite.id}}" class="filtreBoites">
+							<label for="boites{{boite.id}}">{{boite.descriptionboite}}</label>
+						</div>
+					{% endfor %}
+				</fieldset>
+
+				{# Filtre sur marques de véhicules #}
+				<fieldset>
+					<legend>Par marque :</legend>
+					{% for  marque in marquesVehicules %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
+							<label for="marques{{marque.id}}">{{marque.marque}}</label>
+						</div>
+					{% endfor %}
+				</fieldset>
+				<input type="hidden" name="page" value="{{page}}">
+			</form>
+
 
 			<div
 				class="cards-container" id="content">

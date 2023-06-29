@@ -1,6 +1,6 @@
 footer{   
     min-height: 200px;
-    background-color: blue;
+    background: var(--background-color);
     color:#fff;
     padding:20px;
     margin:5px;
