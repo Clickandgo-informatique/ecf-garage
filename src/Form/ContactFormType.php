@@ -20,9 +20,9 @@ class ContactFormType extends AbstractType
             // ->add('service', EntityType::class, [
             //     'class' => Services::class,
             //     'label' => 'Service contacté : ',
-                
+
             // ])
-        
+
             ->add('subject', TextType::class, [
                 'label' => "Objet : ",
                 'constraints' => new NotBlank(),
@@ -42,13 +42,12 @@ class ContactFormType extends AbstractType
                 'label' => 'Votre message + coordonnées de contact + données du véhicule concerné : ',
                 'constraints' => new NotBlank(),
                 'attr' => ['class' => 'form-control'],
-            ]);
+            ])
+            ->add('telContact', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-           
-        ]);
+        $resolver->setDefaults([]);
     }
 }

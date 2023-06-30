@@ -2,12 +2,20 @@
 	<div class="menu-options">
 		{% if is_granted("ROLE_ADMIN") %}
 			<div class="menu-item">
+				<div class="menu-title">Données entreprise</div>
+				<p>
+					<a class="menu-link" href="{{path('fiche_entreprise')}}">Fiche entreprise</a>
+				</p>
+		
+			</div>
+
+			<div class="menu-item">
 				<div class="menu-title">Clients</div>
 				<p>
-					<a class="menu-link" href="">Liste clients</a>
+					<a class="menu-link" href="{{path('app_clients_liste_clients')}}">Liste clients</a>
 				</p>
 				<p>
-					<a class="menu-link" href="">+ Ajouter client</a>
+					<a class="menu-link" href="{{path('app_clients_creer_client')}}">+ Ajouter client</a>
 				</p>
 			</div>
 			<div class="menu-item">

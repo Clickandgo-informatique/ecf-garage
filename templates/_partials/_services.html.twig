@@ -3,7 +3,9 @@
 		{% for service in services %}
 			<div class="card card-services">
 				<div class="icone-service">
-					<i></i>
+					{% if service.icone %}
+						<i class="{{service.icone}}"></i>
+					{% endif %}
 				</div>
 				<p class="card-title">{{service.nom}}</p>
 				<p class="card-text">{{service.resume|u.truncate(60)}}
@@ -17,8 +19,11 @@
 					<a href="{{path('app_contact_par_mail_envoyer_mail',{id:service.id,slug:service.slug})}}">Contacter par mail</a>
 				</p>
 				<p class="contact-service-par-telephone">
-					Tel : {{service.telephone1}}</p>
-		</div>
-	{% endfor %}
-</div>{% else %}
-<p>Aucun service n'est encore enregistré dans la base.</p>{% endif %}
+					Tel :
+					{{service.telephone1}}</p>
+			</div>
+		{% endfor %}
+	</div>
+{% else %}
+	<p>Aucun service n'est encore enregistré dans la base.</p>
+{% endif %}

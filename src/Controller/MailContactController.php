@@ -34,13 +34,14 @@ class MailContactController extends AbstractController
             $email = (new TemplatedEmail())
                 ->from($contact->get('email')->getData())
                 ->to($mail1)
-                ->subject($contact->get('subject')->getData())
+                ->subject($contact->get('subject')->getData())                
                 ->htmlTemplate('emails/contact_service.html.twig')
                 ->context([
                     'service' => $service,
                     'nomService' => $nomService,
                     'mailService' => $mail1,
-                    'message' => $contact->get('message')->getData()
+                    'message' => $contact->get('message')->getData(),
+                    'telContact'=>$contact->get('telContact')->getData()
                 ]);
 
             $mailer->send($email);

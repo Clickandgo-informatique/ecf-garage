@@ -6,6 +6,7 @@ use App\Repository\EntrepriseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
+
 class Entreprise
 {
     #[ORM\Id]
@@ -30,6 +31,18 @@ class Entreprise
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ville = null;
+
+    #[ORM\Column(length: 16, nullable: true)]
+    private ?string $tel1 = null;
+
+    #[ORM\Column(length: 16, nullable: true)]
+    private ?string $tel2 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mail_principal = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mail_secondaire = null;
 
     public function getId(): ?int
     {
@@ -104,6 +117,54 @@ class Entreprise
     public function setVille(?string $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getTel1(): ?string
+    {
+        return $this->tel1;
+    }
+
+    public function setTel1(?string $tel1): self
+    {
+        $this->tel1 = $tel1;
+
+        return $this;
+    }
+
+    public function getTel2(): ?string
+    {
+        return $this->tel2;
+    }
+
+    public function setTel2(?string $tel2): self
+    {
+        $this->tel2 = $tel2;
+
+        return $this;
+    }
+
+    public function getMailprincipal(): ?string
+    {
+        return $this->mail_principal;
+    }
+
+    public function setMailprincipal(?string $mailprincipal): self
+    {
+        $this->mail_principal = $mailprincipal;
+
+        return $this;
+    }
+
+    public function getMailsecondaire(): ?string
+    {
+        return $this->mail_secondaire;
+    }
+
+    public function setMailsecondaire(?string $mailsecondaire): self
+    {
+        $this->mail_secondaire = $mailsecondaire;
 
         return $this;
     }

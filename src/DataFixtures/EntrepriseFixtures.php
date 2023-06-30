@@ -18,7 +18,13 @@ class EntrepriseFixtures extends Fixture
             ->setCodepostal("75001")
             ->setVille("Paris")
             ->setSiren("123456789")
-            ->setGerant("Pierre Dupondt");
+            ->setGerant("Vincent Parrot")
+            ->setTel1("01.02.03.04.05")
+            ->setTel2("02.03.04.05.06")
+            ->setMailprincipal('contact@garage-parrot.fr')
+            ->setMailsecondaire('administratif@garage-parrot.fr')      
+            
+            ;
 
         $manager->persist($entreprise);
         $manager->flush();

@@ -6,11 +6,11 @@
 {% block body %}
 	<main>
 		<h1 class="titre-principal">Horaires d'ouverture semaine</h1>
-		<div class="wrapper-jours">
 			{% if is_granted("ROLE_ADMIN") %}
 				<a href="{{path('app_horaires_semaine_creer_creneau')}}" class="btn btn-primary btn-centered">+ Ajouter créneau</a>
 			{% endif %}
 
+		<div class="wrapper-jours">
 			<table>
 				<th colspan="3" class="jour">Lundi</th>
 				<tbody>

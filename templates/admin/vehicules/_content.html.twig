@@ -1,8 +1,15 @@
 {% for v in vehicules %}
 	<div
 		class="card card-vehicule">
-		{# Gestion des favoris #}
+			
+
 		<div class="photo-miniature">
+			{# Affiche ou pas le badge d'une annonce #}
+			{% if v.badgeannonce %}
+				<div class="badge-annonce">{{v.badgeannonce|raw}}</div>
+			{% endif %}
+
+		{# Gestion des favoris #}
 			<div class="favoris">
 				{% if is_granted("ROLE_USER") %}
 					{% for favoris in v.favoris %}

@@ -21,8 +21,12 @@ class ClientsFormType extends AbstractType
             ->add('adresse', TextType::class)
             ->add('code_postal', TextType::class)
             ->add('ville', TextType::class)
-            ->add('telephone_fixe', TextType::class)
-            ->add('telephone_mobile', TextType::class)
+            ->add('telephonefixe', TextType::class,[
+                'label'=>'Telephone fixe'
+            ])
+            ->add('telephonemobile', TextType::class,[
+                'label'=>'Telephone mobile'
+            ])
             ->add('created_at', DateTimeType::class, [
                 'label' => 'Créée le : ',
                 'widget' => 'single_text',

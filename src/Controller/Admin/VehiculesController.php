@@ -156,4 +156,13 @@ class VehiculesController extends AbstractController{
 
         return $this->render('admin/vehicules/liste-vehicules.html.twig', compact('vehicules'));
     }
+
+    #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
+    public function fiche(VehiculesRepository $vehiculesRepository,$id): Response
+    {
+
+        $vehicule = $vehiculesRepository->find($id);
+
+        return $this->render('admin/vehicules/details.html.twig', compact('vehicule'));
+    }
 }

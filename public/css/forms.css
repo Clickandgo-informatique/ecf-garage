@@ -8,7 +8,8 @@ form {
   justify-content: center;
   margin: 20px auto;
   background-color: #fff;
-  align-content: center;
+  align-content: start;
+  width:100%;
 }
 
 form p {
@@ -49,21 +50,22 @@ form p {
 form div label {
   color: blue;
   font-size: 12px;
-  margin-left: 5px;
+  margin-left: 5px; 
+
 }
 input[type="text"],
 input[type="email"],
 input[type="number"],
 input[type="password"],
 input[type="date"],
+input[type="time"],
 select {
   width: 95%;
   font-size: 15px;
   padding-left: 10px;
   padding-right: 10px;
-  color: blue;
   height: 30px;
-  border: 1px solid lightgray;
+  border: 1px solid lightblue;
   border-radius: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -93,19 +95,20 @@ textarea {
 }
 
 fieldset {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 1px solid lightgray;
+display: flex;
+flex-direction: column;
+  border: 1px solid royalblue;
   border-radius: 5px;
   padding: 10px;
   background: #fff;
-  margin: 10px;
+  margin: 10px; 
 
 }
 legend {
-  color: blue;
-  padding: 5px;
+  color: #fff;
+  padding: 5px 10px;
+  background-color: royalblue;
+  border-radius: 5px;
 }
 .radio-group {
   display: flex;
@@ -162,7 +165,7 @@ legend {
   color: blackck;
   margin-left: 10px;
 }
-.filtersForm{
-  border:none;
+.filtersForm {
+  border: none;
   background: transparent;
 }
