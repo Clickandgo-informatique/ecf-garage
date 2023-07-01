@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commentaires
+{% endblock %}
+
+{% block body %}
+	<div class="wrapper">
+			{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+			<h1 class="titre-principal">Liste des commentaires utilisateurs</h1>
+			<a href="" class="btn btn-primary btn-centered">Créer un nouveau commentaire</a>
+			<table id="tblCommentaires">
+				<thead>
+					<th>Id</th>
+					<th>Date</th>
+					<th>Note</th>
+					<th>Publié</th>
+					<th>Contenu</th>
+					<th>Pseudo</th>
+					<th>Email</th>
+					<th>Parent</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</thead>
+				<tbody>
+					{% for comment in commentaires %}
+						<tr>
+							<td>{{comment.id}}</td>
+							<td>{{comment.createdAt|date("d/m/Y H:i:s")}}</td>
+							<td>{{comment.note}}</td>
+							<td>
+								<label class="switch">
+									<input class="toggle-switch-publier" type="checkbox" value="{{comment.publication}}" {{comment.publication ==1 ? "checked":""}} role="switch" data-id="{{comment.id}}">
+									<span class="slider round"></span>
+								</label>
+							</td>
+							<td>{{comment.contenu|raw}}</td>
+							<td>{{comment.pseudo}}</td>
+							<td>{{comment.email}}</td>
+							<td>{{comment.parent}}</td>
+
+							<td>
+								<a href="">Modifier</a>
+							</td>
+							<td>
+								<a class="btn btn-danger btn-supprimer-commentaire" id="btn-supprimer-commentaire" data-id="{{comment.id}}">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</main>
+	</div>
+	{% block javascripts %}
+		<script type="text/javascript" src="{{asset('assets/js/commentaires.js')}}" defer></script>
+
+	{% endblock %}
+{% endblock %}

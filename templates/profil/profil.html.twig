@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur
+{% endblock %}
+
+{% block body %}
+
+	<main class="main">
+		<h1 class="titre-principal">Profil utilisateur</h1>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<strong>{{user.nom}}</strong>
+					</td>
+					<td>{{user.prenom}}</td>
+				</tr>			
+					{% for role in user.roles %}
+						{% if role== "ROLE_ADMIN" %}
+							<tr></td><td class="badge-danger">{{role}}</td></tr>
+						
+						{% elseif role== "ROLE_EMPLOYEE" %}
+							<tr><td class="badge-warning">{{role}}</td></tr>
+						
+						{% elseif role== "ROLE_USER" %}
+							<tr><td class="badge-success">{{role}}</td></tr>
+						{% endif %}
+					{% endfor %}
+				
+                <tr><td>{{user.adresse}} {{user.codepostal}} {{user.ville}}</td></tr>
+			</tbody>
+		</table>
+
+	</main>
+{% endblock %}

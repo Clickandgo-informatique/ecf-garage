@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+{% block title %}Fiche utilisateur
+{% endblock %}
+{% block body %}
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+			<h1 class="titre-principal">Fiche client</h1>
+			<a href="{{path('app_clients_liste_clients')}}" class="btn btn-go-back btn-centered">Revenir à la liste</a>
+
+			<table>
+				<thead>
+					<th colspan="2">
+						<p>
+							<strong>{{client.nom}}
+								{{client.prenom}}</strong>
+						</p>
+					</th>
+				</thead>
+				<tr>
+					<td>
+						<p>E-mail :</p>
+					</td>
+					<td>
+						<p>
+							<a href="#">{{client.email}}</a>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Adresse :
+						</p>
+					</td>
+					<td>
+						<p>{{client.adresse}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td>Code postal :</td>
+					<td>
+						<p>{{client.codepostal}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td>Ville :
+					</td>
+					<td>
+						<p>{{client.ville}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td>Fixe :
+					</td>
+					<td>
+						<p>{{client.telephonefixe}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td>Mobile :
+					</td>
+					<td>
+						<p>{{client.telephonemobile}}</p>
+					</td>
+				</tr>
+				{% if client.vehicules %}
+					{% for vehicule in client.vehicules %}
+						<tr>
+							<td>
+								> Véhicule :
+							</td>
+							<td>
+								<a href="{{path('app_vehicules_details_vehicule',{id:vehicule.id})}}">{{vehicule.marque}}
+									{{vehicule.modele}}</a>
+							</td>
+						</tr>
+					{% endfor %}
+
+				{% endif %}
+			</table>
+
+		</main>
+	</div>
+</div></div></div>{% endblock %}

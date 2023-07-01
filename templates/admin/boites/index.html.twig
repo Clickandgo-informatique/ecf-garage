@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des boites de véhicules
+{% endblock %}
+{% block body %}
+	<div class="wrapper">
+			{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+
+			{# <div class="content"> #}
+				<h1 class="titre-principal">Liste des boites de véhicules</h1>
+
+				{% if boites %}
+					<table id="tblBoites">
+						<thead>
+							<th colspan="4">
+								<a class="btn btn-primary btn-centered" href="{{path('app_boites_creer_boite')}}">+ Ajouter une boite</a>
+							</th>
+						</thead>
+						<tbody>
+							{% set i = 1 %}
+							{% for boite in boites %}
+								<tr>
+									<td>{{i}}.
+									</td>
+									<td>
+										<strong>{{boite.descriptionboite}}</strong>
+									</td>
+									<td>
+										<a class="btn btn-warning" href="{{path('app_boites_modifier_boite',{id:boite.id,slug:boite.slug})}}">Modifier</a>
+									</td>
+									<td>
+										<a href="{{path('app_boites_supprimer_boite',{id:boite.id})}}" class="btn btn-danger" data-id="{{ boite.id }}" id="btn-supprimer-boite">Supprimer</a>
+									</td>
+								</tr>
+								{% set i = i + 1 %}
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>Aucune donnée de boite de véhicules à afficher, crééz une nouvelle boite grâce au bouton dédié.</p>
+				{% endif %}
+			{# </div> #}
+		</main>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/assets/js/boites.js"></script>
+{% endblock %}

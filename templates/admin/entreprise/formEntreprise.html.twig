@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Fiche de l'entreprise
+{% endblock %}
+{% block body %}
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+
+			{{ form_start(form) }}
+			<div class="form-header">Fiche de l'entreprise</div>
+			{{ form_widget(form) }}
+			{{ form_end(form) }}
+
+		</main>
+	</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+#modale-contact{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.modal-content{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}

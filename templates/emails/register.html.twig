@@ -1,0 +1,8 @@
+<h1 class="titre-principal">Activation de votre compte</h1>
+<p>Bonjour
+	{{user.prenom}}
+	{{user.nom}}</p>
+<p>Votre inscription sur le site du garage Parrot a besoin d'être validée en cliquant sur le lien suivant:</p>
+<a href="{{absolute_url(path('verify_user',{token:token}))}}">Lien :
+	{{absolute_url(path('verify_user',{token:token}))}}</a>
+<p>Ce lien expirera dans 3 heures.</p>

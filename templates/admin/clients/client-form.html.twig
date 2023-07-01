@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% block title %}Créer un client
+{% endblock %}
+
+{% block body %}
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+
+			{{form_start(form)}}
+			<div class="form-header">Créer un client</div>
+			{{form_row(form.nom)}}
+			{{form_row(form.prenom)}}
+			{{form_row(form.email)}}
+			{{form_row(form.adresse)}}
+			{{form_row(form.code_postal)}}
+			{{form_row(form.ville)}}
+			{{form_row(form.telephonefixe)}}
+			{{form_row(form.telephonemobile)}}			
+			{{form_row(form.created_at)}}
+			<button class="btn btn-primary btn-centered" type="submit">Enregistrer</button>
+
+			{{form_end(form)}}
+
+		</main>
+	</div>
+{% endblock %}

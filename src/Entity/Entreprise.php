@@ -44,6 +44,9 @@ class Entreprise
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mail_secondaire = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mail_annonces_occasions = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +168,18 @@ class Entreprise
     public function setMailsecondaire(?string $mailsecondaire): self
     {
         $this->mail_secondaire = $mailsecondaire;
+
+        return $this;
+    }
+
+    public function getMailAnnoncesOccasions(): ?string
+    {
+        return $this->mail_annonces_occasions;
+    }
+
+    public function setMailAnnoncesOccasions(?string $mail_annonces_occasions): self
+    {
+        $this->mail_annonces_occasions = $mail_annonces_occasions;
 
         return $this;
     }

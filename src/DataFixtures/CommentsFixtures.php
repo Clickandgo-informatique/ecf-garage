@@ -18,7 +18,7 @@ class CommentsFixtures extends Fixture
             $comment->setEmail("email" . $i . "@demo.fr");
             $comment->setPseudo("Pseudo " . $i);
             $comment->setRgpd(true);
-            $comment->setPublication(false);
+            $comment->setPublication(true);
             $comment->setNote(rand(0,10));
 
             $om->persist($comment);

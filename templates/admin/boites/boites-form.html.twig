@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}Gestion des boîtes
+{% endblock %}
+{% block body %}
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+
+			{{form_start(boite)}}
+			<div class="form-header">Ajouter des boîtes</div>
+			{{form_row(boite.description_boite)}}
+			<button class="btn btn-primary btn-centered" type="submit">Enregistrer</button>
+			{{form_end(boite)}}
+		</main>
+	</div>
+{% endblock %}
