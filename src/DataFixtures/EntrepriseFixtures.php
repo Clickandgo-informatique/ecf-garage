@@ -13,7 +13,7 @@ class EntrepriseFixtures extends Fixture
 
         $entreprise = new Entreprise();
 
-        $entreprise->setNomEntreprise("Garage Parrot Paris")
+        $entreprise->setNomEntreprise("Garage Parrot Toulouse")
             ->setAdresse("32 rue du Moulin")
             ->setCodepostal("31001")
             ->setVille("Toulouse")

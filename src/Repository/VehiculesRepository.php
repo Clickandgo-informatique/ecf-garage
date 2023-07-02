@@ -6,7 +6,6 @@ use App\Entity\Vehicules;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-
 /**
  * @extends ServiceEntityRepository<Vehicules>
  *
@@ -41,7 +40,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null)
+    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null)
     {
         $limit = abs($limit);
 
@@ -64,6 +63,11 @@ class VehiculesRepository extends ServiceEntityRepository
             $query->andWhere('v.motorisation IN(:motorisations)')
                 ->setParameter(':motorisations', array_values($filtreMotorisations));
         }
+        //Fitre sur types de boîtes
+        if ($filtreBoites != null) {
+            $query->andWhere('v.boite IN(:boites)')
+                ->setParameter(':boites', array_values($filtreBoites));
+        }
 
         //Filtre sur intervalle de prix
         if (!empty($prixMin) && !empty($prixMax)) {
@@ -78,6 +82,15 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':kmMin', $kmMin)
                 ->setParameter(':kmMax', $kmMax);
         }
+
+        //Filtre sur ancienneté (année)
+        // if (!empty($yearMin) && $yearMin != null) {          
+        //     $anneeVehicule= $query->select('v.date_mise_en_circulation')->getQuery();
+         
+        //     $query->andWhere(':anneeVehicule <= :yearMin')
+        //         ->setParameter('yearMin', $yearMin)
+        //         ->setparameter('anneeVehicule',$anneeVehicule->format("Y"));
+        // }
 
         //Logique classement OrderBy sur formulaire     
 
@@ -108,7 +121,7 @@ class VehiculesRepository extends ServiceEntityRepository
 
         $query->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
-
+        // dd($query->getQuery()->getResult());
         return $query->getQuery()->getResult();
     }
 

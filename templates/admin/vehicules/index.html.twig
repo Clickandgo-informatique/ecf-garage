@@ -4,14 +4,14 @@
 {% block body %}
 
 	<main>
+		<h1 class="titre-principal">Liste des véhicules d'occasion</h1>
 
 		{#Affiche/occulte le panneau de filtres #}
-		<div class="filtres">
-			<input type="checkbox" name="show-filters" id="show-filters">
+		<div class="checkbox-filtres">
+			<input type="checkbox" name="show-filters" id="show-filters" class="show-filters">
 			<span class="bi bi-funnel"></span>
 			<label for="show-filters">Filtres</label>
 		</div>
-		<h1 class="titre-principal">Liste des véhicules d'occasion</h1>
 
 		{% if is_granted(['ROLE_ADMIN']) %}
 			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
@@ -20,7 +20,7 @@
 		<div
 			class="wrapper">
 
-			{# Filtre multicritère : #}
+			{# Filtre de classement : #}
 			<form id="filters" class="filtersForm">
 				<fieldset>
 					<legend>Classer par :</legend>
@@ -50,10 +50,13 @@
 					</div>
 				</fieldset>
 
-				{# Filtre intervalle kilomètrage #}
+
 				<fieldset>
 					<legend>Par intervalles</legend>
-					<div class="wrapper-filtres-intervalle">
+					<div
+						class="wrapper-filtres-intervalle">
+
+						{# Filtre intervalle kilomètrage #}
 						<div class="input-intervalle">
 							<label for="kmMin">Km min.</label>
 							<input type="number" name="kmMin" id="kmMin" min="1" max="999999" value="1" step="100">
@@ -75,24 +78,23 @@
 							<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000" step="100">
 						</div>
 					</div>
+					{# Filtre intervalle ancienneté #}
+					<div class="wrapper-filtres-intervalle">
+						<div class="input-intervalle-ancienneté">
+							<label for="yearMin">Ancienneté (année)</label>
+							<input type="number" name="yearMin" id="yearMin" min="1990" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">						
+						</div>
+					</div>
 				</fieldset>
-				{# Filtre intervalle ancienneté #}
-				{# <div class="wrapper-filtres-intervalle"><div class="input-intervalle">
-												<label for="yearMin">Année min.</label>
-												<input type="number" name="yearMin" id="yearMin">
-												</div>
-												<div class="input-intervalle">
-												<label for="yearMax">Année max.</label>
-												<input type="number" name="yearMax" id="yearMax">
-												</div>
-												</div> #}
+
 				{# Filtre sur type de véhicule #}
-					<fieldset>
-						<legend>
-					Par type :
+				<fieldset>
+					<legend>
+						Par type :
 					</legend>
-						{% for  type in typesVehicules %}
-							<div class="wrapper-input"> <input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
+					{% for  type in typesVehicules %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
 							<label for="types{{type.id}}">{{type.nomtype}}</label>
 						</div>
 					{% endfor %}

@@ -53,6 +53,7 @@ class AnnoncesController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository, MotorisationsRepository $motorisationsRepository, BoitesRepository $boitesRepository): Response
     {
+      
         //Récupération du total de véhicules dans la base avant filtres
         $totalVehicules = $vehiculesRepository->getTotalVehicules();
 
@@ -71,22 +72,20 @@ class AnnoncesController extends AbstractController
         //Récupération valeurs motorisations
         $filtreMotorisations = $request->get('typesMotorisations');
         //Récupération des types de boîtes de vitesse
-        $filtreBoites = $request->get('description_boite');
+        $filtreBoites = $request->get('boites');    
 
         //Récupération des valeurs d'input pour filtres d'intervalle
         $prixMin = $request->get('prixMin');
         $prixMax = $request->get('prixMax');
         $kmMax = $request->get('kmMax');
         $kmMin = $request->get('kmMin');
-
-        // $yearMax = $request->get('yearMax');
-        // $yearMin = $request->get('yearMin');
+        $yearMin=$request->get('yearMin');
 
         //Récupération du total de véhicules dans la base avec filtres
         $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
 
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations);
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations,$filtreBoites,$yearMin);
 
         //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
@@ -113,7 +112,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered', 'typesMotorisations','typesBoites')
+                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered', 'typesMotorisations','typesBoites','yearMin')
                 )
             ]);
         }
@@ -124,7 +123,7 @@ class AnnoncesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered', 'typesMotorisations','typesBoites'));
+        return $this->render('admin/vehicules/index.html.twig', compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered', 'typesMotorisations','typesBoites','yearMin'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]

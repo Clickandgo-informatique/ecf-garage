@@ -9,7 +9,7 @@ form {
   margin: 20px auto;
   background-color: #fff;
   align-content: start;
-  width:100%;
+  width: 100%;
 }
 
 form p {
@@ -50,8 +50,7 @@ form p {
 form div label {
   color: blue;
   font-size: 12px;
-  margin-left: 5px; 
-
+  margin-left: 5px;
 }
 input[type="text"],
 input[type="email"],
@@ -59,6 +58,7 @@ input[type="number"],
 input[type="password"],
 input[type="date"],
 input[type="time"],
+input[type="file"],
 select {
   width: 95%;
   font-size: 15px;
@@ -95,14 +95,13 @@ textarea {
 }
 
 fieldset {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   border: 1px solid royalblue;
   border-radius: 5px;
   padding: 10px;
   background: #fff;
-  margin: 10px; 
-
+  margin: 10px;
 }
 legend {
   color: #fff;
@@ -168,4 +167,38 @@ legend {
 .filtersForm {
   border: none;
   background: transparent;
+  width:fit-content;
+  position:relative;
+}
+.checkbox-filtres{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  padding:10px;
+  margin:10px 20px;
+  font-size: 1rem;
+  background-color: royalblue;
+  color:#fff;
+  width:fit-content;
+  cursor:pointer;
+  border-radius: 5px;
+}
+.checkbox-filtres label{
+  cursor:pointer;
+}
+.checkbox-filtres span{
+  margin-right: 10px;
+  margin-left: 10px;
+  font-weight: 900;
+  color:yellow;
+}
+input [type="file-upload-button"]{
+  margin:10px;
+  border-radius: 5px;
+}
+.img-logo{
+  width:75px;
+  height:75px;
+  border:1px solid royalblue;
+  margin: 10px;
 }

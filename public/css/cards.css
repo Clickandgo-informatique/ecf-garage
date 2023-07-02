@@ -14,7 +14,7 @@
   border: 1px solid lightgray;
   border-radius: 10px;
   box-shadow: 2px 2px 4px darkgray;
-  background-color: #fff;
+  background-color: #fff; 
 }
 
 .card-vehicule {
@@ -108,6 +108,7 @@
 
 .card-services i {
   margin-right: 10px;
+  
 }
 .card-services .card-title{
   color:blue;
