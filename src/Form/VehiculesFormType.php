@@ -34,7 +34,7 @@ class VehiculesFormType extends AbstractType
             ->add('boite', EntityType::class,['class'=>Boites::class])
             ->add('num_chassis')
             ->add('localisation')
-            ->add('date_vente', DateType::class, ['widget' => 'single_text'])
+            ->add('date_vente', DateType::class, ['widget' => 'single_text','required'=>false])
             ->add('critere_pollution', NumberType::class)
             ->add('date_controle_technique', DateType::class, ['widget' => 'single_text'])
             ->add('remarques')
@@ -42,8 +42,8 @@ class VehiculesFormType extends AbstractType
             ->add('nb_proprietaires', NumberType::class)
             ->add('chevaux_fiscaux', NumberType::class)
             ->add('chevaux_din', NumberType::class)
-            ->add('reference_interne')
-            ->add('plaque_immatriculation')
+            ->add('reference_interne',TextType::class)
+            ->add('plaque_immatriculation',TextType::class)
             ->add('publication_annonce')
             ->add('marque', EntityType::class, [
                 'class' => Marques::class

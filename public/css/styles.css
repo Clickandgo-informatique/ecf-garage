@@ -16,29 +16,26 @@
 
 * {
   margin: 0;
-  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  display: flex;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 0.8rem;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  background-color: whitesmoke;
-  width: 100%;
+  justify-content: center;
+  max-width: 1200px;
   /* footer+navbar=250px */
   height: calc(100vh-250px);
   min-height: 600px;
+  width: 100%;
 }
 
 .content {
@@ -48,11 +45,10 @@ main {
   width: 100%;
 }
 .titre-principal {
-  margin: 10px auto;
   font-size: 1.5rem;
-  color: blue;
+  color: #fff;
   text-align: center;
-  padding: 5px 10px;
+  padding: 10px;
 }
 .centered {
   margin: 10px auto;
@@ -88,7 +84,6 @@ main {
   background-color: #fff;
   padding: 6px 5px;
   border-radius: 5px;
-  width: fit-content;
 }
 .badge-primary {
   color: white;
@@ -140,10 +135,8 @@ main {
 }
 .alert {
   position: relative;
-  border: 1px solid lightgray;
-  margin: 1px 5px;
+  width:99%;
   border-radius: 5px;
-  box-shadow: 1px 1px 4px black;
 }
 .alert-message {
   padding: 10px;
@@ -176,19 +169,20 @@ main {
   background-color: transparent;
 }
 .homepage {
-background-color: #fff;
+  background-color: #fff;
 }
-.homepage h1{
-  color:blue;
+.homepage h1 {
+  color: #fff;
 }
 .homepage h2 {
   color: rgb(112, 112, 112);
   text-align: center;
+  margin: 10px;
 }
 .homepage p {
   margin: 10px;
   font-size: 0.8rem;
-  color:black;
+  color: black;
 }
 .description-homepage {
   max-width: 800px;
@@ -199,7 +193,6 @@ background-color: #fff;
 section {
   display: flex;
   flex-direction: column;
-  background-color: rgb(236, 236, 236);;
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
@@ -207,12 +200,18 @@ section {
   border-radius: 10px;
   box-shadow: 1px 1px 4px lightgray;
 }
-section h1{
-  color:#fff;
-  width:100%;
-  background-color: lightgray;
+section h1 {
+  color: #fff;
+  width: 100%;
+  background-color: var(--background-color);
+  margin: 0;
 }
-.annonces-vehicules{
-  min-height:400px;
-
+.annonces-vehicules {
+  min-height: 400px;
+}
+.galerie-derniers-vehicules-occasion {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  margin: 10px;
 }

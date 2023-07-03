@@ -18,6 +18,7 @@
   margin-bottom: 5px;
   align-items: center;
   padding: 5px;
+  width:100%;
 }
 .menu-navbar {
   display: flex;

@@ -118,11 +118,12 @@ legend {
 .login-and-register {
   margin: 20px 0;
 }
-.liste-commentaires {
-  border: 1px solid lightgray;
+.liste-commentaires { 
   border-radius: 10px;
   padding: 10px;
-  max-width: 800px;
+  max-width: 600px;
+  width:100%;
+  margin: 10px;
 }
 .texte-commentaire {
   color: black;
@@ -138,15 +139,23 @@ legend {
   margin-right: 5px;
   text-align: right;
 }
+section.commentaires {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container-commentaires {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  max-width: 800px;
   max-height: 350px;
   margin: 10px auto;
   overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
 }
+
 .contenu-commentaire {
   background-color: rgb(250, 250, 250);
   padding: 5px;
@@ -167,38 +176,38 @@ legend {
 .filtersForm {
   border: none;
   background: transparent;
-  width:fit-content;
-  position:relative;
+  width: fit-content;
+  position: relative;
 }
-.checkbox-filtres{
-  display:flex;
+.checkbox-filtres {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  padding:10px;
-  margin:10px 20px;
+  padding: 10px;
+  margin: 10px 20px;
   font-size: 1rem;
   background-color: royalblue;
-  color:#fff;
-  width:fit-content;
-  cursor:pointer;
+  color: #fff;
+  width: fit-content;
+  cursor: pointer;
   border-radius: 5px;
 }
-.checkbox-filtres label{
-  cursor:pointer;
+.checkbox-filtres label {
+  cursor: pointer;
 }
-.checkbox-filtres span{
+.checkbox-filtres span {
   margin-right: 10px;
   margin-left: 10px;
   font-weight: 900;
-  color:yellow;
+  color: yellow;
 }
-input [type="file-upload-button"]{
-  margin:10px;
+input [type="file-upload-button"] {
+  margin: 10px;
   border-radius: 5px;
 }
-.img-logo{
-  width:75px;
-  height:75px;
-  border:1px solid royalblue;
+.img-logo {
+  width: 75px;
+  height: 75px;
+  border: 1px solid royalblue;
   margin: 10px;
 }

@@ -99,7 +99,7 @@ class VehiculesController extends AbstractController{
             $em->flush();
 
             $this->addFlash('success', 'Les modification ont été enregistrées dans la base avec succès.');
-            return $this->redirectToRoute('app_vehicules_fiche_vehicule', ['id' => $vehicule->getId()]);
+            return $this->redirectToRoute('app_vehicules_modifier_vehicule', ['id' => $vehicule->getId()]);
         }
 
 

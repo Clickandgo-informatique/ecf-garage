@@ -2,195 +2,198 @@
 {% block title %}Détails véhicule
 {% endblock %}
 {% block body %}
-	<main>
+	<div class="wrapper">
+		<main>
 
-		<h1 class="titre-principal">Fiche du véhicule :
-			{{vehicule.marque}}
-			{{vehicule.modele}}</h1>
+			<h1 class="titre-principal">Fiche du véhicule :
+				{{vehicule.marque}}
+				{{vehicule.modele}}</h1>
 
-		<a class="btn btn-go-back" href="{{path('app_vehicules_annonces_index')}}">Revenir à la liste</a>
+			<a class="btn btn-go-back" href="{{path('app_vehicules_annonces_index')}}">Revenir à la liste</a>
 
-		{{ include('_partials/_galerie-photos.html.twig') }}
-		
-		<div class="wrapper-tables">
-			{# Fiche de détails véhicule #}
-			<table class="table fiche-vehicule">
-				{% if is_granted("ROLE_ADMIN") %}
-					<thead>
+			{{ include('_partials/_galerie-photos.html.twig') }}
 
-						<th>
-							<a class="btn btn-primary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Editer la fiche</a>
-						</th>
-						<th>
-							<a href="{{path('app_vehicules_supprimer_vehicule',{id:vehicule.id})}}" class="btn btn-danger">Supprimer ce véhicule</a>
-						</th>
-						<tr>
-							<td class="table-label">Reference interne</td>
-							<td>
-								<strong>{{vehicule.referenceinterne}}</strong>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-label">Propietaire</td>
-
-							<td>
-								<a href="#">{{vehicule.proprietaire.nom}}
-									{{vehicule.proprietaire.prenom}}</a>
-							</td>
-						</tr>
-					</thead>
-				{% endif %}
-
-				<tbody>
-
-
-					<tr>
-						<td class="table-label">Marque</td>
-
-						<td>
-							<strong>{{vehicule.marque}}</strong>
-						</td>
-					</tr>
-					<tr>
-						<td class="table-label">Modèle</td>
-
-						<td>{{vehicule.modele}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Kilomètrage</td>
-
-						<td>{{vehicule.kilometrage}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Plaque immatriculation</td>
-
-						<td>{{vehicule.plaqueimmatriculation}}</td>
-					</tr>
-
-					<tr>
-						<td class="table-label">Motorisation</td>
-
-						<td>{{vehicule.motorisation}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Cylindree</td>
-
-						<td>{{vehicule.cylindree}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Nbre portes</td>
-
-						<td>{{vehicule.nbportes}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Prix vente</td>
-
-						<td>{{vehicule.prixvente}}
-							€</td>
-					</tr>
-					<tr>
-						<td class="table-label">Couleur</td>
-
-						<td>{{vehicule.couleur}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Date mise en circulation</td>
-
-						<td>{{vehicule.datemiseencirculation|date("d/m/Y")}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Date mise en vente</td>
-
-						<td>{{vehicule.datemiseenvente|date("d/m/Y")}}</td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td class="table-label">Date controle technique</td>
-
-						<td>{{vehicule.datecontroletechnique|date("d/m/Y")}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Nbre places</td>
-
-						<td>{{vehicule.datemiseenvente|date("d/m/Y")}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Type véhicule</td>
-
-						<td>{{vehicule.typevehicule}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Type boîte</td>
-
-						<td>{{vehicule.boite}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">N° chassis</td>
-
-						<td>{{vehicule.numchassis}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Nbr propriétaires</td>
-
-						<td>{{vehicule.nbproprietaires}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Chevaux / puissance</td>
-
-						<td>{{vehicule.chevauxfiscaux}}cv/({{vehicule.chevauxdin}}
-							din.)</td>
-					</tr>
-					<tr>
-						<td class="table-label">Remarques</td>
-
-						<td>{{vehicule.remarques}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Localisation</td>
-
-						<td>{{vehicule.localisation}}</td>
-					</tr>
-					<tr>
-						<td class="table-label">Critère pollution / energétique</td>
-
-						<td>{{vehicule.criterepollution}}</td>
-					</tr>
-
-				</tbody>
-			</table>
-
-			{# Liste d'options du véhicule #}
-
-			<table class="table liste-options-vehicule">
-				<thead>
-					<th>Liste d'options</th>
+			<div
+				class="wrapper-tables">
+				{# Fiche de détails véhicule #}
+				<table class="table fiche-vehicule">
 					{% if is_granted("ROLE_ADMIN") %}
-						<th>
-							<a href="{{path('app_vehicules_liste_options_vehicule_ajouter_option',{id:vehicule.id})}}" class="btn btn-primary">
-								+ Ajouter option</a>
-						</th>
+						<thead>
 
-					{% endif %}
-				</thead>
-				<tbody>
-					{% if vehicule.listeOptionsVehicule %}
-						{% for option in vehicule.listeOptionsVehicule|sort((a,b)=>a.optionvehicule <=> b.optionvehicule) %}
+							<th>
+								<a class="btn btn-primary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Editer la fiche</a>
+							</th>
+							<th>
+								<a href="{{path('app_vehicules_supprimer_vehicule',{id:vehicule.id})}}" class="btn btn-danger">Supprimer ce véhicule</a>
+							</th>
 							<tr>
+								<td class="table-label">Reference interne</td>
 								<td>
-									-
-									{{option.optionvehicule}}</td>
-
-								{% if is_granted("ROLE_ADMIN") %}
-									<td>
-										<a class="btn btn-danger btn-effacer" href="{{path('app_vehicules_liste_options_vehicule_supprimer_option',{id:option.id})}}">&times;</a>
-									</td>
-								{% endif %}
+									<strong>{{vehicule.referenceinterne}}</strong>
+								</td>
 							</tr>
-						{% endfor %}
-					{% else %}
-						<p>Il n'existe encore aucune option pour ce véhicule.</p>
+							<tr>
+								<td class="table-label">Propietaire</td>
+
+								<td>
+									<a href="#">{{vehicule.proprietaire.nom}}
+										{{vehicule.proprietaire.prenom}}</a>
+								</td>
+							</tr>
+						</thead>
 					{% endif %}
-				</tbody>
-			</table>
-		</main>
+
+					<tbody>
+
+
+						<tr>
+							<td class="table-label">Marque</td>
+
+							<td>
+								<strong>{{vehicule.marque}}</strong>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-label">Modèle</td>
+
+							<td>{{vehicule.modele}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Kilomètrage</td>
+
+							<td>{{vehicule.kilometrage}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Plaque immatriculation</td>
+
+							<td>{{vehicule.plaqueimmatriculation}}</td>
+						</tr>
+
+						<tr>
+							<td class="table-label">Motorisation</td>
+
+							<td>{{vehicule.motorisation}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Cylindree</td>
+
+							<td>{{vehicule.cylindree}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Nbre portes</td>
+
+							<td>{{vehicule.nbportes}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Prix vente</td>
+
+							<td>{{vehicule.prixvente}}
+								€</td>
+						</tr>
+						<tr>
+							<td class="table-label">Couleur</td>
+
+							<td>{{vehicule.couleur}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Date mise en circulation</td>
+
+							<td>{{vehicule.datemiseencirculation|date("d/m/Y")}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Date mise en vente</td>
+
+							<td>{{vehicule.datemiseenvente|date("d/m/Y")}}</td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td class="table-label">Date controle technique</td>
+
+							<td>{{vehicule.datecontroletechnique|date("d/m/Y")}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Nbre places</td>
+
+							<td>{{vehicule.datemiseenvente|date("d/m/Y")}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Type véhicule</td>
+
+							<td>{{vehicule.typevehicule}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Type boîte</td>
+
+							<td>{{vehicule.boite}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">N° chassis</td>
+
+							<td>{{vehicule.numchassis}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Nbr propriétaires</td>
+
+							<td>{{vehicule.nbproprietaires}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Chevaux / puissance</td>
+
+							<td>{{vehicule.chevauxfiscaux}}cv/({{vehicule.chevauxdin}}
+								din.)</td>
+						</tr>
+						<tr>
+							<td class="table-label">Remarques</td>
+
+							<td>{{vehicule.remarques}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Localisation</td>
+
+							<td>{{vehicule.localisation}}</td>
+						</tr>
+						<tr>
+							<td class="table-label">Critère pollution / energétique</td>
+
+							<td>{{vehicule.criterepollution}}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				{# Liste d'options du véhicule #}
+
+				<table class="table liste-options-vehicule">
+					<thead>
+						<th>Liste d'options</th>
+						{% if is_granted("ROLE_ADMIN") %}
+							<th>
+								<a href="{{path('app_vehicules_liste_options_vehicule_ajouter_option',{id:vehicule.id})}}" class="btn btn-primary">
+									+ Ajouter option</a>
+							</th>
+
+						{% endif %}
+					</thead>
+					<tbody>
+						{% if vehicule.listeOptionsVehicule %}
+							{% for option in vehicule.listeOptionsVehicule|sort((a,b)=>a.optionvehicule <=> b.optionvehicule) %}
+								<tr>
+									<td>
+										-
+										{{option.optionvehicule}}</td>
+
+									{% if is_granted("ROLE_ADMIN") %}
+										<td>
+											<a class="btn btn-danger btn-effacer" href="{{path('app_vehicules_liste_options_vehicule_supprimer_option',{id:option.id})}}">&times;</a>
+										</td>
+									{% endif %}
+								</tr>
+							{% endfor %}
+						{% else %}
+							<p>Il n'existe encore aucune option pour ce véhicule.</p>
+						{% endif %}
+					</tbody>
+				</table>
+			</main>
+		</div>
 	{% endblock %}

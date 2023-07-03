@@ -173,4 +173,13 @@ class VehiculesRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getSingleScalarResult();
     }
+
+    public function getLastFiveVehicules(){
+        $query=$this->createQueryBuilder('v')
+        ->select('v')
+        ->orderBy('v.date_mise_en_vente','DESC')
+        ->setMaxResults(5);
+
+        return $query->getQuery()->getResult();       
+    }
 }

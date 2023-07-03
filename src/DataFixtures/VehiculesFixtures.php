@@ -57,12 +57,19 @@ class VehiculesFixtures extends Fixture
                 ->setKilometrage(rand(1000, 200000))
                 ->setChevauxDin(rand(1, 1000))
                 ->setChevauxFiscaux(10.00, 400.00)
-                ->setRemarques("Pas de remarque particulière.")
+                ->setRemarques("Aucune remarque")
                 ->setPlaqueImmatriculation('AA-' . rand(0001, 9999) . '-ZZ')
                 ->setSlug($this->slugger->slug($v->getMarque() . ' ' . $v->getModele())->lower())
                 ->setPublicationAnnonce(true)
                 ->setdatemiseencirculation($faker->dateTimeThisDecade())
-                ->setbadgeannonce($faker->randomElement($tblBadges));
+                ->setbadgeannonce($faker->randomElement($tblBadges))
+                ->setDateMiseEnVente($faker->dateTimeThisYear())
+                ->setnumchassis($faker->randomElement(['a','b','c','d','e']).'-'.rand(1000000,10000000).'-'.$faker->randomElement(['aa','bb','cc','dd','ee']))
+                ->setlocalisation('Toulouse')
+                ->setcriterepollution(rand(1,6))
+                ->setdatecontroletechnique($faker->datetimethisyear())
+                ->setnbproprietaires(rand(1,5))
+                ;
 
 
           

@@ -16,6 +16,10 @@
 		<section class="annonces-vehicules">
 		<h1 class="titre-principal">Nos derniers véhicules d'occasion</h1>
 			<a href="{{path('app_vehicules_annonces_index')}}" class="btn btn-primary btn-centered">Voir tous les véhicules d'occasion</a>
+		<div class="galerie-derniers-vehicules-occasion">
+		{{ include('admin/vehicules/_content.html.twig') }}
+		</div>
+
 		</section>
 		<section class="commentaires">
 			{{include('_partials/_comments.html.twig')}};
