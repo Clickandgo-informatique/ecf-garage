@@ -4,12 +4,11 @@
 {% block body %}
 	<div class="wrapper">
 		<main>
-
 			<h1 class="titre-principal">Fiche du véhicule :
 				{{vehicule.marque}}
 				{{vehicule.modele}}</h1>
 
-			<a class="btn btn-go-back" href="{{path('app_vehicules_annonces_index')}}">Revenir à la liste</a>
+			<a class="btn btn-go-back btn-centered" href="{{path('app_vehicules_annonces_index')}}">Revenir à la liste</a>
 
 			{{ include('_partials/_galerie-photos.html.twig') }}
 
@@ -19,7 +18,6 @@
 				<table class="table fiche-vehicule">
 					{% if is_granted("ROLE_ADMIN") %}
 						<thead>
-
 							<th>
 								<a class="btn btn-primary" href="{{path('app_vehicules_modifier_vehicule',{id:vehicule.id})}}">Editer la fiche</a>
 							</th>
@@ -34,7 +32,6 @@
 							</tr>
 							<tr>
 								<td class="table-label">Propietaire</td>
-
 								<td>
 									<a href="#">{{vehicule.proprietaire.nom}}
 										{{vehicule.proprietaire.prenom}}</a>
@@ -44,49 +41,38 @@
 					{% endif %}
 
 					<tbody>
-
-
 						<tr>
 							<td class="table-label">Marque</td>
-
 							<td>
 								<strong>{{vehicule.marque}}</strong>
 							</td>
 						</tr>
 						<tr>
 							<td class="table-label">Modèle</td>
-
 							<td>{{vehicule.modele}}</td>
 						</tr>
 						<tr>
 							<td class="table-label">Kilomètrage</td>
-
 							<td>{{vehicule.kilometrage}}</td>
 						</tr>
 						<tr>
 							<td class="table-label">Plaque immatriculation</td>
-
 							<td>{{vehicule.plaqueimmatriculation}}</td>
 						</tr>
-
 						<tr>
 							<td class="table-label">Motorisation</td>
-
 							<td>{{vehicule.motorisation}}</td>
 						</tr>
 						<tr>
 							<td class="table-label">Cylindree</td>
-
 							<td>{{vehicule.cylindree}}</td>
 						</tr>
 						<tr>
 							<td class="table-label">Nbre portes</td>
-
 							<td>{{vehicule.nbportes}}</td>
 						</tr>
 						<tr>
 							<td class="table-label">Prix vente</td>
-
 							<td>{{vehicule.prixvente}}
 								€</td>
 						</tr>
@@ -157,12 +143,10 @@
 
 							<td>{{vehicule.criterepollution}}</td>
 						</tr>
-
 					</tbody>
 				</table>
 
 				{# Liste d'options du véhicule #}
-
 				<table class="table liste-options-vehicule">
 					<thead>
 						<th>Liste d'options</th>
@@ -171,7 +155,6 @@
 								<a href="{{path('app_vehicules_liste_options_vehicule_ajouter_option',{id:vehicule.id})}}" class="btn btn-primary">
 									+ Ajouter option</a>
 							</th>
-
 						{% endif %}
 					</thead>
 					<tbody>
@@ -194,6 +177,12 @@
 						{% endif %}
 					</tbody>
 				</table>
-			</main>
-		</div>
-	{% endblock %}
+			</div>
+		</main>
+	</div>
+	{# Pop-up photo #}
+	<div class="popup-image">
+		<img src="" alt="">
+		<span>&times;</span>
+	</div>
+{% endblock %}

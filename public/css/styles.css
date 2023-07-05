@@ -9,9 +9,12 @@
 @import "./switches.css";
 @import "./footer.css";
 @import "./modals.css";
+@import "./cookies.css";
+@import "./animations.css";
 
 :root {
-  --background-color: rgb(65, 105, 225);
+  --background-color: rgb(86, 61, 213);
+  --box-shadow:(1px 1px 4px darkgray);
 }
 
 * {
@@ -21,21 +24,21 @@
 body {
   box-sizing: border-box;
   display: flex;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family:"poppins", sans-serif;
   font-size: 0.8rem;
   flex-direction: column;
   align-items: center;
+  justify-content:center;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   max-width: 1200px;
-  /* footer+navbar=250px */
-  height: calc(100vh-250px);
   min-height: 600px;
   width: 100%;
+  justify-items: start;
+  animation:'fadeIn';
 }
 
 .content {
@@ -43,6 +46,9 @@ main {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+}
+.hidden {
+  display: none;
 }
 .titre-principal {
   font-size: 1.5rem;
@@ -69,7 +75,7 @@ main {
 }
 .wrapper {
   display: flex;
-  width: 100%;
+  /* flex-direction: column; */
   align-content: start;
 }
 .link {
@@ -79,7 +85,7 @@ main {
   color: #fff;
 }
 
-.alert-danger {
+.alert-danger { 
   color: red;
   background-color: #fff;
   padding: 6px 5px;
@@ -104,8 +110,8 @@ main {
 .badge-danger {
   color: white;
   background-color: red;
-  padding: 3px 5px;
-  font-size: 0.5rem;
+  padding: 5px;
+  font-size: 0.7rem;
   border-radius: 2px;
   width: fit-content;
 }
@@ -117,17 +123,22 @@ main {
   border-radius: 2px;
   width: fit-content;
 }
+.horaires-du-jour{
+  padding: 10px;
+  margin: 10px;
+}
+.horaires-du-jour p{
+  margin:10px;
+}
+
 .link-horaires-semaine {
   text-decoration: underline;
   color: yellow;
-  margin: 5px;
+  margin:10px;
 }
 .link-horaires-semaine:visited {
   text-decoration: underline;
-}
-.titre {
-  font-weight: 900;
-  margin: 5px;
+  cursor:pointer;
 }
 
 .prochain-creneau-jour {
@@ -135,7 +146,7 @@ main {
 }
 .alert {
   position: relative;
-  width:99%;
+  width: 99%;
   border-radius: 5px;
 }
 .alert-message {
@@ -145,10 +156,7 @@ main {
   background-color: green;
   color: #fff;
 }
-.alert-danger {
-  color: #fff;
-  background-color: red;
-}
+
 .alert-warning {
   color: red;
   background-color: lightsalmon;

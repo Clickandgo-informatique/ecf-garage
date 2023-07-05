@@ -6,14 +6,17 @@
 			{% for c in commentaires %}
 				{% if c.parent == null %}
 					<div class="contenu-commentaire">
+					<div class="entete-commentaire">
+						<p class="note-visiteur"><i class="fa-regular fa-heart"></i>Apréciation (note) : {{c.note}}/10</p>
 						<p class="publication-par">Publié par
 							<strong>{{c.pseudo}}</strong>
 							<span>le
 								{{c.createdAt|date("d-m-Y à H:i:s")}}</span>
-						</p>
+						</p>					
+					</div>
 						<div class="texte-commentaire">{{c.contenu|raw}}</div>
 						<p>
-							<a class="btn-repondre" href="#ajout-commentaire" data-reply data-id="{{c.id}}">Répondre</a>
+							<a class="btn-repondre" href="#ajout-commentaire" data-reply data-id="{{c.id}}"><i class="fa-solid fa-reply"></i>Répondre</a>
 						</p>
 					</div>
 					{# Affichage des réponses #}

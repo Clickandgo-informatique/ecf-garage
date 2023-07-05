@@ -31,7 +31,7 @@ let photos = document.getElementsByClassName("thumbnail-vehicule");
 
 for (let photo of photos) {
   photo.addEventListener("mousemove", (e) => {
-    photo.style.transform = "scale(3)";
+    photo.style.transform = "scale(1.1)";
     photo.style.transition = "transform";
     photo.style.transitionDuration = "0.5s";
     photo.style.zIndex = "300";
@@ -41,5 +41,17 @@ for (let photo of photos) {
     photo.style.transition = "transform";
     photo.style.transitionDuration = "1s";
     photo.style.zIndex = "1";
+  });
+
+  //Affichage d'un popup photo
+  document.querySelectorAll("img").forEach((image) => {
+    image.onclick = () => {
+      document.querySelector(".popup-image").style.display = "block";
+      document.querySelector(".popup-image img").src =
+        image.getAttribute("src");
+      document.querySelector(".popup-image span").onclick = () => {
+        document.querySelector(".popup-image").style.display = "none";
+      };
+    };
   });
 }

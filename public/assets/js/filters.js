@@ -49,16 +49,19 @@ window.onload = () => {
 
   //Affiche le menu de filtres lateral gauche
   const showfilters = document.querySelector("#show-filters");
+  const wrapperfiltres = document.querySelector(".wrapper-filtres");
 
   showfilters.addEventListener("change", () => {
     if (showfilters.checked) {
-      filtersForm.style.width='fit-content';
-      filtersForm.style.transition = "ease-in 1s";
-
-
+      wrapperfiltres.style.width = "220px";
+      // document.querySelector(".wrapper").style.marginLeft = "220px";
+      wrapperfiltres.style.transition = "ease-in 1s";
+      wrapperfiltres.style.display='block'
     } else {
-      filtersForm.style.width='0';
-      filtersForm.style.transition = "ease-out 1s";
+      wrapperfiltres.style.width = "0px";
+      // document.querySelector(".wrapper").style.marginLeft = "0px";
+      wrapperfiltres.style.transition = "ease-out 1s";
+      wrapperfiltres.style.display='none'
     }
   });
 

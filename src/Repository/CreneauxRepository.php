@@ -98,7 +98,6 @@ class CreneauxRepository extends ServiceEntityRepository
             ->getQuery()->getResult();
 
         return $creneauxActifsJour;
-     
     }
 
     public function getProchainsCreneaux()
@@ -107,11 +106,11 @@ class CreneauxRepository extends ServiceEntityRepository
         $jour = $this->getJourCreneaux();
 
         $prochainsCreneaux = $this->createQueryBuilder('c')
-            ->where('c.jour= :jour')
+            ->where('c.jour = :jour')
             ->andWhere('c.debut >= :heuredebut')
             ->setparameters(['jour' => $jour, 'heuredebut' => $heuredebut->format("H:i")])
             ->getQuery()->getResult();
-            
+
         return $prochainsCreneaux;
     }
 

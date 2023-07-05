@@ -2,27 +2,31 @@
 {% block title %}Accueil garage
 {% endblock %}
 {% block body %}
-	<main>
-<section class="homepage">
-<h1 class="titre-principal">{{homepage.titreprincipal}}</h1>
-<h2>{{homepage.soustitre}}</h2>
-<div class="description-homepage">{{homepage.description|raw}}</div>
-</section>
+	<div class="wrapper">
+		<main>
+			<section class="homepage">
+				<h1 class="titre-principal">{{homepage.titreprincipal}}</h1>
+				<h2>{{homepage.soustitre}}</h2>
+				<div class="description-homepage">{{homepage.description|raw}}</div>
+			</section>
 
-		<section class="services">
-			<h1 class="titre-principal">Nous vous proposons les services suivants :</h1>
-			{{include('_partials/_services.html.twig')}};
-		</section>
-		<section class="annonces-vehicules">
-		<h1 class="titre-principal">Nos derniers véhicules d'occasion</h1>
-			<a href="{{path('app_vehicules_annonces_index')}}" class="btn btn-primary btn-centered">Voir tous les véhicules d'occasion</a>
-		<div class="galerie-derniers-vehicules-occasion">
-		{{ include('admin/vehicules/_content.html.twig') }}
-		</div>
+			<section class="services">
+				<h1 class="titre-principal">Nous vous proposons les services suivants :</h1>
+				{{include('_partials/_services.html.twig')}};
+			</section>
 
-		</section>
-		<section class="commentaires">
-			{{include('_partials/_comments.html.twig')}};
-		</section>
-	</main>
+			<section class="annonces-vehicules">
+				<h1 class="titre-principal">Nos derniers véhicules d'occasion</h1>
+				<a href="{{path('app_vehicules_annonces_index')}}" class="btn btn-primary btn-centered">Voir tous les véhicules d'occasion</a>
+
+				<div class="galerie-derniers-vehicules-occasion">
+					{{ include('admin/vehicules/_content.html.twig') }}
+				</div>
+
+			</section>
+			<section class="commentaires">
+				{{include('_partials/_comments.html.twig')}};
+			</section>
+		</main>
+	</div>
 {% endblock %}

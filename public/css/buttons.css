@@ -1,20 +1,25 @@
 .btn {
   display: block;
-  padding: 7px 10px;
+  padding: 5px 10px;
   color: white;
   width: fit-content;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   transition: all 0.2s ease-in-out;
   text-align: center;
+  outline:none;
+  border:none;
+  margin:10px;
 }
 
 .btn:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
-
+.btn-success{
+  background-color: rgb(62, 130, 62);
+}
 .btn-primary {
   background-color: rgb(22, 22, 224);
 }
@@ -46,9 +51,11 @@
 .btn-repondre {
   display:block;
   margin-right: 10px; 
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   text-align: right;
-
+}
+.btn-repondre i{
+  margin-right: 10px;
 }
 .btn-effacer{
   padding:3px 5px; 
