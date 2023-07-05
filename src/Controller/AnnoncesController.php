@@ -21,16 +21,6 @@ use Symfony\Contracts\Cache\ItemInterface;
 #[Route('/vehicules/annonces', name: 'app_vehicules_annonces_')]
 class AnnoncesController extends AbstractController
 {
-
-    // #[Route('/', name: 'liste_annonces')]
-    // public function index(VehiculesRepository $vehiculesRepository): Response
-    // {
-
-    //     $annonces = $vehiculesRepository->findBy(['publication_annonce' => true], ['marque' => 'ASC']);
-
-    //     return $this->render('annonces/index.html.twig', compact('annonces'));
-    // }
-
     #[Route('/publier-annonce/{id}', name: 'publier_annonce')]
     public function publierAnnonceVehicule(Vehicules $vehicule, EntityManagerInterface $em, $id): Response
     {
@@ -55,10 +45,10 @@ class AnnoncesController extends AbstractController
     {
       
         //Récupération du total de véhicules dans la base avant filtres
-        $totalVehicules = $vehiculesRepository->getTotalVehicules();
+        $totalVehicules = $vehiculesRepository->getTotalVehicules();       
 
         //Définition du nombre d'éléments par page
-        $limit = 100;
+        $limit = 10;
 
         //Récupération du numéro de page active
         $page = (int)$request->query->get("page", 1);
@@ -112,7 +102,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehiculesFiltered', 'typesMotorisations','typesBoites','yearMin')
+                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehicules', 'typesMotorisations','typesBoites','yearMin')
                 )
             ]);
         }

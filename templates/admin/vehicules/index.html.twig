@@ -12,6 +12,7 @@
 			<span class="bi bi-funnel"></span>
 			<label for="show-filters">Filtres</label>
 		</div>
+		{% set total = totalVehicules %}		
 
 		{% if is_granted(['ROLE_ADMIN']) %}
 			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
@@ -145,9 +146,11 @@
 			</div>
 		</div>
 
+		{{ include('_partials/_pagination.html.twig') }}
+
 	</main>
 	{% block javascripts %}
-		<script src="{{asset('assets/js/annonces.js')}}" type="module" defer></script>
-		<script src="{{asset('assets/js/filters.js')}}" type="module" defer></script>
+		<script src="{{asset('assets/js/annonces.js')}}" type="text/javascript" defer></script>
+		<script src="{{asset('assets/js/filters.js')}}" type="text/javascript" defer></script>
 	{% endblock %}
 {% endblock %}

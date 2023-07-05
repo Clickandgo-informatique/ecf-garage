@@ -1,4 +1,5 @@
 window.onload = () => {
+
   //Filtres de type input
   const filtersForm = document.querySelector("#filters");
 
@@ -56,12 +57,12 @@ window.onload = () => {
       wrapperfiltres.style.width = "220px";
       // document.querySelector(".wrapper").style.marginLeft = "220px";
       wrapperfiltres.style.transition = "ease-in 1s";
-      wrapperfiltres.style.display='block'
+      wrapperfiltres.style.display = "block";
     } else {
       wrapperfiltres.style.width = "0px";
       // document.querySelector(".wrapper").style.marginLeft = "0px";
       wrapperfiltres.style.transition = "ease-out 1s";
-      wrapperfiltres.style.display='none'
+      wrapperfiltres.style.display = "none";
     }
   });
 

@@ -40,11 +40,13 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 100, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null)
+    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null)
     {
         $limit = abs($limit);
 
         $query = $this->createQueryBuilder('v');
+        //Ne prend que les véhicules dont on a aprouvé la publication
+        $query->where('v.publication_annonce = true');
 
         //Filtre sur types de véhicules
         if ($filtreTypes != null) {
@@ -86,7 +88,7 @@ class VehiculesRepository extends ServiceEntityRepository
         //Filtre sur ancienneté (année)
         // if (!empty($yearMin) && $yearMin != null) {          
         //     $anneeVehicule= $query->select('v.date_mise_en_circulation')->getQuery();
-         
+
         //     $query->andWhere(':anneeVehicule <= :yearMin')
         //         ->setParameter('yearMin', $yearMin)
         //         ->setparameter('anneeVehicule',$anneeVehicule->format("Y"));
@@ -118,11 +120,14 @@ class VehiculesRepository extends ServiceEntityRepository
                     return false;
             }
         }
+        //Pagination sur résultats 
+
+        $totalVehiculesFiltered = count($query->getQuery()->getResult());
 
         $query->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
-        // dd($query->getQuery()->getResult());
-        return $query->getQuery()->getResult();
+        $result = $query->getQuery()->getResult();
+        return $result;
     }
 
     //Max prix de vente pour filtre d'intervalle
@@ -155,31 +160,22 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Total de véhicules dans la base
-    public function getTotalVehicules($filtreTypes = null, $filtreMarques = null, $prixMin = 0, $prixMax = 500000)
+    public function getTotalVehicules()
     {
         $query = $this->createQueryBuilder('v')
-            ->select('COUNT(v)');
-
-        //On filtre si filtre multicritères actif
-        if ($filtreTypes != null) {
-            $query->where('v.type_vehicule IN (:types)')
-                ->setParameter(':types', array_values($filtreTypes));
-        }
-
-        if ($filtreMarques != null) {
-            $query->andWhere('v.marque IN(:marques)')
-                ->setParameter(':marques', array_values($filtreMarques));
-        }
-
+            ->select('COUNT(v)')
+            ->where('v.publication_annonce = true');
         return $query->getQuery()->getSingleScalarResult();
     }
 
-    public function getLastFiveVehicules(){
-        $query=$this->createQueryBuilder('v')
-        ->select('v')
-        ->orderBy('v.date_mise_en_vente','DESC')
-        ->setMaxResults(5);
+    //Retourner les 5 premiers résultats par date de mise en vente
+    public function getLastFiveVehicules()
+    {
+        $query = $this->createQueryBuilder('v')
+            ->select('v')
+            ->orderBy('v.date_mise_en_vente', 'DESC')
+            ->setMaxResults(5);
 
-        return $query->getQuery()->getResult();       
+        return $query->getQuery()->getResult();
     }
 }
