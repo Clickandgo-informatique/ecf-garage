@@ -6,7 +6,7 @@ use App\Entity\ListeOptionsVehicule;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class ListeOptionsVehicules extends Fixture
+class ListeOptionsVehiculesFixtures extends Fixture
 {
 
     public function load(ObjectManager $em)
@@ -20,7 +20,7 @@ class ListeOptionsVehicules extends Fixture
 
             $listeOptions = new ListeOptionsVehicule();
             $listeOptions->setVehicule($this->getReference('vehicule_' . $i));
-            
+
             for ($j = 0; $j < count($tblOptions); $j++) {
                 $listeOptions->setOptionVehicule($this->getReference('OptionVehicule_' . $i));
 
