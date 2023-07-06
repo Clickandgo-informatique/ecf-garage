@@ -6,7 +6,7 @@ use App\Entity\ListeOptionsVehicule;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class ListeOptionsVehiculesFixtures extends Fixture
+class ListeOptionsVehiculeFixtures extends Fixture
 {
 
     public function load(ObjectManager $em)
