@@ -8,7 +8,6 @@ form {
   align-content: start;
   width: 100%;
   color: #fff;
-  font-weight: bolder;
   box-shadow: var(--box-shadow);
 }
 
@@ -177,8 +176,9 @@ section.commentaires {
   margin-left: 10px;
 }
 .filtersForm {
-  border: none;
-  /* background: transparent;  */
+  border: none; 
+  padding:5px;
+  margin:5px;
 }
 .checkbox-filtres {
   display: flex;

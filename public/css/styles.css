@@ -15,7 +15,7 @@
 
 :root {
   --background-color: rgb(86, 61, 213);
-  --box-shadow:(1px 1px 4px darkgray);
+  --box-shadow: (1px 1px 4px black);
 }
 
 * {
@@ -25,11 +25,11 @@
 body {
   box-sizing: border-box;
   display: flex;
-  font-family:"poppins", sans-serif;
+  font-family: "poppins", sans-serif;
   font-size: 0.8rem;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
 
 main {
@@ -38,8 +38,9 @@ main {
   max-width: 1200px;
   min-height: 600px;
   width: 100%;
-  justify-items: start;
-  animation:'fadeIn';
+  justify-items: center;
+  animation: "fadeIn";
+  background-color: rgb(252, 248, 255);
 }
 
 .content {
@@ -55,7 +56,11 @@ main {
   font-size: 1.5rem;
   color: #fff;
   text-align: center;
+  margin: 10px;
   padding: 10px;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px black;
 }
 .centered {
   margin: 10px auto;
@@ -86,7 +91,7 @@ main {
   color: #fff;
 }
 
-.alert-danger { 
+.alert-danger {
   color: red;
   background-color: #fff;
   padding: 6px 5px;
@@ -124,22 +129,22 @@ main {
   border-radius: 2px;
   width: fit-content;
 }
-.horaires-du-jour{
+.horaires-du-jour {
   padding: 10px;
   margin: 10px;
 }
-.horaires-du-jour p{
-  margin:10px;
+.horaires-du-jour p {
+  margin: 10px;
 }
 
 .link-horaires-semaine {
   text-decoration: underline;
   color: yellow;
-  margin:10px;
+  margin: 10px;
 }
 .link-horaires-semaine:visited {
   text-decoration: underline;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .prochain-creneau-jour {
@@ -180,9 +185,6 @@ main {
 .homepage {
   background-color: #fff;
 }
-.homepage h1 {
-  color: #fff;
-}
 .homepage h2 {
   color: rgb(112, 112, 112);
   text-align: center;
@@ -204,16 +206,15 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
   margin: 10px;
-  border-radius: 10px;
-  box-shadow: 1px 1px 4px lightgray;
 }
 section h1 {
+  border-radius: 5px;
   color: #fff;
   width: 100%;
   background-color: var(--background-color);
   margin: 0;
+  box-shadow: 1px 1px 4px black;
 }
 .annonces-vehicules {
   min-height: 400px;

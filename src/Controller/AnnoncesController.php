@@ -130,7 +130,7 @@ class AnnoncesController extends AbstractController
         $vehicule->addFavori($this->getUser());
         $em->persist($vehicule);
         $em->flush();
-        return $this->redirectToRoute('app_vehicules_liste_vehicules');
+        return $this->redirectToRoute('app_vehicules_annonces_index');
     }
     #[Route('/favoris/suppression/{id}', name: 'suppression_favori')]
     public function suppressionFavori(Vehicules $vehicule, EntityManagerInterface $em): Response
@@ -138,6 +138,6 @@ class AnnoncesController extends AbstractController
         $vehicule->removeFavori($this->getUser());
         $em->persist($vehicule);
         $em->flush();
-        return $this->redirectToRoute('app_vehicules_liste_vehicules');
+        return $this->redirectToRoute('app_vehicules_annonces_index');
     }
 }

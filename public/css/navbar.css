@@ -91,49 +91,45 @@
 @media screen and (max-width: 1200px) {
   .navbar-nav .nav-item a,
   .navbar-nav .nav-item i {
-    font-size: 12px;
+    font-size: 0.8rem;
   }
-  .menu-navbar {
-    display: flex;
+  .navbar-nav.nav-item{
     flex-direction: row;
+  align-items: start;
+  }
+  .navbar-nav {   
+  align-items: center;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width:900px) {
   .navbar {
-    padding: 0;
-  
-  }
+   padding: 0;
+    }
   .menu-navbar {
+    display:flex;
     position: absolute;
     top: 0;
     left: 0;
+    flex-direction: column;
     background-color: var(--background-color);
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+    height: 100vh;   
   }
-  .navbar-nav {
-    display: flex;
-    flex-direction: column;
+.navbar-nav {
+  align-items: start;
+   flex-direction: column;
+    padding: 15px;  
   }
-  .navbar-nav .nav-item {
-    margin: 10px;
-    text-align: center;
-    padding: 15px;
-    margin-left:-100%; 
-  }
-  .navbar-nav .nav-item:hover {
+  .navbar-nav.nav-item:hover {
     background-color: blue;
     color: yellow;
   }
   .navbar-nav .nav-item a,
-  .navbar-nav .nav-item i {
-    width: 100%;
-    font-size: 24px;
-    text-decoration: none;
+  .navbar-nav .nav-item i {  
+    font-size: 1.1rem;
+    text-decoration: none; 
+ 
   }
   .menu-hamburger{
     display:block;

@@ -157,7 +157,7 @@
 }
 .favoris {
   right: 20px;
-  top: 20px;
+  top: 30px;
   position: absolute;
   background-color: #fff;
   padding: 6px 8px;
@@ -181,11 +181,12 @@
   color: white;
   padding: 5px;
   border-radius: 5px;
-  width:80%;
-  opacity:1;
+  width:100%;
+
   transform:translateX(-5px) translateY(-5px);
   z-index: 4;
   box-shadow: 1px 1px 6px royalblue;
+  position:absolute;
 }
 .link-contact-par-mail{
   display:block;
