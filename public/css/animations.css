@@ -1,0 +1,70 @@
+.fadeIn {
+    animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeOut {
+    animation: fadeOut 1.5s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.fadeInImg {
+    animation: fadeIn 4s;
+}
+
+@keyframes fadeInImg {
+    from {
+        opacity: 0;
+
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.cookies-banner-fr.opening {
+    animation: opening 2s;
+}
+
+.cookies-banner-fr.closing {
+    animation: closing 2s;
+}
+
+@keyframes opening {
+    0% {
+        transform: translateY(400px)
+    }
+
+    100% {
+        transform: translateY(0px)
+    }
+}
+
+@keyframes closing {
+    0% {
+        transform: translateY(0px)
+    }
+
+    100% {
+        transform: translateY(400px)
+    }
+}

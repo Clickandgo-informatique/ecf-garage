@@ -1,0 +1,33 @@
+<!--Banner cookies-->
+<div class="cookies-banner-fr hidden">
+
+	<div>
+		<img class="img-cookie box-shadow" src="{{asset('assets/img/cookies.jpg')}}" alt="Image de cookie sur clavier de pc portable">
+	</div>
+	<div class="cookies-text-container">
+		<h1>Gestion des cookies</h1>
+		<p>Notre site utilise des cookies visant à améliorer l'expérience utilisateur en
+													                        enregistrant le
+													                        minimum d'information concernant votre navigation.
+		</p>
+		<p>
+			L'acceptation des cookies permet de vous présenter des publicités pertinentes et d'améliorer votre expérience de navigation tout en préservant au maximum votre privacité...
+		</p>
+		<p>Notre entreprise n'utilisera et ne diffusera jamais vos informations personnelles.</p>
+
+		<p>
+			Pour en savoir plus ou personnaliser vos préférences de cookies cliquez sur le bouton
+													                        "préférences"</p>
+
+
+	</div>
+	<div class="boutons-cookies">
+		<button class="btn accept-cookies btn-success" type="button">Accepter</button>
+		<button class="btn preferences-cookies btn-warning" type="button">Preferences...</button>
+		<button class="btn decline-cookies btn-danger" type="button">Refuser</button>
+	</div>
+
+</div>
+{% block javascripts %}
+	<script src="{{asset('assets/js/cookies.js')}}" defer></script>
+{% endblock %}

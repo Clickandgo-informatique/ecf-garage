@@ -45,7 +45,7 @@ class AnnoncesController extends AbstractController
     {
       
         //Récupération du total de véhicules dans la base avant filtres
-        $totalVehicules = $vehiculesRepository->getTotalVehicules();       
+        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules();   
 
         //Définition du nombre d'éléments par page
         $limit = 10;
@@ -70,14 +70,11 @@ class AnnoncesController extends AbstractController
         $kmMax = $request->get('kmMax');
         $kmMin = $request->get('kmMin');
         $yearMin=$request->get('yearMin');
-
-        //Récupération du total de véhicules dans la base avec filtres
-        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules($filtreTypes, $filtreMarques);
-
+        
         //Récupération de tous les véhicules pour pagination et filtres
         $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations,$filtreBoites,$yearMin);
-
-        //Recherche de tous les types de véhicules
+        
+       //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
 
         //Recherche de tous les types de motorisations
@@ -102,7 +99,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'totalVehicules', 'typesMotorisations','typesBoites','yearMin')
+                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page','typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered')
                 )
             ]);
         }
@@ -113,7 +110,7 @@ class AnnoncesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'totalVehicules', 'page', 'limit', 'totalVehiculesFiltered', 'typesMotorisations','typesBoites','yearMin'));
+        return $this->render('admin/vehicules/index.html.twig', compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules','page', 'limit', 'typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]

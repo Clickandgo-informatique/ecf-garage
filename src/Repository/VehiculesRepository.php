@@ -118,16 +118,18 @@ class VehiculesRepository extends ServiceEntityRepository
                     break;
                 default:
                     return false;
+                }
             }
-        }
-        //Pagination sur résultats 
+            
+            //Récupération du total de véhicules retourné par la requête filtrée
+            // avant pagination
+            $totalVehiculesFiltered = count($query->getQuery()->getResult());
+            
+            //Pagination sur résultats 
+            $query->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);            
 
-        $totalVehiculesFiltered = count($query->getQuery()->getResult());
-
-        $query->setFirstResult(($page * $limit) - $limit)
-            ->setMaxResults($limit);
-        $result = $query->getQuery()->getResult();
-        return $result;
+        return $query->getQuery()->getResult();
     }
 
     //Max prix de vente pour filtre d'intervalle

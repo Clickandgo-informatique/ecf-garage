@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edition de la page d'accueil
+{% endblock %}
+{% block body %}
+	<div class="wrapper">
+		{{ include('_partials/_admin-nav.html.twig') }}
+		<main>
+
+			{{ form_start(form) }}
+			<div class="form-header">Edition de la page d'accueil</div>
+
+
+			{% if form.logo is not null %}
+				<div class="img-logo"><img src="{{asset('assets/uploads/logo/' ~ form.vars.value.logo)}}" alt="Logo entreprise"></div>
+			{% endif %}
+
+			{{ form_row(form.logo) }}
+			<p><strong>{{ form_row(form.titre_principal) }}</strong></p>
+			{{ form_row(form.sous_titre) }}
+			{{ form_row(form.description) }}
+
+			{{ form_end(form) }}
+
+		</main>
+
+	</div>
+
+{% endblock %}

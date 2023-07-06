@@ -19,4 +19,12 @@ window.onload = () => {
       }, 1100);
     });
   });
+
+  //Fonction pour navbar responsive
+  const menuHamburger=document.querySelector('.menu-hamburger')
+  const menuNavbar=document.querySelector('.menu-navbar')
+
+  menuHamburger.addEventListener('click',()=>{   
+    menuNavbar.classList.toggle('mobile-menu')
+  })
 };
