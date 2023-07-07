@@ -33,12 +33,7 @@ class VehiculesFixtures extends Fixture
         for ($i = 0; $i <= 20; $i++) {
 
             //Random sur les valeurs des tableaux fictifs
-            $randomMarques = rand(0, $lengthMarques - 1);
-
-
-            //Random sur les dates
-            // $timestamp = rand(strtotime("Jan 01 2015"), strtotime("Nov 01 2023"));
-            // $random_Date = new \DateTime("d-m-Y",);
+            $randomMarques = rand(0, $lengthMarques - 1);       
 
             //Création des données du véhicule
             $v = new Vehicules();
@@ -69,18 +64,14 @@ class VehiculesFixtures extends Fixture
                 ->setcriterepollution(rand(1,6))
                 ->setdatecontroletechnique($faker->datetimethisyear())
                 ->setnbproprietaires(rand(1,5))
-                ;
-
-
-          
-         
+                ;         
 
             $manager->persist($v);
             $this->addReference('vehicule_' . $i, $v);
             $manager->flush();
 
             //Création de la liste d'options du véhicule actuel
-            $max = count($tblOptions) - 2;
+            $max = count($tblOptions) - 1;
 
             for ($j = 0; $j < rand(1, $max); $j++) {
                 $listeOptions = new ListeOptionsVehicule();

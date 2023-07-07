@@ -1,8 +1,8 @@
-footer{   
-    min-height: 200px;
-    background: var(--background-color);
-    color:#fff;
-    padding:20px;  
-    box-shadow: 1px 1px 6px black;
-    width:100%;
+footer {
+  min-height: 200px;
+  background: var(--background-color);
+  color: #fff;
+  padding: 20px;
+  box-shadow: 1px 1px 6px black;
+  width: 100%;
 }

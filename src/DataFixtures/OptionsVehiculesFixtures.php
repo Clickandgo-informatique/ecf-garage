@@ -12,7 +12,7 @@ class OptionsVehiculesFixtures extends Fixture
     {
         $tblOptions = ['Lève-glaces électrique AV', 'Lève-glaces électrique AR', 'Direction assistée', 'GPS', 'Caméra de recul', 'Aide au parking', 'Sièges cuir', 'Régulateur de vitesse', 'Boîte automatique', 'Attache remorque', 'Stop & Go', 'Park assist', 'Toit ouvrant électrique'];
 
-        for ($i = 0; $i < count($tblOptions) - 1; $i++) {
+        for ($i = 0; $i < count($tblOptions); $i++) {
 
             $option = new OptionsVehicules();
             $option->setNomOption($tblOptions[$i]);

@@ -12,6 +12,7 @@
 @import "./cookies.css";
 @import "./animations.css";
 @import "./pagination.css";
+@import "./media-queries.css";
 
 :root {
   --background-color: rgb(86, 61, 213);
@@ -20,10 +21,10 @@
 
 * {
   margin: 0;
+  /* box-sizing: border-box; */
 }
 
 body {
-  box-sizing: border-box;
   display: flex;
   font-family: "poppins", sans-serif;
   font-size: 0.8rem;
@@ -37,18 +38,11 @@ main {
   flex-direction: column;
   max-width: 1200px;
   min-height: 600px;
-  width: 100%;
-  justify-items: center;
-  animation: "fadeIn";
+  /* animation: "fadeIn"; */
   background-color: rgb(252, 248, 255);
+  width:100%;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
 .hidden {
   display: none;
 }
@@ -60,7 +54,9 @@ main {
   padding: 10px;
   background-color: var(--background-color);
   border-radius: 5px;
+  text-shadow: 1px 1px 4px darkblue;
   box-shadow: 1px 1px 4px black;
+  width:95%;
 }
 .centered {
   margin: 10px auto;
@@ -81,8 +77,8 @@ main {
 }
 .wrapper {
   display: flex;
-  /* flex-direction: column; */
-  align-content: start;
+  align-content: center;
+  
 }
 .link {
   color: #fff;
@@ -167,21 +163,7 @@ main {
   color: red;
   background-color: lightsalmon;
 }
-.btn-close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  color: blue;
-  font-size: 35px;
-  padding: 5px;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
+
 .homepage {
   background-color: #fff;
 }
@@ -208,20 +190,14 @@ section {
   align-items: center;
   margin: 10px;
 }
-section h1 {
-  border-radius: 5px;
-  color: #fff;
-  width: 100%;
-  background-color: var(--background-color);
-  margin: 0;
-  box-shadow: 1px 1px 4px black;
-}
 .annonces-vehicules {
   min-height: 400px;
 }
 .galerie-derniers-vehicules-occasion {
-  display: flex;
+  display: grid;
+  place-items: start center;
+  align-content: start;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   width: 100%;
-  overflow-x: scroll;
-  margin: 10px;
+  margin: 20px;
 }

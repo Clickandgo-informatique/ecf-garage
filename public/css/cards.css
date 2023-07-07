@@ -110,6 +110,7 @@
 }
 .card-services .card-title{
   color:blue;
+  text-shadow: 1px 1px 4px darkgray;
 }
 .resume {
   font-size: 0.8rem;

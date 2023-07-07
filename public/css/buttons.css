@@ -12,6 +12,21 @@
   border:none;
   margin:10px;
 }
+.btn-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  color: blue;
+  font-size: 35px;
+  padding: 5px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
 
 .btn:hover {
   transform: scale(1.1);

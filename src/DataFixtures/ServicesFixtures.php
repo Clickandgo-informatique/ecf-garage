@@ -5,18 +5,21 @@ namespace App\DataFixtures;
 use App\Entity\Services;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ServicesFixtures extends Fixture
 {
-    
-    public function __construct(private SluggerInterface $slugger) {
-        
+
+    public function __construct(private SluggerInterface $slugger)
+    {
     }
-    
+
     public function load(ObjectManager $manager): void
     {
-        $civilites=['Madame','Monsieur'];
+        $faker = Factory::create("fr_FR");
+
+        $civilites = ['Madame', 'Monsieur'];
 
         $tblNomServices = ['Dépannage rapide', 'Carrosserie', 'Peinture', 'Contrôle technique', 'Location de véhicules', 'Nettoyage intégral', 'Adaptation GPL', 'Pneumatiques'];
 
@@ -36,18 +39,15 @@ class ServicesFixtures extends Fixture
            Natus autem ex quo asperiores tempora! Suscipit, iste iusto nobis animi eligendi expedita libero assumenda modi excepturi aspernatur sequi dicta mollitia itaque porro quia odit, illo ea magni nulla! Beatae.
            Explicabo, deserunt debitis mollitia similique, provident dignissimos illo minima, facere est adipisci officiis libero blanditiis nihil aliquid. Facere accusamus consequatur aliquam nam maiores sint voluptatum placeat unde, illum deleniti aut.")
                 ->setSlug($this->slugger->slug($service->getNom())->lower())
-
                 ->setPrixAPartirDe(rand(10, 100))
-                ->setTelephone1('01.02.03.04.05')
-                ->setTelephone2('09.08.07.06.05')
-                ->setResponsable("Responsable_".$i)
-                ->setMailService1($service->getSlug().'@garage.com')
-                ->setMailService1($service->getSlug().'@concession-paris.com') 
-                ->setAfficher(true) 
-                ->setCiviliteResponsable($civilites[rand(0,1)])              
-                
-                ;
-                
+                ->setTelephone1($faker->phoneNumber())
+                ->setTelephone2($faker->phoneNumber())
+                ->setResponsable($faker->lastName().' '.$faker->firstName)
+                ->setMailService1($service->getSlug() . '@garage.com')
+                ->setMailService1($service->getSlug() . '@concession-paris.com')
+                ->setAfficher(true)
+                ->setCiviliteResponsable($civilites[rand(0, 1)]);
+
 
             $manager->persist($service);
             $manager->flush();
