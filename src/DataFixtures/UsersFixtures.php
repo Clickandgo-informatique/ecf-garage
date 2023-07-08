@@ -69,7 +69,7 @@ class UsersFixtures extends Fixture
                 ->setPrenom($faker->firstName)
                 ->setTelFixe($faker->phoneNumber)
                 ->setTelMobile($faker->phoneNumber)
-                ->setAdresse($faker->address)
+                ->setAdresse($faker->streetName)
                 ->setCodePostal(str_replace(' ','',$faker->postcode))
                 ->setVille($faker->city)
                 ->setEmail($faker->email)

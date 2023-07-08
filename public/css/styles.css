@@ -31,6 +31,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: rgb(252, 248, 255);
 }
 
 main {
@@ -39,7 +40,6 @@ main {
   max-width: 1200px;
   min-height: 600px;
   /* animation: "fadeIn"; */
-  background-color: rgb(252, 248, 255);
   width:100%;
 }
 
@@ -77,7 +77,8 @@ main {
 }
 .wrapper {
   display: flex;
-  align-content: center;
+  justify-content: center;
+  width:100%;
   
 }
 .link {

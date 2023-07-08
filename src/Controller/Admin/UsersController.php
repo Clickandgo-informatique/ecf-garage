@@ -38,7 +38,7 @@ class UsersController extends AbstractController
         $em->remove($user);
         $em->flush();
 
-        $this->addFlash('alert', 'L\'utilisateur a été supprimé de la base avec succès.');
+        $this->addFlash('alert alert-success', 'L\'utilisateur a été supprimé de la base avec succès.');
         return $this->redirectToRoute('app_utilisateurs_liste_utilisateurs');
     }
 

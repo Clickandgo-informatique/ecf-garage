@@ -3,23 +3,31 @@
 namespace App\DataFixtures;
 
 use App\Entity\ListeOptionsVehicule;
+use App\Entity\Photos;
 use App\Entity\Vehicules;
+use App\Service\PicturesService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Faker\Factory;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class VehiculesFixtures extends Fixture
 {
-    public function __construct(private SluggerInterface $slugger)
-    {
+
+
+    public function __construct(
+        private SluggerInterface $slugger,
+        private PicturesService $picturesService
+    ) {
     }
 
     public function load(ObjectManager $manager)
     {
+
         $faker = Factory::create('fr_FR');
 
-        $tblBadges=['','Peu de km !','Occasion récente !','Occasion rare','Etat exceptionnel'];
+        $tblBadges = ['', 'Peu de km !', 'Occasion récente !', 'Occasion rare', 'Etat exceptionnel'];
         $tblMarques = ['Alfa-Romeo', 'Aston-Martin', 'Bentley', 'BMW', 'Citroen', 'DS automobiles', 'Jaguar', 'Mercedes', 'Peugeot', 'Renault', 'Rolls-Royce', 'Toyota', 'Volkswagen'];
 
 
@@ -33,7 +41,7 @@ class VehiculesFixtures extends Fixture
         for ($i = 0; $i <= 20; $i++) {
 
             //Random sur les valeurs des tableaux fictifs
-            $randomMarques = rand(0, $lengthMarques - 1);       
+            $randomMarques = rand(0, $lengthMarques - 1);
 
             //Création des données du véhicule
             $v = new Vehicules();
@@ -59,12 +67,11 @@ class VehiculesFixtures extends Fixture
                 ->setdatemiseencirculation($faker->dateTimeThisDecade())
                 ->setbadgeannonce($faker->randomElement($tblBadges))
                 ->setDateMiseEnVente($faker->dateTimeThisYear())
-                ->setnumchassis($faker->randomElement(['a','b','c','d','e']).'-'.rand(1000000,10000000).'-'.$faker->randomElement(['aa','bb','cc','dd','ee']))
+                ->setnumchassis($faker->randomElement(['a', 'b', 'c', 'd', 'e']) . '-' . rand(1000000, 10000000) . '-' . $faker->randomElement(['aa', 'bb', 'cc', 'dd', 'ee']))
                 ->setlocalisation('Toulouse')
-                ->setcriterepollution(rand(1,6))
+                ->setcriterepollution(rand(1, 6))
                 ->setdatecontroletechnique($faker->datetimethisyear())
-                ->setnbproprietaires(rand(1,5))
-                ;         
+                ->setnbproprietaires(rand(1, 5));
 
             $manager->persist($v);
             $this->addReference('vehicule_' . $i, $v);
@@ -81,6 +88,39 @@ class VehiculesFixtures extends Fixture
                 $manager->persist($listeOptions);
                 $manager->flush();
             }
+
+            //Création de la liste d'images pour le véhicule actuel 
+            $sourceDir = 'src/DataFixtures/img/';
+
+            //Dossier de destination
+            $folder = 'vehicules';
+
+            //Mise en tableau de toutes les images présentes dans le dossier
+            $files = array_values(array_diff(scandir($sourceDir), array('..', '.')));
+
+            //Extraction du chemin complet et des noms de fichiers
+            $filesPath = [];
+            $filesNames = [];
+
+            foreach ($files as $file) {
+                $filesPath[] = $sourceDir . $file;
+                $filesNames[] = $file;
+            }
+
+            // création de chaque fichier image
+            for ($k = 0; $k < count($files); $k++) {
+                $photo = new UploadedFile($filesPath[$k], $filesNames[$k], null, null, true);
+
+                //Appel au service d'ajout d'images 
+                $fichier = $this->picturesService->add($photo, $folder, 300, 300,false);
+                $photoUploaded = new Photos();
+                $photoUploaded->setNom($fichier);
+                $v->addPhoto($photoUploaded);
+
+                $manager->persist($photoUploaded);
+                $manager->persist($v);
+            }
+            $manager->flush();
         }
     }
 

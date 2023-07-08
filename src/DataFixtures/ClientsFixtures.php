@@ -16,17 +16,17 @@ class ClientsFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
 
             $client = new Clients();
-            $client->setNom($faker->firstName)
-                ->setPrenom($faker->lastname)
-                ->setTelephoneFixe('01.02.03.04.05')
-                ->setTelephoneMobile('01.02.03.04.05')
-                ->setAdresse($faker->address)
-                ->setCodePostal($faker->postcode)
+            $client->setNom($faker->lastName)
+                ->setPrenom($faker->firstName)
+                ->setTelephoneFixe($faker->phoneNumber)
+                ->setTelephoneMobile($faker->phoneNumber)
+                ->setAdresse($faker->streetName)
+                ->setCodePostal(str_replace(' ', '', $faker->postcode()))
                 ->setVille($faker->city)
                 ->setEmail($faker->email);
 
             $manager->persist($client);
-              $this->addReference('Client_' . $i, $client);
+            $this->addReference('Client_' . $i, $client);
             $manager->flush();
         }
     }

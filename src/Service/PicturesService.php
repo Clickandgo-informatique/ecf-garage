@@ -18,7 +18,7 @@ class PicturesService
         $this->params = $params;
     }
 
-    public function add(UploadedFile $picture, ?string $folder = '', ?int $width = 250, ?int $height = 250)
+    public function add(UploadedFile $picture, ?string $folder = '', ?int $width = 250, ?int $height = 250, $moveFile = true)
     {
         //Création d'un nouveau nom d'image
         $fichier = md5(uniqid(rand(), true)) . '.webp';
@@ -38,6 +38,9 @@ class PicturesService
                 $picture_source = imagecreatefromjpeg($picture);
                 break;
             case 'image/webp':
+                $picture_source = imagecreatefromwebp($picture);
+                break;
+            case 'image/gif':
                 $picture_source = imagecreatefromwebp($picture);
                 break;
             default:
@@ -82,8 +85,9 @@ class PicturesService
 
         //Stockage de l'image recadrée
         imagewebp($resized_picture, $path . '/mini/' . $width . 'x' . $height . '-' . $fichier);
-
-        $picture->move($path . '/', $fichier);
+        if ($moveFile) {
+            $picture->move($path . '/', $fichier);
+        }
 
         return $fichier;
     }

@@ -69,7 +69,8 @@ class ClientsController extends AbstractController
             return $this->redirectToRoute('app_clients_liste_clients');
         }
         return $this->render('admin/clients/client-form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'titre'=>"Créer un nouveau client"
         ]);
     }
 
@@ -90,7 +91,8 @@ class ClientsController extends AbstractController
             return $this->redirectToRoute('app_clients_liste_clients');
         }
         return $this->render('admin/clients/client-form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'titre'=>'Modifier la fiche client'
         ]);
     }
 }

@@ -8,10 +8,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UsersFormType extends AbstractType
 {
@@ -30,6 +32,7 @@ class UsersFormType extends AbstractType
                 ]
             ])
             ->add('roles', ChoiceType::class, [
+                'required'=>true,
                 'choices' => [
                     'Utilisateur' => 'ROLE_USER',
                     'Employé' => 'ROLE_EMPLOYEE',
@@ -40,6 +43,11 @@ class UsersFormType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
+                // 'constraints' => new Regex(
+                //     pattern: '#$S*(?=S{8,})(?=S*[a-z])(?=S*[A-Z])(?=S*[d])(?=S*[W])S*$#',
+                //     match: true,
+                //     message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, au moins un chiffre et un symbole '!,-,?,/ ect...'."
+                // ),
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -69,12 +77,14 @@ class UsersFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('tel_fixe', TextType::class, [
+            ->add('tel_fixe', TelType::class, [
+                'constraints' => new Regex(pattern: '#(0|\+33)[1-9]( *[0-9]{2}){4}#', message: 'Le numéro de télephone fixe renseigné est incorrect, merci de le vérifier à nouveau.'),
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
-            ->add('tel_mobile', TextType::class, [
+            ->add('tel_mobile', TelType::class, [
+                'constraints' => new Regex(pattern: '#(0|\+33)[1-9]( *[0-9]{2}){4}#', message: 'Le numéro de télephone fixe renseigné est incorrect, merci de le vérifier à nouveau.'),
                 'attr' => [
                     'class' => 'form-control'
                 ]
