@@ -95,34 +95,41 @@ class VehiculesFixtures extends Fixture
             //Dossier de destination
             $folder = 'vehicules';
 
-            //Mise en tableau de toutes les images présentes dans le dossier
+            //Mise en tableau de toutes les images présentes dans le dossier local (src/Datafixtures/img)
             $files = array_values(array_diff(scandir($sourceDir), array('..', '.')));
 
             //Extraction du chemin complet et des noms de fichiers
             $filesPath = [];
             $filesNames = [];
 
+            //Remplissage des tableaux pour chaque fichier
             foreach ($files as $file) {
                 $filesPath[] = $sourceDir . $file;
                 $filesNames[] = $file;
             }
+dd($filesNames);
+            //Exécution d'un random sur le tableau d'images en local
+            $fichiers = $faker->randomElements($filesNames,4);
 
             // création de chaque fichier image
-            for ($k = 0; $k < count($files); $k++) {
+            for ($k = 0; $k < count($fichiers); $k++) {
+
                 $photo = new UploadedFile($filesPath[$k], $filesNames[$k], null, null, true);
 
                 //Appel au service d'ajout d'images 
-                $fichier = $this->picturesService->add($photo, $folder, 300, 300,false);
+                $fichier = $this->picturesService->add($photo, $folder, 300, 300, false);
+
                 $photoUploaded = new Photos();
                 $photoUploaded->setNom($fichier);
                 $v->addPhoto($photoUploaded);
 
                 $manager->persist($photoUploaded);
                 $manager->persist($v);
+                $manager->flush();
             }
-            $manager->flush();
         }
     }
+
 
     public function getDependencies()
     {
