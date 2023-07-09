@@ -1,26 +1,26 @@
 <nav class="navbar">
-	<div class="brand">
-		<a href="" class="navbar-brand">Logo</a>
-	</div>
 
 	<div class="menu-navbar">
+		<div class="brand">
+			<a href="#" class="navbar-brand" aria-label="Logo">Logo</a>
+		</div>
 		<div class="div-links">
 			<ul class="navbar-nav">
 				<li class="active nav-item">
 					<i class="fa-solid fa-house"></i>
-					<a href="{{path('app_index')}}">Accueil</a>
+					<a href="{{path('app_index')}}" aria-label="Accueil" aria-current="page">Accueil</a>
 				</li>
 				<li class="nav-item">
 					<i class="fa-regular fa-clock"></i>
-					<a href="{{path('app_horaires_semaine_index')}}">Nos horaires</a>
+					<a href="{{path('app_horaires_semaine_index')}}" aria-label="Horaires">Nos horaires</a>
 				</li>
 				<li class="nav-item">
 					<i class="fa-solid fa-car-side"></i>
-					<a href="{{path('app_vehicules_annonces_index')}}">Annonces véhicules d'occasion</a>
+					<a href="{{path('app_vehicules_annonces_index')}}" arai-label="Annonces véhicules occasion">Annonces véhicules d'occasion</a>
 				</li>
 				<li class="nav-item">
 					<i class="fa-solid fa-screwdriver-wrench"></i>
-					<a href="{{path('app_services_index')}}">Nos services</a>
+					<a href="{{path('app_services_index')}}" aria-label="Services">Nos services</a>
 				</li>
 				<li class="nav-item">
 					<i class="fa-solid fa-phone"></i>
@@ -49,11 +49,16 @@
 						</li>
 					{% endif %}
 				{% else %}
-					<li class="nav-item">
+					<li class="nav-item user-toggler">
+							<i class="fa-solid fa-user"></i>
+						<a href="#" aria-label="Page de connexion" alt="Icône utilisateur">
+						</a>
+					</li>
+					<li class="nav-item connexions">
 						<i class="fa-solid fa-arrow-right-to-bracket"></i>
 						<a href="{{path('app_login')}}">Se connecter</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item connexions">
 						<i class="fa-regular fa-address-card"></i>
 						<a href="{{path('app_register')}}">S'inscrire</a>
 					</li>
@@ -61,8 +66,10 @@
 			</ul>
 		</div>
 	</div>
-	<div class="menu-hamburger">
-		<span class="fa-solid fa-bars"></i>
-	</div>
+	<button type="button" class="menu-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+		<span></span>
+		<span></span>
+		<span></span>
+	</button>
 
 </nav>
