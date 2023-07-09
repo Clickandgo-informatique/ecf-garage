@@ -24,6 +24,14 @@ class VehiculesFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        //Effacement des anciennes images dans le dossier uploads
+        $oldPhotos = glob('public\assets\uploads\vehicules\mini\*');
+
+        foreach ($oldPhotos as $oldPhoto) {
+            if (is_file($oldPhoto)) {
+                unlink($oldPhoto);
+            }
+        }
 
         $faker = Factory::create('fr_FR');
 
@@ -38,7 +46,7 @@ class VehiculesFixtures extends Fixture
         $lengthMarques = count($tblMarques);
         $lengthCouleurs = count($couleurs);
 
-        for ($i = 0; $i <= 20; $i++) {
+        for ($i = 0; $i < 100; $i++) {
 
             //Random sur les valeurs des tableaux fictifs
             $randomMarques = rand(0, $lengthMarques - 1);
@@ -97,7 +105,6 @@ class VehiculesFixtures extends Fixture
 
             //Mise en tableau de toutes les images présentes dans le dossier local (src/Datafixtures/img)
             $files = array_values(array_diff(scandir($sourceDir), array('..', '.')));
-
             //Extraction du chemin complet et des noms de fichiers
             $filesPath = [];
             $filesNames = [];
@@ -107,14 +114,13 @@ class VehiculesFixtures extends Fixture
                 $filesPath[] = $sourceDir . $file;
                 $filesNames[] = $file;
             }
-dd($filesNames);
             //Exécution d'un random sur le tableau d'images en local
-            $fichiers = $faker->randomElements($filesNames,4);
+            $fichiers = $faker->randomElements($filesNames, 4);
 
             // création de chaque fichier image
             for ($k = 0; $k < count($fichiers); $k++) {
 
-                $photo = new UploadedFile($filesPath[$k], $filesNames[$k], null, null, true);
+                $photo = new UploadedFile($sourceDir . $fichiers[$k], $fichiers[$k], null, null, true);
 
                 //Appel au service d'ajout d'images 
                 $fichier = $this->picturesService->add($photo, $folder, 300, 300, false);

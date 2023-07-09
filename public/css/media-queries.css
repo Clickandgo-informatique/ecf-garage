@@ -23,6 +23,18 @@
 section .titre-principal{
   font-size: 0.8rem;
 }
+.wrapper{
+  flex-direction: column;
+}
+.galerie-photos{
+  flex-direction: column;
+  background-color: transparent;
+  border:inherit;
+}
+.galerie-photos img{
+  width:300px;
+  height:300px;
+}
 }
 
 @media screen and (min-width:600px) and (max-width: 1200px) {

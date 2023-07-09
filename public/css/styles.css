@@ -39,7 +39,6 @@ main {
   flex-direction: column;
   max-width: 1200px;
   min-height: 600px;
-  /* animation: "fadeIn"; */
   width:100%;
 }
 
@@ -78,6 +77,7 @@ main {
 .wrapper {
   display: flex;
   justify-content: center;
+  align-items: start;
   width:100%;
   
 }

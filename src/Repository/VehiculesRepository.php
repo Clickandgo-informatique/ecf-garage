@@ -40,7 +40,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null)
+    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null, $user = null)
     {
         $limit = abs($limit);
 
@@ -85,6 +85,8 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':kmMax', $kmMax);
         }
 
+
+
         //Filtre sur ancienneté (année)
         // if (!empty($yearMin) && $yearMin != null) {          
         //     $anneeVehicule= $query->select('v.date_mise_en_circulation')->getQuery();
@@ -98,6 +100,13 @@ class VehiculesRepository extends ServiceEntityRepository
 
         if (!empty($classerPar)) {
             switch ($classerPar) {
+                case "Mes favoris":
+                    //Filtre sur favoris de l'utilisateur actuel 
+                    if ($user) {
+                        $favoris = $user->getFavoris();
+                        $query->andWhere('v.id IN(:favoris)')
+                            ->setParameter('favoris', $favoris);
+                    }
                 case "Prix descendant":
                     $query->orderBy('v.prix_vente', 'desc');
                     break;
@@ -118,16 +127,16 @@ class VehiculesRepository extends ServiceEntityRepository
                     break;
                 default:
                     return false;
-                }
             }
-            
-            //Récupération du total de véhicules retourné par la requête filtrée
-            // avant pagination
-            $totalVehiculesFiltered = count($query->getQuery()->getResult());
-            
-            //Pagination sur résultats 
-            $query->setFirstResult(($page * $limit) - $limit)
-            ->setMaxResults($limit);            
+        }
+
+        //Récupération du total de véhicules retourné par la requête filtrée
+        // avant pagination
+        $totalVehiculesFiltered = count($query->getQuery()->getResult());
+
+        //Pagination sur résultats 
+        $query->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);
 
         return $query->getQuery()->getResult();
     }

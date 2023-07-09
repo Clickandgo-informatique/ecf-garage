@@ -53,6 +53,9 @@ class AnnoncesController extends AbstractController
         //Récupération du numéro de page active
         $page = (int)$request->query->get("page", 1);
 
+        //Récupération des favoris de l'utilisateur actif
+        $user=$this->getUser();          
+
         //Récupération des filtres de types de véhicules
         $filtreTypes = $request->get('types');
         //Récupération des filtres de marques de véhicules
@@ -72,7 +75,7 @@ class AnnoncesController extends AbstractController
         $yearMin=$request->get('yearMin');
         
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations,$filtreBoites,$yearMin);
+        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations,$filtreBoites,$yearMin,$user);
         
        //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
@@ -99,7 +102,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page','typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered')
+                    compact('user','classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page','typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered')
                 )
             ]);
         }
@@ -110,7 +113,7 @@ class AnnoncesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules','page', 'limit', 'typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered'));
+        return $this->render('admin/vehicules/index.html.twig', compact('user','classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules','page', 'limit', 'typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
