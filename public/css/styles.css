@@ -32,6 +32,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: rgb(252, 248, 255);
+  min-width: 300px;
 }
 
 main {
@@ -39,7 +40,7 @@ main {
   flex-direction: column;
   max-width: 1200px;
   min-height: 600px;
-  width:100%;
+  width: 100%;
 }
 
 .hidden {
@@ -55,7 +56,7 @@ main {
   border-radius: 5px;
   text-shadow: 1px 1px 4px darkblue;
   box-shadow: 1px 1px 4px black;
-  width:95%;
+  width: 95%;
 }
 .centered {
   margin: 10px auto;
@@ -78,8 +79,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: start;
-  width:100%;
-  
+  width: 100%;
 }
 .link {
   color: #fff;
