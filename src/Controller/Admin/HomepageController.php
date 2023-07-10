@@ -28,9 +28,9 @@ class HomepageController extends AbstractController
         } else {
 
             //Recherche de l'id de la page d'accueil (homepage) déjà enregistrée        
-         
-            $homepage = $homepageRepository->find($homepageRepository->getMaxId());
-         
+
+            $idHomepage = $homepageRepository->getMaxId();
+            $homepage = $homepageRepository->find($idHomepage);
             $form = $this->createForm(HomepageFormType::class, $homepage);
 
             $this->addFlash('success', 'Vos modifications ont bien été prises en compte dans la base.');
@@ -57,25 +57,25 @@ class HomepageController extends AbstractController
             //Traitement du fichier attachment du logo
             $logoFile = $form['logo']->getData();
 
-            if($logoFile){
-            $extension = $logoFile->guessExtension();
-            if (!$extension) {
-                // l'extension n'est pas reconnue
-                $extension = 'bin';
+            if ($logoFile) {
+                $extension = $logoFile->guessExtension();
+                if (!$extension) {
+                    // l'extension n'est pas reconnue
+                    $extension = 'bin';
+                }
+                $logoFilename = md5(uniqid()) . '.' . $extension;
+
+                $logoFile->move($directory, $logoFilename);
+
+                $homepage->setLogo($logoFilename);
             }
-            $logoFilename = md5(uniqid()) . '.' . $extension;
-
-            $logoFile->move($directory,$logoFilename);            
-
-            $homepage->setLogo($logoFilename);
-        }
 
             $em->persist($homepage);
             $em->flush();
         }
 
         return $this->render('/admin/homepage/formHomepage.html.twig', [
-            'form' => $form->createView(),           
+            'form' => $form->createView(),
         ]);
     }
 }
