@@ -7,12 +7,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ListeOptionsVehicle>
+ * @extends ServiceEntityRepository<ListeOptionsVehicule>
  *
- * @method ListeOptionsVehicle|null find($id, $lockMode = null, $lockVersion = null)
- * @method ListeOptionsVehicle|null findOneBy(array $criteria, array $orderBy = null)
- * @method ListeOptionsVehicle[]    findAll()
- * @method ListeOptionsVehicle[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ListeOptionsVehicule|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ListeOptionsVehicule|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ListeOptionsVehicule[]    findAll()
+ * @method ListeOptionsVehicule[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ListeOptionsVehiculeRepository extends ServiceEntityRepository
 {
@@ -40,7 +40,7 @@ class ListeOptionsVehiculeRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return ListeOptionsVehicle[] Returns an array of ListeOptionsVehicle objects
+//     * @return ListeOptionsVehicule[] Returns an array of ListeOptionsVehicule objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ListeOptionsVehiculeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?ListeOptionsVehicle
+//    public function findOneBySomeField($value): ?ListeOptionsVehicule
 //    {
 //        return $this->createQueryBuilder('l')
 //            ->andWhere('l.exampleField = :val')

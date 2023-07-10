@@ -7,7 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<OptionsVehicule>
+ * @extends ServiceEntityRepository<OptionsVehicules>
  *
  * @method OptionsVehicules|null find($id, $lockMode = null, $lockVersion = null)
  * @method OptionsVehicules|null findOneBy(array $criteria, array $orderBy = null)
@@ -54,7 +54,7 @@ class OptionsVehiculesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?OptionsVehicule
+//    public function findOneBySomeField($value): ?OptionsVehicules
 //    {
 //        return $this->createQueryBuilder('o')
 //            ->andWhere('o.exampleField = :val')
