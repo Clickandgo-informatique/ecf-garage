@@ -43,9 +43,9 @@ class AnnoncesController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(CacheInterface $cache, Request $request, VehiculesRepository $vehiculesRepository, TypesVehiculesRepository $typesVehiculesRepository, MarquesRepository $marquesRepository, MotorisationsRepository $motorisationsRepository, BoitesRepository $boitesRepository): Response
     {
-      
+
         //Récupération du total de véhicules dans la base avant filtres
-        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules();   
+        $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules();
 
         //Définition du nombre d'éléments par page
         $limit = 10;
@@ -54,7 +54,7 @@ class AnnoncesController extends AbstractController
         $page = (int)$request->query->get("page", 1);
 
         //Récupération des favoris de l'utilisateur actif
-        $user=$this->getUser();          
+        $user = $this->getUser();
 
         //Récupération des filtres de types de véhicules
         $filtreTypes = $request->get('types');
@@ -65,19 +65,21 @@ class AnnoncesController extends AbstractController
         //Récupération valeurs motorisations
         $filtreMotorisations = $request->get('typesMotorisations');
         //Récupération des types de boîtes de vitesse
-        $filtreBoites = $request->get('boites');    
+        $filtreBoites = $request->get('boites');
 
         //Récupération des valeurs d'input pour filtres d'intervalle
         $prixMin = $request->get('prixMin');
         $prixMax = $request->get('prixMax');
         $kmMax = $request->get('kmMax');
         $kmMin = $request->get('kmMin');
-        $yearMin=$request->get('yearMin');
-        
+        $yearMin = $request->get('yearMin');
+
         //Récupération de tous les véhicules pour pagination et filtres
-        $vehicules = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations,$filtreBoites,$yearMin,$user);
-        
-       //Recherche de tous les types de véhicules
+        $paginationResult = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations, $filtreBoites, $yearMin, $user);
+
+        $vehicules = $paginationResult->getItems();
+        $totalItems = $paginationResult->getTotalItems();
+        //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
 
         //Recherche de tous les types de motorisations
@@ -102,7 +104,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('user','classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page','typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered')
+                    compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalVehiculesFiltered', 'totalItems')
                 )
             ]);
         }
@@ -113,7 +115,7 @@ class AnnoncesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('user','classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules','page', 'limit', 'typesMotorisations','typesBoites','yearMin','totalVehiculesFiltered'));
+        return $this->render('admin/vehicules/index.html.twig', compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'page', 'limit', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalVehiculesFiltered', 'totalItems'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]

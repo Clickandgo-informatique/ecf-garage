@@ -89,10 +89,12 @@ main {
 }
 
 .alert-danger {
+  display:flex;
   color: red;
   background-color: #fff;
   padding: 6px 5px;
   border-radius: 5px;
+  width:fit-content; 
 }
 .badge-primary {
   color: white;
@@ -100,7 +102,7 @@ main {
   padding: 3px 5px;
   font-size: 0.5rem;
   border-radius: 2px;
-  width: fit-content;
+  width:fit-content; 
 }
 .badge-success {
   color: white;
@@ -108,7 +110,7 @@ main {
   padding: 3px 5px;
   font-size: 0.5rem;
   border-radius: 2px;
-  width: fit-content;
+  width:fit-content; 
 }
 .badge-danger {
   color: white;
@@ -116,7 +118,7 @@ main {
   padding: 5px;
   font-size: 0.7rem;
   border-radius: 2px;
-  width: fit-content;
+  width:fit-content;  
 }
 .badge-warning {
   color: white;

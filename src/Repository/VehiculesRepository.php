@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Vehicules;
+use App\Utils\PaginationResult;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -137,8 +138,8 @@ class VehiculesRepository extends ServiceEntityRepository
         //Pagination sur résultats 
         $query->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
-
-        return $query->getQuery()->getResult();
+        $items = $query->getQuery()->getResult();
+        return new PaginationResult($items,$totalVehiculesFiltered);
     }
 
     //Max prix de vente pour filtre d'intervalle

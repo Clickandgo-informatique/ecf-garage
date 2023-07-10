@@ -31,7 +31,7 @@ class MainController extends AbstractController
         $commentaires = $commentairesRepository->findBy(['publication' => true], ['created_at' => 'DESC']);
         //Récupération des infos de page d'accueil
         $idHomepage = $homepageRepository->getMaxId();
-        $homepage = $homepageRepository->find($idHomepage);
+        $homepage = $homepageRepository->findOneBy(['id' => $idHomepage]);
         //Récupération des 5 dernières annonces de véhicules
         $vehicules = $vehiculesRepository->getLastFiveVehicules();
 
