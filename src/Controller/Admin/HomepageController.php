@@ -27,8 +27,10 @@ class HomepageController extends AbstractController
             $this->addFlash('success', "Les données de la page d'accueil (homepage) ont bien été prises en compte dans la base.");
         } else {
 
-            //Recherche de l'id de la page d'accueil (homepage) déjà enregistrée
-            $homepage = $homepageRepository->getMaxId();          
+            //Recherche de l'id de la page d'accueil (homepage) déjà enregistrée        
+         
+            $homepage = $homepageRepository->find($homepageRepository->getMaxId());
+         
             $form = $this->createForm(HomepageFormType::class, $homepage);
 
             $this->addFlash('success', 'Vos modifications ont bien été prises en compte dans la base.');
