@@ -43,7 +43,7 @@ class EntrepriseRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('e')
             ->select('MAX(e.id)');
-        return $query->getQuery()->getSingleScalarResult();
+        return $query->getQuery()->getSingleResult();
     }
 
     //    /**

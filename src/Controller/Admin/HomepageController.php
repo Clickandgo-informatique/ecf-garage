@@ -29,8 +29,8 @@ class HomepageController extends AbstractController
 
             //Recherche de l'id de la page d'accueil (homepage) déjà enregistrée        
 
-            $idHomepage = $homepageRepository->getMaxId();
-            $homepage = $homepageRepository->find($idHomepage);
+            $idHomepage = $homepageRepository->getMaxId();            
+            $homepage = $homepageRepository->findOneBy(['id'=>$idHomepage]);
             $form = $this->createForm(HomepageFormType::class, $homepage);
 
             $this->addFlash('success', 'Vos modifications ont bien été prises en compte dans la base.');

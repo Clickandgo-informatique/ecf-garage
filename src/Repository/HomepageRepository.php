@@ -42,7 +42,7 @@ class HomepageRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('h')
             ->select('MAX(h.id)');
-        return $query->getQuery()->getSingleScalarResult();
+        return $query->getQuery()->getSingleResult();
     }
 
 //    /**
