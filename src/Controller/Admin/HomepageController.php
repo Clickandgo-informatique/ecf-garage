@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomepageController extends AbstractController
 {
-    #[Route('/admin/homepage/', name: 'fiche_homepage')]
+    #[Route('/admin/homepage/{id}', name: 'fiche_homepage')]
     public function fiche(EntityManagerInterface $em, Request $request, HomepageRepository $homepageRepository): Response
     {
 
