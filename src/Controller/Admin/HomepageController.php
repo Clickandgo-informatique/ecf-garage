@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomepageController extends AbstractController
 {
-    #[Route('/admin/homepage/{id}', name: 'fiche_homepage')]
+    #[Route('/admin/homepage/', name: 'fiche_homepage')]
     public function fiche(EntityManagerInterface $em, Request $request, HomepageRepository $homepageRepository): Response
     {
 
@@ -28,8 +28,7 @@ class HomepageController extends AbstractController
         } else {
 
             //Recherche de l'id de la page d'accueil (homepage) déjà enregistrée
-            $idHomepage = $homepageRepository->getMaxId();
-            $homepage = $homepageRepository->find($idHomepage);
+            $homepage = $homepageRepository->getMaxId();          
             $form = $this->createForm(HomepageFormType::class, $homepage);
 
             $this->addFlash('success', 'Vos modifications ont bien été prises en compte dans la base.');
