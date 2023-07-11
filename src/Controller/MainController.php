@@ -23,25 +23,27 @@ class MainController extends AbstractController
         EntityManagerInterface $em,
         CommentairesRepository $commentairesRepository,
         ServicesRepository $servicesRepository,
-        HomepageRepository $homepageRepository,
         VehiculesRepository $vehiculesRepository,
+        HomepageRepository $homepageRepository,
         EntrepriseRepository $entrepriseRepository
     ): Response {
         //Liste de tous les services
         $services = $servicesRepository->findBy([], ['nom' => 'ASC']);
         //Liste de tous les commentaires
         $commentaires = $commentairesRepository->findBy(['publication' => true], ['created_at' => 'DESC']);
-        //Récupération des infos de page d'accueil
-        $idHomepage = $homepageRepository->getMaxId();
-        $homepage = $homepageRepository->findOneBy(['id' => $idHomepage]);
+
         //Récupération des 5 dernières annonces de véhicules
         $vehicules = $vehiculesRepository->getLastFiveVehicules();
 
-        //Récupération des infos de l'entreprise
-        $idEntreprise = $entrepriseRepository->getMaxId();
-        $entreprise = $entrepriseRepository->findOneBy(['id' => $idEntreprise]);
-        $nomEntreprise = $entreprise->getNomEntreprise();
-   
+        //Récupération des infos de page d'accueil
+        $idHomepage = $homepageRepository->getMaxId();
+        $homepage = $homepageRepository->findOneBy(['id' => $idHomepage]);
+
+        //Récupération des données de l'entreprise
+        $idEntreprise=$entrepriseRepository->getMaxId();
+        $entreprise=$entrepriseRepository->findOneBy(['id'=>$idEntreprise]);
+        $nomEntreprise=$entreprise->getNomEntreprise();
+
         //Génération du formulaire de commentaires
         $commentaire = new Commentaires;
         $commentForm = $this->createForm(CommentairesType::class, $commentaire);
@@ -69,10 +71,11 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig', [
             'commentaires' => $commentaires,
             'services' => $services,
-            'homepage' => $homepage,
             'vehicules' => $vehicules,
+            'homepage' => $homepage,
+            'nomEntreprise'=>$nomEntreprise,
             'commentForm' => $commentForm->createView(),
-            'nomEntreprise' => $nomEntreprise
+
         ]);
     }
 }

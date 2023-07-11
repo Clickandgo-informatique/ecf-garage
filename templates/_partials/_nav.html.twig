@@ -1,10 +1,13 @@
 <nav class="navbar">
-	<div class="brand">
+	{{render(controller('App\\Controller\\Admin\\NavBarController::index'))}}
 
-		{% if homepage.logo %}
+	<div class="brand">
+		{% if homepage.logo is not null%}
 			<a href="#" class="navbar-brand" aria-label="Logo"><img src="{{asset('assets/uploads/logo/' ~ homepage.logo)}}" alt="Logo entreprise" style="height:50px;"></a>
-			{% else %}
-			<span class="logo"><i class="fa-solid fa-truck-pickup"></i></span>
+		{% else %}
+			<span class="logo">
+				<i class="fa-solid fa-truck-pickup"></i>
+			</span>
 			<p>{{nomEntreprise}}</p>
 		{% endif %}
 	</div>

@@ -8,9 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class NavBarController extends AbstractController
-{
-    #[Route('/admin/navbar/', name: 'navbar')]
+class NavBarController extends AbstractController{
+    #[Route('/navbar',name:'navbar')]
     public function index(EntrepriseRepository $entrepriseRepository, HomepageRepository $homepageRepository): Response
     {
 
