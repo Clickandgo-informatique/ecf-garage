@@ -35,7 +35,7 @@ window.onload = () => {
             const content = document.querySelector("#content");
 
             //Remplacement du contenu
-            content.innerHTML = data.content;
+            content.innerHTML = data.content;         
 
             //Mise à jour de l'url
             history.pushState({}, null, Url.pathname + "?" + Params.toString());

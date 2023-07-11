@@ -48,7 +48,7 @@ class AnnoncesController extends AbstractController
         $totalVehiculesFiltered = $vehiculesRepository->getTotalVehicules();
 
         //Définition du nombre d'éléments par page
-        $limit = 10;
+        $limit = 9;
 
         //Récupération du numéro de page active
         $page = (int)$request->query->get("page", 1);
@@ -79,6 +79,7 @@ class AnnoncesController extends AbstractController
 
         $vehicules = $paginationResult->getItems();
         $totalItems = $paginationResult->getTotalItems();
+
         //Recherche de tous les types de véhicules
         $typesVehicules = $typesVehiculesRepository->findBy([], ['nom_type' => 'ASC']);
 
@@ -104,7 +105,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalVehiculesFiltered', 'totalItems')
+                    compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalItems')
                 )
             ]);
         }
@@ -115,14 +116,13 @@ class AnnoncesController extends AbstractController
             return $typesVehiculesRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'page', 'limit', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalVehiculesFiltered', 'totalItems'));
+        return $this->render('admin/vehicules/index.html.twig', compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'page', 'limit', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalItems'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
     public function details(VehiculesRepository $vehiculesRepository, ListeOptionsVehiculeRepository $listeOptionsVehiculeRepository, $id,): Response
     {
         $vehicule = $vehiculesRepository->findOneById($id);
-        //$listeOptions = $listeOptionsVehiculeRepository->findBy(['vehicule' => $vehicule]);
 
         return $this->render('admin/vehicules/details.html.twig', [
             'vehicule' => $vehicule,

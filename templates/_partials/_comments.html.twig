@@ -39,14 +39,15 @@
 					</div>
 				</div>
 			</div>
-		{{ form_start(commentForm)}}
-		<div class="form-header">Ajouter un commentaire</div>
-		{{ form_row(commentForm.note)}}
-		{{ form_row(commentForm.email)}}
-		{{ form_row(commentForm.pseudo)}}
-		{{ form_row(commentForm.contenu)}}
-		{{ form_row(commentForm.rgpd)}}
-		{{ form_end(commentForm)}}
+			{{ form_start(commentForm)}}
+			<div class="form-header">Ajouter un commentaire</div>
+			{{ form_row(commentForm.note)}}
+			{{ form_row(commentForm.email)}}
+			{{ form_row(commentForm.pseudo)}}
+			{{ form_row(commentForm.contenu)}}
+			{{ form_row(commentForm.rgpd)}}
+			<p class="alerte-publication-commentaire">Un commentaire ne sera publié qu'après acceptation de la part de nos modérateurs.Vous ne le verrez donc pas forcément immédiatement sur cette section...</p>
+			{{ form_end(commentForm)}}
 		</div>
 	</div>
 

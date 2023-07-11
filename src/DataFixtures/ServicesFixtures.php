@@ -22,11 +22,13 @@ class ServicesFixtures extends Fixture
         $civilites = ['Madame', 'Monsieur'];
 
         $tblNomServices = ['Dépannage rapide', 'Carrosserie', 'Peinture', 'Contrôle technique', 'Location de véhicules', 'Nettoyage intégral', 'Adaptation GPL', 'Pneumatiques'];
+        $tblIconesServices=['fa-solid fa-screwdriver-wrench','fa-solid fa-car-burst','fa-solid fa-spray-can','fa-solid fa-stethoscope','fa-solid fa-truck-ramp-box','fa-solid fa-spray-can-sparkles','fa-solid fa-toolbox','fa-solid fa-truck-monster'];
 
         for ($i = 0; $i < count($tblNomServices); $i++) {
 
             $service = new Services;
             $service->setNom($tblNomServices[$i])
+            ->setIcone($tblIconesServices[$i])
                 ->setResume("Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit nihil ipsa placeat delectus, sint natus.")
                 ->setDescription("Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugiat soluta eius, optio odio, labore deleniti repellat architecto neque quod sunt corporis! Reiciendis sit pariatur asperiores, ullam ratione vitae provident?
            Aliquam, porro. Nemo, explicabo autem beatae praesentium dolorem alias. Praesentium consectetur ut enim reprehenderit harum quasi cupiditate provident maxime placeat exercitationem autem iure esse nihil, ipsum tenetur, voluptatem delectus eveniet?

@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Commentaires;
+use App\Form\CommentairesType;
 use App\Repository\CommentairesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,7 +21,40 @@ class CommentairesController extends AbstractController
         return $this->render('commentaires/index.html.twig', compact('commentaires'));
     }
 
+    //Créer un commentaire client
+    #[Route('/admin/commentaires/creer-commentaire', name: 'creer_commentaire')]
+    public function creer(Request $request, EntityManagerInterface $em,CommentairesRepository $commentairesRepository): Response
+    {
+        $form = $this->createForm(CommentairesType::class);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commentaire = new Commentaires();
+            
+            $commentaire->setCreatedAt(new \DateTimeImmutable());
+            //Récupération du contenu du champ parentid
+            $parentid = $form->get('parentid')->getData();
+
+            //Recherche du commentaire parent
+            if ($parentid != null) {
+                $parent = $commentairesRepository->find($parentid);
+            }
+
+            $commentaire->setParent($parent ?? null);
+
+            $em->persist($commentaire);
+            $em->flush();
+
+            $this->addFlash('success', 'Le commentaire a été enregistré dans la base avec succès, il est en attente de publication.');
+            return $this->redirectToRoute('app_commentaires_liste_commentaires');
+        }
+
+        return $this->render('commentaires/creer-commentaire.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    //Publication d'un commentaire
     #[Route('/admin/commentaires/publier-commentaire/{id}', name: 'publier_commentaire')]
     public function publierCommentaire(Commentaires $commentaire, EntityManagerInterface $em, $id): Response
     {

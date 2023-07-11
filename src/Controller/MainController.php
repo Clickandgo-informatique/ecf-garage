@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use App\Repository\CommentairesRepository;
+use App\Repository\EntrepriseRepository;
 use App\Repository\HomepageRepository;
 use App\Repository\ServicesRepository;
 use App\Repository\VehiculesRepository;
@@ -23,7 +24,8 @@ class MainController extends AbstractController
         CommentairesRepository $commentairesRepository,
         ServicesRepository $servicesRepository,
         HomepageRepository $homepageRepository,
-        VehiculesRepository $vehiculesRepository
+        VehiculesRepository $vehiculesRepository,
+        EntrepriseRepository $entrepriseRepository
     ): Response {
         //Liste de tous les services
         $services = $servicesRepository->findBy([], ['nom' => 'ASC']);
@@ -35,6 +37,11 @@ class MainController extends AbstractController
         //Récupération des 5 dernières annonces de véhicules
         $vehicules = $vehiculesRepository->getLastFiveVehicules();
 
+        //Récupération des infos de l'entreprise
+        $idEntreprise = $entrepriseRepository->getMaxId();
+        $entreprise = $entrepriseRepository->findOneBy(['id' => $idEntreprise]);
+        $nomEntreprise = $entreprise->getNomEntreprise();
+   
         //Génération du formulaire de commentaires
         $commentaire = new Commentaires;
         $commentForm = $this->createForm(CommentairesType::class, $commentaire);
@@ -64,7 +71,8 @@ class MainController extends AbstractController
             'services' => $services,
             'homepage' => $homepage,
             'vehicules' => $vehicules,
-            'commentForm' => $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
+            'nomEntreprise' => $nomEntreprise
         ]);
     }
 }

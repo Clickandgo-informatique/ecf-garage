@@ -1,65 +1,66 @@
-{% for v in vehicules %}
-	<div class="card card-vehicule">
-		<div
-			class="photo-miniature">
-			{# Affiche ou pas le badge d'une annonce #}
-			{% if v.badgeannonce %}
-				<div class="badge-annonce">{{v.badgeannonce|raw}}</div>
-			{% endif %}
 
-			{# Gestion des favoris #}
-			<div class="favoris">
-				{% if is_granted("ROLE_USER") %}
-					{% for favoris in v.favoris %}
-						{% if favoris.id == app.user.id %}
-							<a href="{{path('app_vehicules_annonces_suppression_favori',{id:v.id})}}">
-								<i class="fas fa-heart"></i>
-							</a>
+	{% for v in vehicules %}
+		<div class="card card-vehicule">
+			<div
+				class="photo-miniature">
+				{# Affiche ou pas le badge d'une annonce #}
+				{% if v.badgeannonce %}
+					<div class="badge-annonce">{{v.badgeannonce|raw}}</div>
+				{% endif %}
+
+				{# Gestion des favoris #}
+				<div class="favoris">
+					{% if is_granted("ROLE_USER") %}
+						{% for favoris in v.favoris %}
+							{% if favoris.id == app.user.id %}
+								<a href="{{path('app_vehicules_annonces_suppression_favori',{id:v.id})}}">
+									<i class="fas fa-heart"></i>
+								</a>
+							{% else %}
+								<a href="{{path('app_vehicules_annonces_ajout_favori',{id:v.id})}}">
+									<i class="far fa-heart"></i>
+								</a>
+							{% endif %}
 						{% else %}
 							<a href="{{path('app_vehicules_annonces_ajout_favori',{id:v.id})}}">
 								<i class="far fa-heart"></i>
 							</a>
-						{% endif %}
+						{% endfor %}
 					{% else %}
-						<a href="{{path('app_vehicules_annonces_ajout_favori',{id:v.id})}}">
-							<i class="far fa-heart"></i>
-						</a>
-					{% endfor %}
-				{% else %}
-					<i class="far fa-heart"></i>
+						<i class="far fa-heart"></i>
+					{% endif %}
+				</div>
+
+				{# Gestion des photos #}
+				{% if v.photos[0] is defined %}
+					<img src="{{asset('assets/uploads/vehicules/mini/300x300-'~ v.photos[0].nom)}}" alt="">
 				{% endif %}
 			</div>
+			<div class="type-vehicule">{{v.typevehicule}}</div>
+			<div class="type-motorisation">{{v.motorisation}}</div>
 
-			{# Gestion des photos #}
-			{% if v.photos[0] is defined %}
-				<img src="{{asset('assets/uploads/vehicules/mini/300x300-'~ v.photos[0].nom)}}" alt="">
-			{% endif %}
-		</div>
-		<div class="type-vehicule">{{v.typevehicule}}</div>
-		<div class="type-motorisation">{{v.motorisation}}</div>
+			<div class="card-title">
 
-		<div class="card-title">
-
-			<p class="marque-vehicule">
-				<strong>{{v.marque}}</strong>
-			</p>
-			<p class="modele-vehicule">{{v.modele}}</p>
-		</div>
-		<div class="card-text">
-
-			<div class="resume">{{v.datemiseencirculation|date("m-Y")}}
-				|
-				{{v.kilometrage|number_format(0, '.', '.')}}
-				km |
-				{{v.boite}}
+				<p class="marque-vehicule">
+					<strong>{{v.marque}}</strong>
+				</p>
+				<p class="modele-vehicule">{{v.modele}}</p>
 			</div>
-			<p class="prix-vehicule">{{v.prixvente|number_format(0, '.', '.') }}
-				€</p>
+			<div class="card-text">
 
-			<a class="btn btn-primary btn-centered" href="{{path('app_vehicules_annonces_details_vehicule',{id:v.id})}}">Voir détails</a>
-			<a class="link-contact-par-mail" href="{{path('app_contact_par_mail_annonce_vehicule',{id:v.id})}}">@ Nous contacter par mail</a>
+				<div class="resume">{{v.datemiseencirculation|date("m-Y")}}
+					|
+					{{v.kilometrage|number_format(0, '.', '.')}}
+					km |
+					{{v.boite}}
+				</div>
+				<p class="prix-vehicule">{{v.prixvente|number_format(0, '.', '.') }}
+					€</p>
 
+				<a class="btn btn-primary btn-centered" href="{{path('app_vehicules_annonces_details_vehicule',{id:v.id})}}">Voir détails</a>
+				<a class="link-contact-par-mail" href="{{path('app_contact_par_mail_annonce_vehicule',{id:v.id})}}">@ Nous contacter par mail</a>
+			</div>
 		</div>
-	</div>
-{% endfor %}
+	{% endfor %}
+
 

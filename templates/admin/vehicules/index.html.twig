@@ -3,8 +3,8 @@
 {% endblock %}
 {% block body %}
 
-	<main>		
-			<h1 class="titre-principal">Liste des annonces</h1>	
+	<main>
+		<h1 class="titre-principal">Liste des annonces</h1>
 
 		{#Affiche/occulte le panneau de filtres #}
 		<div class="checkbox-filtres">
@@ -27,7 +27,7 @@
 					<fieldset>
 						<legend>Classer par :</legend>
 						<div class="radio-grp">
-						<i class="fas fa-heart favoris-filtre"></i>
+							<i class="fas fa-heart favoris-filtre"></i>
 							<input class="radio-button" type="radio" id="userFavorites" name="classerPar" value="Mes favoris">
 							<label for="userFavorites">Mes favoris</label>
 						</div>
@@ -56,7 +56,6 @@
 							<label for="Ancienneté descendante">Ancienneté descendante</label>
 						</div>
 					</fieldset>
-
 
 					<fieldset>
 						<legend>Par intervalles</legend>
@@ -142,18 +141,15 @@
 					<input type="hidden" name="page" value="{{page}}">
 				</form>
 			</div>
-
 			<div
 				class="cards-container" id="content">
-
 				{# Contenu généré en Ajax #}
-				{{ include('admin/vehicules/_content.html.twig') }}
-			</div>
+				{{ include('admin/vehicules/_content.html.twig') }}</div>
 		</div>
 		{# Pagination #}
-		{% set total = totalVehiculesFiltered %}
-		{{ include('_partials/_pagination.html.twig') }}
-
+		<div class="container-pagination">
+			{{ include('_partials/_pagination.html.twig') }}
+		</div>
 	</main>
 	{% block javascripts %}
 		<script src="{{asset('assets/js/annonces.js')}}" type="text/javascript" defer></script>

@@ -16,6 +16,7 @@
 		{% endblock %}
 	</head>
 	<body>
+	{{ render(controller('App\\Controller\\Admin\\NavBarController::index')) }}
 		{% include "/_partials/_nav.html.twig" %}
 
 		{% if app.user and app.user.isVerified == false %}

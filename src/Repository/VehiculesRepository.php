@@ -133,13 +133,14 @@ class VehiculesRepository extends ServiceEntityRepository
 
         //Récupération du total de véhicules retourné par la requête filtrée
         // avant pagination
-        $totalVehiculesFiltered = count($query->getQuery()->getResult());
-
+        $totalItems = count($query->getQuery()->getResult());      
+        
         //Pagination sur résultats 
         $query->setFirstResult(($page * $limit) - $limit)
-            ->setMaxResults($limit);
+        ->setMaxResults($limit);
         $items = $query->getQuery()->getResult();
-        return new PaginationResult($items,$totalVehiculesFiltered);
+   
+        return new PaginationResult($items,$totalItems);
     }
 
     //Max prix de vente pour filtre d'intervalle

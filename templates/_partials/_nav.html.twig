@@ -1,6 +1,12 @@
 <nav class="navbar">
 	<div class="brand">
-		<a href="#" class="navbar-brand" aria-label="Logo">Logo</a>
+
+		{% if homepage.logo %}
+			<a href="#" class="navbar-brand" aria-label="Logo"><img src="{{asset('assets/uploads/logo/' ~ homepage.logo)}}" alt="Logo entreprise" style="height:50px;"></a>
+			{% else %}
+			<span class="logo"><i class="fa-solid fa-truck-pickup"></i></span>
+			<p>{{nomEntreprise}}</p>
+		{% endif %}
 	</div>
 	<button type="button" class="menu-hamburger" aria-label="Toggle navigation" aria-expanded="false">
 		<span></span>

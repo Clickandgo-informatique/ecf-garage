@@ -22,18 +22,22 @@ class CommentairesType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Votre e-mail',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>new NotBlank()
             ])
             ->add('pseudo', TextType::class, [
                 'label' => 'Votre pseudo',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>new NotBlank()
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'Votre commentaire',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>new NotBlank()
             ])
             ->add('rgpd', CheckboxType::class,[
                 'label'=>"J'accepte les conditions RGPD",
+                'attr' => ['class' => 'form-control commentaires_rgpd'],
                 'constraints'=>new NotBlank()
             ])
         

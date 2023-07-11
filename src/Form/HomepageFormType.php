@@ -22,6 +22,7 @@ class HomepageFormType extends AbstractType
                 'label' => 'Fichier image pour le logo (.gif, .bmp, .jpg, .webp): ',
                 'mapped' => false,
                 'required' => false,
+                'multiple'=>false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
