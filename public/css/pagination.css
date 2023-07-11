@@ -1,31 +1,40 @@
-.container-pagination{ 
-    display:flex;
-    background-color: blue;
-    margin:20px auto;
+.container-pagination {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 10px auto;
+  flex-wrap: wrap;
 }
 
-.pagination{
-    display:flex; 
-    list-style: none;
-    margin: 10px; 
+.pagination {
+  display: flex;
+  list-style: none;
+  margin: 10px;
 }
-.pagination li{
-    margin: 5px;
-    padding:5px 10px;
-    font-size:1rem;
-    font-weight: bolder;
-    background-color: darkgray;
-    border-radius: 50%;
-    text-align: center;
+.pagination li {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: darkgray;
+  border-radius: 5%;
+  text-align: center;
 }
-.pagination li a{
-    color: #fff;
-
+.pagination li a {
+  color: #fff;
+  text-decoration: none;
 }
-.pagination li.active{
-    background-color: var(--background-color);
+.pagination li.active {
+  background-color: var(--background-color);
 }
-.pagination li.disabled{
-    cursor:none;
-    background-color: lightgray;
+.pagination li.disabled {
+  cursor: none;
+  background-color: lightgray;
+}
+.resultatFiltres {
+  grid-column-start: 1;
+  grid-column-end: 4;
 }

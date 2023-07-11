@@ -5,14 +5,16 @@
 
 	<main>
 		<h1 class="titre-principal">Liste des annonces</h1>
-
-		{#Affiche/occulte le panneau de filtres #}
-		<div class="checkbox-filtres">
-			<input type="checkbox" name="show-filters" id="show-filters" class="show-filters" checked>
-			<span class="bi bi-funnel"></span>
-			<label for="show-filters">Filtres</label>
+		<div
+			class="premiere-ligne">
+			{#Affiche/occulte le panneau de filtres #}
+			<div class="checkbox-filtres">
+				<input type="checkbox" name="show-filters" id="show-filters" class="show-filters" checked>
+				<span class="bi bi-funnel"></span>
+				<label for="show-filters">Filtres</label>
+			</div>
+			<p class="alerte-favoris">Inscrivez-vous ou connectez-vous pour gérer vos favoris.</p>
 		</div>
-
 
 		{% if is_granted(['ROLE_ADMIN']) %}
 			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
@@ -26,11 +28,13 @@
 				<form id="filters" class="filtersForm">
 					<fieldset>
 						<legend>Classer par :</legend>
-						<div class="radio-grp">
-							<i class="fas fa-heart favoris-filtre"></i>
-							<input class="radio-button" type="radio" id="userFavorites" name="classerPar" value="Mes favoris">
-							<label for="userFavorites">Mes favoris</label>
-						</div>
+						{% if app.user %}
+							<div class="radio-grp">
+								<i class="fas fa-heart favoris-filtre"></i>
+								<input class="radio-button" type="radio" id="userFavorites" name="classerPar" value="Mes favoris">
+								<label for="userFavorites">Mes favoris</label>
+							</div>
+						{% endif %}
 						<div class="radio-grp">
 							<input class="radio-button" type="radio" id="Prix ascendant" name="classerPar" value="Prix ascendant">
 							<label for="Prix ascendant">Prix ascendant</label>
@@ -146,10 +150,7 @@
 				{# Contenu généré en Ajax #}
 				{{ include('admin/vehicules/_content.html.twig') }}</div>
 		</div>
-		{# Pagination #}
-		<div class="container-pagination">
-			{{ include('_partials/_pagination.html.twig') }}
-		</div>
+
 	</main>
 	{% block javascripts %}
 		<script src="{{asset('assets/js/annonces.js')}}" type="text/javascript" defer></script>
