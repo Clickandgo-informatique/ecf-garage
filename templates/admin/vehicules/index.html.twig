@@ -107,7 +107,7 @@
 							Par type :
 						</legend>
 						{# On vérifie si le type de véhicule se trouve dans les paramètres #}
-						 {% for  type in typesVehicules %}
+						{% for  type in typesVehicules %}
 							{% if queryParams is not empty and queryParams.typesVehicules is defined %}
 								{% set checked = (type.id in queryParams.typesVehicules) ? "checked" : "" %}
 							{% else %}
@@ -124,7 +124,7 @@
 					<fieldset>
 						<legend>Par motorisation :</legend>
 						{% for  type in typesMotorisations %}
-								{% if queryParams is not empty and queryParams.typesMotorisations is defined %}
+							{% if queryParams is not empty and queryParams.typesMotorisations is defined %}
 								{% set checked = (type.id in queryParams.typesMotorisations) ? "checked" : "" %}
 							{% else %}
 								{% set checked = "" %}
@@ -140,7 +140,7 @@
 					<fieldset>
 						<legend>Par type de boîte :</legend>
 						{% for  boite in typesBoites %}
-								{% if queryParams is not empty and queryParams.boites is defined %}
+							{% if queryParams is not empty and queryParams.boites is defined %}
 								{% set checked = (boite.id in queryParams.boites) ? "checked" : "" %}
 							{% else %}
 								{% set checked = "" %}
@@ -156,7 +156,7 @@
 					<fieldset>
 						<legend>Par marque :</legend>
 						{% for  marque in marquesVehicules %}
-								{% if queryParams is not empty and queryParams.marques is defined %}
+							{% if queryParams is not empty and queryParams.marques is defined %}
 								{% set checked = (marque.id in queryParams.marques) ? "checked" : "" %}
 							{% else %}
 								{% set checked = "" %}
@@ -167,7 +167,7 @@
 							</div>
 						{% endfor %}
 					</fieldset>
-					<input type="hidden" name="page" value="{{page}}">
+					<input type="hidden" name="page" value="{{ page }}">
 				</form>
 			</div>
 			<div

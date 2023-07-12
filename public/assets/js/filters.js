@@ -4,7 +4,7 @@ window.onload = () => {
   const filtersForm = document.querySelector("#filters");
 
   document.querySelectorAll("#filters input").forEach((input) => {
-    input.addEventListener("input", () => {
+    input.addEventListener("change", () => {
       // if(input.type =="number"){
 
       // }
