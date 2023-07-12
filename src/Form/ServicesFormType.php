@@ -33,7 +33,7 @@ class ServicesFormType extends AbstractType
             ])
             ->add('icone', TextType::class)
             ->add('Enregistrer', SubmitType::class,[
-                'attr'=>['class'=>'btn btn-primary']
+                'attr'=>['class'=>'btn btn-primary btn-centered']
             ]);
     }
 
