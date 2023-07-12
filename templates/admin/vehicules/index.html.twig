@@ -1,4 +1,8 @@
 {% extends "base.html.twig" %}
+
+{# Variables personnalisées #}
+{% set queryParams = app.request.query.all %}
+
 {% block title %}Liste des véhicules d'occasion
 {% endblock %}
 {% block body %}
@@ -102,10 +106,16 @@
 						<legend>
 							Par type :
 						</legend>
-						{% for  type in typesVehicules %}
+						{# On vérifie si le type de véhicule se trouve dans les paramètres #}
+						 {% for  type in typesVehicules %}
+							{% if queryParams is not empty and queryParams.typesVehicules is defined %}
+								{% set checked = (type.id in queryParams.typesVehicules) ? "checked" : "" %}
+							{% else %}
+								{% set checked = "" %}
+							{% endif %}
 							<div class="wrapper-input">
-								<input type="checkbox" name="types[]" id="types{{type.id}}" value="{{type.id}}" class="filtreTypes">
-								<label for="types{{type.id}}">{{type.nomtype}}</label>
+								<input type="checkbox" name="typesVehicules[]" id="typesVehicules{{type.id}}" value="{{type.id}}" class="filtreTypesVehicules" {{checked}}>
+								<label for="typesVehicules{{type.id}}">{{type.nomtype}}</label>
 							</div>
 						{% endfor %}
 					</fieldset>
@@ -114,6 +124,11 @@
 					<fieldset>
 						<legend>Par motorisation :</legend>
 						{% for  type in typesMotorisations %}
+								{% if queryParams is not empty and queryParams.typesMotorisations is defined %}
+								{% set checked = (type.id in queryParams.typesMotorisations) ? "checked" : "" %}
+							{% else %}
+								{% set checked = "" %}
+							{% endif %}
 							<div class="wrapper-input">
 								<input type="checkbox" name="typesMotorisations[]" id="typesMotorisation{{type.id}}" value="{{type.id}}" class="filtreTypesMotorisations">
 								<label for="typesMotorisations{{type.id}}">{{type.nommotorisation}}</label>
@@ -125,6 +140,11 @@
 					<fieldset>
 						<legend>Par type de boîte :</legend>
 						{% for  boite in typesBoites %}
+								{% if queryParams is not empty and queryParams.boites is defined %}
+								{% set checked = (boite.id in queryParams.boites) ? "checked" : "" %}
+							{% else %}
+								{% set checked = "" %}
+							{% endif %}
 							<div class="wrapper-input">
 								<input type="checkbox" name="boites[]" id="boites{{boite.id}}" value="{{boite.id}}" class="filtreBoites">
 								<label for="boites{{boite.id}}">{{boite.descriptionboite}}</label>
@@ -136,6 +156,11 @@
 					<fieldset>
 						<legend>Par marque :</legend>
 						{% for  marque in marquesVehicules %}
+								{% if queryParams is not empty and queryParams.marques is defined %}
+								{% set checked = (marque.id in queryParams.marques) ? "checked" : "" %}
+							{% else %}
+								{% set checked = "" %}
+							{% endif %}
 							<div class="wrapper-input">
 								<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
 								<label for="marques{{marque.id}}">{{marque.marque}}</label>

@@ -57,7 +57,7 @@ class AnnoncesController extends AbstractController
         $user = $this->getUser();
 
         //Récupération des filtres de types de véhicules
-        $filtreTypes = $request->get('types');
+        $filtreTypes = $request->get('typesVehicules');
         //Récupération des filtres de marques de véhicules
         $filtreMarques = $request->get('marques');
         //Récupération valeur classerPar
@@ -109,11 +109,16 @@ class AnnoncesController extends AbstractController
                 )
             ]);
         }
-
-        $types = $cache->get('types_list', function (ItemInterface $item) use ($typesVehiculesRepository) {
+        //Gestion du cache navigateur
+        $typesVehicules = $cache->get('types_list', function (ItemInterface $item) use ($typesVehiculesRepository) {
             $item->expiresAfter(3600);
 
             return $typesVehiculesRepository->findAll();
+        });
+        $typesMotorisations = $cache->get('types_motorisations_list', function (ItemInterface $item) use ($motorisationsRepository) {
+            $item->expiresAfter(3600);
+
+            return $motorisationsRepository->findAll();
         });
 
         return $this->render('admin/vehicules/index.html.twig', compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'page', 'limit', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalItems'));

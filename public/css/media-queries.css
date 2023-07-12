@@ -1,4 +1,12 @@
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 600px) and (max-width:900px) {
+  .container-pagination,
+  .resultatFiltres {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  
+  }
+}
+@media screen and (max-width: 600px) {
   .navbar {
     position: relative;
   }
@@ -21,11 +29,11 @@
     height: 20px;
     cursor: pointer;
     border: none;
-    display: flex;   
+    display: flex;
     align-items: center;
     position: absolute;
     background: none;
-    left:15px;
+    left: 15px;
   }
   .menu-hamburger span {
     display: block;
@@ -67,10 +75,9 @@
     order: 3;
   }
   .div-connexion {
-   margin:20px auto;
+    margin: 20px auto;
     order: 2;
-    color:yellow;
- 
+    color: yellow;
   }
   .div-links {
     order: 1;
@@ -87,10 +94,13 @@
     font-size: 0.8rem;
   }
   .wrapper {
+    display:flex;
     flex-direction: column;
+    padding: 10px;
+    justify-content: center;
   }
   .galerie-photos {
-    flex-direction: column;
+    /* flex-direction: column; */
     background-color: transparent;
     border: inherit;
   }
@@ -98,26 +108,53 @@
     width: 300px;
     height: 300px;
   }
-  .filtersForm{
+  .filtersForm {
     justify-content: center;
+    align-self: center;
+  }
+  .container-pagination,
+  .resultatFiltres {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    flex-wrap: wrap;
+  }
+  .pagination {
+    flex-wrap: wrap;
+    padding: 5px;
+  }
+  .resultatFiltres,
+  .alerte-favoris {
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    color: black;
+  }
+  .cards-container {
+    margin: 5px;
   }
 }
 
 @media screen and (min-width: 900px) and (max-width: 1200px) {
   .navbar {
-    padding: 10px; 
-    text-align: center;   
+    padding: 10px;
+    text-align: center;
   }
   .navbar-nav .nav-item a,
   .navbar-nav .nav-item i {
     font-size: 0.7rem;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
   }
   .navbar-nav.nav-item {
     align-items: center;
   }
   .navbar-nav {
     align-items: center;
+  }
+  .container-pagination,
+  .resultatFiltres {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    flex-wrap: wrap;
   }
 }
