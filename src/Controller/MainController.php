@@ -41,8 +41,7 @@ class MainController extends AbstractController
 
         //Récupération des données de l'entreprise
         $idEntreprise=$entrepriseRepository->getMaxId();
-        $entreprise=$entrepriseRepository->findOneBy(['id'=>$idEntreprise]);
-        $nomEntreprise=$entreprise->getNomEntreprise();     
+        $entreprise=$entrepriseRepository->findOneBy(['id'=>$idEntreprise]);           
 
         //Génération du formulaire de commentaires
         $commentaire = new Commentaires;
@@ -73,7 +72,7 @@ class MainController extends AbstractController
             'services' => $services,
             'vehicules' => $vehicules,
             'homepage' => $homepage,
-            'nomEntreprise'=>$nomEntreprise,
+            'entreprise'=>$entreprise,
             'commentForm' => $commentForm->createView(),
 
         ]);
