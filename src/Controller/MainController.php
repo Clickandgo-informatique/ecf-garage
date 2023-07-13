@@ -42,8 +42,9 @@ class MainController extends AbstractController
         //Récupération des données de l'entreprise
         $idEntreprise=$entrepriseRepository->getMaxId();
         $entreprise=$entrepriseRepository->findOneBy(['id'=>$idEntreprise]);
-        $nomEntreprise=$entrepriseRepository->getNomEntreprise();
-
+        $nomEntreprise=$entreprise->getNomEntreprise();
+        dd($nomEntreprise);
+        
         //Génération du formulaire de commentaires
         $commentaire = new Commentaires;
         $commentForm = $this->createForm(CommentairesType::class, $commentaire);
