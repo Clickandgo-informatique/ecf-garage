@@ -58,7 +58,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $favoris;
 
     #[ORM\Column]
-    private ?bool $is_verified = false;
+    private ?bool $is_Verified = false;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $resetToken = null;
@@ -255,12 +255,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getIsVerified(): ?bool
     {
-        return $this->is_verified;
+        return $this->is_Verified;
     }
 
-    public function setIsVerified(bool $is_verified): self
+    public function setIsVerified(bool $is_Verified): self
     {
-        $this->is_verified = $is_verified;
+        $this->is_Verified = $is_Verified;
 
         return $this;
     }

@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
@@ -64,19 +65,17 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'class' => 'form-control'
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez choisir un mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractère(s).',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],'label' => 'Mot de passe'
-            ]);
+                ],               
+                    'label' => 'Mot de passe',
+                    'constraints' => new Regex(
+                        pattern: '#$S*(?=S{8,})(?=S*[a-z])(?=S*[A-Z])(?=S*[d])(?=S*[W])S*$#',
+                        match: true,
+                        message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, au moins un chiffre et un symbole '!,-,?,/ ect...'."
+                    ),
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                    ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

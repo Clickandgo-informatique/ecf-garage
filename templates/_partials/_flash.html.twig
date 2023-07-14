@@ -1,9 +1,24 @@
-{% for label, messages in app.flashes %}
-	{% for message in messages %}
-		<div class="alert alert-{{label}} alert-dismissible" role="alert">
-			<div class="alert-message">{{message|raw}}</div>
-			<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">&times;</button>
-		</div>
-	{% endfor %}
+{% if app.flashes %}
 
-{% endfor %}
+	<div class="flashBags">
+		{% if app.user and app.user.isVerified == false %}
+			<div class="alert alert-warning alert-dismissible" role="alert">
+				<div class="alert-message">
+					<strong>Votre compte n'est pas encore activé</strong>
+					,
+					<a href="{{path('resend_verif')}}">Cliquez ici pour renvoyer le lien d'activation</a>
+				</div>
+				<button type="button" class="btn-close-flashbag" data-dismiss="alert" aria-label="Close">&times;</button>
+			</div>
+		{% endif %}
+
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{label}} alert-dismissible" role="alert">
+				<div class="alert-message">{{message|raw}}</div>
+				<button type="button" class="btn-close-flashbag" data-dismiss="alert" aria-label="Close">&times;</button>
+			</div>
+		{% endfor %}
+	{% endfor %}
+	</div>
+{% endif %}

@@ -1,17 +1,17 @@
 form {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--background-color);
+  /* border: 1px solid var(--background-color); */
   max-width: 600px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 20px;
   margin: 10px auto;
-  background-color: #fff;
+  background-color: transparent;
   align-content: center;
   justify-content: center;
   width: 100%;
   color: #fff;
-  box-shadow: 1px 1px 4px darkblue;
+  /* box-shadow: 1px 1px 4px darkblue; */
 }
 
 form p {
@@ -57,15 +57,17 @@ input[type="password"],
 input[type="tel"],
 input[type="email"],
 input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+
 select {
-  display: block;
-  box-sizing: border-box;
+  display: flex;
   width: 95%;
   font-size: 0.8rem;
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
-  border: 1px solid var(--background-color);
+  border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -222,6 +224,10 @@ input [type="file"] {
   border: 1px solid royalblue;
   margin: 10px auto;
   border-radius: 10px;
+  min-width:200px;
+  min-height: 200px;
+  color:black;
+  padding:5px;
 }
 .img-logo img {
   object-fit: fill;
@@ -273,9 +279,14 @@ input [type="file"] {
 .alerte-publication-commentaire {
   padding: 5px;
   color: darkgray;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   font-style: italic;
 }
 .commentaires_rgpd{
   margin: 10px;  
+}
+form ul li{
+  color:red;
+  margin-left: 20px;
+  font-size: 0.7rem;
 }

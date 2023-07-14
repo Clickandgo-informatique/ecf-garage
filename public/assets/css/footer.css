@@ -1,4 +1,5 @@
 footer {
+  display:flex;
   min-height: 200px;
   background: var(--background-color);
   color: #fff;

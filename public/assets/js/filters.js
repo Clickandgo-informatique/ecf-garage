@@ -54,14 +54,10 @@ window.onload = () => {
 
   showfilters.addEventListener("change", () => {
     if (showfilters.checked) {
-      wrapperfiltres.style.width = "220px";
-      // document.querySelector(".wrapper").style.marginLeft = "220px";
-      wrapperfiltres.style.transition = "ease-in 1s";
+      wrapperfiltres.style.transition = "ease-in 0.5s";
       wrapperfiltres.style.display = "block";
     } else {
-      wrapperfiltres.style.width = "0px";
-      // document.querySelector(".wrapper").style.marginLeft = "0px";
-      wrapperfiltres.style.transition = "ease-out 1s";
+         wrapperfiltres.style.transition = "ease-out 1s";
       wrapperfiltres.style.display = "none";
     }
   });

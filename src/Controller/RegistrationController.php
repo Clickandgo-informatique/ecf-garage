@@ -109,7 +109,7 @@ class RegistrationController extends AbstractController
             $this->addflash('danger', 'Vous devez être connecté(e) pour pouvoir accéder à cette page');
             return $this->redirectToRoute('app_login');
         }
-
+    
         if ($user->getIsVerified()) {
 
             $this->addflash('warning', 'Ce compte utilisateur a déjà été activé.');

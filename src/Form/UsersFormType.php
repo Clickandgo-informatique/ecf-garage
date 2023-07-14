@@ -43,11 +43,11 @@ class UsersFormType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
-                // 'constraints' => new Regex(
-                //     pattern: '#$S*(?=S{8,})(?=S*[a-z])(?=S*[A-Z])(?=S*[d])(?=S*[W])S*$#',
-                //     match: true,
-                //     message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, au moins un chiffre et un symbole '!,-,?,/ ect...'."
-                // ),
+                'constraints' => new Regex(
+                    pattern: '^$S*(?=S{8,})(?=S*[a-z])(?=S*[A-Z])(?=S*[d])(?=S*[W])S*$',
+                    match: true,
+                    message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules,ne pas contenir d'espace, et au moins un chiffre et un symbole !@#$%&*()-+=^."
+                ),
                 'attr' => [
                     'class' => 'form-control'
                 ]

@@ -5,7 +5,7 @@
 
 {% block body %}
 	<main>
-		<h1 class="titre-principal">Horaires d'ouverture semaine</h1>
+		<h1 class="titre-principal"><i class="fa-regular fa-clock"></i>Horaires d'ouverture semaine</h1>
 			{% if is_granted("ROLE_ADMIN") %}
 				<a href="{{path('app_horaires_semaine_creer_creneau')}}" class="btn btn-primary btn-centered">+ Ajouter créneau</a>
 			{% endif %}

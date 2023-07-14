@@ -1,16 +1,19 @@
 .btn {
-  display: block;
+  display: inline-block;
   padding: 5px 10px;
   color: white;
-  width: fit-content;
   text-decoration: none;
   border-radius: 5px;
   font-size: 0.8rem;
   transition: all 0.2s ease-in-out;
   text-align: center;
-  outline:none;
-  border:none;
-  margin:10px;
+  outline: none;
+  border: none;
+  margin: 10px;
+}
+.btn i {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 .btn-close {
   position: absolute;
@@ -32,14 +35,14 @@
   transform: scale(1.1);
   opacity: 0.8;
 }
-.btn-success{
+.btn-success {
   background-color: rgb(62, 130, 62);
 }
 .btn-primary {
   background-color: rgb(22, 22, 224);
 }
 
-.btn-secondary{
+.btn-secondary {
   background-color: chocolate;
 }
 
@@ -52,7 +55,7 @@
 }
 
 .btn-go-back {
-  background-color: green;  
+  background-color: green;
   margin: 10px;
 }
 
@@ -60,18 +63,30 @@
   margin: 10px auto;
 }
 
-.btn-right{
-  margin-left:auto;
+.btn-right {
+  margin-left: auto;
 }
 .btn-repondre {
-  display:block;
-  margin-right: 10px; 
+  display: block;
+  margin-right: 10px;
   font-size: 0.7rem;
   text-align: right;
 }
-.btn-repondre i{
+.btn-repondre i {
   margin-right: 10px;
 }
-.btn-effacer{
-  padding:3px 5px; 
+.btn-effacer {
+  padding: 3px 5px;
+}
+.btn-close-flashbag {
+  background: #fff;
+  display: flex;
+
+  align-items: center;
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  color: #fff;
+  margin-right: 10px;
+  cursor: pointer;
 }

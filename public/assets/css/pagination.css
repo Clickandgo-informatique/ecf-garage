@@ -34,7 +34,4 @@
   cursor: none;
   background-color: lightgray;
 }
-.resultatFiltres {
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
+

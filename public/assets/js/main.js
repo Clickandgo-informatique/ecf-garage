@@ -1,6 +1,6 @@
 window.onload = () => {
   //Fonction qui anime les alertes de type flash
-  const btnClose = document.querySelectorAll(".btn-close").forEach((button) => {
+  const btnClose = document.querySelectorAll(".btn-close-flashbag").forEach((button) => {
     button.addEventListener("click", (e) => {
       e.target.parentElement.style.webkitTransform = "scale(0)";
       e.target.parentElement.style.msTransform = "scale(0)";

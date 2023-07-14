@@ -47,7 +47,7 @@ class UsersController extends AbstractController
     public function creer(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = new Users();
-        $form = $this->createForm(UsersFormType::class, $user);
+        $form = $this->createForm(UsersFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isvalid()) {

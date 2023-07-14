@@ -45,8 +45,9 @@ class CommentairesType extends AbstractType
                 'mapped' => false
             ])
             ->add('note',ChoiceType::class,[
-                'label'=>'Ma note :',               
-                'choices'=>[0,1,2,3,4,5,6,7,8,9,10]
+                'label'=>'Votre note / apréciation :',
+                'empty_data'=>null,                             
+                'choices'=>["0","1","2","3","4","5","6","7","8","9","10"]
             ])
             ->add('Envoyer', SubmitType::class,[
                 'attr'=>['class'=>'btn btn-primary btn-centered']
