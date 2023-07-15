@@ -73,10 +73,11 @@ class AnnoncesController extends AbstractController
         $kmMax = $request->get('kmMax');
         $kmMin = $request->get('kmMin');
         $yearMin = $request->get('yearMin');
-        $yearMax = $request->get('yearMax');       
+        $yearMax = $request->get('yearMax');    
+        
 
         //Récupération de tous les véhicules pour pagination et filtres
-        $paginationResult = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations, $filtreBoites, $yearMin, $user);
+        $paginationResult = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations, $filtreBoites, $yearMin,$yearMax, $user);
 
         $vehicules = $paginationResult->getItems();
         $totalItems = $paginationResult->getTotalItems();

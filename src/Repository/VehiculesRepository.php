@@ -41,7 +41,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null, $yearMax=null,$user = null)
+    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null, $yearMax = null, $user = null)
     {
         $limit = abs($limit);
 
@@ -85,15 +85,15 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':kmMin', $kmMin)
                 ->setParameter(':kmMax', $kmMax);
         }
-        
+
         //Filtre sur ancienneté (année)
-       
-        dd($yearMax);
-        if (!empty($yearMin) && $yearMin != null && !empty($yearMax) && $yearMax != null) {        
+
+   
+        if (!empty($yearMin) && $yearMin != null && !empty($yearMax) && $yearMax != null) {
             $query->andWhere('year(v.date_mise_en_circulation) >= :yearMin and year(v.date_mise_en_circulation) <= :yearMax')
-            ->setParameter(':yearMin', $yearMin)
-            ->setParameter(':yearMax', $yearMax);
-            
+                ->setParameter(':yearMin', $yearMin)
+                ->setParameter(':yearMax', $yearMax);
+
             // dd($query->getQuery()->getResult());
         }
 
@@ -133,14 +133,14 @@ class VehiculesRepository extends ServiceEntityRepository
 
         //Récupération du total de véhicules retourné par la requête filtrée
         // avant pagination
-        $totalItems = count($query->getQuery()->getResult());      
-        
+        $totalItems = count($query->getQuery()->getResult());
+
         //Pagination sur résultats 
         $query->setFirstResult(($page * $limit) - $limit)
-        ->setMaxResults($limit);
+            ->setMaxResults($limit);
         $items = $query->getQuery()->getResult();
-   
-        return new PaginationResult($items,$totalItems);
+
+        return new PaginationResult($items, $totalItems);
     }
 
     //Max prix de vente pour filtre d'intervalle

@@ -86,6 +86,10 @@ input[type="checkbox"] {
   accent-color: blue;
   font-size: 0.7rem;
 }
+input[type="number"]:focus {
+  transform: scale(1.2);
+  transition: transform 0.3s ease-out;
+}
 
 textarea {
   margin: 5px;

@@ -4,9 +4,7 @@
   }
 }
 @media screen and (min-width: 600px) and (max-width: 900px) {
-  body {
-    background: aquamarine;
-  }
+
   .container-pagination,
   .resultatFiltres {
     grid-column-start: 1;
@@ -172,8 +170,18 @@
   }
   .container-pagination,
   .resultatFiltres {
+    display:flex;
     grid-column-start: 1;
     grid-column-end: 5;
     flex-wrap: wrap;
   }
+}
+
+/* Extra-large */
+@media screen and (min-width: 1200px){
+.resultatFiltres{
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
 }

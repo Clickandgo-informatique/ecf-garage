@@ -81,20 +81,17 @@ section.titre-principal,
 .filtres {
   width: fit-content;
 }
-.resultatFiltre {
-  font-size: 0.8rem;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  width: 100%;
-  background-color: aquamarine;
+.resultatFiltres {
+  display: flex;
+  font-size: 0.8rem; 
+  margin: 10px;
+  text-align: center;
 }
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: start;
-  width: 100%;  
+  width: 100%;
 }
 .link {
   color: #fff;
@@ -164,12 +161,12 @@ section.titre-principal,
 .prochain-creneau-jour {
   margin: 5px;
 }
-.alert { 
+.alert {
   display: flex;
   width: 99%;
-  border-radius: 5px; 
+  border-radius: 5px;
   justify-content: space-between;
-  border:1px solid #fff; 
+  border: 1px solid #fff;
 }
 .alert-message {
   padding: 10px;
@@ -233,10 +230,10 @@ section {
   font-size: 0.9rem;
   color: blue;
 }
-.flashBags{
+.flashBags {
   display: flex;
   flex-direction: column;
-  margin-top:70px;
-  width:95%; 
+  margin-top: 70px;
+  width: 95%;
   align-items: center;
 }
