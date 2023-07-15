@@ -41,7 +41,7 @@ class VehiculesRepository extends ServiceEntityRepository
     }
 
     //Pagination liste véhicules après filtre
-    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null, $user = null)
+    public function getVehiculesPaginated(int $page, int $limit = 10, $filtreTypes = null, $filtreMarques = null, int $prixMin = null, int $prixMax = null, int $kmMin = null, int $kmMax = null, $classerPar = null, $filtreMotorisations = null, $filtreBoites = null, $yearMin = null, $yearMax=null,$user = null)
     {
         $limit = abs($limit);
 
@@ -85,17 +85,17 @@ class VehiculesRepository extends ServiceEntityRepository
                 ->setParameter(':kmMin', $kmMin)
                 ->setParameter(':kmMax', $kmMax);
         }
-
-
-
+        
         //Filtre sur ancienneté (année)
-        // if (!empty($yearMin) && $yearMin != null) {          
-        //     $anneeVehicule= $query->select('v.date_mise_en_circulation')->getQuery();
-
-        //     $query->andWhere(':anneeVehicule <= :yearMin')
-        //         ->setParameter('yearMin', $yearMin)
-        //         ->setparameter('anneeVehicule',$anneeVehicule->format("Y"));
-        // }
+       
+        dd($yearMax);
+        if (!empty($yearMin) && $yearMin != null && !empty($yearMax) && $yearMax != null) {        
+            $query->andWhere('year(v.date_mise_en_circulation) >= :yearMin and year(v.date_mise_en_circulation) <= :yearMax')
+            ->setParameter(':yearMin', $yearMin)
+            ->setParameter(':yearMax', $yearMax);
+            
+            // dd($query->getQuery()->getResult());
+        }
 
         //Logique classement OrderBy sur formulaire     
 

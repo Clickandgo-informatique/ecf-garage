@@ -95,8 +95,14 @@
 						{# Filtre intervalle ancienneté #}
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle-ancienneté">
-								<label for="yearMin">Ancienneté (année)</label>
+								<label for="yearMin">Année Min.</label>
 								<input type="number" name="yearMin" id="yearMin" min="1990" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
+							</div>
+						</div>
+						<div class="wrapper-filtres-intervalle">
+							<div class="input-intervalle-ancienneté">
+								<label for="yearMax">Année Max.</label>
+								<input type="number" name="yearMax" id="yearMax" min="1990" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
 							</div>
 						</div>
 					</fieldset>

@@ -16,12 +16,11 @@
 		{% endblock %}
 	</head>
 	<body>
-
 		{{ include('/_partials/_nav.html.twig') }}
-
-		{# Messages d'alerte #}
-				{% include("/_partials/_flash.html.twig") %}
-
+		{% if app.flashes %}
+			{# Messages d'alerte #}
+			{% include("/_partials/_flash.html.twig") %}
+		{% endif %}
 
 
 		{% include("/_partials/_modal.html.twig") %}

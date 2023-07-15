@@ -73,6 +73,7 @@ class AnnoncesController extends AbstractController
         $kmMax = $request->get('kmMax');
         $kmMin = $request->get('kmMin');
         $yearMin = $request->get('yearMin');
+        $yearMax = $request->get('yearMax');       
 
         //Récupération de tous les véhicules pour pagination et filtres
         $paginationResult = $vehiculesRepository->getVehiculesPaginated($page, $limit, $filtreTypes, $filtreMarques, $prixMin, $prixMax, $kmMin, $kmMax, $classerPar, $filtreMotorisations, $filtreBoites, $yearMin, $user);
@@ -105,7 +106,7 @@ class AnnoncesController extends AbstractController
             return new JsonResponse([
                 'content' => $this->renderView(
                     'admin/vehicules/_content.html.twig',
-                    compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalItems')
+                    compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'typesVehicules', 'marquesVehicules', 'limit', 'page', 'typesMotorisations', 'typesBoites', 'yearMin','yearMax', 'totalItems')
                 )
             ]);
         }
@@ -121,7 +122,7 @@ class AnnoncesController extends AbstractController
             return $motorisationsRepository->findAll();
         });
 
-        return $this->render('admin/vehicules/index.html.twig', compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'page', 'limit', 'typesMotorisations', 'typesBoites', 'yearMin', 'totalItems'));
+        return $this->render('admin/vehicules/index.html.twig', compact('user', 'classerPar', 'prixMax', 'prixMin', 'kmMin', 'kmMax', 'vehicules', 'marquesVehicules', 'typesVehicules', 'page', 'limit', 'typesMotorisations', 'typesBoites', 'yearMin','yearMax', 'totalItems'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]

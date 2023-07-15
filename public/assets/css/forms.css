@@ -59,19 +59,17 @@ input[type="email"],
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
-
 select {
-  display: flex;
-  width: 95%;
+  display: block;
+  width: 90%;
   font-size: 0.8rem;
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
   border: 1px solid lightgray;
   border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 10px;
   background-color: #fff;
+  margin: 10px auto;
 }
 .radio-grp {
   display: flex;
@@ -187,9 +185,12 @@ section.commentaires {
   background-color: transparent;
   padding: 0;
   box-shadow: inherit;
+  display: flex;
+  width: 100%;
 }
 .filtersForm fieldset {
   box-shadow: 1px 1px 6px darkblue;
+  display: flex;
 }
 .checkbox-filtres {
   display: flex;
@@ -224,10 +225,10 @@ input [type="file"] {
   border: 1px solid royalblue;
   margin: 10px auto;
   border-radius: 10px;
-  min-width:200px;
+  min-width: 200px;
   min-height: 200px;
-  color:black;
-  padding:5px;
+  color: black;
+  padding: 5px;
 }
 .img-logo img {
   object-fit: fill;
@@ -282,11 +283,11 @@ input [type="file"] {
   font-size: 0.8rem;
   font-style: italic;
 }
-.commentaires_rgpd{
-  margin: 10px;  
+.commentaires_rgpd {
+  margin: 10px;
 }
-form ul li{
-  color:red;
+form ul li {
+  color: red;
   margin-left: 20px;
   font-size: 0.7rem;
 }

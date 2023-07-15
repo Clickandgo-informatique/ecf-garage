@@ -1,17 +1,16 @@
+<nav class="navbar">		
 {# {{ render(controller('App\\Controller\\Admin\\NavBarController::index')) }} #}
-<nav class="navbar">
-		
 
-	<div class="brand">
-		{# {% if homepage.logo is not null%}
+	{# <div class="brand">
+		{% if homepage.logo is not null%}
 			<a href="#" class="navbar-brand" aria-label="Logo"><img src="{{asset('assets/uploads/logo/' ~ homepage.logo)}}" alt="Logo entreprise" style="height:50px;"></a>
 		{% else %}
 			<span class="logo">
 				<i class="fa-solid fa-truck-pickup"></i>
 			</span>
-			{# <p>{{entreprise.nomEntreprise}}</p>
-		{% endif %} #}
-	</div>
+			<p>{{entreprise.nomEntreprise}}</p>
+		{% endif %}
+	</div> #}
 	<button type="button" class="menu-hamburger" aria-label="Toggle navigation" aria-expanded="false">
 		<span></span>
 		<span></span>
