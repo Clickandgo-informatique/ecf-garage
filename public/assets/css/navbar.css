@@ -9,17 +9,16 @@
   align-items: center;
   padding: 5px;
   width: 100%;
-  position:fixed;
+  position: sticky;
+  top: 0;
   z-index:10;
-  top:0;
-  left:0;
 }
 .menu-navbar {
   display: flex;
   justify-content: space-between;
   opacity: 1;
   z-index: 4;
-  width:100%;
+  width: 100%;
   /* align-items: center; */
 }
 .menu-navbar ul {
@@ -37,6 +36,10 @@
   margin: 0 10px;
   align-items: center;
 }
+.menu-navbar ul li:hover{
+  transform:scale(1.3);
+  transition: transform 0.3s ease-in;
+}
 .menu-navbar ul li a {
   text-align: center;
   padding: 5px;
@@ -45,9 +48,9 @@
 }
 .menu-navbar ul li a:hover {
   text-decoration: solid;
-  transform: scale(1.5);
+  transform: scale(1.1);
   transition: transform ease-in-out 0.3s;
-  color: lightblue;
+  color: orange;
 }
 .div-connexion {
   display: flex;

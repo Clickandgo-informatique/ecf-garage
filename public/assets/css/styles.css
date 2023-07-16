@@ -22,7 +22,8 @@
 * {
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
+  border: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -31,19 +32,19 @@ body {
   justify-content: center;
   font-family: "poppins", sans-serif;
   font-size: 0.8rem;
-  background-color: rgb(252, 248, 255);
+  background-color: rgb(249, 242, 255);
   align-items: center;
 }
-
+header {
+  height: 40px;
+}
 main {
   display: flex;
   flex-direction: column;
   max-width: 1200px;
   min-height: 600px;
   min-width: 300px;
-  justify-items: center;
   width: 100%;
-  margin-top:60px;
 }
 
 .hidden {
@@ -84,7 +85,7 @@ section.titre-principal,
 }
 .resultatFiltres {
   display: flex;
-  font-size: 0.8rem; 
+  font-size: 0.8rem;
   margin: 10px;
   text-align: center;
 }
@@ -167,6 +168,7 @@ section.titre-principal,
   width: 99%;
   border-radius: 5px;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid #fff;
 }
 .alert-message {
@@ -204,8 +206,11 @@ section.titre-principal,
 section {
   display: flex;
   flex-direction: column;
-  margin: 10px auto;
+  align-items: center;
+  background-color: #fff;
   width: 95%;
+  margin: 10px auto;
+  border-radius: 10px;
 }
 .annonces-vehicules {
   min-height: 400px;
@@ -234,19 +239,19 @@ section {
 .flashBags {
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
-  width: 95%;
+  width: 100%;
   align-items: center;
+  justify-content: center;
 }
-.contact-liste{
-  display:flex;
+.contact-liste {
+  display: flex;
   flex-direction: column;
-  width:80%;
-  margin:20px auto;
+  width: 80%;
+  margin: 20px auto;
 }
 .texte-contact-telephone,
 .liste-telephones,
-.telephone-service{
+.telephone-service {
   margin-bottom: 10px;
-  color:rgb(115, 115, 115);
+  color: rgb(115, 115, 115);
 }

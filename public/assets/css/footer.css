@@ -1,6 +1,6 @@
 footer {
-  display:flex;
-  min-height: 200px;
+  display: flex;
+  height: 150px;
   background: var(--background-color);
   color: #fff;
   padding: 20px;
