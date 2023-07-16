@@ -37,6 +37,9 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $this->addFlash('success',"Votre compte a bien été créé, un email a été envoyé à l'adresse mail renseignée avec un lien d'activation");
+
+
             //Génération du JWT de l'utilisateur
 
             //Création du header

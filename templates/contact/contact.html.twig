@@ -4,25 +4,25 @@
 {% endblock %}
 {% block body %}
 	<main>
+		<h1 class="titre-principal">
+			<i class="fa-solid fa-phone"></i>Nous contacter</h1>
 		<div class="contact-liste">
-			<h1 class="titre-principal">Nous contacter</h1>
-
 			<h2 class="texte-contact-telephone">Vous pouvez nous contacter par télephone au
 				{{entreprise.tel1}}
 				ou le
 				{{entreprise.tel2}}
 				pour des questions d'ordre général mais aussi par mail en utilisant le formulaire ci-dessous.</h2>
 
-			<h3>Liste des télephones de contact de tous nos services :</h3>
+			<h3 class="liste-telephones">Liste des télephones de contact de tous nos services :</h3>
 			{% if services%}
 				{% for service in services %}
 					<p class="telephone-service">
 						>
 						<strong>{{service.nom}}</strong>
 						:
-						{{service.telephone1}}
+						<a href="tel:"{{service.telephone1}}">{{service.telephone1}}</a>
 						ou le
-						{{service.telephone2}}</p>
+						<a href="tel:"{{service.telephone2}}">{{service.telephone2}}</a></p>
 
 				{% endfor %}
 			{% else %}
@@ -31,7 +31,7 @@
 			{% endif %}
 			<h3 class="texte-contact-services-par-mail">Pour contacter le plus rapidement et directement un service par mail veuillez sélectionner "Nos services" dans la barre de navigation et appuyer sur "Contacter par mail" sur la fiche de service correspondante.</h3>
 		</div>
-        {{ include('contact/form-contact.html.twig') }}
+		{{ include('contact/form-contact.html.twig') }}
 	</main>
 
 {% endblock %}

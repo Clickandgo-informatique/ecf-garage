@@ -88,7 +88,7 @@ class VehiculesRepository extends ServiceEntityRepository
 
         //Filtre sur ancienneté (année)
 
-   
+
         if (!empty($yearMin) && $yearMin != null && !empty($yearMax) && $yearMax != null) {
             $query->andWhere('year(v.date_mise_en_circulation) >= :yearMin and year(v.date_mise_en_circulation) <= :yearMax')
                 ->setParameter(':yearMin', $yearMin)
@@ -169,6 +169,19 @@ class VehiculesRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('kmm')
             ->select('MAX(kmm.kilometrage)');
+        return $query->getQuery()->getSingleScalarResult();
+    }
+
+    public function getMinYear()
+    {
+        $query = $this->createQueryBuilder('v')
+            ->select('MIN(year(v.date_mise_en_circulation))');
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    public function getMaxYear()
+    {
+        $query = $this->createQueryBuilder('v')
+            ->select('MAX(year(v.date_mise_en_circulation))');
         return $query->getQuery()->getSingleScalarResult();
     }
 

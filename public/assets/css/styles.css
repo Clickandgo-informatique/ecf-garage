@@ -43,6 +43,7 @@ main {
   min-width: 300px;
   justify-items: center;
   width: 100%;
+  margin-top:60px;
 }
 
 .hidden {
@@ -236,4 +237,16 @@ section {
   margin-top: 70px;
   width: 95%;
   align-items: center;
+}
+.contact-liste{
+  display:flex;
+  flex-direction: column;
+  width:80%;
+  margin:20px auto;
+}
+.texte-contact-telephone,
+.liste-telephones,
+.telephone-service{
+  margin-bottom: 10px;
+  color:rgb(115, 115, 115);
 }

@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 
-class UsersFormType extends AbstractType
+class UserProfileFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -27,27 +27,6 @@ class UsersFormType extends AbstractType
                     ])
                 ],
                 'required' => true,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('roles', ChoiceType::class, [
-                'required'=>true,
-                'choices' => [
-                    'Utilisateur' => 'ROLE_USER',
-                    'Employé' => 'ROLE_EMPLOYEE',
-                    'Administrateur' => 'ROLE_ADMIN'
-                ], 'expanded' => true, 'multiple' => true,
-                'label' => "Rôles : ",
-                'attr' => ['class' => ' form-control liste-roles']
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe',
-                'constraints' => new Regex(
-                    pattern: '^$S*(?=S{8,})(?=S*[a-z])(?=S*[A-Z])(?=S*[d])(?=S*[W])S*$^',
-                    match: true,
-                    message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules,ne pas contenir d'espace, et au moins un chiffre et un symbole !@#$%&*()-+=^."
-                ),
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -84,7 +63,7 @@ class UsersFormType extends AbstractType
                 ]
             ])
             ->add('tel_mobile', TelType::class, [
-                'constraints' => new Regex(pattern: '#(0|\+33)[1-9]( *[0-9]{2}){4}#', message: 'Le numéro de télephone fixe renseigné est incorrect, merci de le vérifier à nouveau.'),
+                'constraints' => new Regex(pattern: '#(0|\+33)[1-9]( *[0-9]{2}){4}#', message: 'Le numéro de télephone mobile renseigné est incorrect, merci de le vérifier à nouveau.'),
                 'attr' => [
                     'class' => 'form-control'
                 ]

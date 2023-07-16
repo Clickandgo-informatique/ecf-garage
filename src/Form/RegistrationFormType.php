@@ -23,32 +23,32 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ],'label'=>'E-mail'
+                ], 'label' => 'E-mail'
             ])
             ->add('nom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-            ], 'label' => 'Nom'
+                ], 'label' => 'Nom'
             ])
             ->add('prenom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-            ], 'label' => 'Prénom'
-            ])   
+                ], 'label' => 'Prénom'
+            ])
             ->add('adresse', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-            ], 'label' => 'Adresse'
+                ], 'label' => 'Adresse'
             ])
             ->add('code_postal', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-            ], 'label' => 'Code postal'
+                ], 'label' => 'Code postal'
             ])
             ->add('ville', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-            ], 'label' => 'Ville'
+                ], 'label' => 'Ville'
             ])
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
@@ -56,7 +56,7 @@ class RegistrationFormType extends AbstractType
                     new IsTrue([
                         'message' => 'J\'accepte les conditions.',
                     ]),
-                ],'label' => 'J\'accepte les conditions d\'utilisation.'
+                ], 'label' => 'J\'accepte les conditions d\'utilisation.'
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -65,17 +65,14 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'class' => 'form-control'
-                ],               
-                    'label' => 'Mot de passe',
-                    'constraints' => new Regex(
-                        pattern: '#$S*(?=S{8,})(?=S*[a-z])(?=S*[A-Z])(?=S*[d])(?=S*[W])S*$#',
-                        match: true,
-                        message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, au moins un chiffre et un symbole '!,-,?,/ ect...'."
-                    ),
-                    'attr' => [
-                        'class' => 'form-control'
-                    ]
-                    ]);
+                ],
+                'label' => 'Mot de passe',
+                'constraints' => new Regex(
+                    pattern: '^[a-zA-Z]{8,}^',
+                    match: true,
+                    message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, au moins un chiffre et un symbole '!,-,?,/ ect...'."
+                ),      
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

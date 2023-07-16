@@ -6,30 +6,48 @@
 {% block body %}
 
 	<main class="main">
-		<h1 class="titre-principal">Profil utilisateur</h1>
+		<h1 class="titre-principal">
+			<i class="fa-regular fa-id-card"></i>Profil utilisateur</h1>
 		<table>
+			<thead>
+				<th>
+					<strong>{{user.nom}}</strong>
+					{{user.prenom}}</th>
+			</thead>
 			<tbody>
-				<tr>
-					<td>
-						<strong>{{user.nom}}</strong>
-					</td>
-					<td>{{user.prenom}}</td>
-				</tr>			
+				{% if is_granted("ROLE_ADMIN") or is_granted("ROLE_EMPLOYEE") %}
 					{% for role in user.roles %}
 						{% if role== "ROLE_ADMIN" %}
-							<tr></td><td class="badge-danger">{{role}}</td></tr>
-						
-						{% elseif role== "ROLE_EMPLOYEE" %}
-							<tr><td class="badge-warning">{{role}}</td></tr>
-						
-						{% elseif role== "ROLE_USER" %}
-							<tr><td class="badge-success">{{role}}</td></tr>
-						{% endif %}
-					{% endfor %}
-				
-                <tr><td>{{user.adresse}} {{user.codepostal}} {{user.ville}}</td></tr>
-			</tbody>
-		</table>
+							<tr></tr>
+						</td>
+						<td class="badge-danger">{{role}}</td>
+					</tr>
 
-	</main>
-{% endblock %}
+				{% elseif role== "ROLE_EMPLOYEE" %}
+					<tr>
+						<td class="badge-warning">{{role}}</td>
+					</tr>
+
+				{% elseif role== "ROLE_USER" %}
+					<tr>
+						<td class="badge-success">{{role}}</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+		<tr>
+			<td>{{user.adresse}}
+				{{user.codepostal}}
+				{{user.ville}}</td>
+		</tr>
+		<tr>
+			<td>Fixe :
+				{{user.telfixe}}</td>
+		</tr>
+		<tr>
+			<td>mobile :
+				{{user.telmobile}}</td>
+		</tr>
+	</tbody>
+</table>
+<a class="btn btn-primary btn-centered" href="{{path('modifier_profil')}}">Modifier le profil</a></main>{% endblock %}

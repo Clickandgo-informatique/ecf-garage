@@ -1,17 +1,14 @@
 form {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid var(--background-color); */
   max-width: 600px;
-  /* border-radius: 10px; */
   padding: 20px;
   margin: 10px auto;
   background-color: transparent;
   align-content: center;
   justify-content: center;
-  width: 100%;
   color: #fff;
-  /* box-shadow: 1px 1px 4px darkblue; */
+  width: 100%;
 }
 
 form p {
@@ -31,6 +28,9 @@ form p {
   margin-bottom: 20px;
   box-shadow: 1px 1px 4px darkblue;
   font-size: 1.5rem;
+}
+.form-header i{
+  margin:10px;
 }
 
 .form-body {
@@ -60,16 +60,17 @@ input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
 select {
-  display: block;
-  width: 90%;
+  display: flex;
   font-size: 0.8rem;
+  box-sizing: border-box;
+  width: 100%;
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
   border: 1px solid lightgray;
   border-radius: 5px;
   background-color: #fff;
-  margin: 10px auto;
+  margin: 8px 4px;
 }
 .radio-grp {
   display: flex;
@@ -181,8 +182,7 @@ section.commentaires {
   margin-left: 10px;
 }
 #cke_commentaires_contenu {
-  border-radius: 5px;
-  width: 95%;
+  width: 100%;
 }
 .filtersForm {
   border: none;
@@ -286,9 +286,6 @@ input [type="file"] {
   color: darkgray;
   font-size: 0.8rem;
   font-style: italic;
-}
-.commentaires_rgpd {
-  margin: 10px;
 }
 form ul li {
   color: red;

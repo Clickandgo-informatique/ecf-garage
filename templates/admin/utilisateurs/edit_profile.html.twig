@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block title %}Modifier mon profil
+{% endblock %}
+
+{% block body %}
+
+	<main>
+
+		{{form_start(form)}}
+		<div class="form-header">		
+			<i class="fa-regular fa-id-card"></i>Modifier mon profil</h1>
+		</div>
+		{{form_row(form.nom)}}
+		{{form_row(form.prenom)}}
+		{{form_row(form.email)}}
+		{{form_row(form.adresse)}}
+		{{form_row(form.code_postal)}}
+		{{form_row(form.ville)}}
+		{{form_row(form.tel_fixe)}}
+		{{form_row(form.tel_mobile)}}
+		{{form_row(form.created_at)}}
+		<button class="btn btn-primary btn-centered" type="submit">Enregistrer</button>
+
+		{{form_end(form)}}
+
+	</main>
+
+{% endblock %}

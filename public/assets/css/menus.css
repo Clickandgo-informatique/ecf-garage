@@ -1,12 +1,13 @@
 .menu-lateral-gauche {
   position: relative;
-  display: block;
+  display: flex;
   background: var(--background-color);
   justify-content: start;
   margin: 5px;
   border-radius: 5px;
   box-shadow: 1px 1px 4px black;
   height:100%;
+  margin-top: 65px;
 }
 .menu-options {
   display: flex;

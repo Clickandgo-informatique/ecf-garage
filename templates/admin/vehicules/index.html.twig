@@ -8,7 +8,8 @@
 {% block body %}
 
 	<main>
-		<h1 class="titre-principal"><i class="fa-solid fa-car"></i>Liste des annonces véhicules d'occasion</h1>
+		<h1 class="titre-principal">
+			<i class="fa-solid fa-car"></i>Liste des annonces véhicules d'occasion</h1>
 		<div
 			class="premiere-ligne">
 			{#Affiche/occulte le panneau de filtres #}
@@ -96,13 +97,13 @@
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle-ancienneté">
 								<label for="yearMin">Année Min.</label>
-								<input type="number" name="yearMin" id="yearMin" min="1990" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
+								<input type="number" name="yearMin" id="yearMin" min="{{getMinYear}}" max="{{'now' | date('Y')}}" value="{{ 'now' | date('Y') -1 }}">
 							</div>
 						</div>
 						<div class="wrapper-filtres-intervalle">
 							<div class="input-intervalle-ancienneté">
 								<label for="yearMax">Année Max.</label>
-								<input type="number" name="yearMax" id="yearMax" min="1990" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
+								<input type="number" name="yearMax" id="yearMax" min="{{getMinYear}}" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
 							</div>
 						</div>
 					</fieldset>

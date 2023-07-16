@@ -1,5 +1,5 @@
 .btn {
-  display: inline-block;
+  display: flex;
   padding: 5px 10px;
   color: white;
   text-decoration: none;
@@ -9,7 +9,6 @@
   text-align: center;
   outline: none;
   border: none;
-  margin: 10px;
 }
 .btn i {
   margin-right: 5px;
@@ -39,7 +38,7 @@
   background-color: rgb(62, 130, 62);
 }
 .btn-primary {
-  background-color: rgb(22, 22, 224);
+  background-color:var(--background-color);
 }
 
 .btn-secondary {
@@ -81,7 +80,6 @@
 .btn-close-flashbag {
   background: #fff;
   display: flex;
-
   align-items: center;
   border: none;
   background: transparent;
