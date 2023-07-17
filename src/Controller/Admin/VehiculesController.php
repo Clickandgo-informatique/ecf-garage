@@ -15,8 +15,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/admin/vehicules',name:'app_vehicules_')]
-class VehiculesController extends AbstractController{
+#[Route('/admin/vehicules', name: 'app_vehicules_')]
+class VehiculesController extends AbstractController
+{
 
     //Creer un véhicule
     #[Route('/creer-vehicule', name: 'creer_vehicule')]
@@ -136,7 +137,7 @@ class VehiculesController extends AbstractController{
         }
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }
-    
+
     #[Route('/supprimer-vehicule/{id}', name: 'supprimer_vehicule')]
     public function supprimer($id, vehiculesRepository $vehiculesRepository, EntityManagerInterface $em): Response
     {
@@ -148,17 +149,23 @@ class VehiculesController extends AbstractController{
         return $this->redirectToRoute('app_vehicules_liste_vehicules');
     }
 
+    //Administration : Liste des véhicules
     #[Route('/liste-vehicules', name: 'liste_vehicules')]
-    public function liste(VehiculesRepository $vehiculesRepository): Response
+    public function liste(VehiculesRepository $vehiculesRepository, Request $request): Response
     {
+        $page = (int)$request->query->get("page",1);
+        $limit=10;
 
-        $vehicules = $vehiculesRepository->findBy([], ['slug' => 'asc']);
+       //Récupération de tous les véhicules pour pagination et filtres
+       $paginationResult = $vehiculesRepository->getListeVehiculesPaginated($limit,$page);
+       $vehicules = $paginationResult->getItems();
+       $totalItems = $paginationResult->getTotalItems();      
 
-        return $this->render('admin/vehicules/liste-vehicules.html.twig', compact('vehicules'));
+        return $this->render('admin/vehicules/liste-vehicules.html.twig', compact('vehicules','page','totalItems','limit'));
     }
 
     #[Route('/details-vehicule/{id}', name: 'details_vehicule')]
-    public function fiche(VehiculesRepository $vehiculesRepository,$id): Response
+    public function fiche(VehiculesRepository $vehiculesRepository, $id): Response
     {
 
         $vehicule = $vehiculesRepository->find($id);

@@ -204,4 +204,20 @@ class VehiculesRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function getListeVehiculesPaginated($limit,$page)
+    {
+        $limit = abs($limit);
+        $query = $this->createQueryBuilder('v')
+        ->orderBy('v.marque');
+        //Pagination sur résultats 
+        $totalItems = count($query->getQuery()->getResult());
+
+        //Pagination sur résultats 
+        $query->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);
+        $items = $query->getQuery()->getResult();
+
+        return new PaginationResult($items, $totalItems);
+    }
 }

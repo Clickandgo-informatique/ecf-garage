@@ -15,12 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/utilisateurs', name: 'app_utilisateurs_')]
 class UsersController extends AbstractController
 {
+    //Administration : Liste des utilisateurs
     #[Route('/', name: 'liste_utilisateurs')]
-    public function index(UsersRepository $usersRepository): Response
+    public function index(UsersRepository $usersRepository, Request $request): Response
     {
-        $users = $usersRepository->findBy([], ['nom' => 'ASC']);
+        $page = (int)$request->query->get("page", 1);
+        $limit =5;
+        $paginationResult = $usersRepository->getListeUtilisateursPaginated($limit, $page);
+        $users = $paginationResult->getItems();
+        $totalItems = $paginationResult->getTotalItems();
 
-        return $this->render('admin/utilisateurs/index.html.twig', compact('users'));
+        return $this->render('admin/utilisateurs/index.html.twig', compact('users', 'limit', 'page', 'totalItems'));
     }
     //Fiche de l'utilisateur
     #[Route('/fiche/{id}', name: 'fiche_utilisateur')]

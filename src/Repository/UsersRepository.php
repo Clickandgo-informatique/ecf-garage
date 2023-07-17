@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Users;
+use App\Utils\PaginationResult;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -54,6 +55,24 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         $user->setPassword($newHashedPassword);
 
         $this->save($user, true);
+    }
+
+    public function getListeUtilisateursPaginated($limit,$page){
+
+        $limit =abs($limit);
+        $query=$this->createQueryBuilder('u')
+        ->orderBy('u.nom');
+
+        //Pagination sur résultats 
+        $totalItems = count($query->getQuery()->getResult());
+
+        //Pagination sur résultats 
+        $query->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);
+        $items = $query->getQuery()->getResult();
+
+        return new paginationResult($items, $totalItems);
+
     }
 
     //    /**

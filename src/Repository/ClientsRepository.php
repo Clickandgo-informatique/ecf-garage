@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Clients;
+use App\Utils\PaginationResult;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,28 +40,44 @@ class ClientsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Clients[] Returns an array of Clients objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getListeClientsPaginated($limit, $page)
+    {
+        $limit = abs($limit);
+        $query = $this->createQueryBuilder('c')
+            ->orderBy('c.nom');
+        //Pagination sur résultats 
+        $totalItems = count($query->getQuery()->getResult());
 
-//    public function findOneBySomeField($value): ?Clients
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        //Pagination sur résultats 
+        $query->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);
+        $items = $query->getQuery()->getResult();
+
+        return new PaginationResult($items, $totalItems);
+    }
+
+    //    /**
+    //     * @return Clients[] Returns an array of Clients objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Clients
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -6,6 +6,7 @@
 		{% include('_partials/_admin-nav.html.twig')%}
 		<main>
 			<h1 class="titre-principal">Liste des véhicules</h1>
+			<p class="centered">{{totalItems}} véhicules enregistrés.</p>
 			{% if vehicules %}
 				<table class="table listing">
 					<thead>
@@ -31,10 +32,14 @@
 										<a href="{{path('app_vehicules_details_vehicule',{id:vehicule.id})}}"><img class="mini-thumbnail" src="{{asset('assets/uploads/vehicules/mini/300x300-'~ vehicule.photos[0].nom)}}" alt="{{vehicule.photos[0].nom}}"></a>
 									{% endif %}
 								</td>
-								<td><strong>{{vehicule.marque}}</strong></td>
+								<td>
+									<strong>{{vehicule.marque}}</strong>
+								</td>
 								<td>{{vehicule.modele}}</td>
 								<td>{{vehicule.plaqueimmatriculation}}</td>
-								<td><a href="{{path('app_clients_fiche_client',{id:vehicule.proprietaire.id})}}">{{vehicule.proprietaire}}</a></td>
+								<td>
+									<a href="{{path('app_clients_fiche_client',{id:vehicule.proprietaire.id})}}">{{vehicule.proprietaire}}</a>
+								</td>
 
 								<td>{{vehicule.prixvente}}
 									€</td>
@@ -59,7 +64,9 @@
 					</tbody>
 				</table>
 			{% endif %}
-
+			{# Pagination #}
+			<div class="container-pagination">
+				{{ include('_partials/_pagination.html.twig') }}</div>
 		</main>
 	</div>
 	{% block javascripts %}

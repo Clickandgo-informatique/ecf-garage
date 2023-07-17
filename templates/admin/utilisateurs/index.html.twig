@@ -6,6 +6,7 @@
 		{{ include('_partials/_admin-nav.html.twig') }}
 		<main>
 			<h1 class="titre-principal">Liste des utilisateurs</h1>
+			<p class="centered">{{totalItems}} utilisateurs enregistrés.</p>
 			<table>
 				<thead colspan="8">
 					<th>Nom</th>
@@ -60,6 +61,9 @@
 					{% endif %}
 				</tbody>
 			</table>
+			<div class="container-pagination">
+			{{ include('_partials/_pagination.html.twig') }}
+			</div>
 		</main>
 	</div>
 {% endblock %}

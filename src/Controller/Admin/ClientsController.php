@@ -15,11 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClientsController extends AbstractController
 {
     #[Route('/', name: 'liste_clients')]
-    public function index(ClientsRepository $ClientsRepository): Response
+    public function index(ClientsRepository $clientsRepository,Request $request): Response
     {
-        $clients = $ClientsRepository->findBy([], ['nom' => 'ASC']);
+        $page = (int)$request->query->get("page",1);
+        $limit=10;
 
-        return $this->render('admin/clients/index.html.twig', compact('clients'));
+       //Récupération de tous les véhicules pour pagination et filtres
+       $paginationResult = $clientsRepository->getListeClientsPaginated($limit,$page);
+       $clients = $paginationResult->getItems();
+       $totalItems = $paginationResult->getTotalItems();          
+
+        return $this->render('admin/clients/index.html.twig', compact('clients','limit','page','totalItems'));
     }
 
     //Fiche du client
