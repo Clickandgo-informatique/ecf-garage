@@ -182,12 +182,12 @@
   color: white;
   padding: 5px;
   border-radius: 5px;
-  width:100%;
-
-  transform:translateX(-5px) translateY(-5px);
+  transform:rotate(-45deg) translateY(22px) translateX(-45px);
+  width:150px;
   z-index: 4;
   box-shadow: 1px 1px 6px royalblue;
   position:absolute;
+  text-align: center;
 }
 .link-contact-par-mail{
   display:block;

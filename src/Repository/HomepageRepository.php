@@ -41,8 +41,8 @@ class HomepageRepository extends ServiceEntityRepository
     public function getMaxId()
     {
         $query = $this->createQueryBuilder('h')
-            ->select('MAX(h.id)');
-        return $query->getQuery()->getSingleResult();
+           ->select('MAX(h.id)');
+        return $query->getQuery()->getOneOrNullResult();
     }
 
 //    /**

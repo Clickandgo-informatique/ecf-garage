@@ -40,10 +40,10 @@ class EntrepriseRepository extends ServiceEntityRepository
     }
 
     public function getMaxId()
-    {
+    {        
         $query = $this->createQueryBuilder('e')
             ->select('MAX(e.id)');
-        return $query->getQuery()->getSingleResult();
+        return $query->getQuery()->getOneOrNullResult();
     }
 
     //    /**

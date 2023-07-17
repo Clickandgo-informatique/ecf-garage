@@ -1,5 +1,5 @@
 .btn {
-  display: flex;
+  display: block;
   padding: 5px 10px;
   color: white;
   text-decoration: none;
@@ -9,6 +9,7 @@
   text-align: center;
   outline: none;
   border: none;
+  width: fit-content;
 }
 .btn i {
   margin-right: 5px;
@@ -38,7 +39,7 @@
   background-color: rgb(62, 130, 62);
 }
 .btn-primary {
-  background-color:var(--background-color);
+  background-color: var(--background-color);
 }
 
 .btn-secondary {

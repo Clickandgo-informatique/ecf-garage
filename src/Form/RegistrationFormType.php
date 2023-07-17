@@ -68,7 +68,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Mot de passe',
                 'constraints' => new Regex(
-                    pattern: '^[a-zA-Z]{8,}^',
+                    pattern: '/\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&*()+=^.-])\S{8,}\z/',
                     match: true,
                     message: "Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, au moins un chiffre et un symbole '!,-,?,/ ect...'."
                 ),      
