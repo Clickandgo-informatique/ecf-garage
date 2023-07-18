@@ -55,7 +55,7 @@ class PicturesService
             case -1: //Portrait
                 $squareSize = $imageWidth;
                 $src_x = 0;
-                $src_y = ($imageHeight - $squareSize) / 2;
+                $src_y = (int)($imageHeight - $squareSize) / 2;
                 break;
 
             case 0: //Carré
@@ -66,7 +66,7 @@ class PicturesService
 
             case 1: //Paysage
                 $squareSize = $imageHeight;
-                $src_x = ($imageWidth - $squareSize) / 2;
+                $src_x = (int)($imageWidth - $squareSize) / 2;
                 $src_y = 0;
                 break;
         }
