@@ -10,6 +10,7 @@
   outline: none;
   border: none;
   width: fit-content;
+  cursor: pointer;
 }
 .btn i {
   margin-right: 5px;

@@ -22,7 +22,7 @@ class Services
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: false)]
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]

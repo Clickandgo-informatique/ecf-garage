@@ -20,11 +20,9 @@
 		{{ include ('_partials/_header.html.twig') }}
 		{# navbar #}
 
-		{{ include('_partials/_nav.html.twig') }}
-		{% if app.flashes %}
+		{{ include('_partials/_nav.html.twig') }}	
 			{# Messages d'alerte #}
 			{{ include('_partials/_flash.html.twig') }}
-		{% endif %}
 
 		{% block body %}{% endblock %}
 		{# footer #}

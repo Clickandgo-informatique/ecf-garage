@@ -167,7 +167,7 @@ section.titre-principal,
   width: 99%;
   border-radius: 5px;
   justify-content: space-between;
-  align-items: center;
+justify-items: center;
   border: 1px solid #fff;
 }
 .alert-message {
