@@ -17,16 +17,17 @@ class UsersFixtures extends Fixture
     {
 
         $faker = Factory::create('fr_FR');
+        
         //Création fixture administrateur
         $admin = new Users();
-        $admin->setEmail('admin@demo.fr');
-        $admin->setNom('Dupont');
-        $admin->setPrenom('Benoit');
+        $admin->setEmail('vincent.parrot@garage-parrot.fr');
+        $admin->setNom('Parrot');
+        $admin->setPrenom('Vincent');
         $admin->setAdresse('12 rue du port');
-        $admin->setCodePostal('75001');
-        $admin->setVille('Paris');
+        $admin->setCodePostal('31000');
+        $admin->setVille('Toulouse');
         $admin->setPassword(
-            $this->passwordEncoder->hashPassword($admin, 'admin')
+            $this->passwordEncoder->hashPassword($admin, 'Parrot2023!')
         );
         $admin->setRoles(['ROLE_ADMIN']);
 
@@ -41,7 +42,7 @@ class UsersFixtures extends Fixture
         $employee->setCodePostal('01500');
         $employee->setVille('Ambérieu-en-Bugey');
         $employee->setPassword(
-            $this->passwordEncoder->hashPassword($employee, 'employee')
+            $this->passwordEncoder->hashPassword($employee, 'Employee2023!')
         );
         $employee->setRoles(['ROLE_EMPLOYEE']);
 
@@ -56,7 +57,7 @@ class UsersFixtures extends Fixture
         $employee->setCodePostal('32420');
         $employee->setVille('Simorre');
         $employee->setPassword(
-            $this->passwordEncoder->hashPassword($employee, 'employee')
+            $this->passwordEncoder->hashPassword($employee, 'Employee2023')
         );
         $employee->setRoles(['ROLE_EMPLOYEE']);
 
