@@ -65,14 +65,14 @@ class UsersFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
 
             $user = new Users();
-            $user->setNom($faker->lastName)
-                ->setPrenom($faker->firstName)
-                ->setTelFixe($faker->phoneNumber)
-                ->setTelMobile($faker->phoneNumber)
-                ->setAdresse($faker->streetName)
-                ->setCodePostal(str_replace(' ','',$faker->postcode))
-                ->setVille($faker->city)
-                ->setEmail($faker->email)
+            $user->setNom($faker->lastName())
+                ->setPrenom($faker->firstName())
+                ->setTelFixe($faker->phoneNumber())
+                ->setTelMobile($faker->phoneNumber())
+                ->setAdresse($faker->streetName())
+                ->setCodePostal(str_replace(' ','',$faker->postcode()))
+                ->setVille($faker->city())
+                ->setEmail($faker->email())
                 ->setPassword($this->passwordEncoder->hashPassword($user,'azerty'));
 
             $manager->persist($user);
