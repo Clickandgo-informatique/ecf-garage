@@ -11,7 +11,7 @@
   border: 1px solid lightgray;
   border-radius: 10px;
   box-shadow: 2px 2px 4px darkgray;
-  background-color: #fff; 
+  background-color: #fff;
 }
 
 .card-vehicule {
@@ -82,7 +82,7 @@
   margin-bottom: 10px;
 }
 .icone-service {
-  display:flex;
+  display: flex;
   position: relative;
   width: 100%;
   height: 100px;
@@ -92,9 +92,9 @@
   align-items: center;
   text-shadow: 1px 1px 2px black;
 }
-.icone-service i{
+.icone-service i {
   font-size: 50px;
-  color:#fff;
+  color: #fff;
 }
 .card-services .card-view-link {
   font-size: 0.8rem;
@@ -106,10 +106,9 @@
 
 .card-services i {
   margin-right: 10px;
-  
 }
-.card-services .card-title{
-  color:blue;
+.card-services .card-title {
+  color: blue;
   text-shadow: 1px 1px 4px darkgray;
 }
 .resume {
@@ -182,17 +181,15 @@
   color: white;
   padding: 5px;
   border-radius: 5px;
-  transform:rotate(-45deg) translateY(22px) translateX(-45px);
-  width:150px;
+  width: 101%;
   z-index: 4;
   box-shadow: 1px 1px 6px royalblue;
-  position:absolute;
+  position: absolute;
   text-align: center;
 }
-.link-contact-par-mail{
-  display:block;
+.link-contact-par-mail {
+  display: block;
   font-size: 0.8rem;
-text-align:center;
-color:blue;
-
+  text-align: center;
+  color: blue;
 }
