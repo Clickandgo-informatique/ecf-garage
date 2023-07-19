@@ -1,55 +1,69 @@
-{% block body %}
-{% extends 'base.html.twig' %}	
-
+{% extends 'base.html.twig' %}
 
 {% block title %}
 	Administration des services
 {% endblock %}
 
-<main class="main">
-	<h1 class="titre-principal">Liste des services</h1>
-	{{ include('_partials/_admin-nav.html.twig') }}
-	<div class="content">
-		{% if services %}
-			<table class="listing">
-				<thead>
-					<th></th>
-					<th>Nom service</th>
-					<th>Résumé</th>
-					<th>Prix à partir de</th>
-					<th colspan="3">
-						<a href="{{path('app_services_creer_service')}}" class="btn btn-primary">Créer un nouveau service</a>
-					</th>
-				</thead>
+{% block body %}
+	<main>
+		<h1 class="titre-principal">Liste des services</h1>
+		<div class="wrapper">
+			{{ include('_partials/_admin-nav.html.twig') }}
 
-				<tbody>
-					{% for service in services %}
-						<tr>
-							<td></td>
-							{# {% if service.icone %}
-																																						<td>{{service.icone}}</td>
-																																						{% endif %} #}
-							<td>
-								<strong>{{service.nom}}</strong>
-							</td>
-							<td>{{service.resume|u.truncate(20)}}</td>
+			{% if services is not null %}
+				<table class="listing">
+					<thead>
+						<th>Icone</th>
+						<th>Nom service</th>
+						<th>Résumé</th>
+						<th>Prix à partir de</th>
+						<th>Afficher</th>
+						<th colspan="4">
+							<a href="{{path('app_services_creer_service')}}" class="btn btn-primary">Créer un nouveau service</a>
+						</th>
+					</thead>
 
-							<td class="price">{{service.prixapartirde}}
-								€</td>
-							<td>
-								<a class="btn btn-warning" href="{{path('app_services_fiche_service',{id:service.id,slug:service.slug})}}">voir</a>
-							</td>
-							<td>
-								<a class="btn btn-primary" href="{{path('app_services_modifier_service',{id:service.id,slug:service.slug})}}">modifier</a>
-							</td>
-							<td>
-								<a class="btn btn-danger" href="{{path('app_services_supprimer_service',{id:service.id,slug:service.slug})}}">supprimer</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			{% endif %}
-		</table>
-	</div>
-</main>
+					<tbody>
+						{% for service in services %}
+							<tr>
+								{% if service.icone is not null %}
+									<td>
+										<i class="{{service.icone}}"></i>
+									</td>
+								{% endif %}							
+
+								<td>
+									<strong>{{service.nom}}</strong>
+								</td>
+								<td>{{service.resume|u.truncate(20)}}</td>
+
+								<td class="price">{{service.prixapartirde}}
+									€</td>
+								<td>
+								{# switch affichage du service #}
+								<td>
+									<label class="switch">
+										<input class="toggle-switch-afficher" type="checkbox" id="switch{{service.id}}" value="{{service.afficher}}" {{service.afficher ==1 ? "checked":""}} role="switch" data-id={{service.id}}>
+										<span class="slider round"></span>
+									</label>
+								</td>
+								<td>
+									<a class="btn btn-warning" href="{{path('app_services_fiche_service',{id:service.id,slug:service.slug})}}">voir</a>
+								</td>
+								<td>
+									<a class="btn btn-primary" href="{{path('app_services_modifier_service',{id:service.id,slug:service.slug})}}">modifier</a>
+								</td>
+								<td>
+									<a class="btn btn-danger" href="{{path('app_services_supprimer_service',{id:service.id,slug:service.slug})}}">supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				{% endif %}
+			</table>
+		</div>
+	</main>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('assets/js/services.js')}}" defer></script>
 {% endblock %}

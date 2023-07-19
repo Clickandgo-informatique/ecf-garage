@@ -14,23 +14,29 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CommentairesController extends AbstractController
 {
+    //Administration : Liste des commentaires
     #[Route('/admin/commentaires/liste-commentaires', name: 'app_commentaires_liste_commentaires')]
-    public function index(CommentairesRepository $commentairesRepository): Response
+    public function index(CommentairesRepository $commentairesRepository, Request $request): Response
     {
-        $commentaires = $commentairesRepository->findBy([], ['created_at' => 'desc']);
-        return $this->render('commentaires/index.html.twig', compact('commentaires'));
+        $page = (int)$request->query->get('page', 1);
+        $limit = 10;
+        $paginationResult = $commentairesRepository->getListeCommentairesPaginated($limit, $page);
+        $commentaires = $paginationResult->getItems();
+        $totalItems = $paginationResult->getTotalItems();
+
+        return $this->render('commentaires/index.html.twig', compact('commentaires', 'limit', 'page', 'totalItems'));
     }
 
     //Créer un commentaire client
     #[Route('/admin/commentaires/creer-commentaire', name: 'creer_commentaire')]
-    public function creer(Request $request, EntityManagerInterface $em,CommentairesRepository $commentairesRepository): Response
+    public function creer(Request $request, EntityManagerInterface $em, CommentairesRepository $commentairesRepository): Response
     {
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $commentaire = new Commentaires();
-            
+
             $commentaire->setCreatedAt(new \DateTimeImmutable());
             //Récupération du contenu du champ parentid
             $parentid = $form->get('parentid')->getData();

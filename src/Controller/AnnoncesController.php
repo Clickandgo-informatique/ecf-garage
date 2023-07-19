@@ -31,11 +31,11 @@ class AnnoncesController extends AbstractController
         $em->flush();
 
         if (!$vehicule->isPublicationAnnonce()) {
-            $this->addFlash('success', 'Une annonce concernant ce véhicule a été publiée.');
+            $this->addFlash('success', "L'annonce concernant ce véhicule a été retirée de la base avec succès.");
 
             return new Response('true');
         } else {
-            $this->addFlash('success', "L'annonce concernant ce véhicule a été retirée de la base avec succès.");
+            $this->addFlash('success', 'Une annonce concernant ce véhicule a été publiée.');
             return new Response("false");
         }
     }

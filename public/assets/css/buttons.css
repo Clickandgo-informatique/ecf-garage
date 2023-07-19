@@ -41,6 +41,7 @@
 }
 .btn-primary {
   background-color: var(--background-color);
+  border:1px solid #fff;
 }
 
 .btn-secondary {

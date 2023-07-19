@@ -5,23 +5,22 @@
 
 {% block body %}
 	<div class="wrapper">
-			{{ include('_partials/_admin-nav.html.twig') }}
+		{{ include('_partials/_admin-nav.html.twig') }}
 		<main>
 			<h1 class="titre-principal">Liste des commentaires utilisateurs</h1>
-			<a href="" class="btn btn-primary btn-centered">Créer un nouveau commentaire</a>
-			<table id="tblCommentaires">
+			<a href="{{path('creer_commentaire')}}" class="btn btn-primary btn-centered">+ Créer un nouveau commentaire</a>
+
+			<table class="table" id="tblCommentaires">
 				<thead>
 					<th>Id</th>
 					<th>Date</th>
 					<th>Note</th>
-					<th>Publié</th>
+					<th>Publier</th>
 					<th>Contenu</th>
 					<th>Pseudo</th>
 					<th>Email</th>
 					<th>Parent</th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th></th>					
 				</thead>
 				<tbody>
 					{% for comment in commentaires %}
@@ -41,17 +40,17 @@
 							<td>{{comment.parent}}</td>
 
 							<td>
-								<a href="">Modifier</a>
-							</td>
-							<td>
 								<a class="btn btn-danger btn-supprimer-commentaire" id="btn-supprimer-commentaire" data-id="{{comment.id}}">Supprimer</a>
 							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
-		</main>
-	</div>
+			<div class="container-pagination">
+				{{ include('_partials/_pagination.html.twig') }}
+			</div>
+		</div>
+	</main>
 	{% block javascripts %}
 		<script type="text/javascript" src="{{asset('assets/js/commentaires.js')}}" defer></script>
 

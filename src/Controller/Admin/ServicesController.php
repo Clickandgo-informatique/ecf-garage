@@ -22,7 +22,7 @@ class ServicesController extends AbstractController
     #[Route('/services/index', name: 'app_services_index')]
     public function index(ServicesRepository $servicesRepository): Response
     {
-        $services = $servicesRepository->findBy([], ['nom' => 'ASC']);
+        $services = $servicesRepository->findBy(['afficher'=>true], ['nom' => 'ASC']);
 
         return $this->render('services/index.html.twig', [
             'services' => $services
@@ -95,8 +95,8 @@ class ServicesController extends AbstractController
         $slug = $service->getSlug();
         $em->remove($service);
         $em->flush();
-        $this->addFlash('message', 'Le service ' . $slug . ' a bien été supprimé de la base.');
-        return $this->redirectToRoute('app_services_liste_services');
+        $this->addFlash('success', 'Le service ' . $slug . ' a bien été supprimé de la base.');
+        return $this->redirectToRoute('liste_services');
     }
     #[Route('/services/fiche-service/{slug}/{id}', name: 'app_services_fiche_service')]
     public function fiche(ServicesRepository $servicesRepository, $id, $slug): Response
@@ -107,5 +107,24 @@ class ServicesController extends AbstractController
         return $this->render('services/fiche.html.twig', [
             'service' => $service
         ]);
+    }
+
+    #[Route('/admin/services/afficher-service/{id}', name: 'afficher_service')]
+    public function afficherService(Services $service, EntityManagerInterface $em, $id): Response
+    {
+        //Active ou désactive le champ de publication dans la base   
+        $service->setAfficher(($service->isAfficher()) ? false : true);
+
+        $em->persist($service);
+        $em->flush();
+
+        if (!$service->isAfficher()) {
+            $this->addFlash('success', "Votre choix a été pris en compte : ce service ne sera pas affiché dans la liste des services.");
+
+            return new Response('true');
+        } else {
+            $this->addFlash('success', 'Votre choix a été pris en compte : ce service ne sera dorénavant affiché dans la liste des services.');
+            return new Response("false");
+        }
     }
 }

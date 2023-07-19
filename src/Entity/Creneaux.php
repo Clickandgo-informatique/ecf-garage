@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[UniqueEntity('jour', 'debut', 'fin', message: 'Il existe déjà un créneau pour ce jour avec les mêmes données.')]
+#[UniqueEntity(fields:['jour', 'debut', 'fin'], message: 'Il existe déjà un créneau pour ce jour avec les mêmes données.')]
 #[ORM\Entity(repositoryClass: CreneauxRepository::class)]
 class Creneaux
 {

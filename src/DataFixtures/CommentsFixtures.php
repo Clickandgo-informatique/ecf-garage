@@ -15,7 +15,7 @@ class CommentsFixtures extends Fixture
         for ($i = 0; $i < 25; $i++) {
 
             $comment = new Commentaires();
-            $comment->setContenu("Lorem ipsum alea jacta est cave canem in extremis de facto.");
+            $comment->setContenu($faker->realText());
             $comment->setEmail($faker->email());
             $comment->setPseudo("Pseudo " . $i);
             $comment->setRgpd(true);

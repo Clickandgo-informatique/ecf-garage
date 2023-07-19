@@ -20,13 +20,14 @@ class UsersController extends AbstractController
     public function index(UsersRepository $usersRepository, Request $request): Response
     {
         $page = (int)$request->query->get("page", 1);
-        $limit =5;
+        $limit = 10;
         $paginationResult = $usersRepository->getListeUtilisateursPaginated($limit, $page);
         $users = $paginationResult->getItems();
         $totalItems = $paginationResult->getTotalItems();
 
         return $this->render('admin/utilisateurs/index.html.twig', compact('users', 'limit', 'page', 'totalItems'));
     }
+    
     //Fiche de l'utilisateur
     #[Route('/fiche/{id}', name: 'fiche_utilisateur')]
     public function fiche(UsersRepository $usersRepository, $id): Response

@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{titre}}
+{% block title %}
+	{{titre}}
 {% endblock %}
 {% block body %}
 	<main class="main">
-		<h1 class="titre-principal">{{titre}}</h1>
-	</main>
-	{{ form(servicesForm) }}{% endblock %}
+		<div class="wrapper">
+			{{ include('_partials/_admin-nav.html.twig') }}
+			{{ form_start(servicesForm) }}
+			<h1 class="form-header">{{titre}}</h1>
+			{{ form(servicesForm) }}
+				{{ form_end(servicesForm) }}
+			</div>
+		</main>
+	{% endblock %}
