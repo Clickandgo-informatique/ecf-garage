@@ -10,6 +10,7 @@ header h1 {
 margin-left: 10px;
   color: var(--background-color);
   text-shadow: 1px 1px 2px darkgray;
+  font-size: 1rem;
 }
 
 header h1 i,.telephone i {
@@ -17,7 +18,7 @@ header h1 i,.telephone i {
 }
 
 .telephone a,.telephone i {
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-decoration: none;
   color: var(--background-color);
   text-shadow: 1px 1px 4px darkgray;

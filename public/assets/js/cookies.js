@@ -4,7 +4,6 @@ const cookiesBannerDeclineButton = document.querySelector(".decline-cookies");
 const cookieName = "cookiesBanner";
 const el = document.querySelector("main");
 const body=document.querySelector("body")
-
 window.onload = () => {
 
   //Annule momentanément le scrolling

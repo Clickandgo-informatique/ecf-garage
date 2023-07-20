@@ -20,9 +20,9 @@
 		{{ include ('_partials/_header.html.twig') }}
 		{# navbar #}
 
-		{{ include('_partials/_nav.html.twig') }}	
-			{# Messages d'alerte #}
-			{{ include('_partials/_flash.html.twig') }}
+		{{ include('_partials/_nav.html.twig') }}
+		{# Messages d'alerte #}
+		{{ include('_partials/_flash.html.twig') }}
 
 		{% block body %}{% endblock %}
 		{# footer #}
@@ -33,6 +33,7 @@
 
 		{% block javascripts %}
 			<script type="text/javascript" src="{{asset('assets/js/main.js')}}" defer></script>
+			<script type="text/javascript" src="{{asset('assets/js/cookies.js')}}" defer></script>
 		{% endblock %}
 	</body>
 </html>
