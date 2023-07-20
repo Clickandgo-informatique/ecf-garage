@@ -35,7 +35,7 @@ class UsersFixtures extends Fixture
         
         //Création fixture employé 1
         $employee = new Users();
-        $employee->setEmail('employe1@demo.fr');
+        $employee->setEmail('employe1@garage-parrot.fr');
         $employee->setNom('De La Fontaine');
         $employee->setPrenom('Jean-Marie');
         $employee->setAdresse('152 rue du Chêne-doré');
@@ -50,14 +50,14 @@ class UsersFixtures extends Fixture
 
         //Création fixture employé 2
         $employee = new Users();
-        $employee->setEmail('employe2@demo.fr');
+        $employee->setEmail('employe2@garage-parrot.fr');
         $employee->setNom('Weil-Sinclair');
         $employee->setPrenom('Simone');
         $employee->setAdresse('15 av Gambetta');
         $employee->setCodePostal('32420');
         $employee->setVille('Simorre');
         $employee->setPassword(
-            $this->passwordEncoder->hashPassword($employee, 'Employee2023')
+            $this->passwordEncoder->hashPassword($employee, 'Employee2023!')
         );
         $employee->setRoles(['ROLE_EMPLOYEE']);
 
