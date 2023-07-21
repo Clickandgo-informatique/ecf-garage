@@ -46,7 +46,7 @@ class VehiculesFixtures extends Fixture
         $lengthMarques = count($tblMarques);
         $lengthCouleurs = count($couleurs);
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 3; $i++) {
 
             //Random sur les valeurs des tableaux fictifs
             $randomMarques = rand(0, $lengthMarques - 1);
