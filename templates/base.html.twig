@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		{#Header#}
-		{{ include ('_partials/_header.html.twig') }}
+		{{render(controller('App\\Controller\\HeaderController::header'))}}
 		{# navbar #}
 
 		{{ include('_partials/_nav.html.twig') }}

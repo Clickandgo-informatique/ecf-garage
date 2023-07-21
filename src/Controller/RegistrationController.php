@@ -16,6 +16,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+use function PHPUnit\Framework\throwException;
+
 class RegistrationController extends AbstractController
 {
     #[Route('/inscription', name: 'app_register')]
@@ -148,4 +150,6 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', "Un email de vérification a été envoyé à l'adresse que vous avez fournie, veuillez consulter la boîte de réception de votre logiciel de messagerie svp.");
         return $this->redirectToRoute('app_utilisateurs_profil');
     }
+
+   
 }

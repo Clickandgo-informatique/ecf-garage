@@ -4,24 +4,30 @@ header {
   justify-content: space-between;
   width: 100%;
   align-items: center;
-padding:5px;
+  padding: 5px;
 }
-header h1 {
-margin-left: 10px;
+.telephone,.entreprise{
+  display: flex;
+  align-items: center;
+}
+.nom-entreprise {
+  margin-left: 10px;
   color: var(--background-color);
   text-shadow: 1px 1px 2px darkgray;
   font-size: 1rem;
 }
 
-header h1 i,.telephone i {
+.icone-entreprise,
+.icone-telephone {
   margin-right: 10px;
+  color:var(--background-color);
 }
 
-.telephone a,.telephone i {
+.telephone-entreprise,
+.telephone-entreprise i {
   font-size: 1rem;
   text-decoration: none;
   color: var(--background-color);
   text-shadow: 1px 1px 4px darkgray;
   margin-right: 10px;
 }
-

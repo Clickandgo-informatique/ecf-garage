@@ -115,7 +115,7 @@ class VehiculesFixtures extends Fixture
                 $filesNames[] = $file;
             }
             //Exécution d'un random sur le tableau d'images en local
-            $fichiers = $faker->randomElements($filesNames, 4);
+            $fichiers = $faker->randomElements($filesNames, 1);
 
             // création de chaque fichier image
             for ($k = 0; $k < count($fichiers); $k++) {
