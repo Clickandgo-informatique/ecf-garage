@@ -1,5 +1,4 @@
 window.onload = () => {
-
   //Filtres de type input
   const filtersForm = document.querySelector("#filters");
 
@@ -35,7 +34,7 @@ window.onload = () => {
             const content = document.querySelector("#content");
 
             //Remplacement du contenu
-            content.innerHTML = data.content;         
+            content.innerHTML = data.content;
 
             //Mise à jour de l'url
             history.pushState({}, null, Url.pathname + "?" + Params.toString());
@@ -57,7 +56,7 @@ window.onload = () => {
       wrapperfiltres.style.transition = "ease-in 0.5s";
       wrapperfiltres.style.display = "block";
     } else {
-         wrapperfiltres.style.transition = "ease-out 1s";
+      wrapperfiltres.style.transition = "ease-out 1s";
       wrapperfiltres.style.display = "none";
     }
   });
@@ -72,4 +71,32 @@ window.onload = () => {
       }, delay);
     };
   }
+
+  //Contrôle des saisies
+  const yearMin = document.querySelector("#yearMin");
+  const yearMax = document.querySelector("#yearMax");
+  const yearMinValue = yearMin.value;
+  const yearMaxValue = yearMax.value;
+
+  yearMin.addEventListener("input", (e) => {
+    e.preventDefault;
+    const controlYearMin = () => {
+      if (yearMin.value.length === 4 && yearMin.value > yearMax.value) {
+        alert("L'année de départ ne peut être supérieure à l'année maximale");
+        yearMin.value = yearMinValue;
+      }
+    };
+    setTimeout(controlYearMin, 1000);
+  });
+
+  yearMax.addEventListener("input", (e) => {
+    e.preventdefault;
+    const controlYearMax = () => {
+      if (yearMax.value.length === 4 && yearMax.value < yearMin.value) {
+        alert("L'année maximale ne peut être inférieure à l'année de départ");
+        yearMax.value = yearMaxValue;
+      }
+    };
+    setTimeout(controlYearMax, 1000);
+  });
 };
