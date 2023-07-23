@@ -22,7 +22,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  header{display:none;}
+  header {
+    display: none;
+  }
   .navbar {
     position: relative;
   }
@@ -128,8 +130,11 @@
     height: 300px;
   }
   .filtersForm {
-    justify-content: center;
-    align-self: center;
+    flex-direction: column;
+
+  }
+  .btn-accordion{
+    width:95%;
   }
   .container-pagination,
   .resultatFiltres {

@@ -28,10 +28,10 @@ form p {
   margin-bottom: 20px;
   box-shadow: 1px 1px 4px darkblue;
   font-size: 1.5rem;
-  text-shadow:1px 1px 2px black;
+  text-shadow: 1px 1px 2px black;
 }
-.form-header i{
-  margin:10px;
+.form-header i {
+  margin: 10px;
 }
 
 .form-body {
@@ -87,6 +87,8 @@ input[type="checkbox"] {
   margin: 5px;
   accent-color: blue;
   font-size: 0.7rem;
+  width: 20px;
+  height: 20px;
 }
 input[type="number"]:focus {
   transform: scale(1.2);
@@ -185,41 +187,6 @@ section.commentaires {
 #cke_commentaires_contenu {
   width: 100%;
 }
-.filtersForm {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  box-shadow: inherit;
-  display: flex;
-  width: 100%;
-}
-.filtersForm fieldset {
-  box-shadow: 1px 1px 6px darkblue;
-  display: flex;
-}
-.checkbox-filtres {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 7px;
-  margin: 10px 20px;
-  font-size: 1rem;
-  background-color: var(--background-color);
-  color: #fff;
-  width: fit-content;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 1px 1px 4px black;
-}
-.checkbox-filtres label {
-  cursor: pointer;
-}
-.checkbox-filtres span {
-  margin-right: 10px;
-  margin-left: 10px;
-  font-weight: 900;
-  color: yellow;
-}
 input [type="file"] {
   margin: 10px;
   border-radius: 5px;
@@ -237,18 +204,6 @@ input [type="file"] {
 }
 .img-logo img {
   object-fit: fill;
-}
-.wrapper-filtres {
-  width: 220px;
-}
-#homepage_form_logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background-color: transparent;
-  padding: 10px;
-  border: none;
 }
 #homepage_form_logo label {
   margin: 10px;
@@ -292,4 +247,13 @@ form ul li {
   color: red;
   margin-left: 20px;
   font-size: 0.7rem;
+}
+#homepage_form_logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: transparent;
+  padding: 10px;
+  border: none;
 }

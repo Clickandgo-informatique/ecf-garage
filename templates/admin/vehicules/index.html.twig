@@ -25,163 +25,187 @@
 			<a href="{{path('app_vehicules_creer_vehicule')}}" class="btn btn-primary">Créer un nouveau véhicule</a>
 		{% endif %}
 
-		<div
-			class="wrapper">
+		{# Filtre de classement : #}
+		<form id="filters" class="filtersForm">
 
-			{# Filtre de classement : #}
-			<div class="wrapper-filtres">
-				<form id="filters" class="filtersForm">
-					<fieldset>
-						<legend>Classer par :</legend>
-						{% if app.user %}
-							<div class="radio-grp">
-								<i class="fas fa-heart favoris-filtre"></i>
-								<input class="radio-button" type="radio" id="userFavorites" name="classerPar" value="Mes favoris">
-								<label for="userFavorites">Mes favoris</label>
-							</div>
-						{% endif %}
+			<div class="btn-accordion">
+				<input type="checkbox" class="btn-collapse" id="classer-par">
+				<label for="classer-par" class="accordion-label">Classer par :</label>
+				<div class="container-inputs">
+					{% if app.user %}
 						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Prix ascendant" name="classerPar" value="Prix ascendant">
-							<label for="Prix ascendant">Prix ascendant</label>
+							<i class="fas fa-heart favoris-filtre"></i>
+							<input class="radio-button" type="radio" id="userFavorites" name="classerPar" value="Mes favoris">
+							<label for="userFavorites" class="input-label">Mes favoris</label>
 						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Prix descendant" name="classerPar" value="Prix descendant">
-							<label for="Prix descendant">Prix descendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Kilométrage ascendant" name="classerPar" value="Kilométrage ascendant">
-							<label for="Kilométrage ascendant">Kilométrage ascendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Kilométrage descendant" name="classerPar" value="Kilométrage descendant">
-							<label for="Kilométrage descendant">Kilométrage descendant</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Ancienneté ascendante" name="classerPar" value="Ancienneté ascendante">
-							<label for="Ancienneté ascendante">Ancienneté ascendante</label>
-						</div>
-						<div class="radio-grp">
-							<input class="radio-button" type="radio" id="Ancienneté descendante" name="classerPar" value="Ancienneté descendante">
-							<label for="Ancienneté descendante">Ancienneté descendante</label>
-						</div>
-					</fieldset>
-
-					<fieldset>
-						<legend>Par intervalles</legend>
-						<div
-							class="wrapper-filtres-intervalle">
-
-							{# Filtre intervalle kilomètrage #}
-							<div class="input-intervalle">
-								<label for="kmMin">Km min.</label>
-								<input type="number" name="kmMin" id="kmMin" min="1" max="999999" value="1" step="100">
-							</div>
-							<div class="input-intervalle">
-								<label for="kmMax">Km max.</label>
-								<input type="number" name="kmMax" id="kmMax" min="1" max="10000000" value="10000000" step="100">
-							</div>
-						</div>
-
-						{#Filtre intervalle prix #}
-						<div class="wrapper-filtres-intervalle">
-							<div class="input-intervalle">
-								<label for="prixMin">Prix min.</label>
-								<input type="number" name="prixMin" id="prixMin" min="1" max="499000" value="1" step="100">
-							</div>
-							<div class="input-intervalle">
-								<label for="prixMax">Prix max.</label>
-								<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000" step="100">
-							</div>
-						</div>
-						{# Filtre intervalle ancienneté #}
-						<div class="wrapper-filtres-intervalle">
-							<div class="input-intervalle-ancienneté">
-								<label for="yearMin">Année Min.</label>
-								<input type="number" name="yearMin" id="yearMin" min="{{getMinYear}}" max="{{'now' | date('Y')}}" value="{{getMinYear}}">
-							</div>
-						</div>
-						<div class="wrapper-filtres-intervalle">
-							<div class="input-intervalle-ancienneté">
-								<label for="yearMax">Année Max.</label>
-								<input type="number" name="yearMax" id="yearMax" min="{{getMinYear}}" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
-							</div>
-						</div>
-					</fieldset>
-
-					{# Filtre sur type de véhicule #}
-					<fieldset>
-						<legend>
-							Par type :
-						</legend>
-						{# On vérifie si le type de véhicule se trouve dans les paramètres #}
-						{% for  type in typesVehicules %}
-							{% if queryParams is not empty and queryParams.typesVehicules is defined %}
-								{% set checked = (type.id in queryParams.typesVehicules) ? "checked" : "" %}
-							{% else %}
-								{% set checked = "" %}
-							{% endif %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="typesVehicules[]" id="typesVehicules{{type.id}}" value="{{type.id}}" class="filtreTypesVehicules" {{checked}}>
-								<label for="typesVehicules{{type.id}}">{{type.nomtype}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
-
-					{# Filtre sur type motorisation #}
-					<fieldset>
-						<legend>Par motorisation :</legend>
-						{% for  type in typesMotorisations %}
-							{% if queryParams is not empty and queryParams.typesMotorisations is defined %}
-								{% set checked = (type.id in queryParams.typesMotorisations) ? "checked" : "" %}
-							{% else %}
-								{% set checked = "" %}
-							{% endif %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="typesMotorisations[]" id="typesMotorisation{{type.id}}" value="{{type.id}}" class="filtreTypesMotorisations">
-								<label for="typesMotorisations{{type.id}}">{{type.nommotorisation}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
-
-					{# Filtre sur boîtes de vitesse #}
-					<fieldset>
-						<legend>Par type de boîte :</legend>
-						{% for  boite in typesBoites %}
-							{% if queryParams is not empty and queryParams.boites is defined %}
-								{% set checked = (boite.id in queryParams.boites) ? "checked" : "" %}
-							{% else %}
-								{% set checked = "" %}
-							{% endif %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="boites[]" id="boites{{boite.id}}" value="{{boite.id}}" class="filtreBoites">
-								<label for="boites{{boite.id}}">{{boite.descriptionboite}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
-
-					{# Filtre sur marques de véhicules #}
-					<fieldset>
-						<legend>Par marque :</legend>
-						{% for  marque in marquesVehicules %}
-							{% if queryParams is not empty and queryParams.marques is defined %}
-								{% set checked = (marque.id in queryParams.marques) ? "checked" : "" %}
-							{% else %}
-								{% set checked = "" %}
-							{% endif %}
-							<div class="wrapper-input">
-								<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
-								<label for="marques{{marque.id}}">{{marque.marque}}</label>
-							</div>
-						{% endfor %}
-					</fieldset>
-					<input type="hidden" name="page" value="{{ page }}">
-				</form>
+					{% endif %}
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Prix ascendant" name="classerPar" value="Prix ascendant">
+						<label for="Prix ascendant" class="input-label">Prix ascendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Prix descendant" name="classerPar" value="Prix descendant">
+						<label for="Prix descendant" class="input-label">Prix descendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Kilométrage ascendant" name="classerPar" value="Kilométrage ascendant">
+						<label for="Kilométrage ascendant" class="input-label">Kilométrage ascendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Kilométrage descendant" name="classerPar" value="Kilométrage descendant">
+						<label for="Kilométrage descendant" class="input-label">Kilométrage descendant</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Ancienneté ascendante" name="classerPar" value="Ancienneté ascendante">
+						<label for="Ancienneté ascendante" class="input-label">Ancienneté ascendante</label>
+					</div>
+					<div class="radio-grp">
+						<input class="radio-button" type="radio" id="Ancienneté descendante" name="classerPar" value="Ancienneté descendante">
+						<label for="Ancienneté descendante" class="input-label">Ancienneté descendante</label>
+					</div>
+				</div>
 			</div>
-			<div
-				class="cards-container" id="content">
-				{# Contenu généré en Ajax #}
-				{{ include('admin/vehicules/_content.html.twig') }}</div>
-		</div>
+
+			<div class="btn-accordion">
+				<input type="checkbox" class="btn-collapse" id="par-intervalles">
+				<label for="par-intervalles" class="accordion-label">Par intervalles :</label>
+				<div class="container-inputs">
+					<div
+						class="wrapper-filtres-intervalle">
+
+						{# Filtre intervalle kilomètrage #}
+						<div class="input-intervalle">
+							<label for="kmMin" class="input-label">Km min.</label>
+							<input type="number" name="kmMin" id="kmMin" min="1" max="999999" value="1" step="100">
+						</div>
+						<div class="input-intervalle">
+							<label for="kmMax" class="input-label">Km max.</label>
+							<input type="number" name="kmMax" id="kmMax" min="1" max="10000000" value="10000000" step="100">
+						</div>
+					</div>
+
+					{#Filtre intervalle prix #}
+					<div class="wrapper-filtres-intervalle">
+						<div class="input-intervalle">
+							<label for="prixMin" class="input-label">Prix min.</label>
+							<input type="number" name="prixMin" id="prixMin" min="1" max="499000" value="1" step="100">
+						</div>
+						<div class="input-intervalle">
+							<label for="prixMax" class="input-label">Prix max.</label>
+							<input type="number" name="prixMax" id="prixMax" min="1" max="500000" value="500000" step="100">
+						</div>
+					</div>
+					{# Filtre intervalle ancienneté #}
+					<div class="wrapper-filtres-intervalle">
+						<div class="input-intervalle">
+							<label for="yearMin" class="input-label">Année Min.</label>
+							<input type="number" name="yearMin" id="yearMin" min="{{getMinYear}}" max="{{'now' | date('Y')}}" value="{{getMinYear}}">
+						</div>
+						<div class="input-intervalle">
+							<label for="yearMax" class="input-label">Année Max.</label>
+							<input type="number" name="yearMax" id="yearMax" min="{{getMinYear}}" max="{{ 'now' | date('Y') }}" value="{{ 'now' | date('Y') }}">
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			{# Filtre sur type de véhicule #}
+
+			<div class="btn-accordion">
+				<input type="checkbox" class="btn-collapse" id="par-type-vehicules">
+				<label for="par-type-vehicules" class="accordion-label">Par type :</label>
+
+				<div
+					class="container-inputs">
+					{# On vérifie si le type de véhicule se trouve dans les paramètres #}
+					{% for  type in typesVehicules %}
+						{% if queryParams is not empty and queryParams.typesVehicules is defined %}
+							{% set checked = (type.id in queryParams.typesVehicules) ? "checked" : "" %}
+						{% else %}
+							{% set checked = "" %}
+						{% endif %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="typesVehicules[]" id="typesVehicules{{type.id}}" value="{{type.id}}" class="filtreTypesVehicules" {{checked}}>
+							<label for="typesVehicules{{type.id}}" class="input-label">{{type.nomtype}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+
+			{# Filtre sur type motorisation #}
+			<div class="btn-accordion">
+				<input type="checkbox" class="btn-collapse" id="par-motorisation">
+				<label for="par-motorisation" class="accordion-label">Par motorisation :</label>
+
+				<div class="container-inputs">
+					{% for  type in typesMotorisations %}
+						{% if queryParams is not empty and queryParams.typesMotorisations is defined %}
+							{% set checked = (type.id in queryParams.typesMotorisations) ? "checked" : "" %}
+						{% else %}
+							{% set checked = "" %}
+						{% endif %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="typesMotorisations[]" id="typesMotorisation{{type.id}}" value="{{type.id}}" class="filtreTypesMotorisations">
+							<label for="typesMotorisations{{type.id}}" class="input-label">{{type.nommotorisation}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+
+			{# Filtre sur boîtes de vitesse #}
+
+			<div class="btn-accordion">
+				<input type="checkbox" class="btn-collapse" id="par-types-boites">
+				<label for="par-types-boites" class="accordion-label">Par transmission :</label>
+
+				<div class="container-inputs">
+					{% for  boite in typesBoites %}
+						{% if queryParams is not empty and queryParams.boites is defined %}
+							{% set checked = (boite.id in queryParams.boites) ? "checked" : "" %}
+						{% else %}
+							{% set checked = "" %}
+						{% endif %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="boites[]" id="boites{{boite.id}}" value="{{boite.id}}" class="filtreBoites">
+							<label for="boites{{boite.id}}" class="input-label">{{boite.descriptionboite}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+
+			{# Filtre sur marques de véhicules #}
+
+			<div class="btn-accordion">
+				<input type="checkbox" class="btn-collapse" id="par-marques">
+				<label for="par-marques" class="accordion-label">Par Marques</label>
+
+				<div class="container-inputs">
+					{% for  marque in marquesVehicules %}
+						{% if queryParams is not empty and queryParams.marques is defined %}
+							{% set checked = (marque.id in queryParams.marques) ? "checked" : "" %}
+						{% else %}
+							{% set checked = "" %}
+						{% endif %}
+						<div class="wrapper-input">
+							<input type="checkbox" name="marques[]" id="marques{{marque.id}}" value="{{marque.id}}" class="filtreMarques">
+							<label for="marques{{marque.id}}" class="input-label">{{marque.marque}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<input type="hidden" name="page" value="{{ page }}">
+		</form>
+
+		<div
+			class="cards-container" id="content">
+			{# Contenu généré en Ajax #}
+			{{ include('admin/vehicules/_content.html.twig') }}</div>
+
 
 	</main>
 	{% block javascripts %}
@@ -189,4 +213,3 @@
 		<script src="{{asset('assets/js/filters.js')}}" type="text/javascript" defer></script>
 	{% endblock %}
 {% endblock %}
-
