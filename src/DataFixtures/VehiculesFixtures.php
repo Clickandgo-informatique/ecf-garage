@@ -131,8 +131,8 @@ class VehiculesFixtures extends Fixture
 
                 $manager->persist($photoUploaded);
                 $manager->persist($v);
-                $manager->flush();
             }
+            $manager->flush();
         }
     }
 
