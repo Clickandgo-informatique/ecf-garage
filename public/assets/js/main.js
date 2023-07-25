@@ -1,4 +1,5 @@
 window.onload = () => {
+  console.log("coucou")
   //Fonction qui anime les alertes de type flash
   const btnClose = document.querySelectorAll(".btn-close-flashbag").forEach((button) => {
     button.addEventListener("click", (e) => {

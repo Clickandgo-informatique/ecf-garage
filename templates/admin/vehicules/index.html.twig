@@ -10,14 +10,7 @@
 	<main>
 		<h1 class="titre-principal">
 			<i class="fa-solid fa-car"></i>Liste des annonces véhicules d'occasion</h1>
-		<div
-			class="premiere-ligne">
-			{#Affiche/occulte le panneau de filtres #}
-			<div class="checkbox-filtres">
-				<input type="checkbox" name="show-filters" id="show-filters" class="show-filters" checked>
-				<span class="bi bi-funnel"></span>
-				<label for="show-filters">Filtres</label>
-			</div>
+		<div class="premiere-ligne">
 			<p class="alerte-favoris">Inscrivez-vous ou connectez-vous pour gérer vos favoris.</p>
 		</div>
 
@@ -26,6 +19,12 @@
 		{% endif %}
 
 		{# Filtre de classement : #}
+		{#Affiche/occulte le panneau de filtres #}
+		<div class="checkbox-filtres">
+			<input type="checkbox" name="show-filters" id="show-filters" class="show-filters" checked>
+			<span class="bi bi-funnel"></span>
+			<label for="show-filters">Filtres</label>
+		</div>
 		<form id="filters" class="filtersForm">
 
 			<div class="btn-accordion">
@@ -175,7 +174,6 @@
 					{% endfor %}
 				</div>
 			</div>
-
 
 			{# Filtre sur marques de véhicules #}
 

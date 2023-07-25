@@ -1,9 +1,9 @@
 .filtersForm {
- padding: 0;
+  padding: 0;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-items:center;
-  max-width: inherit;  
+  justify-items: center;
+  max-width: inherit;
 }
 
 .checkbox-filtres {
@@ -35,16 +35,14 @@
   margin-right: 10px;
 }
 .container-inputs {
-  display: none;
+  max-height: 0;
   background-color: #fff;
-  padding: 20px;
+  padding: 0px;
   border-radius: 10px;
-  position:relative;
-  transition: 0.4s;
-  height:250px;
+  position: relative;
+  transition: max-height 0.4s, padding 0.4s;
   overflow-y: scroll;
-  border:1px solid lightgray;
-
+  border: none;
 }
 .radio-grp {
   margin: 10px;
@@ -54,17 +52,22 @@
   color: var(--background-color);
 }
 .btn-collapse:checked ~ .container-inputs {
-    display: block;
-    transition: transform ease-in-out 0.4s;
+  border: 1px solid lightgray;
+  max-height: 250px;
+  padding: 20px;
 }
 .btn-collapse {
   display: none;
 }
+.btn-accordion{
+  display:flex;
+  flex-direction: column;
+}
 
 .accordion-label {
+  display:flex;
   padding: 10px;
   background-color: var(--background-color);
-  display: block;
   color: #ffffff;
   font-weight: 500;
   cursor: pointer;
@@ -72,9 +75,8 @@
   transition: background 0.1s;
   font-size: 1rem;
   border-radius: 10px;
-  white-space: nowrap; 
-  margin-bottom:2px;
-  min-width:180px;
+  white-space: nowrap;
+  margin-bottom: 2px;
 }
 .btn-accordion label::after {
   content: "";
@@ -92,6 +94,7 @@
 .btn-collapse:checked ~ .btn-accordion label::after {
   transform: translateY(-50%) rotate(0.5turn);
 }
-.input-label{
-    font-size: 1.2rem;
+
+.input-label {
+  font-size: 1.2rem;
 }

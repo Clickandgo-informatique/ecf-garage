@@ -129,13 +129,11 @@
     width: 300px;
     height: 300px;
   }
-  .filtersForm {
-    flex-direction: column;
 
-  }
-  .btn-accordion{
-    width:95%;
-  }
+   .btn-accordion{
+    width:80%;
+    flex-direction: row;
+  } 
   .container-pagination,
   .resultatFiltres {
     grid-column-start: 1;

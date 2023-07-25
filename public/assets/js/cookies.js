@@ -3,9 +3,8 @@ const cookiesBannerAcceptButton = document.querySelector(".accept-cookies");
 const cookiesBannerDeclineButton = document.querySelector(".decline-cookies");
 const cookieName = "cookiesBanner";
 const el = document.querySelector("main");
-const body=document.querySelector("body")
+const body = document.querySelector("body");
 window.onload = () => {
-
   //Annule momentanément le scrolling
   disableBodyScroll();
   //Affiche le banner de cookies si cookie inexistant
@@ -47,40 +46,46 @@ window.onload = () => {
       cookiesBanner.remove();
     }, 2000);
   });
+ };
+const getCookie = (name) => {
+  const value = " " + document.cookie;
+  const parts = value.split(" " + name + "=");
+  return parts.length < 2 ? undefined : parts.pop().split(";").shift();
+};
+
+const setCookie = function (
+  name,
+  value,
+  expiryDays,
+  domain,
+  path,
+  secure,
+  SameSite
+) {
+  const exDate = new Date();
+  exDate.setHours(
+    exDate.getHours() + (typeof expiryDays !== "number" ? 365 : expiryDays) * 24
+  );
+
+  document.cookie =
+    name +
+    "=" +
+    value +
+    "expires=" +
+    exDate.toUTCString() +
+    ";path=" +
+    (path || "/") +
+    (domain ? ";domain=" + domain : "") +
+    (secure ? ";secure" : "") +
+    (SameSite ? ";None" : "");
+};
+
+//Annuler scrolling du main
+
+function disableBodyScroll() {
+  el.classList.add("stop-scroll");
 }
-  const getCookie = (name) => {
-    const value = " " + document.cookie;
-    console.log("value", `==${value}==`);
-    const parts = value.split(" " + name + "=");
-    return parts.length < 2 ? undefined : parts.pop().split(";").shift();
-  };
 
-  const setCookie = function (name, value, expiryDays, domain, path, secure) {
-    const exDate = new Date();
-    exDate.setHours(
-      exDate.getHours() +
-        (typeof expiryDays !== "number" ? 365 : expiryDays) * 24
-    );
-
-    document.cookie =
-      name +
-      "=" +
-      value +
-      "expires=" +
-      exDate.toUTCString() +
-      ";path=" +
-      (path || "/") +
-      (domain ? ";domain=" + domain : "") +
-      (secure ? ";secure" : "");
-  };
-
-  //Annuler scrolling du main
-
-  function disableBodyScroll() {
-    el.classList.add("stop-scroll");
-  }
-
-  function enableBodyScroll() {
-    el.classList.remove("stop-scroll");
-  }
-
+function enableBodyScroll() {
+  el.classList.remove("stop-scroll");
+}

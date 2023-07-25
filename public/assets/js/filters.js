@@ -52,15 +52,12 @@ window.onload = () => {
 
   //Affiche le menu de filtres lateral gauche
   const showfilters = document.querySelector("#show-filters");
-  const wrapperfiltres = document.querySelector(".wrapper-filtres");
-
+  
   showfilters.addEventListener("change", () => {
     if (showfilters.checked) {
-      wrapperfiltres.style.transition = "ease-in 0.5s";
-      wrapperfiltres.style.display = "block";
-    } else {
-      wrapperfiltres.style.transition = "ease-out 1s";
-      wrapperfiltres.style.display = "none";
+      filtersForm.style.display = "flex";  
+    } else {    
+      filtersForm.style.display = "none";     
     }
   });
 
@@ -75,7 +72,6 @@ window.onload = () => {
     };
   }
   //Collapse les containers d'input
-  
 
   //Contrôle des saisies
   const yearMin = document.querySelector("#yearMin");
