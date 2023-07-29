@@ -16,6 +16,7 @@
 @import "./media-queries.css";
 @import "./filtersForm.css";
 
+
 :root {
   --background-color: rgb(86, 61, 213);
   --box-shadow: (1px 1px 4px black);

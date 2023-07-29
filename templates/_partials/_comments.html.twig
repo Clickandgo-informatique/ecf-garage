@@ -7,9 +7,7 @@
 				{% if c.parent == null %}
 					<div class="contenu-commentaire">
 						<div class="entete-commentaire">
-							<p class="note-visiteur">
-								<i class="fa-regular fa-heart"></i>Apréciation (note) :
-								{{c.note}}/10</p>
+
 							<p class="publication-par">Publié par
 								<strong>{{c.pseudo}}</strong>
 								<span>le
@@ -41,6 +39,21 @@
 			</div>
 			{{ form_start(commentForm)}}
 			<div class="form-header">Ajouter un commentaire</div>
+			<div class="container-etoiles">
+				<p class="text-note">Votre note :
+				</p>
+				<i class="fa-regular fa-star etoile" data-value="1"></i>
+				<i class="fa-regular fa-star etoile" data-value="2"></i>
+				<i class="fa-regular fa-star etoile" data-value="3"></i>
+				<i class="fa-regular fa-star etoile" data-value="4"></i>
+				<i class="fa-regular fa-star etoile" data-value="5"></i>
+				<i class="fa-regular fa-star etoile" data-value="6"></i>
+				<i class="fa-regular fa-star etoile" data-value="7"></i>
+				<i class="fa-regular fa-star etoile" data-value="8"></i>
+				<i class="fa-regular fa-star etoile" data-value="9"></i>
+				<i class="fa-regular fa-star etoile" data-value="10"></i>
+			</div>
+
 			{{ form_row(commentForm.note)}}
 			{{ form_row(commentForm.email)}}
 			{{ form_row(commentForm.pseudo)}}
@@ -52,6 +65,7 @@
 	</div>
 </div>
 {% block javascripts %}
-	<script src="{{asset('assets/js/commentaires.js')}}" defer></script>
-	<script src="{{asset('assets/js/ckeditor.js')}}" defer></script>
+	<script type="text/javascript" src="{{asset('assets/js/commentaires.js')}}" defer></script>
+	<script type="text/javascript" src="{{asset('assets/js/ckeditor.js')}}" defer></script>
+	<script src="{{asset('assets/js/notation.js')}}" type="text/javascript" defer></script>
 {% endblock %}

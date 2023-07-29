@@ -164,6 +164,7 @@ section.commentaires {
   margin: 10px auto;
   overflow-y: scroll;
   align-items: center;
+  max-width: 600px;
   width: 95%;
 }
 
@@ -256,4 +257,18 @@ form ul li {
   background-color: transparent;
   padding: 10px;
   border: none;
+}
+.container-etoiles{ 
+  display:flex;
+  align-items: center; 
+}
+.etoile{
+  font-size: 1rem;
+  padding:1px;
+  color:black;
+  cursor:pointer;
+}
+.text-note{
+  font-size: 0.8rem;
+  color:blue;
 }
